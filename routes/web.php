@@ -11,14 +11,16 @@
 |
 */
 
-Route::group(['middleware' => ['web', 'auth', 'isVerified']], function () {
-    Route::get('/test', function () {
-        return "test";
-    });
+Route::group(['middleware' => ['web', 'authed']], function () {
+    Route::get('/test', 'HomeController@test');
 });
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/errors/restricted', function () {
+    return view('errors.restricted');
 });
 
 Auth::routes();

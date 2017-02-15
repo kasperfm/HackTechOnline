@@ -36,6 +36,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'authed' => [
+            \App\Http\Middleware\RedirectIfNotVerified::class,    
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
