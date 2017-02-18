@@ -16,7 +16,7 @@ Route::group(['middleware' => ['web', 'authed']], function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/errors/restricted', function () {

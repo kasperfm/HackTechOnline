@@ -1,9 +1,601 @@
+@import "scss-themes/default.scss";
 
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@font-face {
+    font-family: 'Aerial';
+    src: url('../fonts/aerial-webfont.eot');
+    src: url('../fonts/aerial-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/aerial-webfont.woff') format('woff'), url('../fonts/aerial-webfont.ttf') format('truetype'), url('../fonts/aerial-webfont.svg#webfont') format('svg');
+}
 
-// Variables
-@import "variables";
+@font-face {
+  font-family: 'PixelFont';
+  src: url('../fonts/VisitorTT1BRK.eot?#iefix') format('embedded-opentype'),  url('../fonts/VisitorTT1BRK.woff') format('woff'), url('../fonts/VisitorTT1BRK.ttf')  format('truetype'), url('../fonts/VisitorTT1BRK.svg#VisitorTT1BRK') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+* {
+	margin:0;
+	padding:0;
+    font-family: PixelFont;
+    letter-spacing: 1px;
+}
+
+.transform3d{
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	-ms-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+html, body, #top-wrapper {
+	height: 100%;
+	overflow: hidden;
+}
+
+body > #top-wrapper {
+	height: auto;
+	min-height: 100%;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.login-form {
+    padding-left: 135px;
+}
+
+#main {
+	padding-bottom: 44px;
+
+}
+
+#footer {
+	position: relative;
+	margin-top: -44px; /* negative value of footer height */
+	height: 44px;
+	clear:both;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	z-index: 1;
+}
+
+/* CLEAR FIX*/
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	display: inline-block;
+}
+/* Hides from IE-mac \*/
+* html .clearfix {
+	height: 1%;
+}
+
+.clearfix {
+	display: block;
+}
+/* End hide from IE-mac */
+
+.menubar{
+	overflow: visible;
+	position: absolute;
+	top:0px;
+	padding-left: 40px;
+	padding-right: 40px;
+	left:0px;
+	right: 0px;
+	padding-top: 7px;
+	z-index: 5000;
+}
+
+.float-right{
+    float: right !important;
+}
+
+.menubar .logo{
+	width: 108px;
+	height: auto;
+	background-image: url("../img/mini-logo.png");
+	background-repeat: no-repeat;
+	background-position: center top;
+	margin-top: -9px;
+	padding-left: 10px !important;
+    padding-top:38px !important;
+    color:rgba(0,0,0,0) !important;
+}
+
+.menu-item-inactive{
+	color: #4b4b4b !important;
+}
+
+.menubar-item ul {
+    display: none;
+}
+
+.menubar-item-inactive{
+	color: $menubar-item-inactive !important;
+	font-family: Aerial;
+	font-size: 9px;
+	list-style: none;
+	text-transform: none;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
+	border:1px solid transparent;
+	text-transform: uppercase;
+	z-index: 5000;
+}
+
+.menubar .pm-icon{
+	float: right;
+	padding: 5px;
+	color: rgb(100,100,100);
+	font-family: Aerial;
+	font-size: 8px;
+	cursor: pointer;
+}
+
+.menubar .pm-icon img{
+    margin-top: -6px !important;
+}
+
+.menubar .menubar-item{
+	float: left;
+	padding: 5px;
+	font-family: Aerial;
+	text-transform: uppercase;
+	font-size: 9px;
+	cursor: pointer;
+	color: $menubar-item;
+	border:transparent 1px solid;
+	position: relative;
+	z-index: 99999;
+}
+
+.menubar .menubar-item:hover{
+	color: $menubar-item-hover;
+	background-color: $menubar-item-hover-background;
+	border-top:solid 1px $menubar-item-border-clean;
+	border-left:solid 1px $menubar-item-border-clean;
+	border-right:solid 1px $menubar-item-border-clean;
+}
+
+.menubar .menubar-item ul{
+	display: none;
+	position: fixed;
+	z-index: 5000;
+	background-color: $menubar-item-background;
+	border:1px solid $menubar-item-border;
+	margin-top: 5px;
+	margin-left: -6px;
+	padding-top: 10px;
+	border-top: 1px solid transparent;
+	min-width: 150px;
+}
+
+.menubar .menubar-item ul li{
+	color: $menubar-item;
+	font-family: Aerial;
+	font-size: 9px;
+	list-style: none;
+	text-transform: none;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	cursor: pointer;
+	border: 1px solid transparent;
+	text-transform: uppercase;
+	z-index: 5000;
+}
+
+.menubar .menubar-item ul li:hover{
+	background-color: $menubar-item-hover-background;
+	border:1px solid $menubar-item-border-clean;
+	z-index: 5000;
+}
+
+.menubar .menubar-item a{
+	color: $menubar-item-inactive;
+	text-decoration: none;
+	z-index: 5000;
+}
+
+.menubar .menubar-item a:hover{
+	color: $menubar-item-hover;
+	text-decoration: none;
+	z-index: 5000;
+}
+
+body{
+    font-family: 'PixelFont';
+	background-color: black;
+	background-image: url('../img/backgrounds/flow_hd.jpg');
+	background-position: top center;
+	background-attachment: fixed;
+	background-repeat: repeat;
+	background-size: cover;
+}
+
+a{
+	color: $menubar-item-inactive;
+	text-decoration: none;
+}
+
+.dialog-pane{
+	background: $dialog-pane-background; /* Old browsers */
+	padding: 0px;
+	border: solid 1px $dialog-pane-border;
+	box-shadow: 0px 0px 10px $dialog-pane-border;
+}
+
+.noTitleStuff .ui-dialog-titlebar {display:none}
+
+.pane{
+	background: $dialog-pane-background; /* Old browsers */
+	padding: 20px;
+	border: solid 1px $dialog-pane-border;
+	box-shadow: 0px 0px 10px $dialog-pane-border;
+}
+
+.login-button{
+    background-image:url('../img/icon-login.png');
+    font-size:0;
+    background-position: 95% 5px, right;
+    background-repeat: no-repeat;
+}​
+
+img{
+	box-shadow: 0px 0px 10px $img-shadow;
+	-webkit-transition: all;
+	-webkit-transition-duration: 0.2s;
+	border: none;
+}
+
+a img{
+	border: 0px;
+}
+
+label{
+    font-family: PixelFont;
+    letter-spacing: 1px;
+	color: white;
+	font-size: 20px;
+	text-transform: uppercase !important;
+}
+
+.small_label{
+	font-family: 'Aerial' !important;
+	color: white;
+	font-size: 15px;
+	text-transform: uppercase !important;
+}
+
+form{
+	padding: 20px;
+	background-color: $form-background;
+}
+
+input:hover, textarea:hover, select:hover{
+    background-color: $input-hover-background;
+}
+
+input, textarea{
+	padding: 8px;
+	width: 200px;
+	font-family: 'Helvetica Neue', Arial;
+	background-color: $form-background;
+	border: solid 1px $input-border;
+	font-size: 0.75em !important;
+	color: $input-text;
+}
+
+option{
+    background: $input-option-background;
+}
+
+select{
+	width: 200px;
+	border: solid 1px $input-border;
+	font-size: 1em !important;
+	text-transform: none !important;
+    font-family: 'PixelFont' !important;
+    color: $input-text;
+    border-radius: 3px;
+    padding: 5px;
+    overflow: hidden;
+    background: url(../img/icon-dropdown.png) 100% no-repeat $form-background;
+    background-position: right;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.input2{
+	padding: 8px;
+	width: 200px;
+	font-family: 'Aerial' !important;
+	background-color: $form-background;
+	border: solid 1px $input-border;
+	font-size: 18px !important;
+	text-transform: uppercase;
+	color: $input-text;
+    margin-bottom: 10px;
+}
+
+.input_small{
+	padding: 5px;
+	width: 200px;
+	font-family: 'Aerial' !important;
+	background-color: $form-background;
+	border: solid 1px $input-border;
+	font-size: 12px !important;
+	color: $input-text;
+}
+
+.input_small-nofont{
+	padding: 5px;
+	width: 200px;
+	background-color: $form-background;
+	border: solid 1px $input-border;
+	font-size: 12px !important;
+	color: $input-text;
+}
+
+.btn{
+	padding: 8px;
+	width: 219px;
+	/* font-family: Arial; */
+	font-family: 'Aerial' !important;
+	background-color: $form-background;
+	border: solid 1px $input-border;
+	font-size: 20px;
+	color: $input-text;
+	text-transform: uppercase !important;
+}
+
+.ui-dialog[aria-describedby="logoff-dialog"] .ui-dialog-buttonpane .ui-dialog-buttonset button{
+	width: 140px;
+	/* font-family: Arial; */
+	background-color: $form-background !important;
+	border: solid 1px $input-border !important;
+	font-size: 18px;
+	color: $input-text;
+}
+
+.form_small{
+	padding: 12px;
+	background-color: $form-background;
+}
+
+.btn_small{
+	padding: 5px;
+	width: 90px;
+	/* font-family: Arial; */
+	font-family: 'Aerial' !important;
+	background-color: $form-background;
+	border: solid 1px $input-border;
+	font-size: 12px !important;
+	color: $input-text;
+}
+
+h1{
+	font-family: Aerial;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 100;
+	margin-bottom: 12px;
+}
+
+h2{
+	font-family: 'Helvetica Neue';
+	font-weight: 100;
+	color: $text-color;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+h3{
+	font-family: Aerial;
+	text-transform: uppercase;
+	font-size: 15px;
+	font-weight: 100;
+	margin-bottom: 8px;
+}
+
+p{
+	margin-top: 5px;
+	font-family: PixelFont, 'Helvetica Neue', Arial;
+	font-size: 16px;
+/* font-stretch: expanded; */
+	padding: 20px;
+	color: $text-color;
+	background-color: $paragraph-background;
+	line-height: 20px;
+	-webkit-transition: all;
+	-webkit-transition-duration: 0.2s;
+	border: solid 1px $paragraph-border;
+}
+
+p:hover{
+	background-color: $paragraph-hover-background;
+	border: solid 1px $paragraph-border;
+}
+
+.less-padding{
+    padding: 8px;
+}
+
+ul{
+    font-family: 'PixelFont';
+    font-size: 15px;
+}
+
+ul li {
+    font-family: 'PixelFont';
+    font-size: 15px;
+}
+
+li{
+	font-family: Arial;
+	padding: 10px;
+	list-style: none;
+	margin: 2px;
+	background-color: $li-background;
+	font-size: 15px;
+	-webkit-transition: all;
+	-webkit-transition-duration: 0.25s;
+}
+
+li:hover{
+	background-color: $li-hover-background;
+}
+li.hover{
+	background-color: $li-hover-background;
+}
+
+.text-red{
+	color: #F70F0F;
+}
+
+.text-green{
+	color: #4DF70F;
+}
+
+.text-yellow{
+	color: #FFF300;
+}
+
+.text-pink{
+	color: #FF0091;
+}
+
+.text-purple{
+	color: #9500FF;
+}
+
+.text-blue{
+	color: rgb(0,200,255);
+}
+
+.text-white{
+    color: white;
+}
+
+.title {
+	font-family: Aerial;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 100;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+
+.dialog_form th {
+	text-align: left;
+}
+
+.dialog_form textarea, .dialog_form input[type=text] {
+	width: 320px;
+}
+
+.ui-progressbar-value {
+    background-color: $progressbar;
+}
+
+#footer a{
+    font-family: Aerial;
+}
+#footer .footer-content{
+    font-family: Aerial;
+	position: absolute;
+	bottom: 0px;
+	height: 40px;
+	left: 50px;
+	right: 40px;
+	z-index: 2;
+}
+
+#footer .footer-content .footer-item{
+	float: left;
+	padding-left: 5px;
+    padding-right: 5px;
+	color: $text-color;
+	font-family: Aerial;
+	font-size: 8px;
+	cursor: pointer;
+	margin-top: 13px;
+}
+
+#footer .footer-content .footer-item:hover{
+	color: $text-color;
+}
+
+#footer .copyright-item{
+	float: right;
+	font-family: Aerial;
+	color: $text-color;
+	font-size: 9px;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+#footer .light-item{
+    float: left;
+	font-family: Aerial;
+	color: $text-color;
+	font-size: 9px;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.res_meter{
+	width: 100px;
+	height: 10px;
+	display: inline-block;
+
+    animation-duration: 4s !important;
+    animation-delay: 2s !important;
+    animation-iteration-count: infinite !important;
+    -webkit-animation-duration: 4s !important;
+    -webkit-animation-delay: 2s !important;
+    -webkit-animation-iteration-count: infinite !important;
+    -moz-animation-duration: 4s !important;
+    -moz-animation-delay: 2s !important;
+    -moz-animation-iteration-count: infinite !important;
+}
+
+.header{
+	position:fixed;
+	z-index: 9000;
+}
+
+#window_wrapper{
+    top: 44px;
+    height: 1024px;
+    width: 100%;
+    z-index: -10;
+    position: absolute;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.ui-dialog {
+    z-index: 1000;
+}
+
+.ui-dialog .ui-dialog-titlebar-min{ position: absolute; right: 23px; top: 50%; width: 18px; margin: -10px 0 0 0; padding: 0px; height: 18px; }
+.ui-dialog .ui-dialog-titlebar-min span { display: block; margin: 0px; }
+.ui-dialog .ui-dialog-titlebar-min:hover, .ui-dialog .ui-dialog-titlebar-min:focus { padding: 0; }
+
+.ui-dialog .ui-dialog-titlebar-rest{ position: absolute; right: 23px; top: 50%; width: 18px; margin: -10px 0 0 0; padding: 0px; height: 18px; }
+.ui-dialog .ui-dialog-titlebar-rest span { display: block; margin: 0px; }
+.ui-dialog .ui-dialog-titlebar-rest:hover, .ui-dialog .ui-dialog-titlebar-rest:focus { padding: 0; }
