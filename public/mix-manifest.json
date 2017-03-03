@@ -1,7 +1,12 @@
 {
   "/js/vendor.js": "/js/vendor.js",
   "/js/app.js": "/js/app.js",
+  "/css/ui/hto-theme.css": "/css/ui/hto-theme.css",
   "/css/app.css": "/css/app.css",
+  "/js/notification-min.js": "/js/notification-min.js",
+  "/js/jquery.onenter.js": "/js/jquery.onenter.js",
   "/js/init.js": "/js/init.js",
-  "/js/manifest.js": "/js/manifest.js"
+  "/js/manifest.js": "/js/manifest.js",
+  "/js/jquery-ui-bundle.js": "/js/jquery-ui-bundle.js",
+  "/css/misc.css": "/css/misc.css"
 }

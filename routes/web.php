@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/offline', function () {
+    return view('offline');
+});
+
 Route::get('/errors/restricted', function () {
     return view('errors.restricted');
 });
