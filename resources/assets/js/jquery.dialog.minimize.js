@@ -32,18 +32,18 @@
 
 		//Minimize Button
 		this.uiDialogTitlebarMin = $('.dialog-minimize', uiDialogTitlebar).hover(function(){
-			$(this).addClass('ui-state-hover');
+			//$(this).addClass('ui-state-hover');
 		}, function(){
-			$(this).removeClass('ui-state-hover');
+			//$(this).removeClass('ui-state-hover');
 		}).click(function(){
 			self.minimize();
 			return false;
 		});
 		//Restore Button
 		this.uiDialogTitlebarRest = $('.dialog-restore', uiDialogTitlebar).hover(function(){
-			$(this).addClass('ui-state-hover');
+			//$(this).addClass('ui-state-hover');
 		}, function(){
-			$(this).removeClass('ui-state-hover');
+			//$(this).removeClass('ui-state-hover');
 		}).click(function(){
 			self.restore();
 			self.moveToTop(true);
