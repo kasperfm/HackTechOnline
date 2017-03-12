@@ -1,0 +1,1 @@
+webpackJsonp([2,7],{16:function(n,i,o){(function(n){n(document).ready(function(){n("#register_window").dialog({width:945,height:570,autoOpen:!0,hide:{duration:225},close:function(i,o){n(this).remove()}}),n("#register_window").dialog("widget").draggable("option","containment","#window_wrapper")})}).call(i,o(1))},44:function(n,i,o){n.exports=o(16)}},[44]);

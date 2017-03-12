@@ -12,12 +12,12 @@
 */
 
 Route::group(['middleware' => ['web', 'authed']], function () {
-    Route::get('/test', 'HomeController@test');
+    Route::get('/game', 'GameController@index');
 });
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/','GameController@login');
+
+Route::get('/login', 'GameController@login');
 
 Route::get('/offline', function () {
     return view('offline');
@@ -28,5 +28,4 @@ Route::get('/errors/restricted', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
+Route::get('/logout', 'GameController@logout');

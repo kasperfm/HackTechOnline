@@ -26,7 +26,9 @@
 </head>
 <body>
     @yield('topbar')
-@include('modules.demo.module')
+
+    @yield('content')
+
     @yield('footer')
 
     <!-- Scripts -->
@@ -36,6 +38,7 @@
     <script src="{{ mix('/js/jquery-ui-bundle.js') }}"></script>
     <script src="{{ mix('/js/jquery.onenter.js') }}"></script>
     <script src="{{ mix('/js/notification-min.js') }}"></script>
-    <script src="{{ mix('/js/init.js') }}"></script>
+
+    @yield('extra-js')
 </body>
 </html>

@@ -33,7 +33,7 @@
                     </ul>
                 </div>
 
-                <div class="menubar-item float-right" onclick="game_logoff();"><img width="10" height="10" alt="Logoff" src="img/icon-login.png" /> LOGOFF</div>
+                <div class="menubar-item float-right"><a href="/logout"><img width="10" height="10" alt="Logoff" src="img/icon-login.png" /> LOGOFF</a></div>
                 <div class="menubar-item credits-display float-right" onclick="getCredits();">$ 1337</div>
             </div>
         </div>

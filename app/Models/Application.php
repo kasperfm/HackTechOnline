@@ -13,4 +13,8 @@ class Application extends Model
     public function scopeOnMarket($query){
         return $query->where('on_market', 1);
     }
+
+    public function scopeOfGroup($query, $type){
+        return $query->where('app_group', $type);
+    }
 }

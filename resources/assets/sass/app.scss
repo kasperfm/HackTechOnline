@@ -41,7 +41,7 @@ body > #top-wrapper {
 }
 
 .login-form {
-    padding-left: 135px;
+    padding-left: 165px;
 }
 
 #main {
@@ -248,7 +248,7 @@ a{
     font-size:0;
     background-position: 95% 5px, right;
     background-repeat: no-repeat;
-}​
+}
 
 img{
 	box-shadow: 0px 0px 10px $img-shadow;
@@ -269,6 +269,14 @@ label{
 	text-transform: uppercase !important;
 }
 
+.large-label{
+	font-family: 'Aerial' !important;
+	letter-spacing: 1px;
+	color: white;
+	font-size: 20px;
+	text-transform: uppercase !important;
+}
+
 .small_label{
 	font-family: 'Aerial' !important;
 	color: white;
@@ -281,8 +289,19 @@ form{
 	background-color: $form-background;
 }
 
-input:hover, textarea:hover, select:hover{
+input:hover, textarea:hover, select:hover, button:hover{
     background-color: $input-hover-background;
+}
+
+.has-input-error{
+	border-width: 1px;
+	border-color: #ff0010 !important;
+}
+
+.header a{
+	color: #ffffff !important;
+	font-family: Aerial;
+	font-size: 9px;
 }
 
 input, textarea{
@@ -349,7 +368,7 @@ select{
 
 .btn{
 	padding: 8px;
-	width: 219px;
+	width: 218px;
 	/* font-family: Arial; */
 	font-family: 'Aerial' !important;
 	background-color: $form-background;
@@ -460,31 +479,35 @@ li.hover{
 }
 
 .text-red{
-	color: #F70F0F;
+	color: #F70F0F !important;
 }
 
 .text-green{
-	color: #4DF70F;
+	color: #4DF70F !important;
 }
 
 .text-yellow{
-	color: #FFF300;
+	color: #FFF300 !important;
 }
 
 .text-pink{
-	color: #FF0091;
+	color: #FF0091 !important;
 }
 
 .text-purple{
-	color: #9500FF;
+	color: #9500FF !important;
 }
 
 .text-blue{
-	color: rgb(0,200,255);
+	color: rgb(0,200,255) !important;
 }
 
 .text-white{
-    color: white;
+    color: white !important;
+}
+
+form .checkbox{
+	width: auto;
 }
 
 .title {
@@ -495,7 +518,6 @@ li.hover{
 	margin-bottom: 20px;
 	text-align: center;
 }
-
 
 .dialog_form th {
 	text-align: left;
@@ -574,6 +596,10 @@ li.hover{
 .header{
 	position:fixed;
 	z-index: 9000;
+}
+
+.form-group{
+	padding-bottom: 8px;
 }
 
 #window_wrapper{
