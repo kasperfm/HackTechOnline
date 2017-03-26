@@ -6,27 +6,27 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('username') ? ' has-input-error' : '' }}">
+            <div class="form-group">
                 <label for="username" class="col-md-4 control-label">Username</label>
 
                 <div>
-                    <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                    <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' has-input-error' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-input-error' : '' }}">
+            <div class="form-group">
                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                 <div>
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' has-input-error' : '' }}" name="email" value="{{ old('email') }}" required>
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('password') ? ' has-input-error' : '' }}">
+            <div class="form-group">
                 <label for="password" class="col-md-4 control-label">Password</label>
 
                 <div>
-                    <input id="password" type="password" class="form-control" name="password" required>
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' has-input-error' : '' }}" name="password" required>
                 </div>
             </div>
 
@@ -38,11 +38,11 @@
                 </div>
             </div>
 
-            <div class="form-group{{ $errors->has('invite') ? ' has-input-error' : '' }}">
+            <div class="form-group">
                 <label for="invite" class="col-md-4 control-label">Invite code</label>
 
                 <div>
-                    <input id="invite" type="text" maxlength="16" class="form-control" name="invite" value="{{ old('invite') }}" required>
+                    <input id="invite" type="text" maxlength="16" class="form-control{{ $errors->has('invite') ? ' has-input-error' : '' }}" name="invite" value="{{ old('invite') }}" required>
                 </div>
             </div>
 

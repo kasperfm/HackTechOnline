@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Invite;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -34,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -46,6 +47,16 @@ class RegisterController extends Controller
         $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
     }
 
+    private function useInviteKey($inviteKey, $userID){
+        $invite = Invite::where('key', $inviteKey)->available()->first();
+
+        if($invite->isEmpty == false) {
+            $invite->used = 1;
+            $invite->user_id = $userID;
+            $invite->save();
+        }
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -55,7 +66,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|max:255',
+            'username' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'invite' => 'required|valid_invite'
@@ -91,6 +102,8 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
 
         event(new Registered($user));
+
+        $this->useInviteKey($request->invite, $user->id);
 
         $this->guard()->login($user);
 
