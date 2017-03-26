@@ -34,6 +34,10 @@ $(document).ready(function() {
         setWindowWrapperSize();
     });
 
+    $('.logout-btn').on('click', function(){
+        window.location.href = '/logout';
+    });
+
     // The fade-in effect when you login.
     $('body').css('display', 'none');
     $('body').fadeIn(3000);
