@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserLogin extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id', 'last_date', 'last_ip'
     ];

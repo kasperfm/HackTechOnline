@@ -1,4 +1,4 @@
-<div id="footer">
+<div id="footer" style="display: none;">
 	<img id="footer-canvas" width="1000" height="40" src="img/footer-canvas.png" alt="Footer" />
 	<div class="footer-content">
 		<div class="footer-item"><a class="text-white" href="https://discord.gg/0bTpBGNQY1aZL6el" target="_blank">CHAT</a></div>

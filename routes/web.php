@@ -15,7 +15,7 @@ Route::group(['middleware' => ['web', 'authed']], function () {
     Route::get('/game', 'GameController@index');
 });
 
-Route::get('/','GameController@login');
+Route::get('/','GameController@index');
 
 Route::get('/login', 'GameController@login');
 

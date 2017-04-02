@@ -16,25 +16,23 @@ class GameController extends Controller
     }
 
     public function login(){
-        if(Auth::check() || Auth::viaRemember()) {
-            return view('index');
+        if(Auth::check()) {
+            redirect('/login');
         }else{
             return view('auth.login');
         }
-
     }
 
     public function logout(){
         Auth::logout();
-
         return redirect('/');
     }
 
     public function index(){
-        if(Auth::check()) {
+        if(Auth::check() || Auth::viaRemember()) {
             return view('index');
         }else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
 }

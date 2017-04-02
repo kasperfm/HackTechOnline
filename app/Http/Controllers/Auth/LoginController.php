@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserLogin;
 
 class LoginController extends Controller
 {
@@ -27,7 +29,21 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/game';
+   // protected $redirectTo = '/game';
+
+    protected function redirectTo()
+    {
+        $this->logUserLogin(Auth::id(), $_SERVER['REMOTE_ADDR']);
+        return '/game';
+    }
+
+    private function logUserLogin($userID, $ipAddress){
+        $userLoginEntry = new UserLogin();
+        $userLoginEntry->user_id = $userID;
+        $userLoginEntry->last_date = date("Y-m-d H:i:s", time());
+        $userLoginEntry->last_ip = $ipAddress;
+        $userLoginEntry->save();
+    }
 
     /**
      * Create a new controller instance.
