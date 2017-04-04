@@ -29,7 +29,6 @@ class LoginController extends Controller
      *
      * @var string
      */
-   // protected $redirectTo = '/game';
 
     protected function redirectTo()
     {
