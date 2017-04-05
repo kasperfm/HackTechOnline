@@ -8,7 +8,7 @@ class Module
 {
     public $moduleID;
     public $name;
-    public $title;
+    public $title = "Unknown application";
     public $description;
     public $group;
     public $version;
@@ -20,4 +20,9 @@ class Module
         "width"     => 250,
         "height"    => 250
     );
+
+    public function returnHTML(){
+        $view = view('modules.' . $this->name . '.index');
+        return $view->render();
+    }
 }

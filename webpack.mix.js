@@ -16,6 +16,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/init.js', 'public/js')
    .js('resources/assets/js/register.js', 'public/js')
    .js('resources/assets/js/login.js', 'public/js')
+   .js('resources/assets/js/moduleloader.js', 'public/js')
    .extract(['jquery', 'lodash', 'axios'])
 
    // Jquery UI

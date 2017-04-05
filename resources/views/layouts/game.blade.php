@@ -27,6 +27,8 @@
 <body>
     @yield('topbar')
 
+    <div id="window_wrapper"></div>
+
     @yield('content')
 
     @yield('footer')
@@ -35,6 +37,7 @@
     <script src="{{ mix('/js/manifest.js') }}"></script>
     <script src="{{ mix('/js/vendor.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/moduleloader.js') }}"></script>
     <script src="{{ mix('/js/jquery-ui-bundle.js') }}"></script>
     <script src="{{ mix('/js/jquery.onenter.js') }}"></script>
     <script src="{{ mix('/js/notification-min.js') }}"></script>

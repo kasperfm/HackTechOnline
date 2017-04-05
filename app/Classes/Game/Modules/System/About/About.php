@@ -6,7 +6,13 @@ use App\Classes\Game\Module;
 
 class About extends Module
 {
-    public function testMe(){
-        echo 'This is ABOUT ME!';
+    public function setup(){
+        $this->name = "about";
+        $this->title = "About";
+
+        $this->size = array(
+            "width"     => 445,
+            "height"    => 128
+        );
     }
 }
