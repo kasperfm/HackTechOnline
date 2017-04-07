@@ -9,7 +9,7 @@ function loadModule(moduleName){
             _token: window.Laravel.csrfToken
         },
         success: function(response) {
-            if(response.answer != null) {
+            if(response.answer === true) {
                 $("#window_wrapper").append('<div id="wnd_'+moduleName+'" class="dialog_window wnd_'+moduleName+'" title="'+response.title+'"></div>');
                 $("#wnd_" + moduleName).html(response.view);
 
@@ -27,7 +27,7 @@ function loadModule(moduleName){
                 });
 
                 $('#wnd_'+moduleName).dialog("widget").draggable("option","containment","#window_wrapper");
-                //updateResourceBars();
+                updateResourceBars();
             }
         }
     });
@@ -39,19 +39,43 @@ function unloadModule(moduleName){
         dataType: 'json',
         cache: false,
         data: {
-            modname: moduleName
+            modname: moduleName,
+            _token: window.Laravel.csrfToken
         },
         url: '/game/ajax/module/unload',
         success: function(response) {
-            if(response.answer == true) {
-                //updateResourceBars();
+            if(response.answer === true) {
+                updateResourceBars();
+            }
+        }
+    });
+}
+
+function setResourceBar(type, resval){
+    $(".res_" + type + "_bar").progressbar("option", "value", resval);
+}
+
+function updateResourceBars(){
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            _token: window.Laravel.csrfToken
+        },
+        url: '/game/ajax/getresources',
+        success: function(response) {
+            if(response.answer === true) {
+                setResourceBar("cpu", response.cpu);
+                setResourceBar("ram", response.ram);
+                setResourceBar("hdd", response.hdd);
             }
         }
     });
 }
 
 $(document).ready(function() {
-    //updateResourceBars();
+    updateResourceBars();
 
     $('.exec').click(function() {
         loadModule($(this).attr("rel"));

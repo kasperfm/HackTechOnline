@@ -14,6 +14,10 @@ class Application extends Model
         return $this->hasOne('App\Models\ApplicationGroup', 'id', 'app_group');
     }
 
+    public function data(){
+        return $this->hasOne('App\Models\ApplicationData', 'application_id', 'id');
+    }
+
     public function scopeOnMarket($query){
         return $query->where('on_market', 1);
     }

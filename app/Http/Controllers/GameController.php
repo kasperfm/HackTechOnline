@@ -28,8 +28,13 @@ class GameController extends Controller
         return redirect('/');
     }
 
-    public function index(){
+    public function index(Request $request){
         if(Auth::check() || Auth::viaRemember()) {
+            $runningApps = array();
+            $request->session()->put('runningApps', $runningApps);
+            $request->session()->put('cpuUsage', 0);
+            $request->session()->put('ramUsage', 0);
+
             return view('index');
         }else{
             return redirect('/login');

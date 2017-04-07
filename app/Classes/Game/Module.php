@@ -2,10 +2,13 @@
 
 namespace App\Classes\Game;
 
-use app\Classes\Game\Requirements;
+use App\Classes\Game\Requirements;
+use App\Models\Application;
 
 class Module
 {
+    public $appModel;
+
     public $moduleID;
     public $name;
     public $title = "Unknown application";
@@ -20,6 +23,17 @@ class Module
         "width"     => 250,
         "height"    => 250
     );
+
+    public function __construct(Application $application){
+        $this->appModel = $application;
+
+        $this->requirements = new Requirements(
+            $this->appModel->app_name,
+            $this->appModel->data->cpu_req,
+            $this->appModel->data->ram_req,
+            $this->appModel->data->hdd_req
+        );
+    }
 
     public function returnHTML(){
         $view = view('modules.' . $this->name . '.index');

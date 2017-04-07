@@ -15,7 +15,7 @@ class ModuleHandler
         if($app->isEmpty == false){
             $class = '\App\Classes\Game\Modules\\' . $app->group->name . '\\' . $name . '\\' . $name;
 
-            $module = new $class;
+            $module = new $class($app);
             $module->setup();
             return $module;
         }
