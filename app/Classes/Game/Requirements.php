@@ -2,7 +2,9 @@
 
 namespace App\Classes\Game;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Requirements
 {
@@ -19,13 +21,12 @@ class Requirements
         $this->hdd = $hdd;
     }
 
-    public function validateRequirements(Request $request)
-    {
+    public function validateRequirements(Request $request) {
         $runningApps = $request->session()->get('runningApps', array());
         if (!in_array($this->appName, $runningApps)) {
-            // TODO: Get data from gateway !
-            $availableCpu = 100;
-            $availableRam = 100;
+            $user = User::find(Auth::id())->first();
+            $availableCpu = $user->gateway->cpu->value;
+            $availableRam = $user->gateway->ram->value;
 
             $currentCpuUsage = $request->session()->get('cpuUsage');
             $currentRamUsage = $request->session()->get('ramUsage');

@@ -75,6 +75,7 @@ function updateResourceBars(){
 }
 
 $(document).ready(function() {
+    $(".res_meter").progressbar();
     updateResourceBars();
 
     $('.exec').click(function() {

@@ -2,7 +2,6 @@
 
 namespace App\Classes\Game;
 
-use App\Classes\Game\Requirements;
 use App\Models\Application;
 
 class Module
