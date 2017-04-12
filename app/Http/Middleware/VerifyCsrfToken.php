@@ -14,4 +14,10 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         //
     ];
+
+    protected function tokensMatch($request)
+    {
+        return (($request->session()->token() == $request->input('_token')) ||
+            ($request->session()->token() == $request->header('x-csrf-token')));
+    }
 }

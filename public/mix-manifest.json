@@ -5,6 +5,7 @@
   "/css/app.css": "/css/app.css",
   "/js/register.js": "/js/register.js",
   "/js/notification-min.js": "/js/notification-min.js",
+  "/js/moduleloader.js": "/js/moduleloader.js",
   "/js/login.js": "/js/login.js",
   "/js/jquery.onenter.js": "/js/jquery.onenter.js",
   "/js/init.js": "/js/init.js",

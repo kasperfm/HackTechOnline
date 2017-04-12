@@ -43,4 +43,7 @@ $(document).ready(function() {
     $('body').fadeIn(3000);
     $('#footer').fadeIn(3000);
     $('#top-wrapper').fadeIn(3000);
+
+    window.closeEffect = closeEffect;
+    window.closeDuration = closeDuration;
 });

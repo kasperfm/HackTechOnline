@@ -14,6 +14,9 @@ return [
 
     'name' => 'HackTech Online',
 
+    // Game version
+    'version' => '0.1.0 Pre-Alpha',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

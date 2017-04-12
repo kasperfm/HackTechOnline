@@ -1,5 +1,5 @@
 <div id="top-wrapper" style="display: none;">
-    <div id=main"" class="clearfix">
+    <div id="main" class="clearfix">
         <div class="header">
             <img id="menubar-canvas" width="1000" height="40" src="img/menubar-canvas.png" alt="Header" />
             <div class="menubar">

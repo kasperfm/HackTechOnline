@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApplicationDataTable extends Migration
+class CreateApplicationDatasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateApplicationDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('application_data', function (Blueprint $table) {
+        Schema::create('application_datas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('application_id')->unsigned();
             $table->float('version')->default(0);
@@ -31,6 +31,6 @@ class CreateApplicationDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('application_data');
+        Schema::dropIfExists('application_datas');
     }
 }
