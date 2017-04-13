@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Host;
 use App\Models\User;
 use App\Models\Invite;
+use App\Models\Gateway;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -89,6 +91,40 @@ class RegisterController extends Controller
         ]);
     }
 
+    private function generateUnusedIP(){
+        $randomIP = long2ip( mt_rand(0, 65537) * mt_rand(0, 65535) );
+        $hostLookup = Host::where('game_ip', $randomIP)->first();
+
+        if(empty($hostLookup)){
+            return $randomIP;
+        }else{
+            $this->generateUnusedIP();
+        }
+    }
+
+    private function createNewGateway($userID){
+        $newIP = $this->generateUnusedIP();
+
+        $newGateway = new Gateway();
+        $newGateway->user_id = $userID;
+        $newGateway->inet_id = 1;
+        $newGateway->cpu_id = 2;
+        $newGateway->ram_id = 3;
+        $newGateway->hdd_id = 4;
+        $newGateway->host_id = 0;
+        $newGateway->save();
+
+        $newHost = new Host();
+        $newHost->online_state = 1;
+        $newHost->game_ip = $newIP;
+        $newHost->host_type = 2;
+        $newHost->machine_id = $newGateway->id;
+        $newHost->save();
+
+        $newGateway->host_id = $newHost->id;
+        $newGateway->save();
+    }
+
     /**
     * Handle a registration request for the application.
     *
@@ -104,6 +140,8 @@ class RegisterController extends Controller
         event(new Registered($user));
 
         $this->useInviteKey($request->invite, $user->id);
+
+        $this->createNewGateway($user->id);
 
         $this->guard()->login($user);
 

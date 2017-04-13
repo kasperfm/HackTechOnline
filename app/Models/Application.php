@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'app_name', 'app_group', 'on_market'
     ];

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class GatewayHardware extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'part_name', 'price', 'type', 'value'
     ];

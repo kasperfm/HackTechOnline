@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Host extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'online_state', 'game_ip', 'host_type', 'machine_id'
     ];
