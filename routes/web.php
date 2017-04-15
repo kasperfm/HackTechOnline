@@ -20,7 +20,8 @@ Route::get('/','GameController@index');
 Route::post('/game/ajax/module/load', 'ModuleController@loadModule');
 Route::post('/game/ajax/module/unload', 'ModuleController@unloadModule');
 Route::post('/game/ajax/getresources', 'ModuleController@getResources');
-Route::post('/game/ajax/app/list', 'ModuleController@getInstalledApps');
+Route::post('/game/ajax/module/list', 'ModuleController@getInstalledApps');
+Route::post('/game/ajax/economy/getcredits', 'EconomyController@getCredits');
 
 Route::get('/login', 'GameController@login');
 

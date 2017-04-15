@@ -82,7 +82,7 @@ function updateApplicationMenu() {
         data: {
             _token: window.Laravel.csrfToken
         },
-        url: '/game/ajax/app/list',
+        url: '/game/ajax/module/list',
         success: function(response) {
             if(response.answer === true) {
                 $('.appmenu').html(response.content);

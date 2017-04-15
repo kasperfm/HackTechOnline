@@ -5,6 +5,23 @@ function setWindowWrapperSize() {
     $('#window_wrapper').css('height', ($(window).height() - 44) + 'px');
 }
 
+function updateCredits() {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            _token: window.Laravel.csrfToken
+        },
+        url: '/game/ajax/economy/getcredits',
+        success: function(response) {
+            if(response.answer === true) {
+                $('.credits-display').html('$ ' + response.credits);
+            }
+        }
+    });
+}
+
 $(document).ready(function() {
     //Register the top menus.
     $(".menubar-item").hover(function() {
@@ -14,6 +31,10 @@ $(document).ready(function() {
     });
     $(".menubar-item").find('li').click(function(e){
         e.stopPropagation();
+    });
+
+    $(".credits-display").click(function() {
+        updateCredits();
     });
 
     // Openthe demo window (for testing purpose only).
@@ -37,6 +58,8 @@ $(document).ready(function() {
     $('.logout-btn').on('click', function(){
         window.location.href = '/logout';
     });
+
+    updateCredits();
 
     // The fade-in effect when you login.
     $('body').css('display', 'none');

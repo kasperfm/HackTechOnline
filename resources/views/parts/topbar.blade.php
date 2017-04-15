@@ -40,7 +40,7 @@
                 @endif
 
                 <div class="menubar-item float-right logout-btn"><img width="10" height="10" alt="Logoff" src="img/icon-login.png" /> LOGOFF</div>
-                <div class="menubar-item credits-display float-right" onclick="getCredits();">$ 1337</div>
+                <div class="menubar-item credits-display float-right">$ 0</div>
             </div>
         </div>
     </div>
