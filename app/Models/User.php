@@ -38,4 +38,8 @@ class User extends Authenticatable
     public function gateway(){
         return $this->hasOne('App\Models\Gateway');
     }
+
+    public function apps(){
+        return $this->hasMany('App\Models\UserApp');
+    }
 }

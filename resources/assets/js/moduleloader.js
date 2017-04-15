@@ -74,6 +74,34 @@ function updateResourceBars(){
     });
 }
 
+function updateApplicationMenu() {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            _token: window.Laravel.csrfToken
+        },
+        url: '/game/ajax/app/list',
+        success: function(response) {
+            if(response.answer === true) {
+                $('.appmenu').html(response.content);
+
+                if($('.appmenu').html() != ''){
+                    $(".applications-menu").css("color", "white");
+                }else{
+                    $(".applications-menu").css("color", "#4b4b4b");
+                }
+
+                $(".exec").unbind("click");
+                $('.exec').click(function() {
+                    loadModule($(this).attr("rel"));
+                });
+            }
+        }
+    });
+}
+
 $(document).ready(function() {
     $(".res_meter").progressbar();
     updateResourceBars();

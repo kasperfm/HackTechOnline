@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Classes\Game\ModuleHandler;
 
 class GameController extends Controller
 {
@@ -35,7 +36,10 @@ class GameController extends Controller
             $request->session()->put('cpuUsage', 0);
             $request->session()->put('ramUsage', 0);
 
-            return view('index');
+            $moduleHandler = new ModuleHandler();
+            $installedApps = $moduleHandler->getInstalledApps(Auth::id());
+
+            return view('index', compact(['installedApps']));
         }else{
             return redirect('/login');
         }

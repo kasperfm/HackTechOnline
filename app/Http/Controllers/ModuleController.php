@@ -77,6 +77,29 @@ class ModuleController extends Controller
         return json_encode($response);
     }
 
+    public function getInstalledApps(Request $request){
+        $response = array();
+        $response['answer'] = false;
+
+        if(Auth::check()){
+            $moduleHandler = new ModuleHandler();
+            $content = "";
+
+            $appList = $moduleHandler->getInstalledApps(Auth::id());
+
+            if(!empty($appList)){
+                foreach($appList as $app){
+                    $content .= '<li rel="'.strtolower($app->application->app_name).'" class="exec">'.$app->application->app_name.'</li>';
+                }
+            }
+
+            $response['content'] = $content;
+            $response['answer'] = true;
+        }
+
+        return json_encode($response);
+    }
+
     private function percentage($val1, $val2, $precision){
         $res = round( ($val1 / $val2) * 100, $precision );
         return $res;

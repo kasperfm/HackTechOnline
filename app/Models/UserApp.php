@@ -21,4 +21,8 @@ class UserApp extends Model
     public function scopeInstalled($query){
         return $query->where('installed', 1);
     }
+
+    public function scopeOwnedBy($query, $owner){
+        return $query->where('user_id', $owner);
+    }
 }

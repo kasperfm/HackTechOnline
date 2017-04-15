@@ -4,6 +4,7 @@ namespace App\Classes\Game;
 
 use App\Classes\Game\Modules;
 use App\Models\Application;
+use App\Models\UserApp;
 use App\Models\ApplicationData;
 
 
@@ -19,5 +20,11 @@ class ModuleHandler
             $module->setup();
             return $module;
         }
+    }
+
+    public function getInstalledApps($userID){
+        $apps = UserApp::ownedBy($userID)->installed()->get();
+
+        return $apps;
     }
 }

@@ -17,6 +17,11 @@ Route::group(['middleware' => ['web', 'authed']], function () {
 
 Route::get('/','GameController@index');
 
+Route::post('/game/ajax/module/load', 'ModuleController@loadModule');
+Route::post('/game/ajax/module/unload', 'ModuleController@unloadModule');
+Route::post('/game/ajax/getresources', 'ModuleController@getResources');
+Route::post('/game/ajax/app/list', 'ModuleController@getInstalledApps');
+
 Route::get('/login', 'GameController@login');
 
 Route::get('/offline', function () {
@@ -29,7 +34,3 @@ Route::get('/errors/restricted', function () {
 
 Auth::routes();
 Route::get('/logout', 'GameController@logout');
-
-Route::post('/game/ajax/module/load', 'ModuleController@loadModule');
-Route::post('/game/ajax/module/unload', 'ModuleController@unloadModule');
-Route::post('/game/ajax/getresources', 'ModuleController@getResources');

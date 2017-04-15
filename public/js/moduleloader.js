@@ -1,1 +1,112 @@
-webpackJsonp([4,8],{15:function(e,n,a){(function(e){function n(n){e.ajax({type:"POST",dataType:"json",cache:!1,url:"/game/ajax/module/load",data:{modname:n,_token:window.Laravel.csrfToken},success:function(o){o.answer===!0&&(e("#window_wrapper").append('<div id="wnd_'+n+'" class="dialog_window wnd_'+n+'" title="'+o.title+'"></div>'),e("#wnd_"+n).html(o.view),e("#wnd_"+n).dialog({width:o.width,height:o.height,hide:{effect:window.closeEffect,duration:window.closeDuration},close:function(o,t){a(n),e("#wnd_"+n).remove()},focus:function(n,a){e(this).dialog("moveToTop")}}),e("#wnd_"+n).dialog("widget").draggable("option","containment","#window_wrapper"),t())}})}function a(n){e.ajax({type:"POST",dataType:"json",cache:!1,data:{modname:n,_token:window.Laravel.csrfToken},url:"/game/ajax/module/unload",success:function(e){e.answer===!0&&t()}})}function o(n,a){e(".res_"+n+"_bar").progressbar("option","value",a)}function t(){e.ajax({type:"POST",dataType:"json",cache:!1,data:{_token:window.Laravel.csrfToken},url:"/game/ajax/getresources",success:function(e){e.answer===!0&&(o("cpu",e.cpu),o("ram",e.ram),o("hdd",e.hdd))}})}e(document).ready(function(){e(".res_meter").progressbar(),t(),e(".exec").click(function(){n(e(this).attr("rel"))})})}).call(n,a(1))},44:function(e,n,a){e.exports=a(15)}},[44]);
+function loadModule(moduleName){
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        url: '/game/ajax/module/load',
+        data: {
+            modname: moduleName,
+            _token: window.Laravel.csrfToken
+        },
+        success: function(response) {
+            if(response.answer === true) {
+                $("#window_wrapper").append('<div id="wnd_'+moduleName+'" class="dialog_window wnd_'+moduleName+'" title="'+response.title+'"></div>');
+                $("#wnd_" + moduleName).html(response.view);
+
+                $('#wnd_'+moduleName).dialog({
+                    width: response.width,
+                    height: response.height,
+                    hide: { effect: window.closeEffect, duration: window.closeDuration },
+                    close: function(event, ui){
+                        unloadModule(moduleName);
+                        $("#wnd_"+moduleName).remove();
+                    },
+                    focus: function(event, ui){
+                        $(this).dialog( "moveToTop" );
+                    }
+                });
+
+                $('#wnd_'+moduleName).dialog("widget").draggable("option","containment","#window_wrapper");
+                updateResourceBars();
+            }
+        }
+    });
+}
+
+function unloadModule(moduleName){
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            modname: moduleName,
+            _token: window.Laravel.csrfToken
+        },
+        url: '/game/ajax/module/unload',
+        success: function(response) {
+            if(response.answer === true) {
+                updateResourceBars();
+            }
+        }
+    });
+}
+
+function setResourceBar(type, resval){
+    $(".res_" + type + "_bar").progressbar("option", "value", resval);
+}
+
+function updateResourceBars(){
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            _token: window.Laravel.csrfToken
+        },
+        url: '/game/ajax/getresources',
+        success: function(response) {
+            if(response.answer === true) {
+                setResourceBar("cpu", response.cpu);
+                setResourceBar("ram", response.ram);
+                setResourceBar("hdd", response.hdd);
+            }
+        }
+    });
+}
+
+function updateApplicationMenu() {
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            _token: window.Laravel.csrfToken
+        },
+        url: '/game/ajax/app/list',
+        success: function(response) {
+            if(response.answer === true) {
+                $('.appmenu').html(response.content);
+
+                if($('.appmenu').html() != ''){
+                    $(".applications-menu").css("color", "white");
+                }else{
+                    $(".applications-menu").css("color", "#4b4b4b");
+                }
+
+                $(".exec").unbind("click");
+                $('.exec').click(function() {
+                    loadModule($(this).attr("rel"));
+                });
+            }
+        }
+    });
+}
+
+$(document).ready(function() {
+    $(".res_meter").progressbar();
+    updateResourceBars();
+
+    $('.exec').click(function() {
+        loadModule($(this).attr("rel"));
+    });
+});
