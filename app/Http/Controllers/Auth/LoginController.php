@@ -26,10 +26,7 @@ class LoginController extends Controller
 
     /**
      * Where to redirect users after login.
-     *
-     * @var string
      */
-
     protected function redirectTo()
     {
         $this->logUserLogin(Auth::id(), $_SERVER['REMOTE_ADDR']);

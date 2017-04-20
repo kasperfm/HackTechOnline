@@ -37,7 +37,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -143,7 +143,7 @@ class RegisterController extends Controller
 
         $this->createNewGateway($user->id);
 
-        $this->guard()->login($user);
+        //$this->guard()->login($user);
 
         UserVerification::generate($user);
 

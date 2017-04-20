@@ -13,15 +13,11 @@ class GameController extends Controller
     use AuthenticatesUsers;
 
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('authed');
     }
 
-    public function login(){
-        if(Auth::check()) {
-            redirect('/login');
-        }else{
-            return view('auth.login');
-        }
+    public function login(Request $request){
+        return view('auth.login');
     }
 
     public function logout(){
@@ -29,19 +25,23 @@ class GameController extends Controller
         return redirect('/');
     }
 
+    public function game(Request $request){
+        $runningApps = array();
+        $request->session()->put('runningApps', $runningApps);
+        $request->session()->put('cpuUsage', 0);
+        $request->session()->put('ramUsage', 0);
+
+        $moduleHandler = new ModuleHandler();
+        $installedApps = $moduleHandler->getInstalledApps(Auth::id());
+
+        return view('index', compact(['installedApps']));
+    }
+
     public function index(Request $request){
-        if(Auth::check() || Auth::viaRemember()) {
-            $runningApps = array();
-            $request->session()->put('runningApps', $runningApps);
-            $request->session()->put('cpuUsage', 0);
-            $request->session()->put('ramUsage', 0);
-
-            $moduleHandler = new ModuleHandler();
-            $installedApps = $moduleHandler->getInstalledApps(Auth::id());
-
-            return view('index', compact(['installedApps']));
+        if(Auth::check()) {
+            return $this->game($request);
         }else{
-            return redirect('/login');
+            return $this->login($request);
         }
     }
 }

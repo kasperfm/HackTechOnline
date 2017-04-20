@@ -15,10 +15,14 @@ class RedirectIfNotVerified
      * @return mixed
      */
      public function handle($request, Closure $next){
+         if(empty($request->user())){
+             return redirect('/login');
+         }
+
          if ($request->user()->verified) {
              return $next($request);
          }
-         
-         return redirect('/errors/restricted');
+         return redirect('/login');
+//         return redirect('/errors/restricted');
      }
 }
