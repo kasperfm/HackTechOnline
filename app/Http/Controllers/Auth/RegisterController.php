@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Jrean\UserVerification\Traits\VerifiesUsers;
 use Jrean\UserVerification\Facades\UserVerification;
+use App\Classes\Helpers\NetworkHelper;
 
 
 class RegisterController extends Controller
@@ -91,19 +92,8 @@ class RegisterController extends Controller
         ]);
     }
 
-    private function generateUnusedIP(){
-        $randomIP = long2ip( mt_rand(0, 65537) * mt_rand(0, 65535) );
-        $hostLookup = Host::where('game_ip', $randomIP)->first();
-
-        if(empty($hostLookup)){
-            return $randomIP;
-        }else{
-            $this->generateUnusedIP();
-        }
-    }
-
     private function createNewGateway($userID){
-        $newIP = $this->generateUnusedIP();
+        $newIP = NetworkHelper::generateIP();
 
         $newGateway = new Gateway();
         $newGateway->user_id = $userID;

@@ -39,6 +39,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Gateway');
     }
 
+    public function servers(){
+        return $this->hasMany('App\Models\Server');
+    }
+
     public function apps(){
         return $this->hasMany('App\Models\UserApp');
     }

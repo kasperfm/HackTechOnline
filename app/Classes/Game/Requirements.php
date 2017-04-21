@@ -24,7 +24,7 @@ class Requirements
     public function validateRequirements(Request $request) {
         $runningApps = $request->session()->get('runningApps', array());
         if (!in_array($this->appName, $runningApps)) {
-            $user = User::find(Auth::id())->first();
+            $user = Auth::user();
             $availableCpu = $user->gateway->cpu->value;
             $availableRam = $user->gateway->ram->value;
 
