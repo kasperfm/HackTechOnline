@@ -2,7 +2,7 @@
     <center>
         <h1 class="title">Register new account</h1>
     </center>
-    <div class="pane">
+    <div class="pane" style="text-align: center;">
         <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
 
@@ -46,6 +46,10 @@
                 </div>
             </div>
 
+            <div class="text-center">
+                <div class="g-recaptcha" data-theme="dark" data-sitekey="6LcuFN8SAAAAAJZ7Uv3BOhneF6IDCQoNGl0RIZdo"></div>
+            </div>
+            
             <div class="form-group">
                 <div>
                     <button type="submit" class="btn btn-primary">

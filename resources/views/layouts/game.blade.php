@@ -23,6 +23,8 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
+    @yield('extra-head')
 </head>
 <body>
     @yield('topbar')
