@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Host;
 use App\Models\User;
+use App\Models\UserProfile;
 use App\Models\Invite;
 use App\Models\Gateway;
 use App\Http\Controllers\Controller;
@@ -58,6 +59,20 @@ class RegisterController extends Controller
             $invite->user_id = $userID;
             $invite->save();
         }
+    }
+
+    private function fillUserProfile($userID){
+        $emptyProfile = array(
+            'user_id'           => $userID,
+            'name'              => null,
+            'corporation_id'    => null,
+            'bank_id'           => 1,
+            'profile_text'      => null
+        );
+
+        $userProfile = new UserProfile();
+        $userProfile->fill($emptyProfile);
+        $userProfile->save();
     }
 
     /**
@@ -131,7 +146,9 @@ class RegisterController extends Controller
         event(new Registered($user));
 
         $this->useInviteKey($request->invite, $user->id);
-
+        
+        $this->fillUserProfile($user->id);
+        
         $this->createNewGateway($user->id);
 
         //$this->guard()->login($user);
