@@ -39,6 +39,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Gateway');
     }
 
+    public function bankAccount(){
+        return $this->hasOne('App\Models\BankAccount');
+    }
+
     public function servers(){
         return $this->hasMany('App\Models\Server');
     }

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\Invite;
 use App\Models\Gateway;
+use App\Models\BankAccount;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -16,6 +17,7 @@ use Illuminate\Auth\Events\Registered;
 use Jrean\UserVerification\Traits\VerifiesUsers;
 use Jrean\UserVerification\Facades\UserVerification;
 use App\Classes\Helpers\NetworkHelper;
+use App\Classes\Game\Handlers\EconomyHandler;
 
 
 class RegisterController extends Controller
@@ -41,6 +43,9 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/';
 
+    // TODO: Correct this when out of alpha.
+    private $startingMoney = 100000;
+
     /**
      * Create a new controller instance.
      *
@@ -59,6 +64,23 @@ class RegisterController extends Controller
             $invite->user_id = $userID;
             $invite->save();
         }
+    }
+
+    private function createNewBankAccount($userID){
+        $defaultBankID = 1;
+        $newAccountNumber = EconomyHandler::generateAccountNumber($defaultBankID);
+
+        $accountInfo = array(
+            'user_id'           => $userID,
+            'bank_id'           => $defaultBankID,
+            'account_number'    => $newAccountNumber,
+            'active'            => 1
+        );
+
+        $newAccount = new BankAccount();
+        $newAccount->fill($accountInfo);
+        $newAccount->balance = $this->startingMoney;
+        $newAccount->save();
     }
 
     private function fillUserProfile($userID){
@@ -150,6 +172,8 @@ class RegisterController extends Controller
         $this->fillUserProfile($user->id);
         
         $this->createNewGateway($user->id);
+
+        $this->createNewBankAccount($user->id);
 
         //$this->guard()->login($user);
 

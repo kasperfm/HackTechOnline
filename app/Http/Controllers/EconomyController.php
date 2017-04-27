@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use App\Classes\Game\Handlers\UserHandler;
 
 class EconomyController extends Controller
 {
-
     public function getCredits(){
         $response = array();
         $response['answer'] = false;
@@ -16,8 +16,8 @@ class EconomyController extends Controller
         if(Auth::check()) {
             $response['answer'] = true;
 
-            //TODO: Get the real amount from economy table.
-            $response['credits'] = 13370;
+            $balance = UserHandler::getUser(Auth::user()->id)->economy->getBalance();
+            $response['credits'] = $balance;
         }
 
         return json_encode($response);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Classes\Game;
+namespace App\Classes\Game\Handlers;
 
 use App\Classes\Game\Modules;
 use App\Models\Application;

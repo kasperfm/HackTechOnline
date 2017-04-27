@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Classes\Game\ModuleHandler;
+use App\Classes\Game\Handlers\ModuleHandler;
 
 class ModuleController extends Controller
 {
