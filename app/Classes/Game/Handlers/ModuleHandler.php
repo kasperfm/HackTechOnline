@@ -10,15 +10,25 @@ use App\Models\ApplicationData;
 
 class ModuleHandler
 {
-    public function getApplication($name){
+    public function getApplication($name, $userID){
         $app = Application::where('app_name', $name)->first();
 
         if($app->isEmpty == false){
-            $class = '\App\Classes\Game\Modules\\' . $app->group->name . '\\' . $name . '\\' . $name;
+            if($app->group->name != "system"){
+                $owned = UserApp::where('application_id', $app->id)->ownedBy($userID)->installed()->get();
+                if(empty($owned)){
+                    return null;
+                }
+            }
 
-            $module = new $class($app);
-            $module->setup();
-            return $module;
+            $class = '\App\Classes\Game\Modules\\' . $app->group->name . '\\' . $name . '\\' . $name;
+            if(class_exists($class)){
+                $module = new $class($app);
+                $module->setup();
+                return $module;
+            }else{
+                return null;
+            }
         }
     }
 

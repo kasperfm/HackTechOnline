@@ -18,7 +18,7 @@ class ModuleController extends Controller
             $response = array();
             $response['answer'] = false;
 
-            $this->module = $moduleHandler->getApplication($request->modname);
+            $this->module = $moduleHandler->getApplication($request->modname, Auth::id());
 
             if(!empty($this->module)) {
                 if($this->module->requirements->validateRequirements($request)) {
@@ -40,7 +40,7 @@ class ModuleController extends Controller
 
         if(!$request->isEmpty){
             $moduleHandler = new ModuleHandler();
-            $this->module = $moduleHandler->getApplication($request->modname);
+            $this->module = $moduleHandler->getApplication($request->modname, Auth::id());
 
             $response['answer'] = true;
             $request->session()->pull('runningApps', $request->modname);
