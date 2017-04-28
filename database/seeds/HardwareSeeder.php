@@ -15,6 +15,8 @@ class HardwareSeeder extends Seeder
     }
 
     private function gatewayHardware(){
+        DB::table('gateway_hardwares')->truncate();
+
         // Default gateway hardware components.
         DB::table('gateway_hardwares')->insert([
             'part_name' => 'Standard connection',
@@ -43,6 +45,8 @@ class HardwareSeeder extends Seeder
     }
 
     private function serverHardware(){
+        DB::table('server_hardwares')->truncate();
+
         // Default server hardware components.
         DB::table('server_hardwares')->insert([
             'part_name' => 'Standard connection',

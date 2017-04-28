@@ -14,7 +14,7 @@ class ModuleHandler
         $app = Application::where('app_name', $name)->first();
 
         if($app->isEmpty == false){
-            if($app->group->name != "system"){
+            if($app->group->name != "system" && $app->group->name != "demo"){
                 $owned = UserApp::where('application_id', $app->id)->ownedBy($userID)->installed()->get();
                 if(empty($owned)){
                     return null;

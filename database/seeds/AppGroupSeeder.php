@@ -11,6 +11,8 @@ class AppGroupSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('application_groups')->truncate();
+
         DB::table('application_groups')->insert([
             'name' => 'demo',
         ]);
