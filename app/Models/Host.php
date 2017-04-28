@@ -29,7 +29,7 @@ class Host extends Model
     }
 
     public function scopeGateway($query){
-        return $query->where('host_type', 0);
+        return $query->where('host_type', 2);
     }
 
     public function scopeServer($query){
