@@ -36,4 +36,8 @@ class ServerHandler
 
         return $newServer;
     }
+
+    public static function getServer($ipAddress){
+        
+    }
 }

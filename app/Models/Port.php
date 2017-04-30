@@ -20,7 +20,15 @@ class Port extends Model
         return $query->where('active', 1);
     }
 
-    public function scopeBelongsTo($query, $host){
+    public function scopeAttachedTo($query, $host){
         return $query->where('host_id', $host);
+    }
+
+    public function scopeOpen($query, $portNumber){
+        return $query->where('open_port', $portNumber)->where('active', 1);
+    }
+
+    public function scopeWithService($query, $serviceID){
+        return $query->where('service_id', $serviceID);
     }
 }
