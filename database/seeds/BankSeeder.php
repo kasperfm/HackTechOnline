@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Classes\Game\ServerHandler;
+use App\Classes\Game\Handlers\ServerHandler;
 
 class BankSeeder extends Seeder
 {

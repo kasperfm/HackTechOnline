@@ -16,6 +16,7 @@ use App\Models\Port;
 use App\Models\Host;
 
 class Computer {
+    protected $model = null;
     public $ipAddress = null;
     public $ownerID = 0;
     public $hostID = 0;
@@ -39,12 +40,10 @@ class Computer {
 
     public function addService($serviceID, $port){
         $portQuery = Port::attachedTo($this->hostID)->withService($serviceID)->first();
-        //$checkQuery = $GLOBALS["DB"]->select("ports", array(), array("fk_host_id" => $this->hostID, "fk_service_id" => $serviceID))->result();
         if(!empty($portQuery)){
             $portQuery->active = 1;
             $portQuery->open_port = $port;
             $portQuery->save();
- //           $GLOBALS["DB"]->update("ports", array("open_port" => (int)$port, "active" => 1), array("fk_host_id" => $this->hostID, "fk_service_id" => $serviceID));
         }else{
             $newPort = new Port();
             $newPort->host_id = $this->hostID;
@@ -52,7 +51,6 @@ class Computer {
             $newPort->open_port = $port;
             $newPort->active = 1;
             $newPort->save();
-            //$GLOBALS["DB"]->insert("ports", array("fk_host_id" => $this->hostID, "fk_service_id" => $serviceID, "open_port" => $port, "active" => 1));
         }
 
         $this->GetOpenPorts();
@@ -70,7 +68,7 @@ class Computer {
         return false;
     }
 
-    public function SetHardwarePart($machineType, $hwID){
+    public function setHardwarePart($machineType, $hwID){
         $part = new Hardware($hwID, $machineType);
 
         switch($part->partType){
@@ -96,6 +94,12 @@ class Computer {
 
         return true;
     }
+
+    public function getIPAddress(){
+        if($this->ownerID != 0 && $this->hostID != 0){
+            return $this->model->host->game_ip;
+        }
+    }
     
     public function getOnlineState(){
         if($this->hostID != 0){
@@ -109,6 +113,7 @@ class Computer {
 
         $host->online_state = (int)$newState;
         $host->save();
+
         $this->online = $newState;
     }
 }

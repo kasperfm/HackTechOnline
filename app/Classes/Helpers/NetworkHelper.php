@@ -16,4 +16,13 @@ class NetworkHelper
             self::generateIP();
         }
     }
+
+    public static function isValidIP($ip){
+        $ip = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
+        if ($ip !== false){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
