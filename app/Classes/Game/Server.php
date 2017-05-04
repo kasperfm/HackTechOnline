@@ -24,8 +24,8 @@ class Server extends Computer {
     }
 
     private function getServer(){
-        if($this->ownerID != 0){
-            $this->model = Model::where('host_id', $this->hostID)->get();
+        if($this->hostID != 0){
+            $this->model = Model::where('host_id', $this->hostID)->first();
 
             if(!empty($this->model)){
                 $this->hostID = $this->model->host_id;
@@ -35,8 +35,10 @@ class Server extends Computer {
                 $this->setHardwarePart(HardwareTypes::Server, $this->model->hdd->id);
                 $this->setHardwarePart(HardwareTypes::Server, $this->model->inet->id);
 
+
                 $this->ipAddress = $this->getIPAddress();
                 $this->online = (bool)$this->getOnlineState();
+                $this->getOpenPorts();
                 return true;
             }
         }
@@ -57,7 +59,7 @@ class Server extends Computer {
 
     public function checkRootPassword($password){
         if($this->hostID != 0 && !empty($password)){
-            $validation = Model::where('host_id', $this->hostID)->where('root_password', bcrypt($password))->get();
+            $validation = Model::where('host_id', $this->hostID)->where('root_password', bcrypt($password))->first();
             if(!empty($validation)){
                 return true;
             }

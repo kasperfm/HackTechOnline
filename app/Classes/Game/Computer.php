@@ -96,7 +96,7 @@ class Computer {
     }
 
     public function getIPAddress(){
-        if($this->ownerID != 0 && $this->hostID != 0){
+        if($this->hostID != 0){
             return $this->model->host->game_ip;
         }
     }

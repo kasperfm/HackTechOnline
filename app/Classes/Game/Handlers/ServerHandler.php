@@ -39,7 +39,7 @@ class ServerHandler
     }
 
     public static function hostnameToIP($hostname){
-        $hostname = Hostname::where('hostname', $hostname)->get();
+        $hostname = Hostname::where('hostname', $hostname)->first();
 
         if(!empty($hostname)){
             return $hostname->host->game_ip;
@@ -57,7 +57,7 @@ class ServerHandler
             }
 
             if(!empty($target)){
-                $host = Host::where('ip', $target)->server()->get();
+                $host = Host::where('ip', $target)->server()->first();
 
                 if(!empty($host)){
                     return new Server($host->id);

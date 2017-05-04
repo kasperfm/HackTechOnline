@@ -45,11 +45,11 @@ class Hardware {
     private function GetPart($partID, $machineType){
         switch($machineType){
             case 1:
-                $hardware = ServerHardware::where('id', $partID)->get();
+                $hardware = ServerHardware::where('id', $partID)->first();
                 break;
 
             case 2:
-                $hardware = GatewayHardware::where('id', $partID)->get();
+                $hardware = GatewayHardware::where('id', $partID)->first();
                 break;
 
             default:

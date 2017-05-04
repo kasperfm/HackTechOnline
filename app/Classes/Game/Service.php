@@ -43,13 +43,13 @@ class Service {
     }
 
     public function SetHandler(){
-        $class = 'App\Game\Services\\'. $this->serviceName;
+        $class = 'App\Classes\Game\Services\\'. $this->serviceName;
         $result = new $class($this->ipAddress);
 
         $this->handler = $result;
     }
 
-    public function Remove(){
+    /*public function Remove(){
         $server = App\NetHandler::getInstance()->GetServer($this->ipAddress, false);
         if(!empty($server)){
             $GLOBALS["DB"]->update("ports", array("active" => 0), array("fk_host_id" => $server->hostID, "fk_service_id" => $this->serviceID));
@@ -59,5 +59,6 @@ class Service {
 
         return false;
     }
+    */
 
 }

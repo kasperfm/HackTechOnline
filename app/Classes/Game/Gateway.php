@@ -25,7 +25,7 @@ class Gateway extends Computer {
 
     private function getUserGateway(){
         if($this->ownerID != 0){
-            $this->model = Model::where('user_id', $this->ownerID)->get();
+            $this->model = Model::where('user_id', $this->ownerID)->first();
 
             if(!empty($this->model)){
                 $this->hostID = $this->model->host_id;
