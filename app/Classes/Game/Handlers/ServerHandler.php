@@ -49,7 +49,9 @@ class ServerHandler
     }
 
     public static function getServer($lookup){
-        if(!empty($ipAddress)){
+        if(!empty($lookup)){
+            $target = null;
+
             if(NetworkHelper::isValidIP($lookup)){
                 $target = $lookup;
             }else{
@@ -57,10 +59,9 @@ class ServerHandler
             }
 
             if(!empty($target)){
-                $host = Host::where('ip', $target)->server()->first();
-
+                $host = Host::where('game_ip', $target)->server()->first();
                 if(!empty($host)){
-                    return new Server($host->id);
+                    return new \App\Classes\Game\Server($host->id);
                 }else {
                     return false;
                 }
