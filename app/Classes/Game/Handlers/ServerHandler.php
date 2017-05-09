@@ -4,6 +4,7 @@ namespace App\Classes\Game\Handlers;
 
 use App\Models\Server;
 use App\Models\Host;
+use App\Models\Hostname;
 
 use App\Classes\Helpers\NetworkHelper;
 
@@ -35,5 +36,36 @@ class ServerHandler
         $newServer->save();
 
         return $newServer;
+    }
+
+    public static function hostnameToIP($hostname){
+        $hostname = Hostname::where('hostname', $hostname)->first();
+
+        if(!empty($hostname)){
+            return $hostname->host->game_ip;
+        }
+
+        return false;
+    }
+
+    public static function getServer($lookup){
+        if(!empty($lookup)){
+            $target = null;
+
+            if(NetworkHelper::isValidIP($lookup)){
+                $target = $lookup;
+            }else{
+                $target = self::hostnameToIP($lookup);
+            }
+
+            if(!empty($target)){
+                $host = Host::where('game_ip', $target)->server()->first();
+                if(!empty($host)){
+                    return new \App\Classes\Game\Server($host->id);
+                }else {
+                    return false;
+                }
+            }
+        }
     }
 }

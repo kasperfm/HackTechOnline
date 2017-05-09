@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Classes\Game\ServerHandler;
+use App\Classes\Game\Handlers\ServerHandler;
+use App\Classes\Game\Handlers\DomainHandler;
 
 class BankSeeder extends Seeder
 {
@@ -13,15 +14,17 @@ class BankSeeder extends Seeder
     public function run()
     {
         $secuBank = ServerHandler::newServer(0, null);
+        DomainHandler::newSystemDomain($secuBank->host->id, 'secubank.com');
         DB::table('banks')->insert([
             'host_id' => $secuBank->host->id,
             'bank_name' => 'SecuBank International'
         ]);
 
         $modiBank = ServerHandler::newServer(0, null);
+        DomainHandler::newSystemDomain($modiBank->host->id, 'modibank.com');
         DB::table('banks')->insert([
             'host_id' => $modiBank->host->id,
-            'bank_name' => 'ModiBank International'
+            'bank_name' => 'ModiBank Inc.'
         ]);
     }
 }
