@@ -11,4 +11,8 @@ class DomainProvider extends Model
     public function host(){
         return $this->hasOne('App\Models\Host', 'id', 'host_id');
     }
+
+    public function tlds(){
+        return $this->hasMany('App\Models\DomainTld');
+    }
 }

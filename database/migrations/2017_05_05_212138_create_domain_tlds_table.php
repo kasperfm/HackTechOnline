@@ -17,7 +17,7 @@ class CreateDomainTldsTable extends Migration
             $table->increments('id');
             $table->integer('domain_provider_id')->unsigned()->nullable();
             $table->string('tld');
-            $table->integer('days_to_hold');
+            $table->integer('days_to_hold')->nullable();
         });
     }
 

@@ -17,8 +17,8 @@ class CreateHostnamesTable extends Migration
             $table->increments('id');
             $table->string('hostname');
             $table->integer('host_id')->unsigned();
-            $table->integer('domain_provider_id')->unsigned();
-            $table->timestamp('expire_date');
+            $table->integer('domain_provider_id')->unsigned()->nullable();
+            $table->timestamp('expire_date')->nullable();
             $table->tinyInteger('activated')->default(1);
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Classes\Game\Handlers\ServerHandler;
+use App\Classes\Game\Handlers\DomainHandler;
 
 class DomainProviderSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class DomainProviderSeeder extends Seeder
     public function run()
     {
         $omniTechHost = ServerHandler::newServer(0, null);
+        DomainHandler::newSystemDomain($omniTechHost->host->id, 'omnitech.net');
         DB::table('domain_providers')->insert([
             'title' => 'OmniTech Domain Services',
             'host_id' => $omniTechHost->host->id,
@@ -31,6 +33,7 @@ class DomainProviderSeeder extends Seeder
         ]);
 
         $hugeSoftIncHost = ServerHandler::newServer(0, null);
+        DomainHandler::newSystemDomain($hugeSoftIncHost->host->id, 'hugesoft.net');
         DB::table('domain_providers')->insert([
             'title' => 'HugeSoft Inc. Hosting Solutions',
             'host_id' => $hugeSoftIncHost->host->id,
