@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Server extends Model
 {
     protected $fillable = [
-        'user_id', 'host_id', 'cpu_id', 'ram_id', 'hdd_id', 'inet_id'
+        'user_id', 'host_id', 'cpu_id', 'ram_id', 'hdd_id', 'inet_id', 'root_password',
     ];
 
     public function user(){

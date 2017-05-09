@@ -4,6 +4,7 @@ namespace App\Classes\Game;
 
 use App\Models\Service as Model;
 use App\Models\Port;
+use App\Classes\Game\Handlers\ServerHandler;
 
 class Service {
     public $portNumber = 0;
@@ -31,10 +32,10 @@ class Service {
         $this->serviceName = $service->name;
         $this->serviceDescription = $service->description;
 
-        $this->SetHandler();
+        $this->setHandler();
     }
 
-    public function GetHandler(){
+    public function getHandler(){
         if(!empty($this->handler)){
             return $this->handler;
         }else{
@@ -42,23 +43,27 @@ class Service {
         }
     }
 
-    public function SetHandler(){
+    private function setHandler(){
         $class = 'App\Classes\Game\Services\\'. $this->serviceName;
         $result = new $class($this->ipAddress);
 
         $this->handler = $result;
     }
 
-    /*public function Remove(){
-        $server = App\NetHandler::getInstance()->GetServer($this->ipAddress, false);
+    public function remove(){
+        $server = ServerHandler::getServer($this->ipAddress);
         if(!empty($server)){
-            $GLOBALS["DB"]->update("ports", array("active" => 0), array("fk_host_id" => $server->hostID, "fk_service_id" => $this->serviceID));
+            $port = Port::attachedTo($server->hostID)->withService($this->serviceID)->first();
+            if(!empty($port)){
+                $port->active = 0;
+                $port->save();
 
-            return true;
+                return true;
+            }
         }
 
         return false;
     }
-    */
+
 
 }
