@@ -53,7 +53,7 @@ class Computer {
             $newPort->save();
         }
 
-        $this->GetOpenPorts();
+        $this->getOpenPorts();
     }
 
     public function getService($port){
