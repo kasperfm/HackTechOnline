@@ -2,35 +2,33 @@
 
 namespace App\Classes\Game\Services;
 
+use Illuminate\Support\Facades\View;
+
 class Web {
     private $hostIpAddress;
     private $wwwDirectory;
 
     public function __construct($ip){
         $this->hostIpAddress = $ip;
-        $dirHash = md5($ip . '-hto_www');
-        $this->wwwDirectory = '/vfs/http/' . $dirHash . '/';
+        $filePathIP = str_replace(".", "_", $ip);
+        $this->wwwDirectory = 'hosts/' . $filePathIP . '/web/';
     }
 
-    public function Handle($input = "index.page"){
-        return $this->GetFile($input);
+    public function handle($input = "index.page"){
+        return $this->getFile($input);
     }
 
-    private function GetFile($file){
-        /*
-        if($file == "index.page"){
-            $filepath = $this->wwwDirectory . "www.php";
-        }else{
+    private function getFile($file){
+        if ($file == "index.page"){
+            $filepath = $this->wwwDirectory . "www";
+        } else {
             $filepath = $this->wwwDirectory . urlencode($file);
         }
 
-        if(file_exists(BASE_DIR . $filepath)){
-            return $filepath;
-        }else{
+        if (View::exists($filepath)) {
+            return view($filepath)->render();
+        } else {
             return false;
         }
-        */
-
-        return false;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Classes\Game;
 
 use App\Models\Application;
+use Illuminate\View\View;
 
 class Module
 {
