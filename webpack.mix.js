@@ -30,4 +30,8 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/jquery.onenter.js', 'public/js/jquery.onenter.js')
    .js('resources/assets/js/notification-min.js', 'public/js/notification-min.js')
    .combine(['resources/assets/css/notifications.css', 'resources/assets/css/maintenance.css'], 'public/css/misc.css')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('resources/assets/sass/app.scss', 'public/css')
+
+    // Modules
+   .copy('storage/app/game/modules/**/css/**.css', 'public/modules/css')
+   .copy('storage/app/game/modules/**/js/**.js', 'public/modules/js');

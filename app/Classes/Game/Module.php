@@ -36,7 +36,10 @@ class Module
     }
 
     public function returnHTML(){
-        $view = view('modules.' . $this->name . '.index');
+        $cssPath = '/modules/css/';
+        $jsPath = '/modules/js/';
+
+        $view = view('modules.' . $this->name . '.index', compact('cssPath', 'jsPath'));
         return $view->render();
     }
 }

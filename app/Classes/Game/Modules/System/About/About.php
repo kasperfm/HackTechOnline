@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Classes\Game\Modules\System\About;
+namespace App\Classes\Game\Modules\System\About;
 
 use App\Classes\Game\Module;
 

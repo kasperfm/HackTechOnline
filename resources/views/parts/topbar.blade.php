@@ -19,7 +19,7 @@
                         <li rel="messenger" class="menubar-item-inactive">MESSENGER</li>
                         <li rel="email" class="menubar-item-inactive">E-MAIL CLIENT</li>
                         <li rel="server_admin" class="menubar-item-inactive">SERVER ADMINISTRATION</li>
-                        <li rel="webbrowser" class="menubar-item-inactive">WEB-BROWSER</li>
+                        <li rel="webbrowser" class="exec">WEB-BROWSER</li>
                         <li rel="corp_status" class="menubar-item-inactive">CORP. STATUS</li>
                         <li rel="software_market" class="menubar-item-inactive">SOFTWARE MARKET</li>
                         <li rel="mygateway" class="menubar-item-inactive">MY GATEWAY</li>
