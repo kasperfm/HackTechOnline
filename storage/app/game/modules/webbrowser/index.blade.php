@@ -1,3 +1,6 @@
+<script>
+    var csrfToken = '{{ csrf_token() }}';
+</script>
 <script type="text/javascript" src="{{ $jsPath }}webbrowser.js"></script>
 <link rel="stylesheet" href="{{ $cssPath }}webbrowser.css" type="text/css" />
 

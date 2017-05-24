@@ -51,6 +51,13 @@ class ModuleController extends Controller
         return json_encode($response);
     }
 
+    public function callAjax(Request $request, $moduleName, $action){
+        $moduleHandler = new ModuleHandler();
+        $response = $moduleHandler->callAjax($moduleName, Auth::id(), $action, $request);
+
+        return json_encode($response);
+    }
+
     public function getResources(Request $request){
         $response = array();
         $response['answer'] = false;

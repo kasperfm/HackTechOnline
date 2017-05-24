@@ -22,6 +22,17 @@ class DefaultAppsSeeder extends Seeder
             'application_id' => 1
         ]);
 
+        // System > Webbrowser
+        DB::table('applications')->insert([
+            'id' => 2,
+            'app_name' => 'Webbrowser',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 2
+        ]);
+
 
     }
 }

@@ -13,15 +13,18 @@
 
 Route::group(['middleware' => ['authed']], function () {
     Route::get('/game', 'GameController@index');
+
+    Route::post('/game/ajax/module/load', 'ModuleController@loadModule');
+    Route::post('/game/ajax/module/unload', 'ModuleController@unloadModule');
+    Route::post('/game/ajax/getresources', 'ModuleController@getResources');
+    Route::post('/game/ajax/module/list', 'ModuleController@getInstalledApps');
+    Route::post('/game/ajax/economy/getcredits', 'EconomyController@getCredits');
+
+    Route::post('/game/module/{module_name}/ajax/{ajax_call}', 'ModuleController@callAjax');
 });
 
 Route::get('/','GameController@index');
 
-Route::post('/game/ajax/module/load', 'ModuleController@loadModule');
-Route::post('/game/ajax/module/unload', 'ModuleController@unloadModule');
-Route::post('/game/ajax/getresources', 'ModuleController@getResources');
-Route::post('/game/ajax/module/list', 'ModuleController@getInstalledApps');
-Route::post('/game/ajax/economy/getcredits', 'EconomyController@getCredits');
 
 Route::get('/login', 'GameController@login');
 

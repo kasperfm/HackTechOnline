@@ -18,26 +18,30 @@ $(document).ready(function() {
     });
 
     $("#www-submit").click(function(){
-      /*  $.ajax({
+        $.ajax({
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: 'modules/system/webbrowser/ajax/goto.php',
+            url: '/game/module/webbrowser/ajax/navigate',
             data: {
+                _token: window.Laravel.csrfToken,
                 address: $("#www-address").val()
             },
             success: function(response){
                 if(response.answer === true) {
-                    if(response.www_url != null){
-                       // $(".webbrowser-content").html('<iframe id="wwwframe" frameBorder="0" src="' + gameServerAddress + decodeURIComponent(response.www_url) + '" width="100%" height="100%"></iframe>');
+                    if(response.webcontent != null){
+                        $(".webbrowser-content").html('<iframe id="wwwframe" frameBorder="0" width="100%" height="100%"></iframe>');
+                        var idoc = document.getElementById('wwwframe').contentWindow.document;
+                        idoc.open();
+                        idoc.write(response.webcontent);
+                        idoc.close();
                     }
                 }else{
                     $(".webbrowser-content").html('<h1>Server or page not found !</h1>');
-
                 }
             }
-        });*/
-        $(".webbrowser-content").html('<h1>Work in progress feature!</h1>');
+        });
+
         setBrowserSize();
         return false;
     });
