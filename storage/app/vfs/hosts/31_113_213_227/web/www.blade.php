@@ -1,5 +1,6 @@
-Tester 123
+@extends('templates.www')
 
-@php
-phpinfo();
-@endphp
+@section('content')
+    Tester 123
+    <h2 class="link" goto="info">Show PHPinfo !</h2>
+@endsection

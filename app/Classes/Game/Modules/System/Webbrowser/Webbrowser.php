@@ -26,12 +26,13 @@ class Webbrowser extends Module
         $address = $request->get('address');
 
         if(!empty($address)){
-            $server = ServerHandler::getServer($address);
+            $explodedAddress = explode('/', $address);
+            $server = ServerHandler::getServer($explodedAddress[0]);
 
             if(!empty($server)){
                 $service = $server->getService(80);
                 if(!empty($service) && $server->getOnlineState() == true){
-                    $response['webcontent'] = $service->getHandler()->handle();
+                    $response['webcontent'] = $service->getHandler()->handle(isset($explodedAddress[1]) ? $explodedAddress[1] : null);
                     $response['answer'] = true;
                 }
             }

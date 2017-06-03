@@ -14,8 +14,12 @@ class Web {
         $this->wwwDirectory = 'hosts/' . $filePathIP . '/web/';
     }
 
-    public function handle($input = "index.page"){
-        return $this->getFile($input);
+    public function handle($input = null){
+        if(empty($input)){
+            return $this->getFile('index.page');
+        }else{
+            return $this->getFile($input);
+        }
     }
 
     private function getFile($file){

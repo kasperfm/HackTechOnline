@@ -33,5 +33,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
 
     // Modules
+   .copy('resources/assets/css/webpage.css', 'public/css/webpage.css')
    .copy('storage/app/game/modules/**/css/**.css', 'public/modules/css')
    .copy('storage/app/game/modules/**/js/**.js', 'public/modules/js');
