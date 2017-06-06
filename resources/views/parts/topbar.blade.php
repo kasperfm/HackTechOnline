@@ -22,7 +22,7 @@
                         <li rel="webbrowser" class="exec">WEB-BROWSER</li>
                         <li rel="corp_status" class="menubar-item-inactive">CORP. STATUS</li>
                         <li rel="software_market" class="menubar-item-inactive">SOFTWARE MARKET</li>
-                        <li rel="mygateway" class="menubar-item-inactive">MY GATEWAY</li>
+                        <li rel="mygateway" class="exec">MY GATEWAY</li>
                         <li rel="my_software" class="menubar-item-inactive">MY SOFTWARE</li>
                     </ul>
                 </div>
