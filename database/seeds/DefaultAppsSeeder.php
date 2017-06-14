@@ -33,6 +33,15 @@ class DefaultAppsSeeder extends Seeder
             'application_id' => 2
         ]);
 
-
+        // System > MyGateway
+        DB::table('applications')->insert([
+            'id' => 3,
+            'app_name' => 'MyGateway',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 3
+        ]);
     }
 }
