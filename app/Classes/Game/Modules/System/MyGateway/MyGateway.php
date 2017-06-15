@@ -4,11 +4,13 @@ namespace App\Classes\Game\Modules\System\MyGateway;
 
 use App\Classes\Game\Module;
 use App\Classes\Game\Handlers\UserHandler;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MyGateway extends Module
 {
-    public function setup(){
+    public function setup()
+    {
         $this->name = "mygateway";
         $this->title = "My Gateway";
 
@@ -18,7 +20,8 @@ class MyGateway extends Module
         );
     }
 
-    public function returnHTML(){
+    public function returnHTML()
+    {
         $myGateway = UserHandler::getUser(Auth::id())->model->gateway()->first();
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
@@ -29,5 +32,19 @@ class MyGateway extends Module
 
         $view = view('modules.' . $this->name . '.index', compact('cssPath', 'jsPath', 'currentCPU', 'currentHDD', 'currentNET', 'currentRAM'));
         return $view->render();
+    }
+
+    public function ajaxItem(Request $request)
+    {
+
+        $myGateway = UserHandler::getUser(Auth::id())->gateway;
+        $currentPart = $myGateway->hardware[$request->partType];
+        $partType = $request->partType;
+        $renderedView = view('modules.' . $this->name . '.item', compact('currentPart', 'partType'))->render();
+
+        return response()->json([
+            'answer' => true,
+            'view' => $renderedView
+        ]);
     }
 }

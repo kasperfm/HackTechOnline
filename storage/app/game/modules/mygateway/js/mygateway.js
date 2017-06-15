@@ -9,7 +9,7 @@ $(document).ready(function() {
         $(".val_"+name).stop(true, true).removeClass("text-blue");
     });
 
-    /*
+
     $(".hw_item").click(function() {
         var name = $(this).attr("rel");
 
@@ -17,15 +17,16 @@ $(document).ready(function() {
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: modulePath + 'ajax/loadshop.php',
+            url: '/game/module/mygateway/ajax/item',
             data: {
-                hwtype: name
+                _token: window.Laravel.csrfToken,
+                partType: name
             },
             success: function(response) {
                 if(response.answer) {
-                    $("#mygateway-wrapper").html(response.view);
+                    $("#mygateway-content").html(response.view);
                 }
             }
         });
-    });*/
+    });
 });
