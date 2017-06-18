@@ -35,14 +35,14 @@ class Hardware {
         $this->hardwareID = (int)$partID;
         $this->targetMachine = (int)$machineType;
 
-        $newData = $this->GetPart($partID, $machineType);
+        $newData = $this->getPart($partID, $machineType);
         if(!empty($newData)){
             $this->partType = $newData["type"];
             $this->hardwareData = $newData;
         }
     }
 
-    private function GetPart($partID, $machineType){
+    private function getPart($partID, $machineType){
         switch($machineType){
             case 1:
                 $hardware = ServerHardware::where('id', $partID)->first();
@@ -74,7 +74,7 @@ class Hardware {
         return false;
     }
 
-    public function GetHardwareTypeString(){
+    public function getHardwareTypeString(){
         if($this->partType < 0 || $this->partType > 3){
             return "Unknown";
         }else{

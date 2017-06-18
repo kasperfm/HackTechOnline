@@ -13,5 +13,5 @@
 @endsection
 
 @section('extra-js')
-    <script src="{{ mix('/js/init.js') }}"></script>
+    <script src="/js/init.js"></script>
 @endsection

@@ -6,6 +6,7 @@ use App\Classes\Game\Module;
 use App\Classes\Game\Handlers\UserHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Classes\Game\Shops\GatewayShop;
 
 class MyGateway extends Module
 {
@@ -15,8 +16,8 @@ class MyGateway extends Module
         $this->title = "My Gateway";
 
         $this->size = array(
-            "width"     => 400,
-            "height"    => 530
+            "width"     => 525,
+            "height"    => 510
         );
     }
 
@@ -30,21 +31,46 @@ class MyGateway extends Module
         $currentHDD = $myGateway->hdd()->first();
         $currentNET = $myGateway->inet()->first();
 
-        $view = view('modules.' . $this->name . '.index', compact('cssPath', 'jsPath', 'currentCPU', 'currentHDD', 'currentNET', 'currentRAM'));
+        $view = view('modules.mygateway.index', compact('cssPath', 'jsPath', 'currentCPU', 'currentHDD', 'currentNET', 'currentRAM'));
         return $view->render();
+    }
+
+    public function ajaxOverview(Request $request){
+        $result = array(
+            'answer' => true,
+            'view' => $this->returnHTML()
+        );
+
+        return $result;
     }
 
     public function ajaxItem(Request $request)
     {
-
-        $myGateway = UserHandler::getUser(Auth::id())->gateway;
+        $user = UserHandler::getUser(Auth::id());
+        $myGateway = $user->gateway;
         $currentPart = $myGateway->hardware[$request->partType];
+        $upgradeList = GatewayShop::getPartList($user, $currentPart->partType);
         $partType = $request->partType;
-        $renderedView = view('modules.' . $this->name . '.item', compact('currentPart', 'partType'))->render();
+        $renderedView = view('modules.mygateway.item', compact('currentPart', 'partType', 'upgradeList'))->render();
 
-        return response()->json([
+        $result = array(
             'answer' => true,
             'view' => $renderedView
-        ]);
+        );
+
+        return $result;
+    }
+
+    public function ajaxBuy(Request $request)
+    {
+        $user = UserHandler::getUser(Auth::id());
+        $buyResult = GatewayShop::buyGatewayPart($user, $request->hardwareid);
+
+        $result = array(
+            'answer' => true,
+            'purchase' => $buyResult
+        );
+
+        return $result;
     }
 }

@@ -8,14 +8,9 @@
     <span class="title">{{ strtoupper($partType) }} UPGRADE</span>
     <div class="hw_shop_list">
         <ul>
-            @foreach()
-                <li rel="{$v['id']}" class="hw_shop_list_item"><span style="float: left">${$v['price']}</span><span style="width: 100px; font-weight:bold;">{$v['name']}</span><span style="float: right;">{$v['value']} {$v['valueType']}</span></li>
+            @foreach($upgradeList as $upgradePart)
+                <li rel="{{$upgradePart['id']}}" class="hw_shop_list_item"><span style="float: left">$ {{$upgradePart['price']}}</span><span style="width: 100px; font-weight:bold;">{{ $upgradePart['name'] }}</span><span style="float: right;">{{$upgradePart['value']}} {{$upgradePart['valueType']}}</span></li>
             @endforeach
-            {foreach from=$partlist key=k item=v}
-            <li rel="{$v['id']}" class="hw_shop_list_item"><span style="float: left">${$v['price']}</span><span style="width: 100px; font-weight:bold;">{$v['name']}</span><span style="float: right;">{$v['value']} {$v['valueType']}</span></li>
-            {/foreach}
         </ul>
     </div>
 </div>
-
-<script type="text/javascript" src="{$modulePath}js/shop.js"></script>

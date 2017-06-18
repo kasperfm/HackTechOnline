@@ -42,6 +42,32 @@ class HardwareSeeder extends Seeder
             'type'      => 3,
             'value'     => 8
         ]);
+
+        // Tier 1 gateway hardware.
+        DB::table('gateway_hardwares')->insert([
+            'part_name' => 'DSL connection',
+            'price'     => 60,
+            'type'      => 0,
+            'value'     => 10
+        ]);
+        DB::table('gateway_hardwares')->insert([
+            'part_name' => 'Xylon G2 CPU',
+            'price'     => 50,
+            'type'      => 1,
+            'value'     => 700
+        ]);
+        DB::table('gateway_hardwares')->insert([
+            'part_name' => 'K2 memory',
+            'price'     => 35,
+            'type'      => 2,
+            'value'     => 128
+        ]);
+        DB::table('gateway_hardwares')->insert([
+            'part_name' => 'Mondo-942 SSD',
+            'price'     => 55,
+            'type'      => 3,
+            'value'     => 32
+        ]);
     }
 
     private function serverHardware(){
