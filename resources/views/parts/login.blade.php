@@ -1,6 +1,6 @@
 <div id="login_window" class="dialog_window" title="System Authentication">
     <center>
-        <img src="img/logo.png" alt="HackTech Online" />
+        <canvas id="login-logo-canvas"></canvas>
         <h1 class="title">PLEASE LOGIN TO USE THE SYSTEM</h1>
     </center>
 

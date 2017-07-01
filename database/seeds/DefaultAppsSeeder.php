@@ -11,6 +11,10 @@ class DefaultAppsSeeder extends Seeder
      */
     public function run()
     {
+        // Clean the application tables!
+        DB::table('applications')->truncate();
+        DB::table('application_datas')->truncate();
+
         // System > About
         DB::table('applications')->insert([
             'id' => 1,
