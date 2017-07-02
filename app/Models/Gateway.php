@@ -15,7 +15,7 @@ class Gateway extends Model
     }
 
     public function host(){
-        return $this->hasOne('App\Models\Host', 'machine_id', 'host_id');
+        return $this->hasOne('App\Models\Host', 'id', 'host_id');
     }
 
     public function cpu(){
