@@ -47,5 +47,16 @@ class DefaultAppsSeeder extends Seeder
         DB::table('application_datas')->insert([
             'application_id' => 3
         ]);
+
+        // System > SoftwareMarket
+        DB::table('applications')->insert([
+            'id' => 4,
+            'app_name' => 'SoftwareMarket',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 4
+        ]);
     }
 }
