@@ -13,12 +13,25 @@
 namespace App\Classes\Game\Shops;
 
 use App\Classes\Game\Gateway;
-use App\Classes\Game\Hardware;
-use App\Classes\Game\Types\HardwareTypes;
 use App\Classes\Game\User;
-use App\Models\GatewayHardware;
+use App\Models\Application;
+use App\Models\UserApp;
 
 class SoftwareShop
 {
+    public static function getMarketApps($userID){
+        $marketApps = Application::onMarket()->get();
+        $applicationList = array();
 
+        foreach($marketApps as $app) {
+            $userAppCheck = UserApp::ownedBy($userID)->where('application_id', $app->id)->first();
+            if(!empty($userAppCheck)){
+                if($userAppCheck->application()->data()->version > $app->data()->version) {
+                    continue;
+                }
+            }
+
+            // magic...
+        }
+    }
 }
