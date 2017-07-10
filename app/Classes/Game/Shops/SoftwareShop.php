@@ -26,12 +26,14 @@ class SoftwareShop
         foreach($marketApps as $app) {
             $userAppCheck = UserApp::ownedBy($userID)->where('application_id', $app->id)->first();
             if(!empty($userAppCheck)){
-                if($userAppCheck->application()->data()->version > $app->data()->version) {
+                if($userAppCheck->application->data->version >= $app->data->version) {
                     continue;
                 }
             }
 
-            // magic...
+            $applicationList[] = $app;
         }
+
+        return $applicationList;
     }
 }
