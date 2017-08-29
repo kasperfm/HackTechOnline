@@ -31,7 +31,7 @@ class MyGateway extends Module
         $currentHDD = $myGateway->hdd()->first();
         $currentNET = $myGateway->inet()->first();
 
-        $view = view('modules.mygateway.index', compact('cssPath', 'jsPath', 'currentCPU', 'currentHDD', 'currentNET', 'currentRAM'));
+        $view = view('modules.system.mygateway.views.index', compact('cssPath', 'jsPath', 'currentCPU', 'currentHDD', 'currentNET', 'currentRAM'));
         return $view->render();
     }
 
@@ -51,7 +51,7 @@ class MyGateway extends Module
         $currentPart = $myGateway->hardware[$request->partType];
         $upgradeList = GatewayShop::getPartList($user, $currentPart->partType);
         $partType = $request->partType;
-        $renderedView = view('modules.mygateway.item', compact('currentPart', 'partType', 'upgradeList'))->render();
+        $renderedView = view('modules.system.mygateway.views.item', compact('currentPart', 'partType', 'upgradeList'))->render();
 
         $result = array(
             'answer' => true,

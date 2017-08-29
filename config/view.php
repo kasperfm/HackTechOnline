@@ -16,7 +16,7 @@ return [
     'paths' => [
         realpath(base_path('resources/views')),
         realpath(base_path('storage/app/vfs')),
-        realpath(base_path('storage/app/game'))
+        realpath(base_path('app/classes/game'))
     ],
 
     /*
