@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserApp extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id', 'application_id', 'installed'
     ];

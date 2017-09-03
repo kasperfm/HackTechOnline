@@ -2,7 +2,12 @@
 
 namespace App\Classes\Game\Modules\System\SoftwareMarket;
 
+use App\Classes\Game\Handlers\ModuleHandler;
 use App\Classes\Game\Module;
+use App\Classes\Game\Shops\SoftwareShop;
+use App\Classes\Game\Handlers\UserHandler;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SoftwareMarket extends Module
 {
@@ -14,5 +19,55 @@ class SoftwareMarket extends Module
             "width"     => 455,
             "height"    => 600
         );
+    }
+
+    public function returnHTML()
+    {
+        $softwareList = SoftwareShop::getMarketApps(Auth::id());
+        $cssPath = '/modules/css/';
+        $jsPath = '/modules/js/';
+
+        $view = view('modules.system.softwaremarket.views.index', compact('cssPath', 'jsPath', 'softwareList'));
+
+        return $view->render();
+    }
+
+    public function ajaxOverview(Request $request)
+    {
+        $result = array(
+            'answer' => true,
+            'view' => $this->returnHTML()
+        );
+
+        return $result;
+    }
+
+    public function ajaxBuy(Request $request)
+    {
+        $user = UserHandler::getUser(Auth::id());
+        $buyResult = SoftwareShop::buySoftware($user, $request->appId);
+
+        $result = array(
+            'answer' => true,
+            'purchase' => $buyResult
+        );
+
+        return $result;
+    }
+
+    public function ajaxItem(Request $request)
+    {
+        $user = UserHandler::getUser(Auth::id());
+        $moduleHandler = new ModuleHandler();
+        $software = $moduleHandler->getApplication($request->appName, $user->userID, true);
+
+        $renderedView = view('modules.system.softwaremarket.views.item', compact('software'))->render();
+
+        $result = array(
+            'answer' => true,
+            'view' => $renderedView
+        );
+
+        return $result;
     }
 }

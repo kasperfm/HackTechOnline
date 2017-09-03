@@ -1,0 +1,11 @@
+.wnd_softwaremarket li {
+    padding-bottom: 10px;
+}
+
+.wnd_softwaremarket .info-app {
+    font-weight:bold; cursor: pointer;
+}
+
+.wnd_softwaremarket .buy-app {
+    float: right; cursor: pointer; font-weight: bold;
+}

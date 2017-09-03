@@ -26,6 +26,8 @@ class Module
 
     public function __construct(Application $application){
         $this->appModel = $application;
+        $this->moduleID = $application->id;
+        $this->price = $application->data->price;
 
         $this->requirements = new Requirements(
             $this->appModel->app_name,

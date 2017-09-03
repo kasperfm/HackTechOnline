@@ -12,9 +12,10 @@
 
 namespace App\Classes\Game\Shops;
 
-use App\Classes\Game\Gateway;
+use App\Classes\Game\Handlers\ModuleHandler;
 use App\Classes\Game\User;
 use App\Models\Application;
+use App\Classes\Game\Module;
 use App\Models\UserApp;
 
 class SoftwareShop
@@ -35,5 +36,30 @@ class SoftwareShop
         }
 
         return $applicationList;
+    }
+
+    public static function buySoftware(User $user, $softwareID){
+        $modQuery = Application::where('id', $softwareID)->first();
+        $handler = new ModuleHandler();
+        $software = $handler->getApplication($modQuery->app_name, $user->userID, true);
+
+        if($user->economy->getBalance() >= $software->price){
+            $user->economy->removeMoney($software->price);
+
+            if($handler->userOwnsApp($softwareID, $user->userID) == false) {
+                $newApp = new UserApp();
+                $newApp->fill([
+                    'user_id' => $user->userID,
+                    'application_id' => $software->moduleID,
+                    'installed' => 0
+                ]);
+
+                $newApp->save();
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }

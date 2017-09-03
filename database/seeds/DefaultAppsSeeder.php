@@ -58,5 +58,16 @@ class DefaultAppsSeeder extends Seeder
         DB::table('application_datas')->insert([
             'application_id' => 4
         ]);
+
+        // Tools > Portscanner
+        DB::table('applications')->insert([
+            'id' => 5,
+            'app_name' => 'Portscanner',
+            'app_group' => 3,
+            'on_market' => 1
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 5
+        ]);
     }
 }

@@ -10,11 +10,11 @@ use App\Models\ApplicationData;
 
 class ModuleHandler
 {
-    public function getApplication($name, $userID){
+    public function getApplication($name, $userID, $force = false){
         $app = Application::where('app_name', $name)->first();
 
         if($app->isEmpty == false){
-            if($app->group->name != "system" && $app->group->name != "demo"){
+            if($app->group->name != "system" && $app->group->name != "demo" && $force == false){
                 $owned = UserApp::where('application_id', $app->id)->ownedBy($userID)->installed()->get();
                 if(empty($owned)){
                     return null;
@@ -29,6 +29,16 @@ class ModuleHandler
             }else{
                 return null;
             }
+        }
+    }
+
+    public function userOwnsApp($appID, $userID)
+    {
+        $appCheck = UserApp::where('user_id', $userID)->where('application_id', $appID)->first();
+        if($appCheck){
+            return true;
+        }else{
+            return false;
         }
     }
 
