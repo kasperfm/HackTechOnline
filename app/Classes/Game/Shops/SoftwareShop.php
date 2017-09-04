@@ -26,14 +26,22 @@ class SoftwareShop
 
         foreach($marketApps as $app) {
             $userAppCheck = UserApp::ownedBy($userID)->where('application_id', $app->id)->first();
-            if(!empty($userAppCheck)){
-                if($userAppCheck->application->data->version >= $app->data->version) {
+
+            if($userAppCheck){
+                if($userAppCheck->application->app_name == $app->app_name) {
+                    continue;
+                }
+
+                if ($userAppCheck->application->data->version >= $app->data->version) {
                     continue;
                 }
             }
 
-            $applicationList[] = $app;
+            if(empty($applicationList[$app->app_name])) {
+                $applicationList[$app->app_name] = $app;
+            }
         }
+
 
         return $applicationList;
     }
@@ -41,12 +49,17 @@ class SoftwareShop
     public static function buySoftware(User $user, $softwareID){
         $modQuery = Application::where('id', $softwareID)->first();
         $handler = new ModuleHandler();
-        $software = $handler->getApplication($modQuery->app_name, $user->userID, true);
+        $software = $handler->getApplication($softwareID, $user->userID, true);
 
         if($user->economy->getBalance() >= $software->price){
             $user->economy->removeMoney($software->price);
 
             if($handler->userOwnsApp($softwareID, $user->userID) == false) {
+                if($modQuery->app_name == $software->name){
+                    $oldApp = UserApp::ownedBy($user->userID)->where('application_id')->first();
+                    $oldApp->delete();
+                }
+
                 $newApp = new UserApp();
                 $newApp->fill([
                     'user_id' => $user->userID,

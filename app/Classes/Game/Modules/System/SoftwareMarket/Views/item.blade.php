@@ -3,9 +3,8 @@
 <br />
 <br />
 
-<div class="pane sw_shop">
-    <span class="title">{{ strtoupper($software->title) }}</span>
-    <div class="sw_shop_item">
-
-    </div>
+<div class="sw_shop">
+    <span class="title">{{ strtoupper($software->title) }}</span><br>
+    <span>Version: @php echo number_format($software->version, 1, '.', '') @endphp</span><br>
+    <span>{{ $software->description }}</span>
 </div>

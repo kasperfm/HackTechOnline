@@ -12,6 +12,7 @@ class Portscanner extends Module
     {
         $this->name = "portscanner";
         $this->title = "Portscanner";
+        $this->description = "Scan your target system for open ports.";
 
         $this->size = array(
             "width" => 420,

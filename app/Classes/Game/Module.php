@@ -12,7 +12,7 @@ class Module
     public $moduleID;
     public $name;
     public $title = "Unknown application";
-    public $description;
+    public $description = "No description";
     public $group = 'system';
     public $version;
     public $price;
@@ -28,6 +28,7 @@ class Module
         $this->appModel = $application;
         $this->moduleID = $application->id;
         $this->price = $application->data->price;
+        $this->version = $application->data->version;
 
         $this->requirements = new Requirements(
             $this->appModel->app_name,
