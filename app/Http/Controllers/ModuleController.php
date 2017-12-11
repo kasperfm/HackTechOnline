@@ -18,7 +18,7 @@ class ModuleController extends Controller
             $response = array();
             $response['answer'] = false;
 
-            $this->module = $moduleHandler->getApplication($request->modname, Auth::id());
+            $this->module = $moduleHandler->getApplication($request->modname, Auth::id(), );
 
             if(!empty($this->module)) {
                 if($this->module->requirements->validateRequirements($request)) {
@@ -44,8 +44,8 @@ class ModuleController extends Controller
 
             $response['answer'] = true;
             $request->session()->pull('runningApps', $request->modname);
-            $request->session()->put('cpuUsage', $request->session()->get('cpuUsage') - $this->module->appModel->data->cpu_req);
-            $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->appModel->data->ram_req);
+            $request->session()->put('cpuUsage', $request->session()->get('cpuUsage') - $this->module->appModel->data()->cpu_req);
+            $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->appModel->data()->ram_req);
         }
 
         return json_encode($response);

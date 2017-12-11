@@ -19,7 +19,8 @@ $(document).ready(function() {
     });
 
     $(".buy-app").click(function() {
-        var applicationId = $(this).attr("rel");
+        var applicationId = $(this).attr('value');
+        var applicationVersion = $('#app_version').text();
 
         $.ajax({
             type: 'POST',
@@ -28,7 +29,8 @@ $(document).ready(function() {
             url: '/game/module/softwaremarket/ajax/buy',
             data: {
                 _token: window.Laravel.csrfToken,
-                appId: applicationId
+                appId: applicationId,
+                appVersion: applicationVersion
             },
             success: function(response) {
                 if(response.purchase === true) {

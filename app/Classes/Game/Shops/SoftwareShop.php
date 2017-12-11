@@ -15,6 +15,7 @@ namespace App\Classes\Game\Shops;
 use App\Classes\Game\Handlers\ModuleHandler;
 use App\Classes\Game\User;
 use App\Models\Application;
+use App\Models\ApplicationData;
 use App\Classes\Game\Module;
 use App\Models\UserApp;
 
@@ -25,20 +26,24 @@ class SoftwareShop
         $applicationList = array();
 
         foreach($marketApps as $app) {
-            $userAppCheck = UserApp::ownedBy($userID)->where('application_id', $app->id)->first();
+            $userAppCheck = UserApp::byVersion($app->data(false)->version)->ownedBy($userID)->first();
 
             if($userAppCheck){
                 if($userAppCheck->application->app_name == $app->app_name) {
-                    continue;
+               //     continue;
                 }
 
-                if ($userAppCheck->application->data->version >= $app->data->version) {
-                    continue;
+                $appData = ApplicationData::where('application_id', $userAppCheck->application_id)->where('version', '>', $userAppCheck->version)->get();
+                if($appData){
+                    foreach ($appData as $finalApp){
+                        $result = $finalApp->application->byVersion($userAppCheck->application_id, $finalApp->version)->first();
+                        $applicationList[] = $result;
+                    }
                 }
-            }
-
-            if(empty($applicationList[$app->app_name])) {
-                $applicationList[$app->app_name] = $app;
+            }else{
+                if(empty($applicationList[$app->app_name])) {
+                    $applicationList[] = $app;
+                }
             }
         }
 
@@ -46,10 +51,10 @@ class SoftwareShop
         return $applicationList;
     }
 
-    public static function buySoftware(User $user, $softwareID){
+    public static function buySoftware(User $user, $softwareID, $version){
         $modQuery = Application::where('id', $softwareID)->first();
         $handler = new ModuleHandler();
-        $software = $handler->getApplication($softwareID, $user->userID, true);
+        $software = $handler->getApplication($softwareID, $user->userID, true, $version);
 
         if($user->economy->getBalance() >= $software->price){
             $user->economy->removeMoney($software->price);

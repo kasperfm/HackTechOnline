@@ -5,6 +5,8 @@
 
 <div class="sw_shop">
     <span class="title">{{ strtoupper($software->title) }}</span><br>
-    <span>Version: @php echo number_format($software->version, 1, '.', '') @endphp</span><br>
+    <span>Version: <span id="app_version">@php echo number_format($software->version, 1, '.', '') @endphp</span></span><br>
     <span>{{ $software->description }}</span>
+    <hr>
+    <button class="buyApp" value="{{ $software->id }}">Buy software</button>
 </div>

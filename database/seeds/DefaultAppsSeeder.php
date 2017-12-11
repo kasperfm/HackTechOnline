@@ -67,7 +67,12 @@ class DefaultAppsSeeder extends Seeder
             'on_market' => 1
         ]);
         DB::table('application_datas')->insert([
-            'application_id' => 5
+            'application_id' => 5,
+            'version' => 1,
+            'price' => 60,
+            'hdd_req' => 15,
+            'cpu_req' => 100,
+            'ram_req' => 24
         ]);
     }
 }

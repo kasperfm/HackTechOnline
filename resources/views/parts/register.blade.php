@@ -1,7 +1,7 @@
 <div id="register_window" class="dialog_window" title="Register new account">
-    <center>
+    <div style="text-align: center;">
         <h1 class="title">Register new account</h1>
-    </center>
+    </div>
     <div class="pane" style="text-align: center;">
         <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}

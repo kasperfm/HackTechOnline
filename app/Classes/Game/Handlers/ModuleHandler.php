@@ -7,14 +7,23 @@ use App\Models\Application;
 use App\Models\UserApp;
 use App\Models\ApplicationData;
 
-
 class ModuleHandler
 {
-    public function getApplication($lookup, $userID, $force = false){
+    public function getApplication($lookup, $userID, $force = false, $version = 0){
         if(is_numeric($lookup)){
-            $app = Application::where('id', $lookup)->first();
+            if($version > 0){
+                $app = Application::byVersion($lookup, $version)->first();
+            }else{
+                $app = Application::where('id', $lookup)->first();
+            }
         }else{
-            $app = Application::where('app_name', $lookup)->first();
+            $appLookup = Application::where('app_name', $lookup)->first();
+
+            if($version > 0){
+                $app = Application::byVersion($appLookup->id, $version)->first();
+            }else{
+                $app = Application::where('id', $appLookup->id)->first();
+            }
         }
 
         if($app->isEmpty == false){

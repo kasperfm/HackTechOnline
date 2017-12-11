@@ -25,6 +25,10 @@ class UserApp extends Model
     }
 
     public function scopeOwnedBy($query, $owner){
-        return $query->where('user_id', $owner);
+        return $query->where('user_apps.user_id', $owner);
+    }
+
+    public function scopeByVersion($query, $version){
+        return $query->join('application_datas', 'application_datas.id', '=', 'user_apps.application_id')->select('user_apps.*', 'version')->where('application_datas.version', '=', $version);
     }
 }

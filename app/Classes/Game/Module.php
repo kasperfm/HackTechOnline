@@ -27,14 +27,14 @@ class Module
     public function __construct(Application $application){
         $this->appModel = $application;
         $this->moduleID = $application->id;
-        $this->price = $application->data->price;
-        $this->version = $application->data->version;
+        $this->price = $application->data()->price;
+        $this->version = $application->data()->version;
 
         $this->requirements = new Requirements(
             $this->appModel->app_name,
-            $this->appModel->data->cpu_req,
-            $this->appModel->data->ram_req,
-            $this->appModel->data->hdd_req
+            $this->appModel->data()->cpu_req,
+            $this->appModel->data()->ram_req,
+            $this->appModel->data()->hdd_req
         );
     }
 

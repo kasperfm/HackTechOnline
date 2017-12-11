@@ -45,7 +45,7 @@ class SoftwareMarket extends Module
     public function ajaxBuy(Request $request)
     {
         $user = UserHandler::getUser(Auth::id());
-        $buyResult = SoftwareShop::buySoftware($user, $request->appId);
+        $buyResult = SoftwareShop::buySoftware($user, $request->appId, $request->appVersion);
 
         $result = array(
             'answer' => true,
