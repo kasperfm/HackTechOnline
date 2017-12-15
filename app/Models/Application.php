@@ -16,11 +16,11 @@ class Application extends Model
         return $this->hasOne('App\Models\ApplicationGroup', 'id', 'app_group');
     }
 
-    public function dataOld(){
+    public function data(){
         return $this->hasOne('App\Models\ApplicationData', 'application_id', 'id');
     }
 
-    public function data($checkVersion = true){
+    public function getData($checkVersion = true){
         if($checkVersion){
             return ApplicationData::where('application_id', $this->id)->where('version', $this->version)->first();
         }

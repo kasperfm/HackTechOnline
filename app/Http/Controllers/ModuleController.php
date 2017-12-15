@@ -55,8 +55,8 @@ class ModuleController extends Controller
 
             $response['answer'] = true;
             $request->session()->pull('runningApps', $request->modname);
-            $request->session()->put('cpuUsage', $request->session()->get('cpuUsage') - $this->module->appModel->data()->cpu_req);
-            $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->appModel->data()->ram_req);
+            $request->session()->put('cpuUsage', $request->session()->get('cpuUsage') - $this->module->appModel->data->cpu_req);
+            $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->appModel->data->ram_req);
         }
 
         return json_encode($response);

@@ -23,6 +23,10 @@ class UserApp extends Model
         //return $this->belongsTo('App\Models\Application');
     }
 
+    public function data(){
+        return $this->hasOne('App\Models\ApplicationData', 'id', 'application_datas_id');
+    }
+
     public function scopeInstalled($query){
         return $query->where('installed', 1);
     }

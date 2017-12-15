@@ -3,6 +3,8 @@
 namespace App\Classes\Game;
 
 use App\Models\Application;
+use App\Models\UserApp;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class Module
@@ -27,14 +29,22 @@ class Module
     public function __construct(Application $application){
         $this->appModel = $application;
         $this->moduleID = $application->id;
-        $this->price = $application->data()->price;
-        $this->version = $application->data()->version;
+        $this->group = $application->group->name;
+
+        if($this->group != 'demo' && $this->group != 'system'){
+            $data = UserApp::ownedBy(Auth::id())->where('application_id', $this->moduleID)->first()->data;
+        }else{
+            $data = $application->getData(false);
+        }
+
+        $this->price = $data->price;
+        $this->version = $data->version;
 
         $this->requirements = new Requirements(
             $this->appModel->app_name,
-            $this->appModel->data()->cpu_req,
-            $this->appModel->data()->ram_req,
-            $this->appModel->data()->hdd_req
+            $data->cpu_req,
+            $data->ram_req,
+            $data->hdd_req
         );
     }
 
