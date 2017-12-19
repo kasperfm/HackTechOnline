@@ -9,7 +9,7 @@ class UserApp extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id', 'application_id', 'installed'
+        'user_id', 'application_id', 'installed', 'application_datas_id'
     ];
 
     public function user(){

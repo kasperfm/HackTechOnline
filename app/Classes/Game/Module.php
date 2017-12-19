@@ -12,6 +12,7 @@ class Module
     public $appModel;
 
     public $moduleID;
+    public $variantID;
     public $name;
     public $title = "Unknown application";
     public $description = "No description";
@@ -31,11 +32,21 @@ class Module
         $this->moduleID = $application->id;
         $this->group = $application->group->name;
 
+        $data = null;
+
         if($this->group != 'demo' && $this->group != 'system'){
-            $data = UserApp::ownedBy(Auth::id())->where('application_id', $this->moduleID)->first()->data;
-        }else{
+            $userApp = UserApp::ownedBy(Auth::id())->where('application_id', $this->moduleID)->first();
+            if($userApp){
+                $data = $userApp->data;
+
+            }
+        }
+
+        if(!$data) {
             $data = $application->getData(false);
         }
+
+        $this->variantID = $data->id;
 
         $this->price = $data->price;
         $this->version = $data->version;

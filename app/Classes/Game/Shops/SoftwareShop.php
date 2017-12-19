@@ -26,32 +26,31 @@ class SoftwareShop
         $applicationList = array();
 
         foreach($marketApps as $app) {
-            $userAppCheck = UserApp::byVersion($app->data(false)->version)->ownedBy($userID)->first();
-
+            $userAppCheck = UserApp::ownedBy($userID)->where('application_id', $app->id)->first();
             if($userAppCheck){
-                if($userAppCheck->application->app_name == $app->app_name) {
-               //     continue;
-                }
-
-                $appData = ApplicationData::where('application_id', $userAppCheck->application_id)->where('version', '>', $userAppCheck->version)->get();
+                $appData = ApplicationData::where('application_id', $userAppCheck->application_id)->where('version', '>', $userAppCheck->data->version)->first();
                 if($appData){
-                    foreach ($appData as $finalApp){
+                    $result = $appData->application->byVersion($userAppCheck->application_id, $appData->version)->first();
+                    $applicationList[] = $result;
+
+                    /*foreach ($appData as $finalApp){
                         $result = $finalApp->application->byVersion($userAppCheck->application_id, $finalApp->version)->first();
                         $applicationList[] = $result;
-                    }
+                    }*/
                 }
             }else{
-                if(empty($applicationList[$app->app_name])) {
-                    $applicationList[] = $app;
-                }
+                //if(empty($applicationList[$app->app_name])) {
+                $appData = ApplicationData::where('application_id', $app->id)->where('version', '=', $app->data->version)->first();
+                $result = $appData->application->byVersion($app->id, $appData->version)->first();
+                    $applicationList[] = $result;
+                //}
             }
         }
-
 
         return $applicationList;
     }
 
-    public static function buySoftware(User $user, $softwareID, $version){
+    public static function buySoftware(User $user, $softwareID, $version, $variantID){
         $modQuery = Application::where('id', $softwareID)->first();
         $handler = new ModuleHandler();
         $software = $handler->getApplication($softwareID, $user->userID, true, $version);
@@ -59,23 +58,28 @@ class SoftwareShop
         if($user->economy->getBalance() >= $software->price){
             $user->economy->removeMoney($software->price);
 
-            if($handler->userOwnsApp($softwareID, $user->userID) == false) {
-                if($modQuery->app_name == $software->name){
-                    $oldApp = UserApp::ownedBy($user->userID)->where('application_id')->first();
+            $ownerCheck = UserApp::ownedBy($user->userID)->where('application_id', $softwareID)->first();
+            if($ownerCheck) {
+                if (strcmp(strtolower($modQuery->app_name), strtolower($software->name)) == 0) {
+                    $oldApp = UserApp::ownedBy($user->userID)->where('application_id', $software->moduleID)->first();
                     $oldApp->delete();
                 }
-
-                $newApp = new UserApp();
-                $newApp->fill([
-                    'user_id' => $user->userID,
-                    'application_id' => $software->moduleID,
-                    'installed' => 0
-                ]);
-
-                $newApp->save();
-
-                return true;
             }
+
+
+
+            $newApp = new UserApp();
+            $newApp->fill([
+                'user_id' => $user->userID,
+                'application_id' => $software->moduleID,
+                'installed' => 0,
+                'application_datas_id' => $variantID
+            ]);
+
+            $newApp->save();
+
+            return true;
+
         }
 
         return false;

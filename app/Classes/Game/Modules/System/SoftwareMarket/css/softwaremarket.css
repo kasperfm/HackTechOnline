@@ -9,3 +9,8 @@
 .wnd_softwaremarket .buy-app {
     float: right; cursor: pointer; font-weight: bold;
 }
+
+.wnd_softwaremarket .sw_shop_goback {
+    cursor: pointer;
+    vertical-align: center;
+}

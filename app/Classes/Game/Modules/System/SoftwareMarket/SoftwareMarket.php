@@ -45,7 +45,7 @@ class SoftwareMarket extends Module
     public function ajaxBuy(Request $request)
     {
         $user = UserHandler::getUser(Auth::id());
-        $buyResult = SoftwareShop::buySoftware($user, $request->appId, $request->appVersion);
+        $buyResult = SoftwareShop::buySoftware($user, $request->appId, $request->appVersion, $request->appVariant);
 
         $result = array(
             'answer' => true,
@@ -57,10 +57,8 @@ class SoftwareMarket extends Module
 
     public function ajaxItem(Request $request)
     {
-        $user = UserHandler::getUser(Auth::id());
         $moduleHandler = new ModuleHandler();
-        $software = $moduleHandler->getApplication($request->appName, $user->userID, true);
-
+        $software = $moduleHandler->getApplication($request->appName, Auth::id(), false, $request->appVersion);
         $renderedView = view('modules.system.softwaremarket.views.item', compact('software'))->render();
 
         $result = array(
