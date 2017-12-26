@@ -38,7 +38,7 @@ class Application extends Model
         return $query->join('application_datas', 'application_datas.application_id', '=', 'applications.id')
             ->where('application_datas.version', '=', $version)
             ->where('application_id', $applicationId)
-            ->select('applications.*', 'application_datas.version');
+            ->select('applications.*', 'application_datas.version', 'application_datas.id as variant_id');
     }
 
 

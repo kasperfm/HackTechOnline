@@ -32,51 +32,42 @@ class SoftwareShop
                 if($appData){
                     $result = $appData->application->byVersion($userAppCheck->application_id, $appData->version)->first();
                     $applicationList[] = $result;
-
-                    /*foreach ($appData as $finalApp){
-                        $result = $finalApp->application->byVersion($userAppCheck->application_id, $finalApp->version)->first();
-                        $applicationList[] = $result;
-                    }*/
                 }
             }else{
-                //if(empty($applicationList[$app->app_name])) {
                 $appData = ApplicationData::where('application_id', $app->id)->where('version', '=', $app->data->version)->first();
                 $result = $appData->application->byVersion($app->id, $appData->version)->first();
-                    $applicationList[] = $result;
-                //}
+                $applicationList[] = $result;
             }
         }
 
         return $applicationList;
     }
 
-    public static function buySoftware(User $user, $softwareID, $version, $variantID){
+    public static function buySoftware(User $user, $softwareID, $version){
         $modQuery = Application::where('id', $softwareID)->first();
         $handler = new ModuleHandler();
-        $software = $handler->getApplication($softwareID, $user->userID, true, $version);
+        $newSoftware = $handler->getApplication($softwareID, $user->userID, true, $version);
 
-        if($user->economy->getBalance() >= $software->price){
-            $user->economy->removeMoney($software->price);
-
+        if($user->economy->getBalance() >= $newSoftware->price){
             $ownerCheck = UserApp::ownedBy($user->userID)->where('application_id', $softwareID)->first();
             if($ownerCheck) {
-                if (strcmp(strtolower($modQuery->app_name), strtolower($software->name)) == 0) {
-                    $oldApp = UserApp::ownedBy($user->userID)->where('application_id', $software->moduleID)->first();
+                if (strcmp(strtolower($modQuery->app_name), strtolower($newSoftware->name)) == 0) {
+                    $oldApp = UserApp::ownedBy($user->userID)->where('application_id', $newSoftware->moduleID)->first();
                     $oldApp->delete();
                 }
             }
 
-
-
             $newApp = new UserApp();
             $newApp->fill([
                 'user_id' => $user->userID,
-                'application_id' => $software->moduleID,
+                'application_id' => $newSoftware->moduleID,
                 'installed' => 0,
-                'application_datas_id' => $variantID
+                'application_datas_id' => $newSoftware->appModel->variant_id
             ]);
 
             $newApp->save();
+
+            $user->economy->removeMoney($newSoftware->price);
 
             return true;
 

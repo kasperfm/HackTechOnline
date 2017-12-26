@@ -14,3 +14,12 @@
     cursor: pointer;
     vertical-align: center;
 }
+
+.buy-app {
+    width: 100%;
+}
+
+.info-app {
+    float: right;
+    margin-top: -12px;
+}

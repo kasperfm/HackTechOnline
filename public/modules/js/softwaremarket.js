@@ -42,8 +42,7 @@ function initSWShop(){
 
     $(".buy-app").click(function() {
         var applicationId = $(this).attr('value');
-        var applicationVariant = $(this).attr('rel');
-        var applicationVersion = $('#app_version').text();
+        var applicationVersion = $(this).attr('rel');
 
         $.ajax({
             type: 'POST',
@@ -54,7 +53,6 @@ function initSWShop(){
                 _token: window.Laravel.csrfToken,
                 appId: applicationId,
                 appVersion: applicationVersion,
-                appVariant: applicationVariant
             },
             success: function(response) {
                 if(response.purchase === true) {
