@@ -23,7 +23,7 @@
                         <li rel="corp_status" class="menubar-item-inactive">CORP. STATUS</li>
                         <li rel="softwaremarket" class="exec">SOFTWARE MARKET</li>
                         <li rel="mygateway" class="exec">MY GATEWAY</li>
-                        <li rel="my_software" class="menubar-item-inactive">MY SOFTWARE</li>
+                        <li rel="mysoftware" class="exec">MY SOFTWARE</li>
                     </ul>
                 </div>
 

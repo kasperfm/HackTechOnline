@@ -85,4 +85,10 @@ class ModuleHandler
 
         return $apps;
     }
+
+    public function getOwnedApps($userID){
+        $apps = UserApp::ownedBy($userID)->get();
+
+        return $apps;
+    }
 }
