@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
+use App\Models\UserApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -18,15 +20,24 @@ class ModuleController extends Controller
             $response = array();
             $response['answer'] = false;
 
-            $this->module = $moduleHandler->getApplication($request->modname, Auth::id(), );
+            $appLookup = Application::where('app_name', $request->modname)->first();
+            if($appLookup) {
+                $userApp = UserApp::ownedBy(Auth::id())->currentVersionOf($appLookup->id)->first();
+                if($userApp) {
+                    $this->module = $moduleHandler->getApplication($request->modname, Auth::id(), false, $userApp->version);
+                }else{
+                    $this->module = $moduleHandler->getApplication($request->modname, Auth::id(), true);
+                }
 
-            if(!empty($this->module)) {
-                if($this->module->requirements->validateRequirements($request)) {
-                    $response['answer'] = true;
-                    $response['view'] = $this->module->returnHTML();
-                    $response['width'] = $this->module->size['width'];
-                    $response['height'] = $this->module->size['height'];
-                    $response['title'] = $this->module->title;
+
+                if (!empty($this->module)) {
+                    if ($this->module->requirements->validateRequirements($request)) {
+                        $response['answer'] = true;
+                        $response['view'] = $this->module->returnHTML();
+                        $response['width'] = $this->module->size['width'];
+                        $response['height'] = $this->module->size['height'];
+                        $response['title'] = $this->module->title;
+                    }
                 }
             }
 
@@ -44,8 +55,8 @@ class ModuleController extends Controller
 
             $response['answer'] = true;
             $request->session()->pull('runningApps', $request->modname);
-            $request->session()->put('cpuUsage', $request->session()->get('cpuUsage') - $this->module->appModel->data()->cpu_req);
-            $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->appModel->data()->ram_req);
+            $request->session()->put('cpuUsage', $request->session()->get('cpuUsage') - $this->module->appModel->data->cpu_req);
+            $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->appModel->data->ram_req);
         }
 
         return json_encode($response);

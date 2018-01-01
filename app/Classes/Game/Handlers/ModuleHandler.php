@@ -10,6 +10,8 @@ use App\Models\ApplicationData;
 class ModuleHandler
 {
     public function getApplication($lookup, $userID, $force = false, $version = 0){
+        $app = null;
+
         if(is_numeric($lookup)){
             if($version > 0){
                 $app = Application::byVersion($lookup, $version)->first();
@@ -19,14 +21,16 @@ class ModuleHandler
         }else{
             $appLookup = Application::where('app_name', $lookup)->first();
 
-            if($version > 0){
-                $app = Application::byVersion($appLookup->id, $version)->first();
-            }else{
-                $app = Application::where('id', $appLookup->id)->first();
+            if($appLookup) {
+                if ($version > 0) {
+                    $app = Application::byVersion($appLookup->id, $version)->first();
+                } else {
+                    $app = Application::where('id', $appLookup->id)->first();
+                }
             }
         }
 
-        if($app->isEmpty == false){
+        if($app){
             if($app->group->name != "system" && $app->group->name != "demo" && $force == false){
                 $owned = UserApp::where('application_id', $app->id)->ownedBy($userID)->installed()->get();
                 if(empty($owned)){
@@ -78,6 +82,12 @@ class ModuleHandler
 
     public function getInstalledApps($userID){
         $apps = UserApp::ownedBy($userID)->installed()->get();
+
+        return $apps;
+    }
+
+    public function getOwnedApps($userID){
+        $apps = UserApp::ownedBy($userID)->get();
 
         return $apps;
     }

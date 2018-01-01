@@ -1,15 +1,18 @@
 $(document).ready(function() {
     $(".info-app").click(function() {
-        var applicationName = $(this).attr("rel");
+        var applicationName = $(this).parent().attr('rel');
+        var applicationVersion = $(this).attr('rel');
 
         $.ajax({
             type: 'POST',
             dataType: 'json',
             cache: false,
+
             url: '/game/module/softwaremarket/ajax/item',
             data: {
                 _token: window.Laravel.csrfToken,
-                appName: applicationName
+                appName: applicationName,
+                appVersion: applicationVersion
             },
             success: function(response) {
                 $("#softwaremarket-content").html(response.view);
@@ -18,9 +21,28 @@ $(document).ready(function() {
         });
     });
 
+
+});
+
+function initSWShop(){
+    $(".sw_shop_goback").click(function() {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            url: '/game/module/softwaremarket/ajax/overview',
+            data: {
+                _token: window.Laravel.csrfToken
+            },
+            success: function(response) {
+                $("#softwaremarket-content").html(response.view);
+            }
+        });
+    });
+
     $(".buy-app").click(function() {
         var applicationId = $(this).attr('value');
-        var applicationVersion = $('#app_version').text();
+        var applicationVersion = $(this).attr('rel');
 
         $.ajax({
             type: 'POST',
@@ -30,7 +52,7 @@ $(document).ready(function() {
             data: {
                 _token: window.Laravel.csrfToken,
                 appId: applicationId,
-                appVersion: applicationVersion
+                appVersion: applicationVersion,
             },
             success: function(response) {
                 if(response.purchase === true) {
@@ -64,23 +86,6 @@ $(document).ready(function() {
                         content: 'You don\'t have enough money to purchase this software !'
                     });
                 }
-            }
-        });
-    });
-});
-
-function initSWShop(){
-    $(".sw_shop_goback").click(function() {
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            cache: false,
-            url: '/game/module/softwaremarket/ajax/overview',
-            data: {
-                _token: window.Laravel.csrfToken
-            },
-            success: function(response) {
-                $("#softwaremarket-content").html(response.view);
             }
         });
     });

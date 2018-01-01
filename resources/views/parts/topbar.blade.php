@@ -23,17 +23,17 @@
                         <li rel="corp_status" class="menubar-item-inactive">CORP. STATUS</li>
                         <li rel="softwaremarket" class="exec">SOFTWARE MARKET</li>
                         <li rel="mygateway" class="exec">MY GATEWAY</li>
-                        <li rel="my_software" class="menubar-item-inactive">MY SOFTWARE</li>
+                        <li rel="mysoftware" class="exec">MY SOFTWARE</li>
                     </ul>
                 </div>
 
-                @if($installedApps->isEmpty())
+                @if(!$installedApps)
                     <div class="applications-menu menubar-item" style="color: #4b4b4b">APPLICATIONS</div>
                 @else
                 <div class="applications-menu menubar-item" style="color: #ffffff" >APPLICATIONS
                     <ul class="appmenu" id="appmenu">
                         @foreach($installedApps as $app)
-                            <li rel="{{ strtolower($app->application->app_name) }}" class="exec">{{ $app->application->app_name }}</li>
+                            <li rel="{{ strtolower($app->application()->app_name) }}" class="exec">{{ $app->application()->app_name }}</li>
                         @endforeach
                     </ul>
                 </div>
