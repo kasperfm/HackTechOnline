@@ -36,6 +36,10 @@ class MySoftware extends Module
         return $view->render();
     }
 
+    public function ajaxRefresh(Request $request){
+        return $this->returnHTML();
+    }
+
     public function ajaxInstall(Request $request)
     {
         $gateway = UserHandler::getUser(Auth::id())->gateway;

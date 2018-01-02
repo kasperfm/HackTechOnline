@@ -107,7 +107,7 @@ class ModuleController extends Controller
 
             if(!empty($appList)){
                 foreach($appList as $app){
-                    $content .= '<li rel="'.strtolower($app->application->app_name).'" class="exec">'.$app->application->app_name.'</li>';
+                    $content .= '<li rel="'.strtolower($app->application()->app_name).'" class="exec">'.$app->application()->app_name.'</li>';
                 }
             }
 
