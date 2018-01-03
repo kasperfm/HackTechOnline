@@ -17,6 +17,7 @@ $(".toggle-install-state").bind( "click", function() {
                 if (response.answer === true) {
                     refreshHTML();
                     updateApplicationMenu();
+                    updateResourceBars();
                 }
             }
         });
@@ -34,6 +35,7 @@ $(".toggle-install-state").bind( "click", function() {
                 if (response.answer === true) {
                     refreshHTML();
                     updateApplicationMenu();
+                    updateResourceBars();
                 }
             }
         });
@@ -54,18 +56,4 @@ function refreshHTML() {
             $("#wnd_mysoftware").html(response);
         }
     });
-}
-
-function markAsInstalled(obj) {
-    obj.removeClass('text-green');
-   // obj.removeClass('install-software');
-    obj.addClass('text-red');
-    //obj.addClass('remove-software');
-}
-
-function markAsRemoved(obj) {
-    obj.removeClass('text-red');
-    //obj.removeClass('remove-software');
-    obj.addClass('text-green');
-//    obj.addClass('install-software');
 }

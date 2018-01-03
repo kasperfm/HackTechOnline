@@ -30,6 +30,7 @@ class GameController extends Controller
         $request->session()->put('runningApps', $runningApps);
         $request->session()->put('cpuUsage', 0);
         $request->session()->put('ramUsage', 0);
+        $request->session()->put('hddUsage', 0);
 
         $moduleHandler = new ModuleHandler();
         $installedApps = $moduleHandler->getInstalledApps(Auth::id());

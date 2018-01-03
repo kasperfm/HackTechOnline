@@ -27,7 +27,7 @@
                     </ul>
                 </div>
 
-                @if(!$installedApps)
+                @if($installedApps->isEmpty())
                     <div class="applications-menu menubar-item" style="color: #4b4b4b">APPLICATIONS</div>
                 @else
                 <div class="applications-menu menubar-item" style="color: #ffffff" >APPLICATIONS

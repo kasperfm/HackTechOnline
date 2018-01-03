@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Game\Handlers\UserHandler;
 use App\Models\Application;
 use App\Models\UserApp;
 use Illuminate\Http\Request;
@@ -82,12 +83,15 @@ class ModuleController extends Controller
             $gwRam = $user->gateway->ram->value;
             $gwHdd = $user->gateway->hdd->value;
 
+            $userObj = UserHandler::getUser(Auth::id());
+
             $currentCpuUsage = $request->session()->get('cpuUsage');
             $currentRamUsage = $request->session()->get('ramUsage');
+            $currentHDDUsage = $userObj->gateway->usedDiskSpace();
 
             $response['cpu'] = $this->percentage($currentCpuUsage, $gwCpu, 0);
             $response['ram'] = $this->percentage($currentRamUsage, $gwRam, 0);
-            $response['hdd'] = $this->percentage($gwHdd - ($gwHdd / 2), $gwHdd, 0); // TEST DATA
+            $response['hdd'] = $this->percentage($currentHDDUsage, $gwHdd * 1024, 0);
 
             $response['answer'] = true;
         }
