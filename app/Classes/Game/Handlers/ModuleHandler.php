@@ -89,6 +89,17 @@ class ModuleHandler
     public function getOwnedApps($userID){
         $apps = UserApp::ownedBy($userID)->get();
 
-        return $apps;
+        $result = array();
+        foreach ($apps as $app){
+            $software = UserApp::ownedBy($userID)->currentVersionOf($app->application()->id)->first();
+            $entry['id'] = $software->application()->id;
+            $entry['name'] = $software->application()->app_name;
+            $entry['installed'] = $software->installed;
+            $entry['version'] = $software->data->version;
+
+            $result[] = $entry;
+        }
+
+        return $result;
     }
 }

@@ -16,8 +16,8 @@ class MySoftware extends Module
         $this->title = "My Software";
 
         $this->size = array(
-            "width"     => 525,
-            "height"    => 510
+            "width"     => 450,
+            "height"    => 500
         );
     }
 
