@@ -22,5 +22,6 @@
     "/modules/js/mygateway.js": "/modules/js/mygateway.js",
     "/modules/js/mysoftware.js": "/modules/js/mysoftware.js",
     "/modules/js/softwaremarket.js": "/modules/js/softwaremarket.js",
-    "/modules/js/webbrowser.js": "/modules/js/webbrowser.js"
+    "/modules/js/webbrowser.js": "/modules/js/webbrowser.js",
+    "/modules/js/portscanner.js": "/modules/js/portscanner.js"
 }
