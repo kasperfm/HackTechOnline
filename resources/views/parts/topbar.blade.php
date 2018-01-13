@@ -16,7 +16,7 @@
                     <ul>
                         <li rel="ai_helper" class="menubar-item-inactive">AI</li>
                         <li rel="player_profile" class="menubar-item-inactive">PLAYER PROFILE</li>
-                        <li rel="messenger" class="menubar-item-inactive">MESSENGER</li>
+                        <li rel="messenger" class="exec">MESSENGER</li>
                         <li rel="email" class="menubar-item-inactive">E-MAIL CLIENT</li>
                         <li rel="server_admin" class="menubar-item-inactive">SERVER ADMINISTRATION</li>
                         <li rel="webbrowser" class="exec">WEB-BROWSER</li>

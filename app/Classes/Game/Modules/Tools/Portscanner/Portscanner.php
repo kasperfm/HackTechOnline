@@ -21,16 +21,6 @@ class Portscanner extends Module
         );
     }
 
-    public function getOpenPorts($target)
-    {
-        $server = ServerHandler::getServer($target);
-        if(!$server){
-            return null;
-        }
-
-        return $server->ports;
-    }
-
     public function ajaxScan(Request $request)
     {
         $response = array();
@@ -61,17 +51,4 @@ class Portscanner extends Module
 
         return $response;
     }
-
-    /*
-    public function returnHTML()
-    {
-        $version = $this->version;
-        $cssPath = '/modules/css/';
-        $jsPath = '/modules/js/';
-
-        $view = view('modules.tools.portscanner.views.index', compact('cssPath', 'jsPath', 'version'));
-
-        return $view->render();
-    }
-    */
 }

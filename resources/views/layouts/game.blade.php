@@ -27,17 +27,17 @@
     @yield('extra-head')
 </head>
 <body>
-    @yield('topbar')
 
-    <div id="window_wrapper"></div>
+    @yield('topbar')
+<div id="app">
+    <div class="window_wrapper"></div>
 
     @yield('content')
-
+</div>
     @yield('footer')
 
+
     <!-- Scripts -->
-    <script src="{{ mix('/js/manifest.js') }}"></script>
-    <script src="{{ mix('/js/vendor.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="/js/moduleloader.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
@@ -45,5 +45,6 @@
     <script src="{{ mix('/js/notification-min.js') }}"></script>
 
     @yield('extra-js')
+
 </body>
 </html>

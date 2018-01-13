@@ -12,13 +12,14 @@ const { mix } = require('laravel-mix');
  */
 
     // Base
+
 mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/register.js', 'public/js')
    .js('resources/assets/js/login.js', 'public/js')
    .copy('resources/assets/js/moduleloader.js', 'public/js')
    .copy('resources/assets/js/init.js', 'public/js')
    .copy('resources/assets/js/effects.js', 'public/js')
-   .extract(['jquery', 'lodash', 'axios'])
+//   .extract(['jquery', 'lodash', 'axios', 'vue'])
 
    // Jquery UI
    .combine(['resources/assets/js/jquery-ui.min.js', 'resources/assets/js/jquery.dialog.minimize.js'], 'public/js/jquery-ui-bundle.js')

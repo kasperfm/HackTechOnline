@@ -35,7 +35,7 @@ class GameController extends Controller
         $moduleHandler = new ModuleHandler();
         $installedApps = $moduleHandler->getInstalledApps(Auth::id());
 
-        return view('index', compact(['installedApps']));
+        return view('index', ['installedApps' => $installedApps]);
     }
 
     public function index(Request $request){

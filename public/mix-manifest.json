@@ -1,5 +1,4 @@
 {
-    "/js/vendor.js": "/js/vendor.js",
     "/js/app.js": "/js/app.js",
     "/css/ui/hto-theme.css": "/css/ui/hto-theme.css",
     "/css/app.css": "/css/app.css",
@@ -7,7 +6,6 @@
     "/js/notification-min.js": "/js/notification-min.js",
     "/js/login.js": "/js/login.js",
     "/js/jquery.onenter.js": "/js/jquery.onenter.js",
-    "/js/manifest.js": "/js/manifest.js",
     "/js/moduleloader.js": "/js/moduleloader.js",
     "/js/init.js": "/js/init.js",
     "/js/effects.js": "/js/effects.js",
