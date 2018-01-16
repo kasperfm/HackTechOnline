@@ -2,8 +2,10 @@
 
 namespace App\Classes\Game\Modules\System\Messenger;
 
+use App\Classes\Game\Handlers\UserHandler;
 use App\Classes\Game\Module;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class Messenger extends Module
 {
@@ -12,14 +14,23 @@ class Messenger extends Module
         $this->title = "Messenger";
 
         $this->size = array(
-            "width"     => 545,
-            "height"    => 500
+            "width"     => 550,
+            "height"    => 450
         );
     }
 
     public function returnHTML()
     {
-        $view = view('modules.system.messenger.views.index', []);
+        $username = UserHandler::getUser(Auth::id())->model->username;
+        $cssPath = '/modules/css/';
+        $jsPath = '/modules/js/';
+        $view = view('modules.system.messenger.views.index',
+            [
+                'username' => $username,
+                'cssPath' => $cssPath,
+                'jsPath' => $jsPath
+            ]
+        );
 
         return $view->render();
     }
