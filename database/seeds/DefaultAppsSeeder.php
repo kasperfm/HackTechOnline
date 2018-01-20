@@ -74,5 +74,27 @@ class DefaultAppsSeeder extends Seeder
             'cpu_req' => 100,
             'ram_req' => 24
         ]);
+
+        // System > Messenger
+        DB::table('applications')->insert([
+            'id' => 6,
+            'app_name' => 'Messenger',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 6
+        ]);
+
+        // System > Mailbox
+        DB::table('applications')->insert([
+            'id' => 7,
+            'app_name' => 'Mailbox',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 7
+        ]);
     }
 }
