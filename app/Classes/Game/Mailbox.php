@@ -28,12 +28,27 @@ class Mailbox
         $newMessage->from_user_id = $this->user->id;
         $newMessage->to_user_id = $to;
         $newMessage->subject = strip_tags($subject);
-        $newMessage->message = strip_tags($message);
+        $newMessage->message = strip_tags(nl2br($message), '<br>');
         $newMessage->save();
     }
 
     public function deleteMessage(Message $message){
         $message->delete();
+    }
+
+    public function checkSpamTimer(){
+        $secondsBetweenMessages = 30;
+        $lastMessage = Message::where('from_user_id', $this->user->id)->orderBy('created_at', 'desc')->first();
+
+        if(!$lastMessage){
+            return true;
+        }
+
+        if(strtotime($lastMessage->created_at) < time() - $secondsBetweenMessages){
+            return true;
+        }
+
+        return false;
     }
 
     public function listMessages(){
