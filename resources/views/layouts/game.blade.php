@@ -8,6 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Open Graph -->
+    <meta property="og:url"                content="https://play.hacktechonline.com" />
+    <meta property="og:type"               content="website" />
+    <meta property="og:title"              content="Play HackTech Online now!" />
+    <meta property="og:description"        content="A semi-realistic hacking simulation game, set in a near cyberpunk like future. All you need is a web browser, to be able to play with people from all around the world!" />
+    <meta property="og:image"              content="https://play.hacktechonline.com/img/social.png" />
+
     <title>{{ config('app.name', 'HackTech Online') }}</title>
 
     <!-- Styles -->
