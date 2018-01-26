@@ -1,7 +1,7 @@
 <script>
     var csrfToken = '{{ csrf_token() }}';
 </script>
-<script type="text/javascript" src="{{ $jsPath }}webbrowser.js"></script>
+<script type="text/javascript" src="{{ $jsPath }}webbrowser.js?v={{ md5(time()) }}"></script>
 <link rel="stylesheet" href="{{ $cssPath }}webbrowser.css" type="text/css" />
 
 <div class="www-navigation">

@@ -8,4 +8,4 @@
     @endforeach
 </ul>
 
-<script type="text/javascript" src="{{ $jsPath }}mysoftware.js"></script>
+<script type="text/javascript" src="{{ $jsPath }}mysoftware.js?v={{ md5(time()) }}"></script>

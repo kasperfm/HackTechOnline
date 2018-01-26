@@ -15,4 +15,4 @@
 </script>
 
 <script type="text/javascript" src="/js/socket.io.slim.js"></script>
-<script type="text/javascript" src="{{ $jsPath }}messenger.js"></script>
+<script type="text/javascript" src="{{ $jsPath }}messenger.js?v={{ md5(time()) }}"></script>

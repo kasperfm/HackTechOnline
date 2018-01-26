@@ -1,8 +1,8 @@
-<script type="text/javascript" src="{{ $jsPath }}portscanner.js"></script>
+<script type="text/javascript" src="{{ $jsPath }}portscanner.js?v={{ md5(time()) }}"></script>
 <form class="portscan-form form_small" id="portscan-form">
     <center>
-        <input class="input_small-nofont noEnterSubmit scan-address" type="text" name="scan-address" id="scan-address" maxlength="100" width="45">
-        <input class="btn_small" type="button" id="scan-submit" name="scan-submit" value="Scan">
+        <input class="input_small-nofont noEnterSubmit scan-address" type="text" name="scan-address" id="scan-address" maxlength="100" width="45" />
+        <input class="btn_small" type="button" id="scan-submit" name="scan-submit" value="Scan" />
     </center>
 </form>
 
