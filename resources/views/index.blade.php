@@ -13,5 +13,5 @@
 @endsection
 
 @section('extra-js')
-    <script src="/js/init.js"></script>
+<script src="/js/init.js?v={{ md5(time()) }}"></script>
 @endsection

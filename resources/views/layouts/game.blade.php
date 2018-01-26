@@ -45,7 +45,7 @@
 
 
     <!-- Scripts -->
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}?v={{ md5(time()) }}"></script>
     <script src="/js/moduleloader.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
     <script src="{{ mix('/js/jquery.onenter.js') }}"></script>
