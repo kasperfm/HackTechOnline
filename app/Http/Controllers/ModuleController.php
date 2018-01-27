@@ -16,7 +16,7 @@ class ModuleController extends Controller
     private $module;
 
     public function loadModule(Request $request){
-        if(!$request->isEmpty){
+        if($request){
             $moduleHandler = new ModuleHandler();
             $response = array();
             $response['answer'] = false;
@@ -65,9 +65,16 @@ class ModuleController extends Controller
 
     public function callAjax(Request $request, $moduleName, $action){
         $moduleHandler = new ModuleHandler();
-        $response = $moduleHandler->callAjax($moduleName, Auth::id(), $action, $request);
+        $response = $moduleHandler->call($moduleName, Auth::id(), $action, $request, 'ajax');
 
-        return json_encode($response);
+        return response()->json($response);
+    }
+
+    public function callGet(Request $request, $moduleName, $action){
+        $moduleHandler = new ModuleHandler();
+        $response = $moduleHandler->call($moduleName, Auth::id(), $action, $request, 'get');
+
+        return $response;
     }
 
     public function getResources(Request $request){

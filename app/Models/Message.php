@@ -14,10 +14,10 @@ class Message extends Model
     ];
 
     public function fromUser(){
-        return $this->belongsTo('App\Models\User', 'id', 'from_user_id');
+        return $this->belongsTo('App\Models\User', 'from_user_id', 'id');
     }
 
     public function toUser(){
-        return $this->belongsTo('App\Models\User', 'id', 'to_user_id');
+        return $this->belongsTo('App\Models\User', 'to_user_id', 'id');
     }
 }

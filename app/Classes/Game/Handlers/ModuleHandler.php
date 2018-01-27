@@ -59,7 +59,7 @@ class ModuleHandler
         }
     }
 
-    public function callAjax($name, $userID, $action, $params){
+    public function call($name, $userID, $action, $params, $type = 'ajax'){
         $app = Application::where('app_name', $name)->first();
         if($app->isEmpty == false) {
             if($app->group->name != "system" && $app->group->name != "demo"){
@@ -72,12 +72,12 @@ class ModuleHandler
             $class = '\App\Classes\Game\Modules\\' . $app->group->name . '\\' . $name . '\\' . $name;
             if(class_exists($class)){
                 $module = new $class($app);
-                $response = $module->{'ajax' . $action}($params);
+                $response = $module->{$type . $action}($params);
                 return $response;
-            }else{
-                return null;
             }
         }
+
+        return null;
     }
 
     public function getInstalledApps($userID){
