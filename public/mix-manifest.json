@@ -19,6 +19,7 @@
     "/modules/css/mygateway.css": "/modules/css/mygateway.css",
     "/modules/css/softwaremarket.css": "/modules/css/softwaremarket.css",
     "/modules/css/webbrowser.css": "/modules/css/webbrowser.css",
+    "/modules/js/bugreporter.js": "/modules/js/bugreporter.js",
     "/modules/js/mailbox.js": "/modules/js/mailbox.js",
     "/modules/js/messenger.js": "/modules/js/messenger.js",
     "/modules/js/mygateway.js": "/modules/js/mygateway.js",

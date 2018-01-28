@@ -96,5 +96,27 @@ class DefaultAppsSeeder extends Seeder
         DB::table('application_datas')->insert([
             'application_id' => 7
         ]);
+
+        // System > Bug Report
+        DB::table('applications')->insert([
+            'id' => 8,
+            'app_name' => 'BugReporter',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 8
+        ]);
+
+        // System > My Software
+        DB::table('applications')->insert([
+            'id' => 9,
+            'app_name' => 'MySoftware',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 9
+        ]);
     }
 }

@@ -12,6 +12,7 @@ class User
     public $economy;
     public $gateway;
     public $mailbox;
+    public $bugreporter;
 
     public function __construct(Model $user){
         $this->userID = $user->id;
@@ -20,5 +21,6 @@ class User
         $this->economy = new Economy($user);
         $this->gateway = new Gateway($user->id);
         $this->mailbox = new Mailbox($user);
+        $this->bugreporter = new BugReport($user);
     }
 }
