@@ -45,7 +45,7 @@
     cursor: pointer;
 }
 
-#email-list-table .email-inbox-item:hover{
+#email-list-table tr:hover{
     background-color: rgba(0,200,255,0.5);
     -webkit-transition: all;
     -webkit-transition-duration: 0.2s;

@@ -81,7 +81,7 @@ class Mailbox
     }
 
     private function setStatus(Message $message, $status){
-        $message->staus = $status;
+        $message->status = $status;
         $message->save();
     }
 }

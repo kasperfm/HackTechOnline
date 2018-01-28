@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<div style="display:none;" id="email-view-dialog" class="email-view-dialog" title="E-mail reader">
+<div style="display:none;" id="email-view-dialog" class="email-view-dialog" title="Message">
     <p class="email-view-dialog-msgdate"></p>
     <p class="email-view-dialog-msgcontent"></p>
 </div>

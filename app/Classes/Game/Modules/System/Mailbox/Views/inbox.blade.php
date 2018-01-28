@@ -16,17 +16,17 @@
     @else
         @foreach($messages as $message)
             @if($message->status == 1)
-                <tr style="font-style: italic;">
+                <tr style="font-style: italic;" rel="{{$message->id}}">
             @else
-                <tr class="email-inbox-item">
+                <tr>
             @endif
-                    <td>{{$message->created_at}}</td>
+                    <td class="email-inbox-item" rel="{{$message->id}}">{{$message->created_at}}</td>
                     @if($message->from_user_id <= 0)
-                        <td>SYSTEM</td>
+                        <td class="email-inbox-item" rel="{{$message->id}}">SYSTEM</td>
                     @else
-                        <td>{{$message->fromUser->username}}</td>
+                        <td class="email-inbox-item" rel="{{$message->id}}">{{$message->fromUser->username}}</td>
                     @endif
-                    <td rel="{{$message->id}}">{{$message->subject}}</td>
+                    <td class="email-inbox-item" rel="{{$message->id}}">{{$message->subject}}</td>
 
                     @if($message->from_user_id <= 0)
                         <td><img class="email-reply-btn" rel="0" src="img/icon-reply.png" alt="Reply with new message" width="18px" height="18px" /> </td><td><img class="email-delete-btn" rel="{{$message->id}}" src="img/icon-delete.png" alt="Delete message" width="18px" height="18px" /></td>

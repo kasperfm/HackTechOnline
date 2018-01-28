@@ -166,4 +166,47 @@ function inboxFunctions(){
             });
         }
     });
+
+    $(".email-inbox-item").click(function(){
+        var msg;
+        var subject;
+        var datestamp;
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            url: '/game/module/mailbox/ajax/getMessage',
+            data: {
+                _token: window.Laravel.csrfToken,
+                mailid: $(this).attr("rel")
+            },
+            success: function(response){
+                if(response.result === true) {
+                    msg = response.message;
+                    subject = response.subject;
+                    datestamp = response.date;
+
+                    $("#email-view-dialog").parent().find("span.ui-dialog-title").html("E-Mail reader: " + subject);
+                    $("#email-view-dialog").dialog('open');
+                    $('.ui-dialog-buttonset button').addClass('btn');
+                    
+                    $(".email-view-dialog-msgcontent").html(msg);
+                    $(".email-view-dialog-msgdate").html("Received: " + datestamp);
+                }else{
+                    $.notification(
+                        {
+                            title: 'Mailbox',
+                            icon: 'b',
+                            color: '#fff',
+                            content: 'Something went wrong when trying to load the e-mail content!',
+                            timeout: 4000
+                        }
+                    );
+                }
+            }
+        });
+
+        loadInbox();
+    });
 }

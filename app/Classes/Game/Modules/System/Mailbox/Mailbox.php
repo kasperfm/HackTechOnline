@@ -80,11 +80,13 @@ class Mailbox extends Module
         $response = array();
 
         if($message) {
+            $user->mailbox->markAsRead($message->id);
+
             $response['message'] = $message->message;
             $response['subject'] = $message->subject;
             $response['from_username'] = $message->fromUser->username;
             $response['is_read'] = $message->status;
-            $response['date'] = $message->created_at;
+            $response['date'] = date("Y-m-d H:i:s", strtotime($message->created_at));
             $response['result'] = true;
         }else{
             $response['result'] = false;
