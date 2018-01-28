@@ -9,7 +9,7 @@ $(document).ready(function() {
         setChatSize();
     });
 
-    var socket = io.connect("http://hto-ng.test:8101", {'force new connection':true});
+    var socket = io.connect(backendServer, {'force new connection':true});
     var $nickError = $('#nickError');
     var $nickBox = $('#nickname');
     var $users = $('#users');

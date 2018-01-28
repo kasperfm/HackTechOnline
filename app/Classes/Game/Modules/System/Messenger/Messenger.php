@@ -21,11 +21,14 @@ class Messenger extends Module
 
     public function returnHTML()
     {
+        $chatBackendPort = 8101;
         $username = UserHandler::getUser(Auth::id())->model->username;
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
+
         $view = view('modules.system.messenger.views.index',
             [
+                'chatBackendPort' => $chatBackendPort,
                 'username' => $username,
                 'cssPath' => $cssPath,
                 'jsPath' => $jsPath

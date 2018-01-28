@@ -12,6 +12,7 @@
 
 <script type="text/javascript">
     var username = '{{ $username }}';
+    var backendServer = '{{ env('APP_URL') }}:{{ $chatBackendPort }}';
 </script>
 
 <script type="text/javascript" src="/js/socket.io.slim.js"></script>
