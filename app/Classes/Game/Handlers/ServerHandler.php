@@ -10,7 +10,7 @@ use App\Classes\Helpers\NetworkHelper;
 
 class ServerHandler
 {
-    public static function newServer($ownerID, $rootPassword){
+    public static function newServer($ownerID, $rootPassword, $ipAddress = null){
         $newServer = new Server();
         $serverData = array(
             'user_id'   => $ownerID,
@@ -27,7 +27,7 @@ class ServerHandler
 
         $newHost = new Host();
         $newHost->online_state = 1;
-        $newHost->game_ip = NetworkHelper::generateIP();
+        $newHost->game_ip = !empty($ipAddress) ? $ipAddress : NetworkHelper::generateIP();
         $newHost->host_type = 1;
         $newHost->machine_id = $newServer->id;
         $newHost->save();

@@ -190,7 +190,7 @@ function inboxFunctions(){
                     $("#email-view-dialog").parent().find("span.ui-dialog-title").html("E-Mail reader: " + subject);
                     $("#email-view-dialog").dialog('open');
                     $('.ui-dialog-buttonset button').addClass('btn');
-                    
+
                     $(".email-view-dialog-msgcontent").html(msg);
                     $(".email-view-dialog-msgdate").html("Received: " + datestamp);
                 }else{

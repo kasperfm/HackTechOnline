@@ -37,4 +37,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     // Modules
    .copy('resources/assets/css/webpage.css', 'public/css/webpage.css')
    .copy('app/Classes/Game/Modules/**/**/css/**.css', 'public/modules/css')
-   .copy('app/Classes/Game/Modules/**/**/js/**.js', 'public/modules/js');
+   .copy('app/Classes/Game/Modules/**/**/js/**.js', 'public/modules/js')
+
+    // VFS Web assets
+    .copy('storage/app/vfs/hosts/**/web/img/**.**', 'public/vfs/web/');
