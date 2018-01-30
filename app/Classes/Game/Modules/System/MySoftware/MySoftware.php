@@ -32,7 +32,7 @@ class MySoftware extends Module
 
         $softwareList = $moduleHandler->getOwnedApps(Auth::id());
 
-        $view = view('modules.system.mysoftware.views.index', compact('cssPath', 'jsPath', 'currentHDD', 'softwareList'));
+        $view = view('Modules::System.MySoftware.Views.index', compact('cssPath', 'jsPath', 'currentHDD', 'softwareList'));
         return $view->render();
     }
 

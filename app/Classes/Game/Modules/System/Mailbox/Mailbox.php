@@ -27,7 +27,7 @@ class Mailbox extends Module
         $username = UserHandler::getUser(Auth::id())->model->username;
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
-        $view = view('modules.system.mailbox.views.index',
+        $view = view('Modules::System.Mailbox.Views.index',
             [
                 'username' => $username,
                 'cssPath' => $cssPath,
@@ -42,7 +42,7 @@ class Mailbox extends Module
     {
         $user = UserHandler::getUser(Auth::id());
         $messages = $user->mailbox->listMessages();
-        $renderedView = view('modules.system.mailbox.views.inbox', [
+        $renderedView = view('Modules::System.Mailbox.Views.inbox', [
             'messages' => $messages
         ])->render();
 

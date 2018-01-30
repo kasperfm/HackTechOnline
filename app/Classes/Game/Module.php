@@ -63,7 +63,7 @@ class Module
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
 
-        $view = view('modules.' . $this->group . '.' . $this->name . '.views.index', compact('cssPath', 'jsPath'));
+        $view = view('Modules::' . ucfirst($this->group) . '.' . ucfirst($this->name) . '.Views.index', compact('cssPath', 'jsPath'));
         return $view->render();
     }
 }

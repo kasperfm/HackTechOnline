@@ -27,7 +27,7 @@ class SoftwareMarket extends Module
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
 
-        $view = view('modules.system.softwaremarket.views.index', compact('cssPath', 'jsPath', 'softwareList'));
+        $view = view('Modules::System.SoftwareMarket.Views.index', compact('cssPath', 'jsPath', 'softwareList'));
 
         return $view->render();
     }
@@ -59,7 +59,7 @@ class SoftwareMarket extends Module
     {
         $moduleHandler = new ModuleHandler();
         $software = $moduleHandler->getApplication($request->appName, Auth::id(), false, $request->appVersion);
-        $renderedView = view('modules.system.softwaremarket.views.item', compact('software'))->render();
+        $renderedView = view('Modules::System.SoftwareMarket.Views.item', compact('software'))->render();
 
         $result = array(
             'answer' => true,

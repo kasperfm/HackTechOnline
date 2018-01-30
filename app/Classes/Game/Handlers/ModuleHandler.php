@@ -38,7 +38,7 @@ class ModuleHandler
                 }
             }
 
-            $class = '\App\Classes\Game\Modules\\' . $app->group->name . '\\' . $app->app_name . '\\' . $app->app_name;
+            $class = '\App\Classes\Game\Modules\\' . ucfirst($app->group->name) . '\\' . ucfirst($app->app_name) . '\\' . $app->app_name;
             if(class_exists($class)){
                 $module = new $class($app);
                 $module->setup();

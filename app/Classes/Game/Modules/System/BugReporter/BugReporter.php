@@ -29,7 +29,7 @@ class BugReporter extends Module
         $jsPath = '/modules/js/';
         $categories = BugCategory::get();
 
-        $view = view('modules.system.bugreporter.views.index',
+        $view = view('Modules::System.BugReporter.Views.index',
             [
                 'cssPath' => $cssPath,
                 'jsPath' => $jsPath,

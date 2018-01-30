@@ -26,7 +26,7 @@ class Messenger extends Module
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
 
-        $view = view('modules.system.messenger.views.index',
+        $view = view('Modules::System.Messenger.Views.index',
             [
                 'chatBackendPort' => $chatBackendPort,
                 'username' => $username,
