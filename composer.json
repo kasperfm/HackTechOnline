@@ -6,7 +6,6 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "barryvdh/laravel-debugbar": "~2.4",
         "guzzlehttp/guzzle": "^6.2",
         "jrean/laravel-user-verification": "dev-master",
         "laracasts/utilities": "^3.0",
@@ -16,6 +15,7 @@
         "pusher/pusher-php-server": "^3.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.1",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~6.0"
