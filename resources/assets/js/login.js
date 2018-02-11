@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#login_window').dialog({
         width: 820,
-        height: 530,
+        height: 570,
         autoOpen : true,
         resizable: false,
         closeOnEscape: false,

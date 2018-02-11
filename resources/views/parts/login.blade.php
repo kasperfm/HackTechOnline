@@ -38,7 +38,7 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" style="margin-top: 15px;">
                                 Login
                             </button>
                         </div>
@@ -49,6 +49,10 @@
 
                         <div class="form-group">
                             <a class="btn-link" style="color: white !important;" href="{{ route('password.request') }}">Forgot Your Password?</a>
+                        </div>
+
+                        <div class="form-group">
+                            <a style="color: #FF0091 !important;" href="{{ route('register') }}">Register new game account</a>
                         </div>
                     </td>
                 </tr>
