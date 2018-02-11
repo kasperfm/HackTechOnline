@@ -19,18 +19,18 @@ class Gateway extends Model
     }
 
     public function cpu(){
-        return $this->hasOne('App\Models\GatewayHardware', 'id', 'cpu_id');
+        return $this->hasOne(GatewayHardware::class, 'id', 'cpu_id');
     }
 
     public function ram(){
-        return $this->hasOne('App\Models\GatewayHardware', 'id', 'ram_id');
+        return $this->hasOne(GatewayHardware::class, 'id', 'ram_id');
     }
 
     public function hdd(){
-        return $this->hasOne('App\Models\GatewayHardware', 'id', 'hdd_id');
+        return $this->hasOne(GatewayHardware::class, 'id', 'hdd_id');
     }
 
     public function inet(){
-        return $this->hasOne('App\Models\GatewayHardware', 'id', 'inet_id');
+        return $this->hasOne(GatewayHardware::class, 'id', 'inet_id');
     }
 }

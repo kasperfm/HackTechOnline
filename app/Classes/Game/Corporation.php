@@ -7,11 +7,23 @@ use App\Models\User;
 
 class Corporation
 {
-    public $user;
+    protected $user;
+    protected $model = null;
 
-    public function __construct(User $user)
+    public $corpID;
+    public $name;
+    public $description;
+    public $status;
+    public $owner;
+
+    public function __construct(Model $corpModel)
     {
-        $this->user = $user;
-    }
+        $this->model = $corpModel;
 
+        $this->corpID = $corpModel->id;
+        $this->name = $corpModel->name;
+        $this->description = $corpModel->description;
+        $this->status = $corpModel->status;
+        $this->owner = $corpModel->owner;
+    }
 }

@@ -36,7 +36,7 @@ class User extends Authenticatable
     }
 
     public function gateway(){
-        return $this->hasOne('App\Models\Gateway');
+        return $this->hasOne(Gateway::class);
     }
 
     public function bankAccount(){

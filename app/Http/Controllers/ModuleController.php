@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classes\Game\Handlers\UserHandler;
 use App\Models\Application;
 use App\Models\UserApp;
+use DebugBar\DebugBar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -85,7 +86,7 @@ class ModuleController extends Controller
         $response['hdd'] = 0;
 
         if(Auth::check()){
-            $user = User::find(Auth::id())->first();
+            $user = User::where('id', Auth::id())->with(['gateway.cpu'])->first();
             $gwCpu = $user->gateway->cpu->value;
             $gwRam = $user->gateway->ram->value;
             $gwHdd = $user->gateway->hdd->value;
