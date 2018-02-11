@@ -10,6 +10,3 @@
 | simple approach to interacting with each command's IO methods.
 |
 */
-
-Artisan::command('game:makeinvite {count}', function () {
-})->describe('Generate invite codes');
