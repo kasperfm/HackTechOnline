@@ -19,7 +19,7 @@ class MakeInviteKeys extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Generate invite keys for new players';
 
     /**
      * Create a new command instance.
@@ -42,7 +42,7 @@ class MakeInviteKeys extends Command
 
         $this->info('Generated ' . $numberOfKeysToGenerate . ' codes:');
 
-        for ($i = 0; $i <= $numberOfKeysToGenerate; $i++){
+        for ($i = 0; $i < $numberOfKeysToGenerate; $i++){
             $newInvite = new Invite();
             $newInvite->key = str_random(8);
             $newInvite->user_id = 0;
