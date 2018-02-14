@@ -4,10 +4,10 @@ namespace App\Classes\Game;
 
 use App\Models\Corporation as Model;
 use App\Models\User;
+use App\Models\UserTrust;
 
 class Corporation
 {
-    protected $user;
     protected $model = null;
 
     public $corpID;
@@ -26,4 +26,19 @@ class Corporation
         $this->status = $corpModel->status;
         $this->owner = $corpModel->owner;
     }
+
+    public function addTrust($userID, $points)
+    {
+        $trustObj = UserTrust::firstOrCreate(['user_id' => $userID, 'corp_id' => $this->corpID]);
+        $trustObj->trust += $points;
+        $trustObj->save();
+    }
+
+    public function removeTrust($userID, $points)
+    {
+        $trustObj = UserTrust::firstOrCreate(['user_id' => $userID, 'corp_id' => $this->corpID]);
+        $trustObj->trust -= $points;
+        $trustObj->save();
+    }
+
 }
