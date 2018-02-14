@@ -4,6 +4,7 @@ namespace App\Classes\Game\Handlers;
 
 use App\Classes\Game\User;
 use App\Classes\Game\Corporation;
+use App\Models\Mission;
 use App\Models\Corporation as CorpModel;
 
 class CorpHandler

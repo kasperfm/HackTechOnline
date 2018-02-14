@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * App\Classes\Game\User
+ *
+ * @package HackTech Online
+ * @author Kasper F. Mikkelsen
+ * @copyright 2018
+ * @version 1.0
+ * @access public
+ */
+
 namespace App\Classes\Game;
 
 use App\Models\User as Model;
