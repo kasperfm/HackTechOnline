@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function apps(){
         return $this->hasMany('App\Models\UserApp');
     }
+
+    public function trustPoints(){
+        return $this->hasMany(UserTrust::class);
+    }
 }
