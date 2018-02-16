@@ -34,7 +34,7 @@ class EconomyHandler
         if($fromUser->economy->getBalance() >= $amount){
             $fromUser->economy->removeMoney($amount);
             $toUser->economy->addMoney($amount);
-            
+
             $log = new BankTransaction();
             $newLogEntry = array(
                 'to_bank_id'        => $toUser->economy->getBank()->id,
