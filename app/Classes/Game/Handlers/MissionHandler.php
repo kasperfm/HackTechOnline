@@ -10,6 +10,15 @@ use App\Models\Mission as MissionModel;
 
 class MissionHandler
 {
+    public static function getMission($id, $userID = null)
+    {
+        $mission = MissionModel::where('id', $id)->first();
+        $user = UserHandler::getUser($userID);
+        $missionObj = new Mission($mission, $user);
+
+        return $missionObj;
+    }
+
     public static function getAvailableMissions($userID, $corpID)
     {
         $userTrust = UserHandler::getUser($userID)->getCorpTrust($corpID);
@@ -40,19 +49,6 @@ class MissionHandler
         return $missionList;
     }
 
-    public static function cancelCurrentMission($userID)
-    {
-        $mission = UserMission::where('user_id', $userID)->where('done', 0)->first();
-        $mission->delete();
-    }
-
-    public static function completeMission($userID)
-    {
-        $mission = UserMission::where('user_id', $userID)->where('done', 0)->first();
-        $mission->done = 1;
-        $mission->save();
-    }
-
     public static function getCurrentMission($userID)
     {
         $mission = UserMission::where('user_id', $userID)->where('done', 0)->first();
@@ -65,15 +61,11 @@ class MissionHandler
 
     public static function checkObjective($userID, $actionType, $actionValue)
     {
-        $currentMission = self::getCurrntMission($userID);
+        $currentMission = self::getCurrentMission($userID);
+        $mission = self::getMission($currentMission->mission->id, $userID);
         if($currentMission){
-            $corp = $currentMission->corporation;
-            $user = UserHandler::getUser($userID);
             if($currentMission->type == $actionType && $currentMission->objective == $actionValue){
-                $corp->addTrust($userID, $currentMission->reward_trust);
-                $user->economy->addMoney($currentMission->reward_credits);
-
-                return true;
+                return $mission->complete();
 			}
         }
 
