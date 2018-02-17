@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#register_window').dialog({
         width: 430,
-        height: 625,
+        height: 635,
         autoOpen: true,
         hide: {duration: 225},
         resizable: false,
