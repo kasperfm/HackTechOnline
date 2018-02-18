@@ -21,7 +21,12 @@ use App\Classes\Game\Handlers\CorpHandler;
 
 class Mission
 {
-    private $model;
+    public $missionID;
+    public $title;
+    public $description;
+    public $completed = false;
+
+    public $model;
     private $user;
 
     public function __construct(MissionModel $mission, User $user)
@@ -29,7 +34,16 @@ class Mission
         $this->model = $mission;
         if($user){
             $this->user = $user;
+
+            $userMission = UserMission::where('user_id', $user->userID)->first();
+            if($userMission){
+                $this->completed = boolval($userMission->done);
+            }
         }
+
+        $this->missionID = $mission->id;
+        $this->title = $mission->title;
+        $this->description = $mission->description;
     }
 
     public function complete()
@@ -39,6 +53,8 @@ class Mission
             if($userMission){            
                 $userMission->done = 1;
                 $userMission->save();
+
+                $this->completed = true;
 
                 $corp = CorpHandler::getCorporation($userMission->mission->corporation->id);
                 $corp->addTrust($this->user->userID, $this->model->reward_trust);
@@ -66,5 +82,11 @@ class Mission
     public function checkObjective($actionType, $actionValue)
     {
         return MissionHandler::checkObjective($this->user->userID, $actionType, $actionValue);
+    }
+
+    public function getEvents()
+    {
+        $events = MissionData::where('mission_id', $this->missionID)->orderBy('id')->get();
+        return $events;
     }
 }

@@ -52,8 +52,9 @@ class MissionHandler
     public static function getCurrentMission($userID)
     {
         $mission = UserMission::where('user_id', $userID)->where('done', 0)->first();
+
         if($mission){
-            return $mission->mission;
+            return self::getMission($mission->mission->id, $userID);
         }
 
         return null;
@@ -62,10 +63,9 @@ class MissionHandler
     public static function checkObjective($userID, $actionType, $actionValue)
     {
         $currentMission = self::getCurrentMission($userID);
-        $mission = self::getMission($currentMission->mission->id, $userID);
         if($currentMission){
-            if($currentMission->type == $actionType && $currentMission->objective == $actionValue){
-                return $mission->complete();
+            if($currentMission->model->type == $actionType && $currentMission->objective == $actionValue){
+                return $currentMission->complete();
 			}
         }
 
