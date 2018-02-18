@@ -17,6 +17,7 @@ use App\Models\User as UserModel;
 use App\Models\MissionData;
 use App\Models\UserMission;
 use App\Classes\Game\Handlers\MissionHandler;
+use App\Classes\Game\Handlers\CorpHandler;
 
 class Mission
 {
@@ -39,7 +40,7 @@ class Mission
                 $userMission->done = 1;
                 $userMission->save();
 
-                $corp = $userMission->mission->corporation;
+                $corp = CorpHandler::getCorporation($userMission->mission->corporation->id);
                 $corp->addTrust($this->user->userID, $this->model->reward_trust);
                 $this->user->economy->addMoney($this->model->reward_credits);
 
