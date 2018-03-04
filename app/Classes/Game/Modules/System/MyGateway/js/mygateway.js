@@ -16,7 +16,7 @@ $(document).ready(function() {
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/mygateway/ajax/item',
+            url: '/game/module/MyGateway/ajax/item',
             data: {
                 _token: window.Laravel.csrfToken,
                 partType: name
@@ -35,7 +35,7 @@ function initGWShop() {
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/mygateway/ajax/overview',
+            url: '/game/module/MyGateway/ajax/overview',
             data: {
                 _token: window.Laravel.csrfToken
             },
@@ -53,7 +53,7 @@ function initGWShop() {
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                url: '/game/module/mygateway/ajax/buy',
+                url: '/game/module/MyGateway/ajax/buy',
                 data: {
                     hardwareid: hw_id,
                     _token: window.Laravel.csrfToken

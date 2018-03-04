@@ -9,7 +9,7 @@ function navigate(input){
         type: 'POST',
         dataType: 'json',
         cache: false,
-        url: '/game/module/webbrowser/ajax/navigate',
+        url: '/game/module/Webbrowser/ajax/navigate',
         data: {
             _token: window.Laravel.csrfToken,
             address: input

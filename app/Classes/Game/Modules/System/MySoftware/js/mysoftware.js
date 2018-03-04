@@ -8,7 +8,7 @@ $(".toggle-install-state").bind( "click", function() {
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/mysoftware/ajax/remove',
+            url: '/game/module/MySoftware/ajax/remove',
             data: {
                 _token: window.Laravel.csrfToken,
                 softwareId: appID
@@ -26,7 +26,7 @@ $(".toggle-install-state").bind( "click", function() {
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/mysoftware/ajax/install',
+            url: '/game/module/MySoftware/ajax/install',
             data: {
                 _token: window.Laravel.csrfToken,
                 softwareId: appID
@@ -48,7 +48,7 @@ function refreshHTML() {
         type: 'POST',
         dataType: 'json',
         cache: false,
-        url: '/game/module/mysoftware/ajax/refresh',
+        url: '/game/module/MySoftware/ajax/refresh',
         data: {
             _token: window.Laravel.csrfToken,
         },

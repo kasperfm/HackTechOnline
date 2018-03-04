@@ -6,7 +6,7 @@ $(document).ready(function() {
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                url: '/game/module/bugreporter/ajax/submit',
+                url: '/game/module/BugReporter/ajax/submit',
                 data: {
                     _token: window.Laravel.csrfToken,
                     title: $("#bug_title").val(),

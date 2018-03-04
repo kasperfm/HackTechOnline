@@ -19,7 +19,7 @@ function loadInbox(){
         type: 'POST',
         dataType: 'json',
         cache: false,
-        url: '/game/module/mailbox/ajax/loadInbox',
+        url: '/game/module/Mailbox/ajax/loadInbox',
         data: {
             _token: window.Laravel.csrfToken
         },
@@ -41,7 +41,7 @@ $(document).ready(function() {
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                url: '/game/module/mailbox/ajax/send',
+                url: '/game/module/Mailbox/ajax/send',
                 data: {
                     _token: window.Laravel.csrfToken,
                     userto: $("#userto").val(),
@@ -96,7 +96,7 @@ function inboxFunctions(){
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/mailbox/ajax/delete',
+            url: '/game/module/Mailbox/ajax/delete',
             data: {
                 _token: window.Laravel.csrfToken,
                 mailid: $(this).attr("rel")
@@ -138,7 +138,7 @@ function inboxFunctions(){
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                url: '/game/module/mailbox/ajax/getMessage',
+                url: '/game/module/Mailbox/ajax/getMessage',
                 data: {
                     _token: window.Laravel.csrfToken,
                     mailid: $(this).attr("rel")
@@ -176,7 +176,7 @@ function inboxFunctions(){
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/mailbox/ajax/getMessage',
+            url: '/game/module/Mailbox/ajax/getMessage',
             data: {
                 _token: window.Laravel.csrfToken,
                 mailid: $(this).attr("rel")

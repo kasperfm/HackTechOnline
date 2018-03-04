@@ -8,7 +8,7 @@ $(document).ready(function() {
             dataType: 'json',
             cache: false,
 
-            url: '/game/module/softwaremarket/ajax/item',
+            url: '/game/module/SoftwareMarket/ajax/item',
             data: {
                 _token: window.Laravel.csrfToken,
                 appName: applicationName,
@@ -30,7 +30,7 @@ function initSWShop(){
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/softwaremarket/ajax/overview',
+            url: '/game/module/SoftwareMarket/ajax/overview',
             data: {
                 _token: window.Laravel.csrfToken
             },
@@ -48,7 +48,7 @@ function initSWShop(){
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/softwaremarket/ajax/buy',
+            url: '/game/module/SoftwareMarket/ajax/buy',
             data: {
                 _token: window.Laravel.csrfToken,
                 appId: applicationId,
@@ -69,7 +69,7 @@ function initSWShop(){
                         type: 'POST',
                         dataType: 'json',
                         cache: false,
-                        url: '/game/module/softwaremarket/ajax/overview',
+                        url: '/game/module/SoftwareMarket/ajax/overview',
                         data: {
                             _token: window.Laravel.csrfToken
                         },

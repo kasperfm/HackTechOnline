@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    @include('modules.demo.welcome.views.index')
+    @include('Modules.Demo.Welcome.Views.index')
 @endsection
 
 @section('footer')
