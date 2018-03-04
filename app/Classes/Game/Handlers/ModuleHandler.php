@@ -69,7 +69,7 @@ class ModuleHandler
                 }
             }
 
-            $class = '\App\Classes\Game\Modules\\' . $app->group->name . '\\' . $name . '\\' . $name;
+            $class = '\App\Classes\Game\Modules\\' . ucfirst($app->group->name) . '\\' . $name . '\\' . $name;
             if(class_exists($class)){
                 $module = new $class($app);
                 $response = $module->{$type . $action}($params);
