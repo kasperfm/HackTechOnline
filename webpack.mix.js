@@ -16,6 +16,7 @@ const { mix } = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/register.js', 'public/js')
    .js('resources/assets/js/login.js', 'public/js')
+    .js('resources/assets/js/echoevents.js', 'public/js')
    .copy('resources/assets/js/moduleloader.js', 'public/js')
    .copy('resources/assets/js/init.js', 'public/js')
    .copy('resources/assets/js/effects.js', 'public/js')

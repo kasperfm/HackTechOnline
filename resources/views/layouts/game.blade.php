@@ -59,6 +59,7 @@
     <script src="/js/jquery-ui.min.js"></script>
     <script src="{{ mix('/js/jquery.onenter.js') }}"></script>
     <script src="{{ mix('/js/notification-min.js') }}"></script>
+    <script src="{{ mix('/js/echoevents.js') }}"></script>
 
     @yield('extra-js')
 

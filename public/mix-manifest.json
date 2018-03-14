@@ -6,6 +6,7 @@
     "/js/notification-min.js": "/js/notification-min.js",
     "/js/login.js": "/js/login.js",
     "/js/jquery.onenter.js": "/js/jquery.onenter.js",
+    "/js/echoevents.js": "/js/echoevents.js",
     "/js/moduleloader.js": "/js/moduleloader.js",
     "/js/init.js": "/js/init.js",
     "/js/effects.js": "/js/effects.js",
