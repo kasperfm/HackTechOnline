@@ -24,6 +24,7 @@ Route::group(['middleware' => ['authed']], function () {
     Route::post('/game/module/{module_name}/get/{get_call}', 'ModuleController@callGet');
 
     Route::get('/game/missions/dynamicjs', 'MissionController@getDynamicJS');
+    Route::post('/game/missions/checkevent', 'MissionController@checkMissionEvent');
 });
 
 Route::get('/','GameController@index');

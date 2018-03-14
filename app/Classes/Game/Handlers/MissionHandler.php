@@ -71,4 +71,9 @@ class MissionHandler
 
         return false;
     }
+
+    public static function generateActionToken($userID, $action, $value)
+    {
+        return sha1("y0u" . $userID . "cant" . $value . "touch" . $action . "th!s");
+    }
 }

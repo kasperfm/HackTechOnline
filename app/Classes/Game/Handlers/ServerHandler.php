@@ -10,7 +10,8 @@ use App\Classes\Helpers\NetworkHelper;
 
 class ServerHandler
 {
-    public static function newServer($ownerID, $rootPassword, $ipAddress = null){
+    public static function newServer($ownerID, $rootPassword, $ipAddress = null)
+    {
         $newServer = new Server();
         $serverData = array(
             'user_id'   => $ownerID,
@@ -38,7 +39,8 @@ class ServerHandler
         return $newServer;
     }
 
-    public static function hostnameToIP($hostname){
+    public static function hostnameToIP($hostname)
+    {
         $hostname = Hostname::where('hostname', $hostname)->first();
 
         if(!empty($hostname)){
@@ -48,7 +50,21 @@ class ServerHandler
         return false;
     }
 
-    public static function getServer($lookup){
+    public static function IPToHostname($ip)
+    {
+        $host = Host::where('game_ip', $ip)->where('host_type', 1)->first();
+        if($host) {
+            $hostname = Hostname::where('host_id', $host->machine_id)->first();
+            if($hostname){
+                return $hostname->hostname;
+            }
+        }
+
+        return null;
+    }
+
+    public static function getServer($lookup)
+    {
         if(!empty($lookup)){
             $target = null;
 

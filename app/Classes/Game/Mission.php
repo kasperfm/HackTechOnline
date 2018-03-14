@@ -24,6 +24,7 @@ class Mission
     public $missionID;
     public $title;
     public $description;
+    public $completeMessage;
     public $completed = false;
 
     public $model;
@@ -44,6 +45,7 @@ class Mission
         $this->missionID = $mission->id;
         $this->title = $mission->title;
         $this->description = $mission->description;
+        $this->completeMessage = $mission->complete_message;
     }
 
     public function complete()
