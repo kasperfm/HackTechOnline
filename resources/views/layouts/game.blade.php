@@ -38,6 +38,8 @@
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
+
+        var userToken = "@php echo md5(Auth::id()); @endphp";
     </script>
 
     @yield('extra-head')
