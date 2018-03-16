@@ -62,8 +62,8 @@ $(document).ready(function() {
     updateCredits();
 
     // The fade-in effect when you login.
-    $('body').css('display', 'none');
-    $('body').fadeIn(3000);
+    // $('body').css('display', 'none');
+    // $('body').fadeIn(3000);
     $('#footer').fadeIn(3000);
     $('#top-wrapper').fadeIn(3000);
 

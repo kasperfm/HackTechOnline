@@ -1,4 +1,4 @@
-Echo.private('notifications' + parent.userToken).listen('Notification', (e) => {
+Echo.private('notifications' + window.userToken).listen('Notification', (e) => {
     var timeout = 5000;
 
     if(e.autohide === false){

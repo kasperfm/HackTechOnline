@@ -23,6 +23,7 @@
     "/modules/js/bugreporter.js": "/modules/js/bugreporter.js",
     "/modules/js/mailbox.js": "/modules/js/mailbox.js",
     "/modules/js/messenger.js": "/modules/js/messenger.js",
+    "/modules/js/missioncenter.js": "/modules/js/missioncenter.js",
     "/modules/js/mygateway.js": "/modules/js/mygateway.js",
     "/modules/js/mysoftware.js": "/modules/js/mysoftware.js",
     "/modules/js/softwaremarket.js": "/modules/js/softwaremarket.js",
