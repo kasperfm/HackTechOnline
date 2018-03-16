@@ -118,5 +118,16 @@ class DefaultAppsSeeder extends Seeder
         DB::table('application_datas')->insert([
             'application_id' => 9
         ]);
+
+        // System > Mission Center
+        DB::table('applications')->insert([
+            'id' => 10,
+            'app_name' => 'MissionCenter',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 10
+        ]);
     }
 }

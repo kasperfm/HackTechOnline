@@ -17,7 +17,8 @@
                         <li rel="ai_helper" class="menubar-item-inactive">AI</li>
                         <li rel="player_profile" class="menubar-item-inactive">PLAYER PROFILE</li>
                         <li rel="messenger" class="exec">MESSENGER</li>
-                        <li rel="mailbox" class="exec">Mailbox</li>
+                        <li rel="mailbox" class="exec">MAILBOX</li>
+                        <li rel="missioncenter" class="exec">MISSION CENTER</li>
                         <li rel="server_admin" class="menubar-item-inactive">SERVER ADMINISTRATION</li>
                         <li rel="webbrowser" class="exec">WEB-BROWSER</li>
                         <li rel="corp_status" class="menubar-item-inactive">CORP. STATUS</li>
