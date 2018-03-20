@@ -11,6 +11,19 @@
             @endif
         </select> <img class="corp_info_btn" style="cursor: pointer; margin-bottom: -5px;" src="img/icon-info.png" height="18px" width="18px" />
     </form>
-    <div class="abortmission_btn text-red small_label"><br /><center><strong style="cursor: pointer;" onclick="abortMission();">[ ABORT CURRENT MISSION ]</strong></center></div>
-    <div class="currentmission_btn text-green small_label"><br /><center><strong style="cursor: pointer;" onclick="viewCurrentMission();">[ VIEW MISSION INFO ]</strong></center></div>
+
+    @if($currentMission)
+        <div class="abortmission_btn text-red small_label"><br /><center><strong style="cursor: pointer;" onclick="abortMission();">[ ABORT CURRENT MISSION ]</strong></center></div>
+        <div class="currentmission_btn text-green small_label"><br /><center><strong style="cursor: pointer;" onclick="viewCurrentMission();">[ VIEW MISSION INFO ]</strong></center></div>
+    @else
+        <div class="abortmission_btn text-red small_label"><br /><center><strong style="cursor: pointer; display: none;" onclick="abortMission();">[ ABORT CURRENT MISSION ]</strong></center></div>
+        <div class="currentmission_btn text-green small_label"><br /><center><strong style="cursor: pointer;  display: none;" onclick="viewCurrentMission();">[ VIEW MISSION INFO ]</strong></center></div>
+    @endif
 </div>
+
+<div class="pane mission_box mission-limit-wrapper" style="margin-top: 5px; margin-bottom: 5px; height: auto; overflow: auto;">
+    <ul class="mission_list">
+    </ul>
+</div>
+
+<script type="text/javascript" src="{{ $jsPath }}missioncenter.js?v={{ md5(time()) }}"></script>

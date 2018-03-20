@@ -26,6 +26,9 @@ class Mission
     public $description;
     public $completeMessage;
     public $completed = false;
+    public $rewardTrust;
+    public $rewardCredits;
+    public $corporation;
 
     public $model;
     private $user;
@@ -46,6 +49,25 @@ class Mission
         $this->title = $mission->title;
         $this->description = $mission->description;
         $this->completeMessage = $mission->complete_message;
+        $this->rewardTrust = $mission->reward_trust;
+        $this->rewardCredits = $mission->reward_credits;
+        $this->corporation = CorpHandler::getCorporation($mission->corporation->id);
+    }
+
+    public function accept()
+    {
+        if($this->user){
+            $mission = new UserMission();
+            $mission->user_id = $this->user->userID;
+            $mission->mission_id = $this->missionID;
+            $mission->done = 0;
+
+            $mission->save();
+
+            return true;
+        }
+
+        return false;
     }
 
     public function complete()
