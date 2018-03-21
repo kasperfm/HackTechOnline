@@ -54,7 +54,7 @@ class MissionHandler
         $mission = UserMission::where('user_id', $userID)->where('done', 0)->first();
 
         if($mission){
-            return self::getMission($mission->mission->id, $userID);
+            return self::getMission($mission->mission_id, $userID);
         }
 
         return null;
@@ -64,7 +64,7 @@ class MissionHandler
     {
         $currentMission = self::getCurrentMission($userID);
         if($currentMission){
-            if($currentMission->model->type == $actionType && $currentMission->objective == $actionValue){
+            if($currentMission->model->type == $actionType && $currentMission->model->objective == $actionValue){
                 return $currentMission->complete();
 			}
         }

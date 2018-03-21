@@ -12,10 +12,13 @@
 
 namespace App\Classes\Game;
 
+use App\Classes\Game\Handlers\ServerHandler;
 use App\Classes\Game\Types\HardwareTypes;
 use App\Models\Server as Model;
 
 class Server extends Computer {
+    public $hostname;
+
     public function __construct($hostID = 0) {
         if(!empty($hostID)){
             $this->hostID = $hostID;
@@ -38,6 +41,7 @@ class Server extends Computer {
 
                 $this->ipAddress = $this->getIPAddress();
                 $this->online = (bool)$this->getOnlineState();
+                $this->hostname = ServerHandler::IPToHostname($this->ipAddress);
                 $this->getOpenPorts();
                 return true;
             }

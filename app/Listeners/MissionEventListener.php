@@ -39,53 +39,61 @@ class MissionEventListener
 
         $missionCompleted = false;
         $missionParam = null;
-        $jsonResponse = array(
-            'completed' => false,
+        $notification = array(
             'title' => null,
             'message' => null
         );
 
-        //if($token == MissionHandler::generateActionToken(Auth::id(), $action, $value)){
         $currentMission = MissionHandler::getCurrentMission(Auth::id());
 
-        switch ($action){
-            case 'test':
-                if($value == "kasper"){
-                    $jsonResponse['title'] = "Kasper er gud!";
-                    $missionCompleted = true;
-                }
-                break;
+        if($currentMission) {
+            //if($token == MissionHandler::generateActionToken(Auth::id(), $action, $value)){
+            switch ($action) {
+                case 'test':
+                    if ($value == "kasper") {
+                        $notification['title'] = "Kasper er gud!";
+                        $missionCompleted = true;
+                    }
+                    break;
 
-            case 'get':
-                // Download file
-                $splitValue = explode(' ', $value);
-                $missionParam = "get ".$splitValue[0]." from " . ServerHandler::IPToHostname($splitValue[1]);
-                // $missionCompleted = true;
-                // $jsonResponse['title'] = "Download completed!";
-                break;
+                case 'visit':
+                    $missionParam = $value;
+                    $notification['title'] = 'Website visited';
+                    // Visit website
+                    break;
 
-            case 'renewip':
-                // Renew IP
-                // $missionCompleted = true;
-                // $jsonResponse['title'] = "Gateway IP has been changed !";
-                break;
+                case 'get':
+                    // Download file
+                    $splitValue = explode(' ', $value);
+                    $missionParam = "get " . $splitValue[0] . " from " . ServerHandler::IPToHostname($splitValue[1]);
+                    // $missionCompleted = true;
+                    // $jsonResponse['title'] = "Download completed!";
+                    break;
 
-            case 'submit':
-                // Submit data to website
-                // $missionCompleted = true;
-                // $jsonResponse['title'] = "Thank you for your submission.";
-                break;
+                case 'renewip':
+                    // Renew IP
+                    // $missionCompleted = true;
+                    // $jsonResponse['title'] = "Gateway IP has been changed !";
+                    break;
 
-            default:
-                break;
+                case 'submit':
+                    // Submit data to website
+                    // $missionCompleted = true;
+                    // $jsonResponse['title'] = "Thank you for your submission.";
+                    break;
+
+                default:
+                    break;
+            }
+
+            if ($missionCompleted || $currentMission->checkObjective($action, $missionParam)) {
+                broadcast(new \App\Events\Notification($notification['title'], $currentMission->completeMessage));
+
+                return true;
+            }
         }
 
-        if($missionCompleted && $currentMission->checkObjective($action, $missionParam)) {
-            $jsonResponse['message'] = $currentMission->completeMessage;
-            $jsonResponse['completed'] = true;
-        }
+        return false;
         //}
-
-        return response()->json($jsonResponse);
     }
 }

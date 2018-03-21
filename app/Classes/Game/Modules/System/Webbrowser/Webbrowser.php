@@ -5,6 +5,7 @@ namespace App\Classes\Game\Modules\System\Webbrowser;
 use App\Classes\Game\Module;
 use App\Classes\Game\Handlers\ServerHandler;
 use Illuminate\Http\Request;
+use App\Events\MissionEvent;
 
 class Webbrowser extends Module
 {
@@ -32,6 +33,8 @@ class Webbrowser extends Module
             if(!empty($server)){
                 $service = $server->getService(80);
                 if(!empty($service) && $server->getOnlineState() == true){
+                    event(new MissionEvent('visit', $server->hostname));
+
                     $response['webcontent'] = $service->getHandler()->handle(isset($explodedAddress[1]) ? $explodedAddress[1] : null);
                     $response['answer'] = true;
                 }
