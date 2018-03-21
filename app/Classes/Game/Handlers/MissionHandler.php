@@ -28,7 +28,7 @@ class MissionHandler
             ->where('minimum_trust', $userTrust)
             ->where('hidden', 0)
             ->whereNotIn('id', function($query) use ($userID){
-                $query->select('mission_id')->from('user_missions')->where('user_id', $userID)->get();
+                $query->select('mission_id')->from('user_missions')->where('user_id', $userID)->whereNull('deleted_at')->get();
             })
             ->get();
 

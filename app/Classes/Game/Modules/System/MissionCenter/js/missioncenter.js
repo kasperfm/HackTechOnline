@@ -1,5 +1,5 @@
 function viewCurrentMission(){
-
+    selectMission(-1);
 }
 
 function acceptMission(mission) {
@@ -10,6 +10,7 @@ function acceptMission(mission) {
         cache: false,
         url: '/game/module/MissionCenter/ajax/acceptMission',
         data: {
+            _token: window.Laravel.csrfToken,
             missionId: mission
         },
         success: function(response){
@@ -24,8 +25,11 @@ function acceptMission(mission) {
 
                 //$.getScript('/game/missions/dynamicjs');
 
-                $( ".abortmissionbtn" ).slideDown( "slow", function(){});
-                $( ".currentmissionbtn" ).slideDown( "slow", function(){});
+                $(".mission_box").hide();
+                $(".abortmission_btn").show();
+                $(".currentmission_btn").show();
+
+    //            $(".wnd_missioncenter").height("auto");
             }
         }
     });
@@ -42,6 +46,12 @@ function selectMission(mission) {
             missionId: mission
         },
         success: function(response){
+            var acceptHTMLContent;
+            if(response.current === true){
+                acceptHTMLContent = '';
+            }else{
+                acceptHTMLContent = '<br /><center><strong style="cursor: pointer;" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>';
+            }
             $.notification(
                 {
                     title: response.title,
@@ -52,7 +62,7 @@ function selectMission(mission) {
                     '<br /><strong>Credits reward:</strong> $' + response.reward_credits +
                     '<br /><strong>Mission:</strong> ' + response.description +
                     '<br />' +
-                    '<br /><center><strong style="cursor: pointer;" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>'
+                    acceptHTMLContent
                 }
             );
         }
@@ -69,21 +79,28 @@ function abortMission() {
             _token: window.Laravel.csrfToken
         },
         success: function(response){
-            if(response.length > 0) {
+            if(response === true) {
                 $.notification(
                     {
                         title: 'Mission aborted',
                         icon: 'c',
+                        timeout: 4500,
                         color: '#fff',
                         content: 'Your current mission has been aborted!'
                     }
                 );
+
+                $(".mission_box").show();
+                $(".abortmission_btn").hide();
+                $(".currentmission_btn").hide();
             }
         }
     });
 }
 
 $(document).ready(function() {
+    $(".wnd_missioncenter").height("auto");
+
     $(".corp_info_btn").click(function(e){
         $.ajax({
             type: 'POST',
@@ -129,14 +146,15 @@ $(document).ready(function() {
                     $.each(response.missions, function(index,value) {
                         $(".mission_list").append('<li class="new_mission" style="cursor: pointer;" onclick="selectMission('+value.id+')" rel="'+value.id+'">' + value.title + '</li>');
                     });
-
-                    $(".mission-limit-wrapper").animate({
-                        height:$(".mission_list").height() + 5
-                    },600);
-
-                    $(".wnd_missioncenter").height("auto");
-
+                }else{
+                    $(".mission_list").html('<li>No missions available...</li>');
                 }
+
+                $(".mission-limit-wrapper").animate({
+                    height:$(".mission_list").height() + 5
+                },600);
+
+                $(".wnd_missioncenter").height("auto");
             }
         });
     });

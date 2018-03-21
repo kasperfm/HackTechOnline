@@ -45,7 +45,6 @@ class MissionCenter extends Module
 
     public function ajaxAcceptMission(Request $request)
     {
-        dd('lol');
         $mission = MissionHandler::getMission($request->missionId, Auth::id());
         $response['result'] = $mission->accept();
         $response['title'] = $mission->title;
@@ -87,16 +86,19 @@ class MissionCenter extends Module
         }
 
         $availableMissions = MissionHandler::getAvailableMissions(Auth::id(), $request->corpId);
-        $missionList = array();
-        foreach ($availableMissions as $mission){
-            $item['id'] = $mission->id;
-            $item['title'] = $mission->title;
 
-            $missionList[] = $item;
+        if(count($availableMissions) > 0) {
+            $missionList = array();
+            foreach ($availableMissions as $mission) {
+                $item['id'] = $mission->id;
+                $item['title'] = $mission->title;
+
+                $missionList[] = $item;
+            }
+
+            $response['missions'] = $missionList;
+            $response['result'] = true;
         }
-
-        $response['missions'] = $missionList;
-        $response['result'] = true;
 
         return $response;
     }
@@ -108,8 +110,11 @@ class MissionCenter extends Module
         }
 
         $mission = MissionHandler::getCurrentMission(Auth::id());
+        $response['current'] = true;
+
         if(!$mission){
             $mission = MissionHandler::getMission($request->missionId, Auth::id());
+            $response['current'] = false;
         }
 
         $response['title'] = $mission->title;
