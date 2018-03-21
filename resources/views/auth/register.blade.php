@@ -4,7 +4,7 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <style>
     #register_window input{
-        width: 95%;
+        width: 94%;
     }
 
     #register_window button{

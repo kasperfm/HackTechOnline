@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#register_window').dialog({
-        width: 440,
+        width: 450,
         height: 650,
         autoOpen: true,
         hide: {duration: 225},
