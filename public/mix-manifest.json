@@ -29,6 +29,11 @@
     "/modules/js/softwaremarket.js": "/modules/js/softwaremarket.js",
     "/modules/js/webbrowser.js": "/modules/js/webbrowser.js",
     "/modules/js/portscanner.js": "/modules/js/portscanner.js",
-    "/vfs/web/secubank_logo.png": "/vfs/web/secubank_logo.png",
-    "/vfs/web/modibankinc_logo.png": "/vfs/web/modibankinc_logo.png"
+    "/vfs/web/img/secubank_logo.png": "/vfs/web/img/secubank_logo.png",
+    "/vfs/web/img/modibankinc_logo.png": "/vfs/web/img/modibankinc_logo.png",
+    "/vfs/web/img/87_49_178_2-background.jpg": "/vfs/web/img/87_49_178_2-background.jpg",
+    "/vfs/web/css/87_49_178_2.css": "/vfs/web/css/87_49_178_2.css",
+    "/vfs/web/js/87_49_178_2-adm_login.js": "/vfs/web/js/87_49_178_2-adm_login.js",
+    "/vfs/web/js/87_49_178_2-adm_page.js": "/vfs/web/js/87_49_178_2-adm_page.js",
+    "/vfs/web/js/87_49_178_2-prefixfree.min.js": "/vfs/web/js/87_49_178_2-prefixfree.min.js"
 }

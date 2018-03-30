@@ -45,4 +45,10 @@ class GameController extends Controller
             return $this->login($request);
         }
     }
+
+    public function ingameWebAjax(Request $request, $ip, $call){
+        require storage_path('app/vfs/hosts/' . $ip . '/web/ajax.php');
+
+        $call($request->all());
+    }
 }

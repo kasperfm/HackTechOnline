@@ -12,6 +12,13 @@ class ServerHandler
 {
     public static function newServer($ownerID, $rootPassword, $ipAddress = null)
     {
+        if($ipAddress) {
+            $ipCheck = Host::where('game_ip', $ipAddress)->first();
+            if($ipCheck){
+                return null;
+            }
+        }
+
         $newServer = new Server();
         $serverData = array(
             'user_id'   => $ownerID,

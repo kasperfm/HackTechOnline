@@ -27,6 +27,8 @@ Route::group(['middleware' => ['authed']], function () {
     Route::post('/game/missions/checkevent', 'MissionController@checkMissionEvent');
 });
 
+Route::post('/game/web/{ip}/ajax/{call}', 'GameController@ingameWebAjax');
+
 Route::get('/','GameController@index');
 
 
@@ -34,10 +36,6 @@ Route::get('/login', 'GameController@login');
 
 Route::get('/offline', function () {
     return view('offline');
-});
-
-Route::get('/errors/restricted', function () {
-    return view('errors.restricted');
 });
 
 Auth::routes();

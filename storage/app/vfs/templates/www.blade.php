@@ -15,7 +15,7 @@
     <link href="/css/animate.css" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="/js/jquery.slim.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
