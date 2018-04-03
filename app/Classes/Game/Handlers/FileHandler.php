@@ -2,7 +2,6 @@
 
 namespace App\Classes\Game\Handlers;
 
-use App\Classes\Game\User;
 use App\Classes\Game\File;
 use App\Models\File as FileModel;
 
@@ -27,7 +26,7 @@ class FileHandler
         return null;
     }
 
-    public static function downloadFile($fileID, $from, $userID)
+    public static function downloadFile($fileID, $userID)
     {
         $file = self::getFile($fileID, $userID);
         $user = UserHandler::getUser($userID);
