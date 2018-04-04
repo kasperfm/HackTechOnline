@@ -13,3 +13,19 @@
 
         die(json_encode($response));
     }
+
+    function admDownload($request){
+        $response['answer'] = false;
+
+        $server = \App\Classes\Game\Handlers\ServerHandler::getServer('germail.com');
+        $file = \App\Classes\Game\Handlers\FileHandler::findFileOnServer('omnimail.conf', $server->hostID);
+
+        if($file){
+            if(\App\Classes\Game\Handlers\FileHandler::downloadFile($file->data->id, \Illuminate\Support\Facades\Auth::id())) {
+                $response['filename'] = $file->data->filename;
+                $response['answer'] = true;
+            }
+        }
+
+        die(json_encode($response));
+    }

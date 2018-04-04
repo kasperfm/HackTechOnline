@@ -11,19 +11,17 @@ $(document).ready(function() {
     
     $(".download_config_btn").bind("click", function(){
         var rel = $(this).attr("rel");
-        
-        parent.checkAction('get', '2 2', rel);
-        
+
         $.ajax({
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: 'ajax/adm_download.php',
+            url: '/game/web/87_49_178_2/ajax/admDownload',
             data: {
-                token: rel
+                file: rel
             },
             success: function(response) {           
-                if(response.answer == true) {
+                if(response.answer === true) {
                     parent.$.notification({ 
                         title: 'Download complete!',
                         icon: 'b',

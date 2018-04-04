@@ -24,6 +24,7 @@ class File
     public $size;
     public $encrypted;
     public $password;
+    public $hostID;
 
     public $placement;
     public $encryptState;
@@ -44,6 +45,7 @@ class File
             $this->encrypted = boolval($file->data->encrypted);
             $this->encryptState = boolval($file->encrypted);
             $this->placement = $file->placement;
+            $this->hostID = $file->host;
         }else{
             // File not found. Create new object.
             return null;

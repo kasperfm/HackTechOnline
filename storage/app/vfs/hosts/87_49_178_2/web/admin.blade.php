@@ -16,7 +16,7 @@
     </style>
 
     <script type="text/javascript" src="vfs/web/js/87_49_178_2-prefixfree.min.js"></script>
-    <script type="text/javascript" src="vfs/web/js/87_49_178_2-adm_login.js"></script>
+    <script type="text/javascript" src="vfs/web/js/87_49_178_2-adm_page.js"></script>
 @endsection
 
 @section('content')
