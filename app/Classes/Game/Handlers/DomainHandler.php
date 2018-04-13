@@ -8,6 +8,7 @@ use App\Models\Hostname;
 use App\Models\DomainTld;
 use App\Classes\Helpers\NetworkHelper;
 use App\Classes\Game\Handlers\ServerHandler;
+use App\Classes\Game\Server as ServerObj;
 
 class DomainHandler
 {
@@ -36,5 +37,12 @@ class DomainHandler
         $newHostname->domain_provider_id = null;
         $newHostname->activated = 1;
         $newHostname->save();
+
+        self::addWebserverService($hostID);
+    }
+
+    private static function addWebserverService($hostID){
+        $server = new ServerObj($hostID);
+        $server->addService(1, 80);
     }
 }

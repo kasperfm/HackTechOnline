@@ -17,5 +17,10 @@ class ServersSeeder extends Seeder
         if($germail) {
             DomainHandler::newSystemDomain($germail->host->id, 'germail.com');
         }
+
+        $psyBytes = ServerHandler::newServer(0, null, '31.113.213.227');
+        if($psyBytes){
+            DomainHandler::newSystemDomain($psyBytes->host->id,'psybytes.org');
+        }
     }
 }
