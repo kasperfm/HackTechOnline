@@ -17,10 +17,9 @@ class UserApp extends Model
     }
 
     public function application(){
-        $appData = ApplicationData::where('id', $this->application_id)->first();
-        $application = Application::where('id', $appData->application_id)->first();
+        //$appData = ApplicationData::where('id', $this->application_id)->first();
+        $application = Application::where('id', $this->application_id)->first();
         return $application;
-        //return $this->belongsTo('App\Models\Application');
     }
 
     public function data(){

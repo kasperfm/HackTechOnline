@@ -28,6 +28,7 @@
     "/modules/js/mysoftware.js": "/modules/js/mysoftware.js",
     "/modules/js/softwaremarket.js": "/modules/js/softwaremarket.js",
     "/modules/js/webbrowser.js": "/modules/js/webbrowser.js",
+    "/modules/js/passwordcracker.js": "/modules/js/passwordcracker.js",
     "/modules/js/portscanner.js": "/modules/js/portscanner.js",
     "/vfs/web/img/secubank_logo.png": "/vfs/web/img/secubank_logo.png",
     "/vfs/web/img/modibankinc_logo.png": "/vfs/web/img/modibankinc_logo.png",
