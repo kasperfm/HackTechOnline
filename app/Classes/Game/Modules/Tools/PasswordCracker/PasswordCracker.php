@@ -15,8 +15,9 @@ class PasswordCracker extends Module
         $this->description = "A common password cracker. This should be in every hackers toolbox!";
 
         $this->size = array(
-            "width" => 450,
-            "height" => 300
+            "width" => 410,
+            "height" => 220
         );
+
     }
 }

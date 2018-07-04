@@ -44,10 +44,31 @@ function change()
 
 function startDecrypt(breakSpeed)
 {
+    var passwordField = $(".password_field");
+    var passwordValue = passwordField.val();
+    passwordField.val("");
+    passwordField.removeClass("text-green");
+    passwordField.addClass("text-red");
+
+    if(!passwordValue){
+        return false;
+    }
+
     speed = breakSpeed;
-    chars = decrypt_str($.base64.decode($(".password_field").val()+"="), 6);
-    $(".password_field").addClass("text-red");
-    $(".password_field").val("");
+
+    try {
+        chars = decrypt_str($.base64.decode(passwordValue + "="), 6);
+    }
+    catch(err) {
+        try {
+            chars = decrypt_str($.base64.decode(passwordValue + "=="), 6);
+        }
+        catch(err2) {
+            return false;
+        }
+    }
+
+    passwordField.val("");
     got = "";
     t = setTimeout("change()", speed);
 }
@@ -65,25 +86,20 @@ jQuery(document).ready(function() {
         return false;
     });
 
+    $(".password_field").change(function(){
+        var passwordField = $(".password_field");
+        if(passwordField.val() == ""){
+            passwordField.removeClass("text-green");
+            passwordField.addClass("text-red");
+        }
+    });
+
     $("#passwd_cracker_form").bind("submit", function(e) {
         startDecrypt(speed);
         e.preventDefault();
         return false;
     });
 });
-
-function encrypt_str(text, key)
-{
-    var to_enc = text;
-
-    var xor_key=key;
-    var the_res="";
-    for(i=0;i<to_enc.length;++i)
-    {
-        the_res+=String.fromCharCode(xor_key^to_enc.charCodeAt(i));
-    }
-    return the_res;
-}
 
 function decrypt_str(text, key)
 {
