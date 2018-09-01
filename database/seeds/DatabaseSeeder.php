@@ -14,9 +14,12 @@ class DatabaseSeeder extends Seeder
         $this->call(AppGroupSeeder::class);
         $this->call(DefaultAppsSeeder::class);
         $this->call(HardwareSeeder::class);
+        $this->call(DefaultCorporationsSeeder::class);
         $this->call(BankSeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(DomainProviderSeeder::class);
         $this->call(BugCategoriesSeeder::class);
+        $this->call(ServersSeeder::class);
+        $this->call(MissionDataSeeder::class);
     }
 }

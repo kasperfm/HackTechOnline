@@ -54,7 +54,7 @@ class ServerHandler
             return $hostname->host->game_ip;
         }
 
-        return false;
+        return null;
     }
 
     public static function IPToHostname($ip)
@@ -86,7 +86,7 @@ class ServerHandler
                 if(!empty($host)){
                     return new \App\Classes\Game\Server($host->id);
                 }else {
-                    return false;
+                    return null;
                 }
             }
         }

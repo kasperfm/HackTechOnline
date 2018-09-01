@@ -129,5 +129,21 @@ class DefaultAppsSeeder extends Seeder
         DB::table('application_datas')->insert([
             'application_id' => 10
         ]);
+
+        // Tools > Password Cracker
+        DB::table('applications')->insert([
+            'id' => 11,
+            'app_name' => 'PasswordCracker',
+            'app_group' => 3,
+            'on_market' => 1
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 11,
+            'version' => 1,
+            'price' => 120,
+            'hdd_req' => 24,
+            'cpu_req' => 233,
+            'ram_req' => 32
+        ]);
     }
 }
