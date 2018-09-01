@@ -1,4 +1,4 @@
-var closeEffect = "scale";
+var closeEffect = "drop";
 var closeDuration = 225;
 
 function setWindowWrapperSize() {
@@ -37,10 +37,10 @@ $(document).ready(function() {
         updateCredits();
     });
 
-    // Openthe demo window (for testing purpose only).
+    // Open the demo window (for testing purpose only).
     $('#demo_window').dialog({
         width: 945,
-        height: 570,
+        height: 515,
         autoOpen : true,
         hide: { effect: closeEffect, duration: 225 },
         close: function(event, ui){

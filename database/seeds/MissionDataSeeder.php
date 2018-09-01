@@ -20,7 +20,7 @@ class MissionDataSeeder extends Seeder
                 'filename' => 'omnimail.conf',
                 'filetype' => 'txt',
                 'content' => '[server]
-ip = 122.5.55.101
+ip = 87.49.178.2
 hostname = germail.com
 port = 80
 description = "GerMail - E-Mail für alle"

@@ -145,5 +145,21 @@ class DefaultAppsSeeder extends Seeder
             'cpu_req' => 233,
             'ram_req' => 32
         ]);
+
+        // Tools > File Viewer
+        DB::table('applications')->insert([
+            'id' => 12,
+            'app_name' => 'FileViewer',
+            'app_group' => 3,
+            'on_market' => 1
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 12,
+            'version' => 1,
+            'price' => 10,
+            'hdd_req' => 20,
+            'cpu_req' => 16,
+            'ram_req' => 24
+        ]);
     }
 }

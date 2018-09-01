@@ -55,7 +55,7 @@ class FileHandler
 
                 $server = new \App\Classes\Game\Server($file->hostID);
                 event(new MissionEvent('get', $file->filename . ' ' . $server->hostname));
-                return true;
+                return $newFile;
             }
         }
 
@@ -70,5 +70,23 @@ class FileHandler
         }
 
         return false;
+    }
+
+    public static function listFiles($host)
+    {
+        $files = FileModel::where('host', $host)->get();
+        if($files->count() == 0) {
+            return null;
+        }
+
+        $list = array();
+
+        foreach ($files as $file) {
+            $thisFile = self::getFile($file->id);
+
+            array_push($list, $thisFile);
+        }
+
+        return $list;
     }
 }
