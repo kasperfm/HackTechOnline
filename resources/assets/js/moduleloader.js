@@ -86,9 +86,9 @@ function updateApplicationMenu() {
         url: '/game/ajax/module/list',
         success: function(response) {
             if(response.answer === true) {
-                $('.applications-menu').html(response.content);
+                $('#appmenu').html(response.content);
 
-                if($('.applications-menu').html() != ''){
+                if($('#appmenu').html() != ''){
                     $(".applications-menu").css("color", "white");
                 }else{
                     $(".applications-menu").css("color", "#4b4b4b");
