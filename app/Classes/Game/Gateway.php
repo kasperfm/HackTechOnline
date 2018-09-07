@@ -5,7 +5,7 @@
  *
  * @package HackTech Online
  * @author Kasper F. Mikkelsen
- * @copyright 2017
+ * @copyright 2018
  * @version 1.0
  * @access public
  */
@@ -13,8 +13,11 @@
 namespace App\Classes\Game;
 
 use App\Classes\Game\Types\HardwareTypes;
+use App\Classes\Helpers\NetworkHelper;
+use App\Models\Host;
 use App\Models\UserApp;
 use App\Models\Gateway as Model;
+use Carbon\Carbon;
 
 class Gateway extends Computer {
     public function __construct($ownerID = 0) {
@@ -94,5 +97,31 @@ class Gateway extends Computer {
         $application = UserApp::where('user_id', $this->ownerID)->where('application_id', $appID)->first();
         $application->installed = 0;
         $application->save();
+    }
+
+    public function renewIPAddress(){
+        $renewTimeoutInMinutes = 180; // 2 hours
+        $change = false;
+        $host = Host::where('id', $this->hostID)->first();
+
+        if(!$host){
+            return false;
+        }
+
+        if(!$host->ip_changed_at){
+            $change = true;
+        }else{
+            if(Carbon::now() > Carbon::parse($host->ip_changed_at)->addMinute($renewTimeoutInMinutes)){
+                $change = true;
+            }
+        }
+
+        if($change){
+            $host->game_ip = NetworkHelper::generateIP();
+            $host->ip_changed_at = Carbon::now();
+            $host->save();
+        }
+
+        return $change;
     }
 }
