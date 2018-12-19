@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Game\Handlers\UserHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,7 @@ class GameController extends Controller
 
     public function logout(){
         Auth::logout();
+        session()->flush();
         return redirect('/');
     }
 
@@ -34,6 +36,10 @@ class GameController extends Controller
 
         $moduleHandler = new ModuleHandler();
         $installedApps = $moduleHandler->getInstalledApps(Auth::id());
+
+        if(!session()->exists('player') && Auth::check()) {
+            session()->put('player', UserHandler::getUser(Auth::id()));
+        }
 
         return view('index', ['installedApps' => $installedApps]);
     }

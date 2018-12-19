@@ -239,6 +239,15 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+
+        // HackTech Online specific aliases
+        'Network' => App\Classes\Helpers\NetworkHelper::class,
+        'Server' =>  App\Classes\Game\Handlers\ServerHandler::class,
+        'Domain' => App\Classes\Game\Handlers\DomainHandler::class,
+        'VFS' => App\Classes\Game\Handlers\FileHandler::class,
+        'Economy' => App\Classes\Game\Handlers\EconomyHandler::class,
+        'UserHandler' => App\Classes\Game\Handlers\UserHandler::class,
+        'Corp' => App\Classes\Game\Handlers\CorpHandler::class,
     ],
 
 ];
