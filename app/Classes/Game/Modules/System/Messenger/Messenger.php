@@ -22,7 +22,7 @@ class Messenger extends Module
     public function returnHTML()
     {
         $chatBackendPort = 8101;
-        $username = UserHandler::getUser(Auth::id())->model->username;
+        $username = UserHandler::getUser(Auth::id())->username;
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
 

@@ -23,16 +23,14 @@ class MySoftware extends Module
 
     public function returnHTML()
     {
-        $myGateway = UserHandler::getUser(Auth::id())->model->gateway()->first();
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
-        $currentHDD = $myGateway->hdd()->first();
 
         $moduleHandler = new ModuleHandler();
 
         $softwareList = $moduleHandler->getOwnedApps(Auth::id());
 
-        $view = view('Modules::System.MySoftware.Views.index', compact('cssPath', 'jsPath', 'currentHDD', 'softwareList'));
+        $view = view('Modules::System.MySoftware.Views.index', compact('cssPath', 'jsPath', 'softwareList'));
         return $view->render();
     }
 

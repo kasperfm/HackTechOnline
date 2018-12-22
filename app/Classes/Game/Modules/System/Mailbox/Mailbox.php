@@ -24,7 +24,7 @@ class Mailbox extends Module
 
     public function returnHTML()
     {
-        $username = UserHandler::getUser(Auth::id())->model->username;
+        $username = UserHandler::getUser(Auth::id())->username;
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
         $view = view('Modules::System.Mailbox.Views.index',

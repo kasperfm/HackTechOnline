@@ -23,13 +23,13 @@ class MyGateway extends Module
 
     public function returnHTML()
     {
-        $myGateway = UserHandler::getUser(Auth::id())->model->gateway()->first();
+        $myGateway = UserHandler::getUser(Auth::id())->gateway;
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
-        $currentCPU = $myGateway->cpu()->first();
-        $currentRAM = $myGateway->ram()->first();
-        $currentHDD = $myGateway->hdd()->first();
-        $currentNET = $myGateway->inet()->first();
+        $currentCPU = $myGateway->hardware['cpu'];
+        $currentRAM = $myGateway->hardware['ram'];
+        $currentHDD = $myGateway->hardware['hdd'];
+        $currentNET = $myGateway->hardware['net'];
 
         $view = view('Modules::System.MyGateway.Views.index', compact('cssPath', 'jsPath', 'currentCPU', 'currentHDD', 'currentNET', 'currentRAM'));
         return $view->render();

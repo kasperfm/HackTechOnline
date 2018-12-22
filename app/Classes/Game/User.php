@@ -29,7 +29,6 @@ class User
     {
         $this->userID = $user->id;
         $this->username = $user->username;
-        $this->model = $user;
         $this->economy = new Economy($user);
         $this->gateway = new Gateway($user->id);
         $this->mailbox = new Mailbox($user);
