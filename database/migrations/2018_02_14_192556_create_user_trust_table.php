@@ -15,8 +15,8 @@ class CreateUserTrustTable extends Migration
     {
         Schema::create('user_trust', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('corp_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('corp_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
             $table->bigInteger('trust')->default(0);
             $table->timestamps();
         });

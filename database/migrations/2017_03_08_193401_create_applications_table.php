@@ -15,9 +15,9 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('app_name');
-            $table->tinyInteger('app_group');
-            $table->tinyInteger('on_market')->default(0);
+            $table->string('app_name')->index();
+            $table->tinyInteger('app_group')->index();
+            $table->tinyInteger('on_market')->index()->default(0);
         });
     }
 

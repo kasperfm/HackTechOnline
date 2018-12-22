@@ -15,10 +15,10 @@ class CreatePortsTable extends Migration
     {
         Schema::create('ports', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('host_id')->unsigned();
-            $table->integer('service_id')->unsigned();
+            $table->integer('host_id')->unsigned()->index();
+            $table->integer('service_id')->unsigned()->index();
             $table->integer('open_port')->unsigned();
-            $table->tinyInteger('active')->default(1);
+            $table->tinyInteger('active')->default(1)->index();
         });
     }
 

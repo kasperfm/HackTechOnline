@@ -15,10 +15,10 @@ class CreateBankAccountsTable extends Migration
     {
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bank_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->integer('account_number')->unsigned();
-            $table->tinyInteger('active')->default(1);
+            $table->integer('bank_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('account_number')->unsigned()->index();
+            $table->tinyInteger('active')->default(1)->index();
             $table->bigInteger('balance')->default(0);
         });
     }

@@ -14,7 +14,7 @@ class AddDataIdToUserappsTable extends Migration
     public function up()
     {
         Schema::table('user_apps', function (Blueprint $table) {
-            $table->integer('application_datas_id')->unsigned()->default(0);
+            $table->integer('application_datas_id')->unsigned()->default(0)->index();
         });
     }
 

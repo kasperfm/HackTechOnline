@@ -15,10 +15,10 @@ class CreateHostsTable extends Migration
     {
         Schema::create('hosts', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('online_state')->default(1);
-            $table->string('game_ip');
-            $table->tinyInteger('host_type')->default(1);
-            $table->integer('machine_id');
+            $table->tinyInteger('online_state')->default(1)->index();
+            $table->string('game_ip')->index();
+            $table->tinyInteger('host_type')->default(1)->index();
+            $table->integer('machine_id')->index();
         });
     }
 

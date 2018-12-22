@@ -15,9 +15,9 @@ class CreateUserAppsTable extends Migration
     {
         Schema::create('user_apps', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('application_id')->unsigned();
-            $table->tinyInteger('installed')->unsigned()->default(0);
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('application_id')->unsigned()->index();
+            $table->tinyInteger('installed')->unsigned()->default(0)->index();
 
         });
     }

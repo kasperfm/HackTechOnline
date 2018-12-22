@@ -16,7 +16,7 @@ class CreateDomainProvidersTable extends Migration
         Schema::create('domain_providers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->integer('host_id')->unsigned()->nullable();
+            $table->integer('host_id')->unsigned()->nullable()->index();
             $table->integer('max_domains')->nullable();
             $table->float('price_factor');
         });

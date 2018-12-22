@@ -20,7 +20,7 @@ class CreateMissionsTable extends Migration
             $table->text('complete_message');
             $table->integer('reward_trust')->unsigned()->default(0);
             $table->integer('reward_credits')->unsigned()->default(0);
-            $table->integer('corp_id')->unsigned();
+            $table->integer('corp_id')->unsigned()->index();
             $table->string('type');
             $table->string('objective');
             $table->integer('minimum_trust')->unsigned()->default(0);

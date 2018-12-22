@@ -17,7 +17,7 @@ class CreateGatewayHardwaresTable extends Migration
             $table->increments('id');
             $table->string('part_name');
             $table->integer('price')->unsigned();
-            $table->tinyInteger('type');
+            $table->tinyInteger('type')->index();
             $table->integer('value')->unsigned();
         });
     }

@@ -15,11 +15,11 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('file_id')->unsigned();
-            $table->integer('owner')->unsigned()->default(0);
-            $table->tinyInteger('encrypted')->default(0);
+            $table->integer('file_id')->unsigned()->index();
+            $table->integer('owner')->unsigned()->default(0)->index();
+            $table->tinyInteger('encrypted')->default(0)->index();
             $table->string('placement')->default('gw');
-            $table->integer('host')->unsigned();
+            $table->integer('host')->unsigned()->index();
             $table->timestamps();
             $table->softDeletes();
         });

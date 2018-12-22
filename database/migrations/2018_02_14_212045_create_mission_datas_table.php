@@ -15,8 +15,8 @@ class CreateMissionDatasTable extends Migration
     {
         Schema::create('mission_datas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('mission_id')->unsigned();
-            $table->string('event_type');
+            $table->integer('mission_id')->unsigned()->index();
+            $table->string('event_type')->index();
             $table->string('event_param');
             $table->text('event_action');
         });

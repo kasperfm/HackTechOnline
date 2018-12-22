@@ -15,9 +15,9 @@ class CreateDomainTldsTable extends Migration
     {
         Schema::create('domain_tlds', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('domain_provider_id')->unsigned()->nullable();
+            $table->integer('domain_provider_id')->unsigned()->nullable()->index();
             $table->string('tld');
-            $table->integer('days_to_hold')->nullable();
+            $table->integer('days_to_hold')->nullable()->index();
         });
     }
 

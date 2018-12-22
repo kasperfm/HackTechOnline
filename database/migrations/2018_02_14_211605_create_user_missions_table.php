@@ -15,9 +15,9 @@ class CreateUserMissionsTable extends Migration
     {
         Schema::create('user_missions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('mission_id')->unsigned();
-            $table->tinyInteger('done')->default(0);
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('mission_id')->unsigned()->index();
+            $table->tinyInteger('done')->default(0)->index();
             $table->timestamps();
             $table->softDeletes();
         });

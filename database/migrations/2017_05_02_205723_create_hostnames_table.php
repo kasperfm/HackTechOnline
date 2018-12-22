@@ -15,11 +15,11 @@ class CreateHostnamesTable extends Migration
     {
         Schema::create('hostnames', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hostname');
-            $table->integer('host_id')->unsigned();
-            $table->integer('domain_provider_id')->unsigned()->nullable();
+            $table->string('hostname')->index();
+            $table->integer('host_id')->unsigned()->index();
+            $table->integer('domain_provider_id')->unsigned()->nullable()->index();
             $table->timestamp('expire_date')->nullable();
-            $table->tinyInteger('activated')->default(1);
+            $table->tinyInteger('activated')->default(1)->index();
             $table->timestamps();
         });
     }

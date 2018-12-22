@@ -16,7 +16,7 @@ class CreateApplicationDatasTable extends Migration
         Schema::create('application_datas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('application_id')->unsigned();
-            $table->float('version')->default(0);
+            $table->float('version')->default(0)->index();
             $table->integer('price')->unsigned()->default(0);
             $table->integer('hdd_req')->unsigned()->default(0);
             $table->integer('cpu_req')->unsigned()->default(0);
