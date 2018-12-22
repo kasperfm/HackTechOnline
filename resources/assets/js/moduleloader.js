@@ -10,11 +10,11 @@ function loadModule(moduleName){
         },
         success: function(response) {
             if(response.answer === true) {
-                $(".window_wrapper").append('<div id="wnd_'+moduleName+'" class="dialog_window wnd_'+moduleName+'" title="'+response.title+'"></div>');
+                $("body").append('<div id="wnd_'+moduleName+'" class="dialog_window wnd_'+moduleName+'" title="'+response.title+'"></div>');
                 $("#wnd_" + moduleName).html(response.view);
 
                 $('#wnd_'+moduleName).dialog({
-                    appendTo: ".window_wrapper",
+                    appendTo: "body",
                     width: response.width,
                     height: response.height,
                     hide: { effect: window.closeEffect, duration: window.closeDuration },
@@ -27,7 +27,8 @@ function loadModule(moduleName){
                     }
                 });
 
-                $('#wnd_'+moduleName).dialog("widget").draggable("option","containment","#window_wrapper");
+                $('#wnd_'+moduleName).dialog("widget").draggable("option", "containment", "parent");
+                $('#wnd_'+moduleName).dialog("widget").draggable("option", "scroll", false);
                 updateResourceBars();
             }
         }

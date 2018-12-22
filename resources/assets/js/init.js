@@ -47,7 +47,8 @@ $(document).ready(function() {
             $(this).remove();
         }
     });
-    $('#demo_window').dialog("widget").draggable("option","containment","#window_wrapper");
+    $('#demo_window').dialog("widget").draggable("option", "containment", "parent");
+    $('#demo_window').dialog("widget").draggable("option", "scroll", false);
 
     // Handle resize of the browser window.
     setWindowWrapperSize();
