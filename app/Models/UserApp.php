@@ -22,6 +22,10 @@ class UserApp extends Model
         return $application;
     }
 
+    public function app(){
+        return $this->hasOne('App\Models\Application', 'id', 'application_id');
+    }
+
     public function data(){
         return $this->hasOne('App\Models\ApplicationData', 'id', 'application_datas_id');
     }

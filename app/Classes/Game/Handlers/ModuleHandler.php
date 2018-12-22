@@ -81,7 +81,7 @@ class ModuleHandler
     }
 
     public function getInstalledApps($userID){
-        $apps = UserApp::ownedBy($userID)->installed()->get();
+        $apps = UserApp::with('app')->ownedBy($userID)->installed()->get();
         return $apps;
     }
 
