@@ -34,9 +34,7 @@ Route::get('/','GameController@index');
 
 Route::get('/login', 'GameController@login');
 
-Route::get('/offline', function () {
-    return view('offline');
-});
+Route::get('/offline', 'OfflineController@index');
 
 Auth::routes();
 Route::get('/logout', 'GameController@logout');
