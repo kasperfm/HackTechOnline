@@ -56,7 +56,7 @@ $(document).ready(function() {
                                 icon: 'b',
                                 color: '#fff',
                                 content: "Your email has been sent!" ,
-                                timeout: 4000
+                                timeout: 5000
                             }
                         );
 
@@ -68,7 +68,7 @@ $(document).ready(function() {
                                 icon: 'b',
                                 color: '#fff',
                                 content: 'Something went wrong when trying to send the e-mail!<br />Be sure no fields are empty, and you entered a correct username. And remember you can only send one email every 30sec to avoid spam.',
-                                timeout: 4000
+                                timeout: 6000
                             }
                         );
                     }

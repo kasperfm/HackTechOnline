@@ -9,7 +9,11 @@ class Host extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'online_state', 'game_ip', 'host_type', 'machine_id'
+        'online_state', 'game_ip', 'host_type', 'machine_id', 'ip_changed_at'
+    ];
+
+    protected $dates = [
+        'ip_changed_at'
     ];
 
     public function machine(){

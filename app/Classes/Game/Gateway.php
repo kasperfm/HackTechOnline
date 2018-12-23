@@ -99,8 +99,7 @@ class Gateway extends Computer {
         $application->save();
     }
 
-    public function renewIPAddress(){
-        $renewTimeoutInMinutes = 180; // 2 hours
+    public function renewIPAddress($timeoutCheckInMinutes = 180){
         $change = false;
         $host = Host::where('id', $this->hostID)->first();
 
@@ -111,7 +110,7 @@ class Gateway extends Computer {
         if(!$host->ip_changed_at){
             $change = true;
         }else{
-            if(Carbon::now() > Carbon::parse($host->ip_changed_at)->addMinute($renewTimeoutInMinutes)){
+            if(Carbon::now() > $host->ip_changed_at->addMinute($timeoutCheckInMinutes)){
                 $change = true;
             }
         }

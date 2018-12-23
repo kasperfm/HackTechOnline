@@ -161,5 +161,21 @@ class DefaultAppsSeeder extends Seeder
             'cpu_req' => 16,
             'ram_req' => 24
         ]);
+
+        // Tools > IP Renewer
+        DB::table('applications')->insert([
+            'id' => 13,
+            'app_name' => 'IpRenewer',
+            'app_group' => 3,
+            'on_market' => 1
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 13,
+            'version' => 1,
+            'price' => 60,
+            'hdd_req' => 15,
+            'cpu_req' => 22,
+            'ram_req' => 28
+        ]);
     }
 }

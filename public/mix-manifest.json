@@ -32,6 +32,7 @@
     "/modules/js/webbrowser.js": "/modules/js/webbrowser.js",
     "/modules/js/fileviewer.js": "/modules/js/fileviewer.js",
     "/modules/js/jquery.filetree.js": "/modules/js/jquery.filetree.js",
+    "/modules/js/iprenewer.js": "/modules/js/iprenewer.js",
     "/modules/js/passwordcracker.js": "/modules/js/passwordcracker.js",
     "/modules/js/portscanner.js": "/modules/js/portscanner.js",
     "/vfs/web/img/secubank_logo.png": "/vfs/web/img/secubank_logo.png",
