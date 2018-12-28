@@ -1,1 +1,21 @@
-.webbrowser-content{margin:12px 0 0 0;padding:1px!important}#webbrowser-wrapper{position:relative;overflow:hidden}#www-address{width:70%}#www-submit{width:18%}.www-navigation{height:50px}
+.webbrowser-content{
+    margin: 12px 0px 0px 0px;
+    padding: 1px !important;
+}
+
+#webbrowser-wrapper{
+    position: relative;
+    overflow: hidden;
+}
+
+#www-address{
+    width: 70%;
+}
+
+#www-submit{
+    width: 18%;
+}
+
+.www-navigation{
+    height: 50px;
+}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Game\Handlers\UserHandler;
+use App\Classes\Game\Types\HardwareTypes;
 use App\Models\Application;
 use App\Models\UserApp;
 use DebugBar\DebugBar;
@@ -43,7 +44,7 @@ class ModuleController extends Controller
                 }
             }
 
-            return json_encode($response);
+            return response()->json($response);
         }
     }
 
@@ -61,7 +62,7 @@ class ModuleController extends Controller
             $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->appModel->data->ram_req);
         }
 
-        return json_encode($response);
+        return response()->json($response);
     }
 
     public function callAjax(Request $request, $moduleName, $action){
@@ -86,25 +87,27 @@ class ModuleController extends Controller
         $response['hdd'] = 0;
 
         if(Auth::check()){
-            $user = User::where('id', Auth::id())->with(['gateway.cpu'])->first();
-            $gwCpu = $user->gateway->cpu->value;
-            $gwRam = $user->gateway->ram->value;
-            $gwHdd = $user->gateway->hdd->value;
+            $user = User::with(['gateway'])->where('id', Auth::id())->first();
+            $gatewayHardware = $user->gateway->hardware()->get();
 
-            $userObj = UserHandler::getUser(Auth::id());
+            $gwCpu = $gatewayHardware->where('type', HardwareTypes::CPU)->first();
+            $gwRam = $gatewayHardware->where('type', HardwareTypes::RAM)->first();
+            $gwHdd = $gatewayHardware->where('type', HardwareTypes::Harddrive)->first();
+
+            $userObj = UserHandler::player();
 
             $currentCpuUsage = $request->session()->get('cpuUsage');
             $currentRamUsage = $request->session()->get('ramUsage');
             $currentHDDUsage = $userObj->gateway->usedDiskSpace();
 
-            $response['cpu'] = $this->percentage($currentCpuUsage, $gwCpu, 0);
-            $response['ram'] = $this->percentage($currentRamUsage, $gwRam, 0);
-            $response['hdd'] = $this->percentage($currentHDDUsage, $gwHdd * 1024, 0);
+            $response['cpu'] = $this->percentage($currentCpuUsage, $gwCpu->value, 0);
+            $response['ram'] = $this->percentage($currentRamUsage, $gwRam->value, 0);
+            $response['hdd'] = $this->percentage($currentHDDUsage, $gwHdd->value, 0);
 
             $response['answer'] = true;
         }
 
-        return json_encode($response);
+        return response()->json($response);
     }
 
     public function getInstalledApps(Request $request){
@@ -127,11 +130,15 @@ class ModuleController extends Controller
             $response['answer'] = true;
         }
 
-        return json_encode($response);
+        return response()->json($response);
     }
 
     private function percentage($val1, $val2, $precision){
-        $res = round( ($val1 / $val2) * 100, $precision );
+        if($val1 == 0 || $val2 == 0){
+            return 0;
+        }
+
+        $res = round( ($val1 * 100) / $val2, $precision );
         return $res;
     }
 }

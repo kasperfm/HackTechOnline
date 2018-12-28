@@ -59,8 +59,8 @@ function initGWShop() {
                     _token: window.Laravel.csrfToken
                 },
                 success: function(response){
-                    if(response.answer == true) {
-                        if(response.purchase == true){
+                    if(response.answer === true) {
+                        if(response.purchase === true){
                             updateResourceBars();
                             updateCredits();
                             $.notification({

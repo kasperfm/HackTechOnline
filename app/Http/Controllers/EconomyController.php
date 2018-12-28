@@ -20,6 +20,6 @@ class EconomyController extends Controller
             $response['credits'] = $balance;
         }
 
-        return json_encode($response);
+        return response()->json($response);
     }
 }

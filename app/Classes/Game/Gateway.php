@@ -49,24 +49,24 @@ class Gateway extends Computer {
     }
 
     public function usedDiskSpace(){
-        $allOwnedApps = UserApp::ownedBy($this->ownerID)->installed()->get();
+        $allOwnedApps = UserApp::with('data')->ownedBy($this->ownerID)->installed()->get();
 
         $installedAppsUsage = 0;
-        foreach($allOwnedApps as $app){
-            $installedAppsUsage += $app->data->hdd_req;
+        foreach($allOwnedApps as $application){
+            $installedAppsUsage += $application->data->hdd_req;
         }
 
         return $installedAppsUsage;
     }
 
     private function enoughFreeDiskSpace($neededSpace){
-        $totalSpace = $this->hardware['hdd']->hardwareData['value'] * 1024;
+        $totalSpace = $this->hardware['hdd']->hardwareData['value'];
 
-        $allOwnedApps = UserApp::ownedBy($this->ownerID)->installed()->get();
+        $allOwnedApps = UserApp::with('data')->ownedBy($this->ownerID)->installed()->get();
 
         $installedAppsUsage = 0;
-        foreach($allOwnedApps as $app){
-            $installedAppsUsage += $app->data->hdd_req;
+        foreach($allOwnedApps as $application){
+            $installedAppsUsage += $application->data->hdd_req;
         }
 
         if($totalSpace >= ($installedAppsUsage + $neededSpace)){

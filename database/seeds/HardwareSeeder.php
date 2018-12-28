@@ -40,7 +40,7 @@ class HardwareSeeder extends Seeder
             'part_name' => 'Mondo-755 SSD',
             'price'     => 0,
             'type'      => 3,
-            'value'     => 8
+            'value'     => 32
         ]);
 
         // Tier 1 gateway hardware.
@@ -66,7 +66,7 @@ class HardwareSeeder extends Seeder
             'part_name' => 'Mondo-942 SSD',
             'price'     => 55,
             'type'      => 3,
-            'value'     => 32
+            'value'     => 64
         ]);
 
         // Tier 2 gateway hardware.
@@ -92,7 +92,7 @@ class HardwareSeeder extends Seeder
             'part_name' => 'MPX 9001 Drive',
             'price'     => 100,
             'type'      => 3,
-            'value'     => 64
+            'value'     => 128
         ]);
     }
 

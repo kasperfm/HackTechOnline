@@ -18,6 +18,11 @@ class Gateway extends Model
         return $this->hasOne('App\Models\Host', 'id', 'host_id');
     }
 
+    public function hardware(){
+        $hardwareList = [$this->cpu_id, $this->ram_id, $this->hdd_id, $this->inet_id];
+        return GatewayHardware::whereIn('id', $hardwareList);
+    }
+
     public function cpu(){
         return $this->hasOne(GatewayHardware::class, 'id', 'cpu_id');
     }

@@ -70,7 +70,7 @@ class DefaultAppsSeeder extends Seeder
             'application_id' => 5,
             'version' => 1,
             'price' => 60,
-            'hdd_req' => 15,
+            'hdd_req' => 10,
             'cpu_req' => 100,
             'ram_req' => 24
         ]);
@@ -141,7 +141,7 @@ class DefaultAppsSeeder extends Seeder
             'application_id' => 11,
             'version' => 1,
             'price' => 120,
-            'hdd_req' => 24,
+            'hdd_req' => 20,
             'cpu_req' => 233,
             'ram_req' => 32
         ]);
@@ -157,7 +157,7 @@ class DefaultAppsSeeder extends Seeder
             'application_id' => 12,
             'version' => 1,
             'price' => 10,
-            'hdd_req' => 20,
+            'hdd_req' => 4,
             'cpu_req' => 16,
             'ram_req' => 24
         ]);
@@ -173,7 +173,7 @@ class DefaultAppsSeeder extends Seeder
             'application_id' => 13,
             'version' => 1,
             'price' => 60,
-            'hdd_req' => 15,
+            'hdd_req' => 16,
             'cpu_req' => 22,
             'ram_req' => 28
         ]);

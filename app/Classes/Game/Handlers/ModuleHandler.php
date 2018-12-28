@@ -95,6 +95,7 @@ class ModuleHandler
             $entry['name'] = $software->data->application->app_name;
             $entry['installed'] = $software->installed;
             $entry['version'] = $software->data->version;
+            $entry['hdd_req'] = $software->data->hdd_req;
             $result[] = $entry;
         }
 

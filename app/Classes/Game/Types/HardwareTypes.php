@@ -12,14 +12,14 @@ class HardwareTypes {
         self::InternetConnection 	=> "Internet Connection",
         self::CPU	                => "CPU",
         self::RAM                   => "RAM",
-        self::Harddrive		        => "Harddrive"
+        self::Harddrive		        => "Storage"
     );
 
     public static $values = array(
         self::InternetConnection 	=> "Mbit/s",
         self::CPU	                => "MHz",
         self::RAM                   => "MB",
-        self::Harddrive		        => "GB"
+        self::Harddrive		        => "MB"
     );
 
     const System  = 0;
