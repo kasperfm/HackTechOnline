@@ -1,11 +1,11 @@
 <div id="login_window" class="dialog_window" title="System Authentication">
     <center>
         <canvas id="login-logo-canvas"></canvas>
-        <h1 class="title">PLEASE LOGIN TO USE THE SYSTEM</h1>
+        <h1 class="title status">PLEASE LOGIN TO USE THE SYSTEM</h1>
     </center>
 
     <div class="pane">
-        <form class="form-horizontal login-form" id="login-form" role="form" method="POST" action="{{ route('login') }}">
+        <form class="form-horizontal login-form {{ $errors->has('email') || $errors->has('password') ? ' login-error' : '' }}" id="login-form" role="form" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
 
             <table>
@@ -14,7 +14,7 @@
                         <label>E-MAIL</label>
                     </td>
                     <td>
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' has-input-error' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                     </td>
                 </tr>
                 <tr>
@@ -22,7 +22,7 @@
                         <label>PASSWORD</label>
                     </td>
                     <td>
-                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' has-input-error' : '' }}" name="password" required>
+                        <input id="password" type="password" class="form-control" name="password" required>
                     </td>
                 </tr>
                 <tr>

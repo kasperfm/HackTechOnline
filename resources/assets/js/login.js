@@ -12,7 +12,6 @@ $(document).ready(function() {
         position: {my: "center", at: "center", of: $("body"),within: $("body") }
     });
     $('#login_window').css('background-color', 'black');
-    //$('#login_window').dialog("widget").draggable("option", "containment", "#window_wrapper");
     $(".ui-dialog-titlebar-min").hide();
     glitch("login-logo-canvas", "img/logo.png");
 });

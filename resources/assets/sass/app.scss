@@ -16,7 +16,7 @@
 * {
 	margin:0;
 	padding:0;
-    font-family: PixelFont;
+	font-family: $default-font;
     letter-spacing: 1px;
 }
 
@@ -216,7 +216,7 @@ body > #top-wrapper {
 }
 
 body{
-    font-family: 'PixelFont';
+	font-family: $default-font;
 	background-color: black;
 	background-image: url('../img/backgrounds/flow_hd.jpg');
 	background-position: top center;
@@ -265,7 +265,7 @@ a img{
 }
 
 label{
-    font-family: PixelFont;
+	font-family: $default-font;
     letter-spacing: 1px;
 	color: white;
 	font-size: 20px;
@@ -310,7 +310,7 @@ input:hover, textarea:hover, select:hover, button:hover{
 input, textarea{
 	padding: 8px;
 	width: 200px;
-	font-family: 'Helvetica Neue', Arial;
+	font-family: $default-font;
 	background-color: $form-background;
 	border: solid 1px $input-border;
 	font-size: 0.75em !important;
@@ -326,7 +326,7 @@ select{
 	border: solid 1px $input-border;
 	font-size: 1em !important;
 	text-transform: none !important;
-    font-family: 'PixelFont' !important;
+    font-family: $default-font !important;
     color: $input-text;
     border-radius: 3px;
     padding: 5px;
@@ -373,10 +373,10 @@ select{
 	padding: 8px;
 	width: 218px;
 	/* font-family: Arial; */
-	font-family: 'Aerial' !important;
+	font-family: $default-font !important;
 	background-color: $form-background;
 	border: solid 1px $input-border;
-	font-size: 20px;
+	font-size: 22px;
 	color: $input-text;
 	text-transform: uppercase !important;
 }
@@ -399,10 +399,10 @@ select{
 	padding: 5px;
 	width: 90px;
 	/* font-family: Arial; */
-	font-family: 'Aerial' !important;
+	font-family: $default-font !important;
 	background-color: $form-background;
 	border: solid 1px $input-border;
-	font-size: 12px !important;
+	font-size: 14px !important;
 	color: $input-text;
 }
 
@@ -415,7 +415,7 @@ h1{
 }
 
 h2{
-	font-family: 'Helvetica Neue';
+	font-family: $default-font;
 	font-weight: 100;
 	color: $text-color;
 	margin-bottom: 20px;
@@ -432,7 +432,7 @@ h3{
 
 p{
 	margin-top: 5px;
-	font-family: PixelFont, 'Helvetica Neue', Arial;
+	font-family: $default-font;
 	font-size: 16px;
 /* font-stretch: expanded; */
 	padding: 20px;
@@ -454,12 +454,12 @@ p:hover{
 }
 
 ul{
-    font-family: 'PixelFont';
+    font-family: $default-font;
     font-size: 15px;
 }
 
 ul li {
-    font-family: 'PixelFont';
+    font-family: $default-font;
     font-size: 15px;
 }
 

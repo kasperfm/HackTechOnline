@@ -12,7 +12,7 @@ class About extends Module
 
         $this->size = array(
             "width"     => 445,
-            "height"    => 128
+            "height"    => 140
         );
     }
 }
