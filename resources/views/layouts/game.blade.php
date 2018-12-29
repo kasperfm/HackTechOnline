@@ -60,7 +60,6 @@
 </div>
     @yield('footer')
 
-
     <!-- Scripts -->
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="/js/moduleloader.js"></script>

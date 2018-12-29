@@ -27,6 +27,11 @@ class Webbrowser extends Module
         $address = $request->get('address');
 
         if(!empty($address)){
+            // Clean address.
+            $address = str_replace('http://', '', $address);
+            $address = str_replace('https://', '', $address);
+            $address = str_replace('www.', '', $address);
+
             $explodedAddress = explode('/', $address);
             $server = ServerHandler::getServer($explodedAddress[0]);
 
