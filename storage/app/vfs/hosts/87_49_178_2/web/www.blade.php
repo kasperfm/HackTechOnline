@@ -7,7 +7,7 @@
         @import url(fonts/font-sourcesanspro.css);
     </style>
 
-    <script type="text/javascript" src="vfs/web/js/87_49_178_2-prefixfree.min.js"></script>
+    <script type="text/javascript" src="vfs/web/js/87_49_178_1-prefixfree.min.js"></script>
     <script type="text/javascript" src="vfs/web/js/87_49_178_2-adm_login.js"></script>
 @endsection
 
@@ -15,7 +15,7 @@
     <div class="body"></div>
     <div class="grad"></div>
     <div class="header">
-        <div>GerMail</div>
+        <div>GerMail<br>Admin</div>
     </div>
     <br />
     <div class="login">

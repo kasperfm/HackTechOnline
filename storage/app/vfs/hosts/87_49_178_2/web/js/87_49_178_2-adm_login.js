@@ -14,7 +14,7 @@ $(document).ready(function() {
             },
             success: function(response) {           
                 if(response.answer === true) {
-                    window.parent.navigate('germail.com/admin');
+                    window.parent.navigate('admin.germail.com/admin');
                 }
             }
         });

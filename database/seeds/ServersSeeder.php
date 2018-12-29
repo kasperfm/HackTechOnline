@@ -13,10 +13,14 @@ class ServersSeeder extends Seeder
      */
     public function run()
     {
-        // Germail.de
-        $germail = ServerHandler::newServer(0, null, '87.49.178.2');
+        // Germail.com
+        $germail = ServerHandler::newServer(0, null, '87.49.178.1');
         if($germail) {
             DomainHandler::newSystemDomain($germail->host->id, 'germail.com');
+        }
+        $germailAdmin = ServerHandler::newServer(0, null, '87.49.178.2');
+        if($germailAdmin) {
+            DomainHandler::newSystemDomain($germailAdmin->host->id, 'admin.germail.com');
         }
         $germailMailServer = ServerHandler::newServer(0, null, '122.5.55.100');
         if($germailMailServer) {

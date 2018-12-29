@@ -36,8 +36,10 @@
     "/vfs/web/img/modibankinc_logo.png": "/vfs/web/img/modibankinc_logo.png",
     "/vfs/web/img/31_113_213_227-download.png": "/vfs/web/img/31_113_213_227-download.png",
     "/vfs/web/img/31_113_213_227-logo.png": "/vfs/web/img/31_113_213_227-logo.png",
-    "/vfs/web/img/87_49_178_2-background.jpg": "/vfs/web/img/87_49_178_2-background.jpg",
+    "/vfs/web/img/87_49_178_1-background.jpg": "/vfs/web/img/87_49_178_1-background.jpg",
+    "/vfs/web/css/87_49_178_1.css": "/vfs/web/css/87_49_178_1.css",
     "/vfs/web/css/87_49_178_2.css": "/vfs/web/css/87_49_178_2.css",
+    "/vfs/web/js/87_49_178_1-prefixfree.min.js": "/vfs/web/js/87_49_178_1-prefixfree.min.js",
     "/vfs/web/js/87_49_178_2-adm_login.js": "/vfs/web/js/87_49_178_2-adm_login.js",
     "/vfs/web/js/87_49_178_2-adm_page.js": "/vfs/web/js/87_49_178_2-adm_page.js",
     "/vfs/web/js/87_49_178_2-prefixfree.min.js": "/vfs/web/js/87_49_178_2-prefixfree.min.js"
