@@ -24,7 +24,7 @@ ip = 87.49.178.2
 hostname = germail.com
 port = 80
 description = "GerMail - E-Mail für alle"
-admin_hash = "YWExNTQ2cGQ1PmA"
+admin_hash = "NTJuX3Y3P21ga2I"
 
 [database]
 db_host = 122.5.55.100

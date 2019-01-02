@@ -72,14 +72,14 @@ class MissionEventListener
 
                 case 'renewip':
                     // Renew IP
-                    // $missionCompleted = true;
-                    // $jsonResponse['title'] = "Gateway IP has been changed !";
+                    $missionCompleted = true;
+                    $jsonResponse['title'] = "Gateway IP has been changed !";
                     break;
 
                 case 'submit':
                     // Submit data to website
-                    // $missionCompleted = true;
-                    // $jsonResponse['title'] = "Thank you for your submission.";
+                    $missionCompleted = true;
+                    $jsonResponse['title'] = "Thank you for your submission.";
                     break;
 
                 default:

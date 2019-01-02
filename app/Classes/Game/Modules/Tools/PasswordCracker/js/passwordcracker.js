@@ -4,88 +4,7 @@ var speed = 50;
 var t;
 var randomchars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz?!*_-., ";
 
-function change()
-{
-    randstring = "";
-    rslength = chars.length - got.length;
-
-    for(x=0;x<rslength;x++)
-    {
-        i = Math.floor(Math.random() * randomchars.length);
-        randstring += randomchars.charAt(i);
-    }
-
-    if(randstring.charAt(0) == chars.charAt(got.length))
-    {
-        got += randstring.charAt(0);
-        randstring = "";
-    }
-    else
-    {
-        $(".password_field").val(randstring);
-    }
-
-    if(chars.length > got.length)
-    {
-        t = setTimeout("change()", speed);
-    }
-    else
-    {
-        $(".password_field").val("");
-    }
-
-    $(".password_field").val(got+randstring);
-
-    if ($(".password_field").val() == chars) {
-        $(".password_field").removeClass("text-red");
-        $(".password_field").addClass("text-green");
-    }
-}
-
-function startDecrypt(breakSpeed)
-{
-    var passwordField = $(".password_field");
-    var passwordValue = passwordField.val();
-    passwordField.val("");
-    passwordField.removeClass("text-green");
-    passwordField.addClass("text-red");
-
-    if(!passwordValue){
-        return false;
-    }
-
-    speed = breakSpeed;
-
-    try {
-        chars = decrypt_str($.base64.decode(passwordValue + "="), 6);
-    }
-    catch(err) {
-        try {
-            chars = decrypt_str($.base64.decode(passwordValue + "=="), 6);
-        }
-        catch(err2) {
-            return false;
-        }
-    }
-
-    passwordField.val("");
-    got = "";
-    t = setTimeout("change()", speed);
-}
-
 jQuery(document).ready(function() {
-    clearTimeout(t);
-    //speed = parent.getHardwareInfo('cpu') / 100;
-    speed = 12;
-    $(".password_field").val("");
-    $(".password_field").removeClass("text-red");
-    $(".password_field").removeClass("text-green");
-
-    $(".crack_btn").click(function(){
-        startDecrypt(speed);
-        return false;
-    });
-
     $(".password_field").change(function(){
         var passwordField = $(".password_field");
         if(passwordField.val() == ""){
@@ -95,9 +14,19 @@ jQuery(document).ready(function() {
     });
 
     $("#passwd_cracker_form").bind("submit", function(e) {
-        startDecrypt(speed);
+        //startDecrypt(speed);
+        var passwordField = $(".password_field");
+        var passwordValue = passwordField.val();
+
+        var realPassword = decrypt_str($.base64.decode(passwordValue + "="), 6);
+        $(".decrypt-text").text(realPassword);
+        $(".decrypt-text").decodeEffect();
         e.preventDefault();
         return false;
+    });
+
+    $(".decrypt-text").on('change', function(){
+        $(".password_field").val($(".decrypt-text").text());
     });
 });
 
@@ -114,3 +43,58 @@ function decrypt_str(text, key)
     return the_res;
 }
 
+jQuery.fn.decodeEffect = (function ($) {
+    var defaultOptions = {
+        duration:      3000,
+        stepsPerGlyph: 10,
+        codeGlyphs:    "ABCDEFGHIJKLMNOPQRSTUWVXYZ1234567890qwertyuiopasdfghjklzxcvbnm",
+        className:     "code"
+    };
+
+    // get a random string from the given set,
+    // or from the 33 - 125 ASCII range
+    function randomString(set, length) {
+        var string = "", i, glyph;
+        for(i = 0 ; i < length ; i++) {
+            glyph = Math.random() * set.length;
+            string += set[glyph | 0];
+        }
+        return string;
+    }
+
+    // this function starts the animation. Basically a closure
+    // over the relevant vars. It creates a new separate span
+    // for the code text, and a stepper function that performs
+    // the animation itself
+    function animate(element, options) {
+        var text = element.text(),
+            inputBox = $(".password_field").val(""),
+            span = $("<span/>").addClass(options.className).insertAfter(element).css('display' ,'none'),
+            interval = options.duration / (text.length * options.stepsPerGlyph),
+            step = 0,
+            length = 0,
+            stepper = function () {
+                if(++step % options.stepsPerGlyph === 0) {
+                    length++;
+                    element.text(text.slice(0, length));
+                }
+                if(length <= text.length) {
+                    span.text(randomString(options.codeGlyphs, text.length - length));
+                    inputBox.val(text.slice(0, length) + span.text());
+                    setTimeout(stepper, interval);
+                } else {
+                    span.remove();
+                }
+            };
+        element.text("");
+        stepper();
+    }
+
+    // Basic jQuery plugin pattern
+    return function (options) {
+        options = $.extend({}, defaultOptions, (options || {}));
+        return this.each(function () {
+            animate($(this), options);
+        });
+    };
+}(jQuery));

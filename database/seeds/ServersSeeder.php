@@ -32,5 +32,11 @@ class ServersSeeder extends Seeder
         if($psyBytes){
             DomainHandler::newSystemDomain($psyBytes->host->id,'psybytes.org');
         }
+
+        // ShareMyPwd.info
+        $shareMyPwd = ServerHandler::newServer(0, null, '78.45.107.4');
+        if($shareMyPwd){
+            DomainHandler::newSystemDomain($shareMyPwd->host->id,'shareMyPwd.info');
+        }
     }
 }

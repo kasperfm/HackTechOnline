@@ -14,12 +14,11 @@
 * {
     margin:0;
     padding:0;
-    font-family: PixelFont;
-    letter-spacing: 1px;
+    font-family: Jura, Arial;
 }
 
 body {
-    font-family: 'PixelFont';
+    font-family: Jura, Arial;
     background-color: black;
     color: white;
 }
