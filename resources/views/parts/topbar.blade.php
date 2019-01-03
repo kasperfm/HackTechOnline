@@ -34,7 +34,7 @@
                 <div class="applications-menu menubar-item" style="color: #ffffff" >APPLICATIONS
                     <ul class="appmenu" id="appmenu">
                         @foreach($installedApps as $app)
-                            <li rel="{{ strtolower($app->app->app_name) }}" class="exec">{{ $app->app->app_name }}</li>
+                            <li rel="{{ strtolower($app->app->app_name) }}" class="exec">{{ StringHelper::camelCaseToWords($app->app->app_name) }}</li>
                         @endforeach
                     </ul>
                 </div>

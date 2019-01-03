@@ -32,7 +32,6 @@ class ModuleController extends Controller
                     $this->module = $moduleHandler->getApplication($request->modname, Auth::id(), true);
                 }
 
-
                 if (!empty($this->module)) {
                     if ($this->module->requirements->validateRequirements($request)) {
                         $response['answer'] = true;
@@ -122,7 +121,7 @@ class ModuleController extends Controller
 
             if(!empty($appList)){
                 foreach($appList as $app){
-                    $content .= '<li rel="'.strtolower($app->application()->app_name).'" class="exec">'.$app->application()->app_name.'</li>';
+                    $content .= '<li rel="'.strtolower($app->application()->app_name).'" class="exec">'.\App\Classes\Helpers\StringHelper::camelCaseToWords($app->application()->app_name).'</li>';
                 }
             }
 
