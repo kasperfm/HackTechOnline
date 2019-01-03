@@ -65,20 +65,21 @@ class MissionEventListener
                 case 'get':
                     // Download file
                     $splitValue = explode(' ', $value);
-                    $missionParam = "get " . $splitValue[0] . " from " . ServerHandler::IPToHostname($splitValue[1]);
+                    $missionParam = "get " . $splitValue[0] . " from " . ServerHandler::hostnameToIP($splitValue[1]);
+
                     // $missionCompleted = true;
-                    // $jsonResponse['title'] = "Download completed!";
+                    //$jsonResponse['title'] = "Download completed!";
                     break;
 
                 case 'renewip':
                     // Renew IP
-                    $missionCompleted = true;
+                    //$missionCompleted = true;
                     $jsonResponse['title'] = "Gateway IP has been changed !";
                     break;
 
                 case 'submit':
                     // Submit data to website
-                    $missionCompleted = true;
+                    //$missionCompleted = true;
                     $jsonResponse['title'] = "Thank you for your submission.";
                     break;
 

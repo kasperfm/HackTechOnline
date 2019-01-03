@@ -8,6 +8,11 @@ class Mission extends Model
 {
     public $timestamps = false;
 
+    protected $fillable = [
+        'title', 'description', 'complete_message', 'reward_trust', 'reward_credits', 'corp_id',
+        'type', 'objective', 'minimum_trust', 'hidden', 'chain_parent'
+    ];
+
     public function corporation()
     {
         return $this->hasOne(Corporation::class, 'id', 'corp_id');

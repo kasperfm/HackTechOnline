@@ -250,6 +250,7 @@ return [
         'Economy' => App\Classes\Game\Handlers\EconomyHandler::class,
         'UserHandler' => App\Classes\Game\Handlers\UserHandler::class,
         'Corp' => App\Classes\Game\Handlers\CorpHandler::class,
+        'MissionHandler' => App\Classes\Game\Handlers\MissionHandler::class,
     ],
 
 ];

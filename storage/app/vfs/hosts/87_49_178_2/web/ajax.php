@@ -17,7 +17,7 @@
     function admDownload($request){
         $response['answer'] = false;
 
-        $server = \App\Classes\Game\Handlers\ServerHandler::getServer('germail.com');
+        $server = \App\Classes\Game\Handlers\ServerHandler::getServer('admin.germail.com');
         $file = \App\Classes\Game\Handlers\FileHandler::findFileOnServer('omnimail.conf', $server->hostID);
 
         if($file){

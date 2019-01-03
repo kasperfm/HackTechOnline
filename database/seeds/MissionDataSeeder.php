@@ -2,6 +2,8 @@
 
 use App\Classes\Game\Handlers\ServerHandler;
 use App\Models\File;
+use App\Models\Mission;
+use App\Models\MissionData;
 use App\Models\FileData;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,23 @@ class MissionDataSeeder extends Seeder
      */
     public function run()
     {
+        //PsychedelicBytes - Show us your skills
+        $psyBytes_01_Mission = new Mission();
+        $psyBytes_01_Mission->fill([
+            'title' => 'Show us your skills',
+            'description' => 'We think you are kind of interesting. If you can complete a few small tasks for us, and show what kind of hacker you are, we will reward you with some nice cash$$. And of course more jobs if you do this good enough... We "magically" got the admin login informations for the German email service "GerMail", and want you to connect to their administration system at http://admin.germail.com, and download the config file for their system. The username for the system is "gottfried-adm" and password "gg7320vb38f". If you complete that task without further questions, we will have plenty of jobs for you later on.',
+            'complete_message' => 'Nice, you did it! Come back for the next task if you want...',
+            'reward_trust' => 5,
+            'reward_credits' => 100,
+            'corp_id' => 4,
+            'type' => 'get',
+            'objective' => 'get omnimail.conf from 87.49.178.2',
+            'minimum_trust' => 0,
+            'hidden' => 0,
+            'chain_parent' => 0
+        ]);
+        $psyBytes_01_Mission->save();
+
         $files = array(
             [
                 'host' => ServerHandler::getServer('87.49.178.2')->hostID,
@@ -56,7 +75,7 @@ max_size = 64M
 max_age = 1Y',
                 'encrypted' => 0,
                 'password' => null,
-                'filesize' => 27
+                'filesize' => 4
             ],
             [
                 'host' => ServerHandler::getServer('31.113.213.227')->hostID,

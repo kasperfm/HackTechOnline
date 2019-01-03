@@ -81,11 +81,11 @@ class MissionCenter extends Module
     {
         $response['result'] = false;
 
-        if(empty($request->corpId)){
+        if(empty($request->get('corpId'))){
             return $response;
         }
 
-        $availableMissions = MissionHandler::getAvailableMissions(Auth::id(), $request->corpId);
+        $availableMissions = MissionHandler::getAvailableMissions(Auth::id(), $request->get('corpId'));
 
         if(count($availableMissions) > 0) {
             $missionList = array();
