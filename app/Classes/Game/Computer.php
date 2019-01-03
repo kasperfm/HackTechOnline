@@ -22,6 +22,7 @@ class Computer {
     public $hostID = 0;
     public $online = true;
     public $ports = array();
+
     public $hardware = array(
         "net" => null,
         "cpu" => null,

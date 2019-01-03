@@ -241,7 +241,8 @@ return [
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
 
         // HackTech Online specific aliases
-        'StringHelper' => \App\Classes\Helpers\StringHelper::class,
+        'StringHelper' => App\Classes\Helpers\StringHelper::class,
+        'HardwareTypes' => App\Classes\Game\Types\HardwareTypes::class,
         'Network' => App\Classes\Helpers\NetworkHelper::class,
         'Server' =>  App\Classes\Game\Handlers\ServerHandler::class,
         'Domain' => App\Classes\Game\Handlers\DomainHandler::class,

@@ -12,6 +12,14 @@ use App\Classes\Game\Server as ServerObj;
 
 class DomainHandler
 {
+    /**
+     * Create a new domain.
+     * @param $hostID
+     * @param $domain
+     * @param $tld
+     * @param $providerID
+     * @return Hostname|bool
+     */
     public static function newDomain($hostID, $domain, $tld, $providerID){
         $tldLookup = DomainTld::where('domain_provider_id', $providerID)->where('tld', $tld)->first();
         if (!empty($tldLookup)) {
@@ -29,6 +37,11 @@ class DomainHandler
         }
     }
 
+    /**
+     * Make a new system domain. This is a domain without expire date.
+     * @param $hostID
+     * @param $domain
+     */
     public static function newSystemDomain($hostID, $domain){
         $newHostname = new Hostname();
         $newHostname->hostname = $domain;
@@ -41,6 +54,10 @@ class DomainHandler
         self::addWebserverService($hostID);
     }
 
+    /**
+     * Add a webserver to the current domain.
+     * @param $hostID
+     */
     private static function addWebserverService($hostID){
         $server = new ServerObj($hostID);
         $server->addService(1, 80);

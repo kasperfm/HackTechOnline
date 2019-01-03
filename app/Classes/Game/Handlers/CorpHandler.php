@@ -9,6 +9,11 @@ use App\Models\Corporation as CorpModel;
 
 class CorpHandler
 {
+    /**
+     * Get a corporation object by ID.
+     * @param $corpID
+     * @return Corporation|null
+     */
     public static function getCorporation($corpID)
     {
         $corpModel = CorpModel::where('id', $corpID)->first();
@@ -21,6 +26,13 @@ class CorpHandler
         return $corp;
     }
 
+    /**
+     * Create a new corporation.
+     * @param $name
+     * @param $description
+     * @param null $owner
+     * @return CorpModel
+     */
     public static function createCorporation($name, $description, $owner = null)
     {
         $newCorp = new CorpModel();

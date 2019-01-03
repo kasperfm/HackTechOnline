@@ -10,6 +10,13 @@ use App\Classes\Helpers\NetworkHelper;
 
 class ServerHandler
 {
+    /**
+     * Create a new server.
+     * @param $ownerID
+     * @param $rootPassword
+     * @param null $ipAddress
+     * @return Server|null
+     */
     public static function newServer($ownerID, $rootPassword, $ipAddress = null)
     {
         if($ipAddress) {
@@ -46,6 +53,11 @@ class ServerHandler
         return $newServer;
     }
 
+    /**
+     * Convert a hostname to an IP address.
+     * @param $hostname
+     * @return string|null
+     */
     public static function hostnameToIP($hostname)
     {
         $hostname = Hostname::where('hostname', $hostname)->first();
@@ -57,6 +69,11 @@ class ServerHandler
         return null;
     }
 
+    /**
+     * Convert an IP address to a hostname.
+     * @param $ip
+     * @return string|null
+     */
     public static function IPToHostname($ip)
     {
         $host = Host::where('game_ip', $ip)->where('host_type', 1)->first();
@@ -70,6 +87,11 @@ class ServerHandler
         return null;
     }
 
+    /**
+     * Find a server from an IP address or hostname.
+     * @param $lookup
+     * @return \App\Classes\Game\Server|null
+     */
     public static function getServer($lookup)
     {
         if(!empty($lookup)){

@@ -19,6 +19,10 @@ use App\Models\Server as Model;
 class Server extends Computer {
     public $hostname;
 
+    /**
+     * Server constructor.
+     * @param int $hostID
+     */
     public function __construct($hostID = 0) {
         if(!empty($hostID)){
             $this->hostID = $hostID;
@@ -26,6 +30,10 @@ class Server extends Computer {
         }
     }
 
+    /**
+     * Return the server object.
+     * @return bool
+     */
     private function getServer(){
         if($this->hostID != 0){
             $this->model = Model::where('host_id', $this->hostID)->first();

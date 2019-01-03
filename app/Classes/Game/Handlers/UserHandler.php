@@ -7,6 +7,10 @@ use App\Classes\Game\User;
 
 class UserHandler
 {
+    /**
+     * @param $userID
+     * @return User|null
+     */
     public static function getUser($userID)
     {
         if(session()->exists('player') && session()->get('player')->userID == $userID){
@@ -21,6 +25,9 @@ class UserHandler
         }
     }
 
+    /**
+     * @return User
+     */
     public static function player()
     {
         return session()->get('player');

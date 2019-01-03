@@ -2,6 +2,7 @@
 
 namespace App\Classes\Game\Handlers;
 
+use App\Classes\Game\Module;
 use App\Classes\Game\Modules;
 use App\Models\Application;
 use App\Models\UserApp;
@@ -9,6 +10,14 @@ use App\Models\ApplicationData;
 
 class ModuleHandler
 {
+    /**
+     * Get an application module.
+     * @param $lookup
+     * @param $userID
+     * @param bool $force
+     * @param int $version
+     * @return Module|null
+     */
     public function getApplication($lookup, $userID, $force = false, $version = 0){
         $app = null;
 
@@ -49,6 +58,12 @@ class ModuleHandler
         }
     }
 
+    /**
+     * Check if an user own the app.
+     * @param $appID
+     * @param $userID
+     * @return bool
+     */
     public function userOwnsApp($appID, $userID)
     {
         $appCheck = UserApp::ownedBy($userID)->where('application_id', $appID)->first();
@@ -59,6 +74,15 @@ class ModuleHandler
         }
     }
 
+    /**
+     * Call an internal function from a module.
+     * @param $name
+     * @param $userID
+     * @param $action
+     * @param $params
+     * @param string $type
+     * @return null|mixed
+     */
     public function call($name, $userID, $action, $params, $type = 'ajax'){
         $app = Application::where('app_name', $name)->first();
         if($app->isEmpty == false) {
@@ -80,11 +104,21 @@ class ModuleHandler
         return null;
     }
 
+    /**
+     * Get a list of installed apps.
+     * @param $userID
+     * @return mixed|UserApp
+     */
     public function getInstalledApps($userID){
         $apps = UserApp::with('app')->ownedBy($userID)->installed()->get();
         return $apps;
     }
 
+    /**
+     * Get all apps the user owns.
+     * @param $userID
+     * @return array
+     */
     public function getOwnedApps($userID){
         $apps = UserApp::ownedBy($userID)->get();
         $result = array();

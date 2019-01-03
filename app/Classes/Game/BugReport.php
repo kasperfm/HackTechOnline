@@ -20,6 +20,10 @@ class BugReport
 {
     public $user;
 
+    /**
+     * BugReport constructor.
+     * @param User $user
+     */
     public function __construct(User $user)
     {
         $this->user = $user;

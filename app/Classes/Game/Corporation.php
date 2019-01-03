@@ -37,6 +37,11 @@ class Corporation
         $this->owner = $corpModel->owner;
     }
 
+    /**
+     * Add trust points to a player
+     * @param $userID
+     * @param $points
+     */
     public function addTrust($userID, $points)
     {
         $trustObj = UserTrust::firstOrCreate(['user_id' => $userID, 'corp_id' => $this->corpID]);
@@ -44,6 +49,11 @@ class Corporation
         $trustObj->save();
     }
 
+    /**
+     * Remove trust points from a player
+     * @param $userID
+     * @param $points
+     */
     public function removeTrust($userID, $points)
     {
         $trustObj = UserTrust::firstOrCreate(['user_id' => $userID, 'corp_id' => $this->corpID]);

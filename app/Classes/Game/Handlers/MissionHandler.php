@@ -10,6 +10,12 @@ use App\Models\Mission as MissionModel;
 
 class MissionHandler
 {
+    /**
+     * Return a mission object.
+     * @param $id
+     * @param null $userID
+     * @return Mission
+     */
     public static function getMission($id, $userID = null)
     {
         $mission = MissionModel::where('id', $id)->first();
@@ -19,6 +25,12 @@ class MissionHandler
         return $missionObj;
     }
 
+    /**
+     * Get all available missions from a corp for the given user.
+     * @param $userID
+     * @param $corpID
+     * @return array
+     */
     public static function getAvailableMissions($userID, $corpID)
     {
         $userTrust = UserHandler::getUser($userID)->getCorpTrust($corpID);
@@ -49,6 +61,11 @@ class MissionHandler
         return $missionList;
     }
 
+    /**
+     * Get current mission for the user.
+     * @param $userID
+     * @return Mission|null
+     */
     public static function getCurrentMission($userID)
     {
         $mission = UserMission::where('user_id', $userID)->where('done', 0)->first();
@@ -60,6 +77,13 @@ class MissionHandler
         return null;
     }
 
+    /**
+     * Check objective for a mission.
+     * @param $userID
+     * @param $actionType
+     * @param $actionValue
+     * @return bool
+     */
     public static function checkObjective($userID, $actionType, $actionValue)
     {
         $currentMission = self::getCurrentMission($userID);
@@ -72,6 +96,13 @@ class MissionHandler
         return false;
     }
 
+    /**
+     * UNUSED FUNCTION!
+     * @param $userID
+     * @param $action
+     * @param $value
+     * @return string
+     */
     public static function generateActionToken($userID, $action, $value)
     {
         return sha1("y0u" . $userID . "cant" . $value . "touch" . $action . "th!s");

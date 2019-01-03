@@ -9,12 +9,24 @@ use App\Models\File as FileModel;
 
 class FileHandler
 {
+    /**
+     * Get a file object.
+     * @param $fileID
+     * @param null $userID
+     * @return File
+     */
     public static function getFile($fileID, $userID = null)
     {
         $file = new File($fileID, $userID);
         return $file;
     }
 
+    /**
+     * Get a file on the specified gateway.
+     * @param $filename
+     * @param $host
+     * @return File|null
+     */
     public static function findFileOnGateway($filename, $host)
     {
         $files = FileModel::where('placement', 'gw')->where('host', $host)->get();
@@ -27,6 +39,12 @@ class FileHandler
         return null;
     }
 
+    /**
+     * Get a file on the specified server.
+     * @param $filename
+     * @param $host
+     * @return File|null
+     */
     public static function findFileOnServer($filename, $host)
     {
         $files = FileModel::where('placement', 'server')->where('host', $host)->get();
@@ -39,6 +57,12 @@ class FileHandler
         return null;
     }
 
+    /**
+     * Download a file to the specified user's gateway.
+     * @param $fileID
+     * @param $userID
+     * @return FileModel|bool
+     */
     public static function downloadFile($fileID, $userID)
     {
         $file = self::getFile($fileID, $userID);
@@ -62,6 +86,12 @@ class FileHandler
         return false;
     }
 
+    /**
+     * Check if a file exists.
+     * @param $fileID
+     * @param $hostID
+     * @return bool
+     */
     public static function fileExists($fileID, $hostID)
     {
         $file = FileModel::where('file_id', $fileID)->where('host', $hostID)->first();
@@ -72,6 +102,11 @@ class FileHandler
         return false;
     }
 
+    /**
+     * List all files on a host.
+     * @param $host
+     * @return array|null
+     */
     public static function listFiles($host)
     {
         $files = FileModel::where('host', $host)->get();

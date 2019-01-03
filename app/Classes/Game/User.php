@@ -20,9 +20,25 @@ class User
     public $userID;
     public $username;
     public $model;
+
+    /**
+     * @var Economy
+     */
     public $economy;
+
+    /**
+     * @var Gateway
+     */
     public $gateway;
+
+    /**
+     * @var Mailbox
+     */
     public $mailbox;
+
+    /**
+     * @var BugReport
+     */
     public $bugreporter;
 
     public function __construct(Model $user)

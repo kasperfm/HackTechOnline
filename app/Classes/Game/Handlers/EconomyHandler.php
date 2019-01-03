@@ -10,6 +10,11 @@ use App\Classes\Game\Handlers\UserHandler;
 
 class EconomyHandler
 {
+    /**
+     * Generate a new valid and unused account number.
+     * @param $bankID
+     * @return string|null
+     */
     public static function generateAccountNumber($bankID){
         $bank_account_check_ok = false;
         $accountNumber = null;
@@ -27,6 +32,13 @@ class EconomyHandler
         return $accountNumber;
     }
 
+    /**
+     * Transfer money from one user to another.
+     * @param $fromUserID
+     * @param $toUserID
+     * @param $amount
+     * @return bool
+     */
     public static function transferMoney($fromUserID, $toUserID, $amount){
         $fromUser = UserHandler::getUser($fromUserID);
         $toUser = UserHandler::getUser($toUserID);
