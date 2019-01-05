@@ -4,6 +4,7 @@ namespace App\Classes\Game\Modules\Tools\IpRenewer;
 
 use App\Classes\Game\Module;
 use App\Classes\Game\Handlers\UserHandler;
+use App\Events\MissionEvent;
 use Illuminate\Http\Request;
 
 class IpRenewer extends Module
@@ -28,6 +29,7 @@ class IpRenewer extends Module
         $response['answer'] = false;
 
         if(UserHandler::player()->gateway->renewIPAddress($ipChangeTimeout)){
+            event(new MissionEvent('renewip', null));
             $response['answer'] = true;
         }
 

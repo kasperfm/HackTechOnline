@@ -59,7 +59,9 @@ $(document).ready(function() {
                                 timeout: 5000
                             }
                         );
-
+                        $("#mailsubject").val("");
+                        $("#userto").val("");
+                        $("#mailcontent").val("");
                         $(this).closest('form').find("input[type=text], textarea").val("");
                     }else{
                         $.notification(
@@ -145,12 +147,13 @@ function inboxFunctions(){
                 },
                 success: function(response){
                     if(response.result === true) {
-                        orig_msg = response.message;
-                        $("#userto").attr("value", response.from_username);
-                        $("#mailsubject").attr("value", "Re: " + response.subject);
-                        var selected = $("#email-tabs").tabs("option", "selected");
-                        $("#email-tabs").tabs("option", "selected", selected + 1);
-                        $("#email-tabs").tabs( "option", "active", selected + 1 );
+                        var emailTabs = $("#email-tabs");
+                        //orig_msg = response.message;
+                        $("#userto").val(response.from_username);
+                        $("#mailsubject").val("Re: " + response.subject);
+                        var selected = emailTabs.tabs("option", "selected");
+                        emailTabs.tabs("option", "selected", selected + 1);
+                        emailTabs.tabs("option", "active", true);
                     }else{
                         $.notification(
                             {
