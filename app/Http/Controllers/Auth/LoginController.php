@@ -40,7 +40,9 @@ class LoginController extends Controller
         $userLoginEntry->last_ip = $ipAddress;
         $userLoginEntry->save();
 
-        activity('auth')->causedBy($user)->log(Auth::user()->username . ' logged in');
+        activity('auth')
+            ->causedBy($user)
+            ->log(Auth::user()->username . ' logged in');
     }
 
     /**

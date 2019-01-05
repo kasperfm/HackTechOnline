@@ -48,7 +48,10 @@ class Corporation
         $trustObj->trust += $points;
         $trustObj->save();
 
-        activity('game')->withProperties(['corp_id' => $this->corpID])->causedBy($userID)->log('Gained ' . $points . 'trust points');
+        activity('game')
+            ->withProperties(['corp_id' => $this->corpID])
+            ->causedBy(Auth::user() ? Auth::user() : null)
+            ->log('Gained ' . $points . 'trust points');
     }
 
     /**
@@ -62,7 +65,10 @@ class Corporation
         $trustObj->trust -= $points;
         $trustObj->save();
 
-        activity('game')->withProperties(['corp_id' => $this->corpID])->causedBy($userID)->log('Lost ' . $points . 'trust points');
+        activity('game')
+            ->withProperties(['corp_id' => $this->corpID])
+            ->causedBy(Auth::user() ? Auth::user() : null)
+            ->log('Lost ' . $points . 'trust points');
     }
 
 }

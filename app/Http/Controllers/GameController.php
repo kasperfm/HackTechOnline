@@ -22,7 +22,9 @@ class GameController extends Controller
     }
 
     public function logout(){
-        activity('auth')->causedBy(Auth::user())->log(Auth::user()->username . ' logged out');
+        activity('auth')
+            ->causedBy(Auth::user())
+            ->log(Auth::user()->username . ' logged out');
 
         Auth::logout();
         session()->flush();

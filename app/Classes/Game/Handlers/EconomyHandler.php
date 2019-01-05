@@ -58,16 +58,14 @@ class EconomyHandler
             $log->fill($newLogEntry);
             $log->save();
 
-            if(Auth::check()){
-                activity('game')
-                    ->performedOn($log)
-                    ->withProperties([
-                        'from_account' => $fromUser->economy->getAccountNumber(),
-                        'to_account' => $toUser->economy->getAccountNumber(),
-                    ])
-                    ->causedBy(Auth::user())
-                    ->log('Transferred ' . $amount . ' credits from ' . $fromUser->economy->getAccountNumber() . ' to ' . $toUser->economy->getAccountNumber());
-            }
+            activity('game')
+                ->performedOn($log)
+                ->withProperties([
+                    'from_account' => $fromUser->economy->getAccountNumber(),
+                    'to_account' => $toUser->economy->getAccountNumber(),
+                ])
+                ->causedBy(Auth::user() ? Auth::user() : null)
+                ->log('Transferred ' . $amount . ' credits from ' . $fromUser->economy->getAccountNumber() . ' to ' . $toUser->economy->getAccountNumber());
 
             return true;
         }else{

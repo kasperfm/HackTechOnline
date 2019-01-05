@@ -31,11 +31,19 @@ class Mailbox
         $newMessage->message = strip_tags(nl2br($message), '<br>');
         $newMessage->save();
 
-        activity('game')->performedOn($newMessage)->withProperties(['message_id' => $newMessage->id])->causedBy($this->user->model)->log('Ingame mail sent');
+        activity('game')
+            ->performedOn($newMessage)
+            ->withProperties(['message_id' => $newMessage->id])
+            ->causedBy($this->user->model)
+            ->log('Ingame mail sent');
     }
 
     public function deleteMessage(Message $message){
-        activity('game')->performedOn($message)->withProperties(['message_id' => $message->id])->causedBy($this->user->model)->log('Ingame mail deleted');
+        activity('game')
+            ->performedOn($message)
+            ->withProperties(['message_id' => $message->id])
+            ->causedBy($this->user->model)
+            ->log('Ingame mail deleted');
         $message->delete();
     }
 

@@ -14,6 +14,7 @@ namespace App\Classes\Game;
 
 use App\Models\Port;
 use App\Models\Host;
+use Illuminate\Support\Facades\Auth;
 
 class Computer {
     protected $model = null;
@@ -116,5 +117,15 @@ class Computer {
         $host->save();
 
         $this->online = $newState;
+
+        activity('system')
+            ->performedOn($host)
+            ->causedBy(Auth::user() ? Auth::user() : null)
+            ->withProperties([
+                'host_id' => $this->hostID,
+                'ip' => $host->game_ip,
+                'state' => (int)$newState
+            ])
+            ->log('Changed machine online state');
     }
 }
