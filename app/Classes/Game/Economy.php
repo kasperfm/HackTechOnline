@@ -63,6 +63,11 @@ class Economy
         $this->bankAccount->balance += $amount;
         $this->bankAccount->save();
 
+        activity('game')
+            ->performedOn($this->bankAccount)
+            ->causedBy($this->user)
+            ->log('Added ' . $amount . ' credits');
+
         return $this->getBalance();
     }
 
@@ -74,6 +79,11 @@ class Economy
     public function removeMoney($amount){
         $this->bankAccount->balance -= $amount;
         $this->bankAccount->save();
+
+        activity('game')
+            ->performedOn($this->bankAccount)
+            ->causedBy($this->user)
+            ->log('Removed ' . $amount . ' credits');
 
         return $this->getBalance();
     }

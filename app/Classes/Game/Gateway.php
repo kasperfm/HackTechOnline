@@ -82,6 +82,7 @@ class Gateway extends Computer {
         $this->model->hdd_id = $this->hardware['hdd']->hardwareID;
         $this->model->inet_id = $this->hardware['net']->hardwareID;
         $this->model->save();
+        return $this->model;
     }
 
     public function installApplication($appID){
@@ -90,6 +91,12 @@ class Gateway extends Computer {
         if($this->enoughFreeDiskSpace($application->data->hdd_req)){
             $application->installed = 1;
             $application->save();
+
+            activity('game')
+                ->withProperties(['application_id' => $appID])
+                ->causedBy($this->ownerID)
+                ->performedOn($application)
+                ->log('App ' . $application->app->app_name . ' installed');
         }
     }
 
@@ -97,6 +104,12 @@ class Gateway extends Computer {
         $application = UserApp::where('user_id', $this->ownerID)->where('application_id', $appID)->first();
         $application->installed = 0;
         $application->save();
+
+        activity('game')
+            ->withProperties(['application_id' => $appID])
+            ->causedBy($this->ownerID)
+            ->performedOn($application)
+            ->log('App ' . $application->app->app_name . ' removed');
     }
 
     public function renewIPAddress($timeoutCheckInMinutes = 180){
@@ -120,6 +133,11 @@ class Gateway extends Computer {
             $host->ip_changed_at = Carbon::now();
             $host->save();
         }
+
+        activity('game')
+            ->causedBy($this->ownerID)
+            ->performedOn($host)
+            ->log('Renewed gateway IP (' . $host->game_ip . ')');
 
         return $change;
     }

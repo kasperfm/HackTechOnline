@@ -29,16 +29,18 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        $this->logUserLogin(Auth::id(), $_SERVER['REMOTE_ADDR']);
+        $this->logUserLogin(Auth::user(), $_SERVER['REMOTE_ADDR']);
         return '/game';
     }
 
-    private function logUserLogin($userID, $ipAddress){
+    private function logUserLogin($user, $ipAddress){
         $userLoginEntry = new UserLogin();
-        $userLoginEntry->user_id = $userID;
+        $userLoginEntry->user_id = $user->id;
         $userLoginEntry->last_date = date("Y-m-d H:i:s", time());
         $userLoginEntry->last_ip = $ipAddress;
         $userLoginEntry->save();
+
+        activity('auth')->causedBy($user)->log(Auth::user()->username . ' logged in');
     }
 
     /**

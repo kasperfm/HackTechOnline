@@ -77,6 +77,15 @@ class FileHandler
                 $newFile->host = $user->gateway->hostID;
                 $newFile->save();
 
+                activity('game')
+                    ->performedOn($newFile)
+                    ->withProperties([
+                        'from_host' => $file->hostID,
+                        'to_gateway' => $user->gateway->hostID
+                    ])
+                    ->causedBy($user->model)
+                    ->log('Downloaded file: ' . $file->filename);
+
                 $server = new \App\Classes\Game\Server($file->hostID);
                 event(new MissionEvent('get', $file->filename . ' ' . $server->hostname));
                 return $newFile;

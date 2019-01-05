@@ -27,7 +27,17 @@ class GatewayShop {
         if($user->economy->getBalance() >= $hardware->hardwareData['price']){
             $user->economy->removeMoney($hardware->hardwareData['price']);
             $gateway->setHardwarePart(HardwareTypes::Gateway, $partID);
-            $gateway->saveHardware();
+            $gatewayModel = $gateway->saveHardware();
+
+            activity('game')
+                ->performedOn($gatewayModel)
+                ->withProperties([
+                    'hardware_id' => $hardware->hardwareID,
+                    'hardware_type' => $hardware->getHardwareTypeString()
+                ])
+                ->causedBy($user->model)
+                ->log('Upgraded gateway hardware');
+
             return true;
         }else{
             return false;

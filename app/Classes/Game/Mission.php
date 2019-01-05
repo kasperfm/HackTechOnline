@@ -64,6 +64,12 @@ class Mission
 
             $mission->save();
 
+            activity('game')
+                ->performedOn($mission)
+                ->withProperties(['mission_id' => $mission->mission_id])
+                ->causedBy($this->user->model)
+                ->log('Mission accepted');
+
             return true;
         }
 
@@ -81,6 +87,13 @@ class Mission
                 $this->completed = true;
 
                 $corp = CorpHandler::getCorporation($userMission->mission->corporation->id);
+
+                activity('game')
+                    ->performedOn($userMission)
+                    ->withProperties(['mission_id' => $userMission->mission_id])
+                    ->causedBy($this->user->model)
+                    ->log('Mission completed');
+
                 $corp->addTrust($this->user->userID, $this->model->reward_trust);
                 $this->user->economy->addMoney($this->model->reward_credits);
 
@@ -95,6 +108,7 @@ class Mission
     {
         if($this->user){
             $mission = UserMission::where('user_id', $this->user->userID)->where('done', 0)->first();
+            activity('game')->performedOn($mission)->withProperties(['mission_id' => $mission->mission_id])->causedBy($this->user->model)->log('Mission aborted');
             $mission->delete();
 
             return true;

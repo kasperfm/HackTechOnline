@@ -49,6 +49,7 @@ class User
         $this->gateway = new Gateway($user->id);
         $this->mailbox = new Mailbox($user);
         $this->bugreporter = new BugReport($user);
+        $this->model = $user;
     }
 
     public function getCorpTrust($corpID)

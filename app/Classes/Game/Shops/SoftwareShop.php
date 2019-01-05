@@ -67,6 +67,15 @@ class SoftwareShop
 
             $newApp->save();
 
+            activity('game')
+                ->performedOn($newApp)
+                ->withProperties([
+                    'software_id' => $newApp->application_id,
+                    'software_version' => $newSoftware->version
+                ])
+                ->causedBy($user->model)
+                ->log('Bought software ' . $newSoftware->title);
+
             $user->economy->removeMoney($newSoftware->price);
 
             return true;

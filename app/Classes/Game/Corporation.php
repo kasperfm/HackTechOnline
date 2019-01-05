@@ -47,6 +47,8 @@ class Corporation
         $trustObj = UserTrust::firstOrCreate(['user_id' => $userID, 'corp_id' => $this->corpID]);
         $trustObj->trust += $points;
         $trustObj->save();
+
+        activity('game')->withProperties(['corp_id' => $this->corpID])->causedBy($userID)->log('Gained ' . $points . 'trust points');
     }
 
     /**
@@ -59,6 +61,8 @@ class Corporation
         $trustObj = UserTrust::firstOrCreate(['user_id' => $userID, 'corp_id' => $this->corpID]);
         $trustObj->trust -= $points;
         $trustObj->save();
+
+        activity('game')->withProperties(['corp_id' => $this->corpID])->causedBy($userID)->log('Lost ' . $points . 'trust points');
     }
 
 }
