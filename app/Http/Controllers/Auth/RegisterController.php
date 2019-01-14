@@ -9,6 +9,7 @@ use App\Models\Invite;
 use App\Models\Gateway;
 use App\Models\BankAccount;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -180,6 +181,8 @@ class RegisterController extends Controller
         UserVerification::generate($user);
 
         UserVerification::send($user, 'Activate your HackTech Online account');
+
+        Session::put('login_message', 'Please check your email inbox for an activation link');
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());

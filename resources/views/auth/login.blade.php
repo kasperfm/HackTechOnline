@@ -18,4 +18,12 @@
             }
         });
     </script>
+
+    @if(Session::has('login_message'))
+        <script type="text/javascript">
+        alert("{{ Session::get('login_message') }}");
+        </script>
+
+        @php(Session::forget('login_message'))
+    @endif
 @endsection
