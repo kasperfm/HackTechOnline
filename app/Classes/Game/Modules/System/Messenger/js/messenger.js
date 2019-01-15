@@ -9,7 +9,7 @@ $(document).ready(function() {
         setChatSize();
     });
 
-    var socket = io.connect(backendServer, {'force new connection':true});
+    var socket = io.connect(backendServer, {'force new connection':true, 'secure': true});
     var $nickError = $('#nickError');
     var $nickBox = $('#nickname');
     var $users = $('#users');

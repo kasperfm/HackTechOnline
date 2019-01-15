@@ -177,5 +177,16 @@ class DefaultAppsSeeder extends Seeder
             'cpu_req' => 22,
             'ram_req' => 28
         ]);
+
+        // System > Bug Report
+        DB::table('applications')->insert([
+            'id' => 14,
+            'app_name' => 'AccountReset',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 14
+        ]);
     }
 }

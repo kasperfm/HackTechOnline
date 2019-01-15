@@ -21,8 +21,8 @@ class Messenger extends Module
 
     public function returnHTML()
     {
-        $chatBackendPort = 8101;
-        $username = UserHandler::getUser(Auth::id())->username;
+        $chatBackendPort = config('hacktech.messenger.port');
+        $username = Auth::user()->username;
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
 

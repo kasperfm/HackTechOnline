@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
     var username = '{{ $username }}';
-    var backendServer = '{{ env('APP_URL') }}:{{ $chatBackendPort }}';
+    var backendServer = 'https://{{ config('hacktech.messenger.host') }}:{{ $chatBackendPort }}';
 </script>
 
 <script type="text/javascript" src="/js/socket.io.slim.js"></script>

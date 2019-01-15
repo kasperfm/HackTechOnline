@@ -7,7 +7,10 @@
                     <ul>
                         <li rel="news" class="menubar-item-inactive">NEWS</li>
                         <li rel="help" class="menubar-item-inactive">HELP</li>
+                        <li><hr></li>
+                        <li rel="accountreset" class="exec">RESET GAME ACCOUNT</li>
                         <li rel="bugreporter" class="exec">REPORT A BUG</li>
+                        <li><hr></li>
                         <li rel="about" class="exec">ABOUT</li>
                     </ul>
                 </div>

@@ -12,8 +12,14 @@
 
 namespace App\Classes\Game;
 
+use App\Models\Message;
 use App\Models\User as Model;
+use App\Models\UserApp;
+use App\Models\UserMission;
 use App\Models\UserTrust;
+use App\Classes\Game\Types\HardwareTypes;
+use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 
 class User
 {
@@ -55,5 +61,33 @@ class User
     public function getCorpTrust($corpID)
     {
         return UserTrust::where('corp_id', $corpID)->where('user_id', $this->userID)->first();
+    }
+
+    public function resetAccount()
+    {
+        // Set money to default value.
+        $this->economy->setMoney(config('hacktech.startingmoney'));
+
+        // Reset gateway hardware
+        $this->gateway->setHardwarePart(HardwareTypes::Gateway, 1);
+        $this->gateway->setHardwarePart(HardwareTypes::Gateway, 2);
+        $this->gateway->setHardwarePart(HardwareTypes::Gateway, 3);
+        $this->gateway->setHardwarePart(HardwareTypes::Gateway, 4);
+
+        // Clean all messages sent to and from the user.
+        Message::where('from_user_id', $this->userID)->delete();
+        Message::where('to_user_id', $this->userID)->delete();
+
+        // Clear user generated content.
+        UserMission::where('user_id', $this->userID)->delete();
+        UserApp::where('user_id', $this->userID)->delete();
+        File::where('owner', $this->userID)->delete();
+        UserTrust::where('user_id', $this->userID)->delete();
+
+        activity('system')
+            ->causedBy(Auth::user())
+            ->log(Auth::user()->username . ' reset his account');
+
+        return response()->json('OK');
     }
 }

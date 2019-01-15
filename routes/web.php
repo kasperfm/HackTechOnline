@@ -12,7 +12,7 @@
 */
 
 Route::group(['middleware' => ['authed']], function () {
-    Route::get('/game', 'GameController@index');
+    Route::get('/game', 'GameController@index')->name('game');
 
     Route::post('/game/ajax/module/load', 'ModuleController@loadModule');
     Route::post('/game/ajax/module/unload', 'ModuleController@unloadModule');
@@ -25,6 +25,8 @@ Route::group(['middleware' => ['authed']], function () {
 
     Route::get('/game/missions/dynamicjs', 'MissionController@getDynamicJS');
     Route::post('/game/missions/checkevent', 'MissionController@checkMissionEvent');
+
+    Route::get('/logout', 'GameController@logout')->name('logout');
 });
 
 Route::post('/game/web/{ip}/ajax/{call}', 'GameController@ingameWebAjax');
@@ -32,9 +34,9 @@ Route::post('/game/web/{ip}/ajax/{call}', 'GameController@ingameWebAjax');
 Route::get('/','GameController@index');
 
 
-Route::get('/login', 'GameController@login');
+Route::get('/login', 'GameController@login')->name('login');
 
-Route::get('/offline', 'OfflineController@index');
+Route::get('/offline', 'OfflineController@index')->name('offline');
 
 Auth::routes();
-Route::get('/logout', 'GameController@logout');
+

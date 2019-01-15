@@ -87,4 +87,17 @@ class Economy
 
         return $this->getBalance();
     }
+
+    /**
+     * Set the balance to a fixed amount.
+     * @param $amount
+     * @return int
+     */
+    public function setMoney($amount)
+    {
+        $this->bankAccount->balance = $amount;
+        $this->bankAccount->save();
+
+        return $this->getBalance();
+    }
 }

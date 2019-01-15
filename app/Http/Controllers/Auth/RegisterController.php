@@ -45,7 +45,7 @@ class RegisterController extends Controller
     protected $redirectTo = '/';
 
     // TODO: Correct this when out of alpha.
-    private $startingMoney = 100000;
+    private $startingMoney = 10000;
 
     /**
      * Create a new controller instance.
