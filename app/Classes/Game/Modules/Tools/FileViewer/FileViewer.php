@@ -39,7 +39,6 @@ class FileViewer extends Module
             return null;
         }
         $localfiles = FileHandler::listFiles($user->gateway->hostID);
-
         $return = array();
         if(!empty($localfiles)){
             foreach($localfiles as $file){

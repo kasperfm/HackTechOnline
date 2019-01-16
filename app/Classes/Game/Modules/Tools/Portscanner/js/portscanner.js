@@ -11,7 +11,7 @@ $(document).ready(function() {
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/portscanner/ajax/scan',
+            url: '/game/module/Portscanner/ajax/scan',
             data: {
                 _token: window.Laravel.csrfToken,
                 address: $("#scan-address").val()

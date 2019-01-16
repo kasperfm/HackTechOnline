@@ -11,7 +11,7 @@ $(document).ready(function() {
             type: 'POST',
             dataType: 'json',
             cache: false,
-            url: '/game/module/iprenewer/ajax/renew',
+            url: '/game/module/IpRenewer/ajax/renew',
             data: {
                 _token: window.Laravel.csrfToken
             },

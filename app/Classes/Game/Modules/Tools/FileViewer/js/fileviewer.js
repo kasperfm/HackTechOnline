@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
     $('#fileinspector_filetree').jaofiletree({
-        script  : '/game/module/fileviewer/ajax/list',
+        script  : '/game/module/FileViewer/ajax/list',
         onclick : function(elem,type,file,fileid){
             var filename_tmp = file;
             var filename = filename_tmp.substring(1, filename_tmp.length-1);
@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
                 type: 'POST',
                 dataType: 'json',
                 cache: false,
-                url: '/game/module/fileviewer/ajax/open',
+                url: '/game/module/FileViewer/ajax/open',
                 data: {
                     _token: window.Laravel.csrfToken,
                     fid: fileid
