@@ -5,7 +5,7 @@
  *
  * @package HackTech Online
  * @author Kasper F. Mikkelsen
- * @copyright 2018
+ * @copyright 2019
  * @version 1.0
  * @access public
  */

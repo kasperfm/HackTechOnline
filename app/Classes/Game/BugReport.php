@@ -1,7 +1,7 @@
 <?php
 
 /**
- * App\Classes\Game\Mission
+ * App\Classes\Game\BugReport
  *
  * @package HackTech Online
  * @author Kasper F. Mikkelsen

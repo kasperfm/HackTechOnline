@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * App\Classes\Game\Economy
+ *
+ * @package HackTech Online
+ * @author Kasper F. Mikkelsen
+ * @copyright 2019
+ * @version 1.0
+ * @access public
+ */
+
 namespace App\Classes\Game;
 
 use App\Models\Bank;

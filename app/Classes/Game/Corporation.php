@@ -52,7 +52,7 @@ class Corporation
         activity('game')
             ->withProperties(['corp_id' => $this->corpID])
             ->causedBy(Auth::user() ? Auth::user() : null)
-            ->log('Gained ' . $points . 'trust points');
+            ->log('Gained ' . $points . ' trust points');
     }
 
     /**
@@ -69,7 +69,7 @@ class Corporation
         activity('game')
             ->withProperties(['corp_id' => $this->corpID])
             ->causedBy(Auth::user() ? Auth::user() : null)
-            ->log('Lost ' . $points . 'trust points');
+            ->log('Lost ' . $points . ' trust points');
     }
 
 }
