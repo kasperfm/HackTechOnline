@@ -11,7 +11,7 @@ class Webbrowser extends Module
 {
     public function setup()
     {
-        $this->name = "webbrowser";
+        $this->name = "Webbrowser";
         $this->title = "Webbrowser";
 
         $this->size = array(

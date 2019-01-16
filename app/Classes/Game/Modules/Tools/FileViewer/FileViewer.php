@@ -12,7 +12,7 @@ class FileViewer extends Module
 {
     public function setup()
     {
-        $this->name = "fileviewer";
+        $this->name = "FileViewer";
         $this->title = "File Viewer";
         $this->group = "tools";
         $this->description = "View the contents of a file.";

@@ -12,7 +12,7 @@ class MySoftware extends Module
 {
     public function setup()
     {
-        $this->name = "mysoftware";
+        $this->name = "MySoftware";
         $this->title = "My Software";
 
         $this->size = array(

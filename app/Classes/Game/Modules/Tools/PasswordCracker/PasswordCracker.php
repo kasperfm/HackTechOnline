@@ -9,7 +9,7 @@ class PasswordCracker extends Module
 {
     public function setup()
     {
-        $this->name = "passwordcracker";
+        $this->name = "PasswordCracker";
         $this->title = "Password Cracker";
         $this->group = "tools";
         $this->description = "A common password cracker. This should be in every hackers toolbox!";

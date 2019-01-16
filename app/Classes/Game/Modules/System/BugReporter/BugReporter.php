@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class BugReporter extends Module
 {
     public function setup(){
-        $this->name = "bugreporter";
+        $this->name = "BugReporter";
         $this->title = "Bug Reporter";
 
         $this->size = array(

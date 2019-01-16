@@ -10,7 +10,7 @@ class Portscanner extends Module
 {
     public function setup()
     {
-        $this->name = "portscanner";
+        $this->name = "Portscanner";
         $this->title = "Portscanner";
         $this->group = "tools";
         $this->description = "Scan target systems for open ports.";

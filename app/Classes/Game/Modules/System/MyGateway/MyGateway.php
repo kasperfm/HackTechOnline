@@ -12,7 +12,7 @@ class MyGateway extends Module
 {
     public function setup()
     {
-        $this->name = "mygateway";
+        $this->name = "MyGateway";
         $this->title = "My Gateway";
 
         $this->size = array(

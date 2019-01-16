@@ -11,7 +11,7 @@ class IpRenewer extends Module
 {
     public function setup()
     {
-        $this->name = "iprenewer";
+        $this->name = "IpRenewer";
         $this->title = "IP Renewer";
         $this->group = "tools";
         $this->description = "Renew your gateway's IP address.";

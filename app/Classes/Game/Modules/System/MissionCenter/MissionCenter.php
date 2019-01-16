@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class MissionCenter extends Module
 {
     public function setup(){
-        $this->name = "missioncenter";
+        $this->name = "MissionCenter";
         $this->title = "MissionCenter";
 
         $this->size = array(

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class AccountReset extends Module
 {
     public function setup(){
-        $this->name = "accountreset";
+        $this->name = "AccountReset";
         $this->title = "Reset Account";
 
         $this->size = array(

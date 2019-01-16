@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class SoftwareMarket extends Module
 {
     public function setup(){
-        $this->name = "softwaremarket";
+        $this->name = "SoftwareMarket";
         $this->title = "Software Market";
 
         $this->size = array(
