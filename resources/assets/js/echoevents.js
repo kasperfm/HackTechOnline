@@ -12,4 +12,6 @@ Echo.private('notifications' + window.userToken).listen('Notification', (e) => {
         timeout: timeout,
         content: e.message
     });
+
+    updateCredits();
 });

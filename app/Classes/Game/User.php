@@ -60,7 +60,12 @@ class User
 
     public function getCorpTrust($corpID)
     {
-        return UserTrust::where('corp_id', $corpID)->where('user_id', $this->userID)->first();
+        $userTrust = UserTrust::where('corp_id', $corpID)->where('user_id', $this->userID)->first();
+        if($userTrust){
+            return $userTrust->trust;
+        }
+
+        return 0;
     }
 
     public function resetAccount()

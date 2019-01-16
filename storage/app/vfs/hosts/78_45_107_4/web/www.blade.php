@@ -49,7 +49,7 @@
                     },
                     success: function(response) {
                         if(response.answer === true) {
-                            // magic
+                            // mission completed
                         }
                     }
                 });

@@ -15,6 +15,7 @@ namespace App\Classes\Game;
 use App\Models\Corporation as Model;
 use App\Models\User;
 use App\Models\UserTrust;
+use Illuminate\Support\Facades\Auth;
 
 class Corporation
 {

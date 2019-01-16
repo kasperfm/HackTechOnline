@@ -7,7 +7,7 @@ function submit($request){
 
     if(!empty($request['token']) && !empty($request['password'])){
         if($request['token'] == 'shrooms4ever' && $request['password'] == '34hYp19kfmd'){
-            event(new MissionEvent('submit', null));
+            event(new MissionEvent('submit', '34hYp19kfmd sharemypwd.info'));
             $response['answer'] = true;
         }
     }

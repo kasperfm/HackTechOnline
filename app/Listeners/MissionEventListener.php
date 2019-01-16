@@ -80,6 +80,8 @@ class MissionEventListener
                 case 'submit':
                     // Submit data to website
                     //$missionCompleted = true;
+                    $splitValue = explode(' ', $value);
+                    $missionParam = "submit " . $splitValue[0] . " to " . ServerHandler::hostnameToIP($splitValue[1]);
                     $jsonResponse['title'] = "Thank you for your submission.";
                     break;
 

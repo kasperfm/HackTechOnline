@@ -33,10 +33,8 @@ Route::post('/game/web/{ip}/ajax/{call}', 'GameController@ingameWebAjax');
 
 Route::get('/','GameController@index');
 
-
 Route::get('/login', 'GameController@login')->name('login');
 
 Route::get('/offline', 'OfflineController@index')->name('offline');
 
 Auth::routes();
-

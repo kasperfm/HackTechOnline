@@ -6,6 +6,7 @@ use App\Models\Mission;
 use App\Models\MissionData;
 use App\Models\FileData;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class MissionDataSeeder extends Seeder
 {
@@ -16,6 +17,8 @@ class MissionDataSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('missions')->truncate();
+
         //PsychedelicBytes - Show us your skills
         $psyBytes_01_Mission = new Mission();
         $psyBytes_01_Mission->fill([
@@ -32,6 +35,40 @@ class MissionDataSeeder extends Seeder
             'chain_parent' => 0
         ]);
         $psyBytes_01_Mission->save();
+
+        //PsychedelicBytes - Cr@ck dat konfig pazz
+        $psyBytes_02_Mission = new Mission();
+        $psyBytes_02_Mission->fill([
+            'title' => 'Cr@ck dat konfig pazz',
+            'description' => 'You completed our first task, but now the fun part begins! Open the configuration file you got from the GerMail admin system in your default text editor. Then look for the admin password to their root-domain, crack it using your favourite cracker tool, and send it to us. To send decrypted password to us, please don\'t use email or other crappy methods. But point your browser to "https://sharemypwd.info", and use the unique access token "shrooms4ever" and fill in the cracked password, to share it with us.',
+            'complete_message' => 'Thank you for the password! You better hide your tracks a bit now.',
+            'reward_trust' => 5,
+            'reward_credits' => 175,
+            'corp_id' => 4,
+            'type' => 'submit',
+            'objective' => 'submit 34hYp19kfmd to 78.45.107.4',
+            'minimum_trust' => 5,
+            'hidden' => 0,
+            'chain_parent' => $psyBytes_01_Mission->id
+        ]);
+        $psyBytes_02_Mission->save();
+
+        //PsychedelicBytes - Cover your tracks
+        $psyBytes_03_Mission = new Mission();
+        $psyBytes_03_Mission->fill([
+            'title' => 'Cover your tracks',
+            'description' => 'As the very final task for now, you should change your gateway\'s IP address as soon as possible! We know it\'s not a very good way to try to be safe, but it\'s better than nothing. So get an IP Renewer tool, and change your IP... NOW!',
+            'complete_message' => 'Phew, that was close. Let us hope that this will slow their tracers down a bit.',
+            'reward_trust' => 10,
+            'reward_credits' => 30,
+            'corp_id' => 4,
+            'type' => 'renewip',
+            'objective' => '',
+            'minimum_trust' => 10,
+            'hidden' => 0,
+            'chain_parent' => $psyBytes_02_Mission->id
+        ]);
+        $psyBytes_03_Mission->save();
 
         $files = array(
             [
