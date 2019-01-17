@@ -135,6 +135,10 @@ body > #top-wrapper {
 	z-index: 5000;
 }
 
+.menu-hr{
+	border-color: $menubar-item-inactive !important;
+}
+
 .menubar .pm-icon{
 	float: right;
 	padding: 5px;

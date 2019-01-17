@@ -44,9 +44,6 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/';
 
-    // TODO: Correct this when out of alpha.
-    private $startingMoney = 10000;
-
     /**
      * Create a new controller instance.
      *
@@ -60,7 +57,7 @@ class RegisterController extends Controller
     private function useInviteKey($inviteKey, $userID){
         $invite = Invite::where('key', $inviteKey)->available()->first();
 
-        if($invite->isEmpty == false) {
+        if($invite) {
             $invite->used = 1;
             $invite->user_id = $userID;
             $invite->save();
@@ -80,7 +77,7 @@ class RegisterController extends Controller
 
         $newAccount = new BankAccount();
         $newAccount->fill($accountInfo);
-        $newAccount->balance = $this->startingMoney;
+        $newAccount->balance = config('hacktech.startingmoney', 10000);
         $newAccount->save();
     }
 
@@ -111,6 +108,16 @@ class RegisterController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'invite' => 'required|valid_invite',
+            'g-recaptcha-response' => 'required|recaptcha',
+        ]);
+    }
+
+    protected function validatorForPreInvites(array $data)
+    {
+        return Validator::make($data, [
+            'username' => 'required|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users|preinvite_email',
+            'password' => 'required|min:6|confirmed',
             'g-recaptcha-response' => 'required|recaptcha',
         ]);
     }
@@ -162,7 +169,11 @@ class RegisterController extends Controller
     */
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
+        if(in_array($request->get('email'), config('invites.emails'))){
+            $this->validatorForPreInvites($request->all())->validate();
+        }else{
+            $this->validator($request->all())->validate();
+        }
 
         $user = $this->create($request->all());
 

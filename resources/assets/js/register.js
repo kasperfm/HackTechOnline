@@ -15,4 +15,8 @@ $(document).ready(function() {
         }
     });
     $('#register_window').dialog("widget").draggable("option", "containment", "#window_wrapper");
+
+    $('#register-form').on("submit", function (e) {
+        $('.register-btn').prop("disabled", true);
+    });
 });

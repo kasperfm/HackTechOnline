@@ -3,7 +3,7 @@
         <h1 class="title">Register new account</h1>
     </div>
     <div class="pane" style="text-align: center;">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+        <form class="form-horizontal" name="register-form" id="register-form" role="form" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
 
             <div class="form-group">
@@ -42,7 +42,7 @@
                 <label for="invite" class="col-md-4 control-label">Invite code</label>
 
                 <div>
-                    <input id="invite" type="text" maxlength="16" class="form-control{{ $errors->has('invite') ? ' has-input-error' : '' }}" name="invite" value="{{ old('invite') }}" required>
+                    <input id="invite" type="text" maxlength="16" class="form-control{{ $errors->has('invite') ? ' has-input-error' : '' }}" name="invite" value="{{ old('invite') }}">
                 </div>
             </div>
 
@@ -52,7 +52,7 @@
             
             <div class="form-group">
                 <div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary register-btn">
                         Register
                     </button>
                 </div>

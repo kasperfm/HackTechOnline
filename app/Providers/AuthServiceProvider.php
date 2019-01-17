@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Invite;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use GuzzleHttp\Client;
@@ -35,6 +35,13 @@ class AuthServiceProvider extends ServiceProvider
 
         Validator::extend('recaptcha', function($attribute, $value, $parameters, $validator) {
             if(!empty($value) && $this->validateRecaptcha($value)){
+                return true;
+            }
+            return false;
+        });
+
+        Validator::extend('preinvite_email', function($attribute, $value, $parameters, $validator) {
+            if(!empty($value) && in_array($value, config('invites.emails'))){
                 return true;
             }
             return false;
