@@ -51,12 +51,12 @@ $(document).ready(function() {
     });
 
     socket.on('new message', function(data){
-        $chat.append('<li><span class="msg"><b>' + data.nick + ': </b>' + $('<span>'+data.msg+'</span>').text() + "</span></li>");
+        $chat.append('<li class="tooltip"><span class="msg"><b>' + data.nick + ': </b>' + $('<span>'+data.msg+'</span>').text() + '</span><span class="tooltiptext">'+data.timestamp+'</span></li>');
         $("#chatBox").animate({ scrollTop: $('#chatBox')[0].scrollHeight}, 1000);
     });
 
     socket.on('whisper', function(data){
-        $chat.append('<li><span class="whisper"><b>' + data.nick + ': </b>' + $('<span>'+data.msg+'</span>').text() + "</span></li>");
+        $chat.append('<li class="tooltip"><span class="whisper"><b>' + data.nick + ': </b>' + $('<span>'+data.msg+'</span>').text() + '</span><span class="tooltiptext">'+data.timestamp+'</span></li>');
         $("#chatBox").animate({ scrollTop: $('#chatBox')[0].scrollHeight}, 1000);
     });
 
