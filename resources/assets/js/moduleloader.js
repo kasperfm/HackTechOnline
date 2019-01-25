@@ -89,7 +89,7 @@ function updateApplicationMenu() {
             if(response.answer === true) {
                 $('#appmenu').html(response.content);
 
-                if($('#appmenu').html() != ''){
+                if($('#appmenu').html() !== ''){
                     $(".applications-menu").css("color", "white");
                 }else{
                     $(".applications-menu").css("color", "#4b4b4b");

@@ -32,7 +32,9 @@
                 </div>
 
                 @if($installedApps->isEmpty())
-                    <div class="applications-menu menubar-item" style="color: #4b4b4b">APPLICATIONS</div>
+                    <div class="applications-menu menubar-item" style="color: #4b4b4b">APPLICATIONS
+                        <ul class="appmenu" id="appmenu"></ul>
+                    </div>
                 @else
                 <div class="applications-menu menubar-item" style="color: #ffffff" >APPLICATIONS
                     <ul class="appmenu" id="appmenu">
