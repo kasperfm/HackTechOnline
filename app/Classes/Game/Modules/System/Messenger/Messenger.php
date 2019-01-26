@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class Messenger extends Module
 {
     public function setup(){
-        $this->name = "messenger";
+        $this->name = "Messenger";
         $this->title = "Messenger";
 
         $this->size = array(

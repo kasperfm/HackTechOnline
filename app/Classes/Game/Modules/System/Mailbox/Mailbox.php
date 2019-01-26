@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class Mailbox extends Module
 {
     public function setup(){
-        $this->name = "mailbox";
+        $this->name = "Mailbox";
         $this->title = "Mailbox";
 
         $this->size = array(

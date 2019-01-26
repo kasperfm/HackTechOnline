@@ -7,7 +7,7 @@ use App\Classes\Game\Module;
 class About extends Module
 {
     public function setup(){
-        $this->name = "about";
+        $this->name = "About";
         $this->title = "About";
 
         $this->size = array(
