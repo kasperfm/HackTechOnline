@@ -22,7 +22,7 @@ class RedirectIfNotVerified
          if ($request->user()->verified) {
              return $next($request);
          }
+
          return redirect('/login');
-//         return redirect('/errors/restricted');
      }
 }

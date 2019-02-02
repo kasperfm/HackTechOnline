@@ -24,6 +24,15 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected function attemptLogin(Request $request)
+    {
+        return $this->guard()->attempt([
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+            'is_admin' => 0
+        ], $request->filled('remember'));
+    }
+
     /**
      * Where to redirect users after login.
      */
