@@ -45,14 +45,19 @@ class BugCrudController extends CrudController
             'name' => 'fixed',
             'label'=> 'Fixed'
         ],
-            false, // the simple filter has no values, just the "Draft" label specified above
-            function() { // if the filter is active (the GET parameter "draft" exits)
+            false,
+            function() {
                 $this->crud->addClause('where', 'fixed', '1');
-                // we've added a clause to the CRUD so that only elements with draft=1 are shown in the table
-                // an alternative syntax to this would have been
-                // $this->crud->query = $this->crud->query->where('draft', '1');
-                // another alternative syntax, in case you had a scopeDraft() on your model:
-                // $this->crud->addClause('draft');
+        });
+
+        $this->crud->addFilter([ // add a "simple" filter called Draft
+            'type' => 'simple',
+            'name' => 'open',
+            'label'=> 'Open'
+        ],
+            false,
+            function() {
+                $this->crud->addClause('where', 'fixed', '0');
             });
 
         $this->crud->addField([  // Select
@@ -76,8 +81,6 @@ class BugCrudController extends CrudController
             'entity' => 'category',
             'attribute' => 'title',
             'model' => "App\Models\BugCategory",
-
-            // optional
             'options'   => (function ($query) {
                 return $query->orderBy('title', 'ASC')->get();
             }),

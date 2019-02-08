@@ -22,6 +22,6 @@ class Bug extends Model
 
     public function category()
     {
-        return $this->hasOne('App\Models\BugCategory');
+        return $this->belongsTo('App\Models\BugCategory');
     }
 }
