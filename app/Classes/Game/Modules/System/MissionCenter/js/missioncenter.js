@@ -50,7 +50,7 @@ function selectMission(mission) {
             if(response.current === true){
                 acceptHTMLContent = '';
             }else{
-                acceptHTMLContent = '<br /><center><strong style="cursor: pointer;" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>';
+                acceptHTMLContent = '<br /><center><strong style="cursor: pointer; color: aqua;" class="flash animated infinite" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>';
             }
 
             if(response.title) {
