@@ -25,6 +25,7 @@ class ServersSeeder extends Seeder
         $germailMailServer = ServerHandler::newServer(0, null, '122.5.55.100');
         if($germailMailServer) {
             DomainHandler::newSystemDomain($germailMailServer->host->id, 'mail.germail.com');
+            ServerHandler::getServer('122.5.55.100')->addService(4, 5989);
         }
 
         // PsyBytes.org

@@ -30,5 +30,11 @@ class ServiceSeeder extends Seeder
             'description' => 'Transfer files between systems.',
             'default_port' => 21
         ]);
+
+        DB::table('services')->insert([
+            'name' => 'Database',
+            'description' => 'Store data in an organized way.',
+            'default_port' => 3306
+        ]);
     }
 }
