@@ -56,13 +56,12 @@ class Mission
 
     public function accept()
     {
-        if($this->user){
-            $mission = new UserMission();
-            $mission->user_id = $this->user->userID;
-            $mission->mission_id = $this->missionID;
-            $mission->done = 0;
-
-            $mission->save();
+        if($this->user && !MissionHandler::getCurrentMission($this->user->userID)){
+            $mission = UserMission::firstOrCreate([
+                'user_id' => $this->user->userID,
+                'mission_id' => $this->missionID,
+                'done' => 0
+            ]);
 
             activity('game')
                 ->performedOn($mission)

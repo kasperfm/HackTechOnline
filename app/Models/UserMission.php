@@ -11,6 +11,12 @@ class UserMission extends Model
 
     protected $table = 'user_missions';
 
+    protected $fillable = [
+        'user_id',
+        'mission_id',
+        'done'
+    ];
+
     public function mission()
     {
         return $this->hasOne(Mission::class, 'id', 'mission_id');

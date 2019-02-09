@@ -46,6 +46,10 @@ class MissionCenter extends Module
     public function ajaxAcceptMission(Request $request)
     {
         $mission = MissionHandler::getMission($request->missionId, Auth::id());
+        if(empty($mission)){
+            return null;
+        }
+
         $response['result'] = $mission->accept();
         $response['title'] = $mission->title;
 

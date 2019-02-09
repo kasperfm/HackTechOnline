@@ -52,19 +52,22 @@ function selectMission(mission) {
             }else{
                 acceptHTMLContent = '<br /><center><strong style="cursor: pointer;" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>';
             }
-            $.notification(
-                {
-                    title: response.title,
-                    icon: 'b',
-                    color: '#fff',
-                    content: '<strong>Corporation:</strong> ' + response.corp_name +
-                    '<br /><strong>Trust points:</strong> ' + response.reward_trust +
-                    '<br /><strong>Credits reward:</strong> $' + response.reward_credits +
-                    '<br /><strong>Mission:</strong> ' + response.description +
-                    '<br />' +
-                    acceptHTMLContent
-                }
-            );
+
+            if(response.title) {
+                $.notification(
+                    {
+                        title: response.title,
+                        icon: 'b',
+                        color: '#fff',
+                        content: '<strong>Corporation:</strong> ' + response.corp_name +
+                            '<br /><strong>Trust points:</strong> ' + response.reward_trust +
+                            '<br /><strong>Credits reward:</strong> $' + response.reward_credits +
+                            '<br /><strong>Mission:</strong> ' + response.description +
+                            '<br />' +
+                            acceptHTMLContent
+                    }
+                );
+            }
         }
     });
 }

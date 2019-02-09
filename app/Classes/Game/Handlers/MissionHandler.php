@@ -19,6 +19,9 @@ class MissionHandler
     public static function getMission($id, $userID = null)
     {
         $mission = MissionModel::where('id', $id)->first();
+        if(empty($mission)){
+            return null;
+        }
         $user = UserHandler::getUser($userID);
         $missionObj = new Mission($mission, $user);
 
