@@ -132,12 +132,12 @@ class Gateway extends Computer {
             $host->game_ip = NetworkHelper::generateIP();
             $host->ip_changed_at = Carbon::now();
             $host->save();
-        }
 
-        activity('game')
-            ->causedBy($this->ownerID)
-            ->performedOn($host)
-            ->log('Renewed gateway IP (' . $host->game_ip . ')');
+            activity('game')
+                ->causedBy($this->ownerID)
+                ->performedOn($host)
+                ->log('Renewed gateway IP (' . $host->game_ip . ')');
+        }
 
         return $change;
     }
