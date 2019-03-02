@@ -14,6 +14,7 @@ namespace App\Classes\Game;
 
 use App\Classes\Game\Types\HardwareTypes;
 use App\Classes\Helpers\NetworkHelper;
+use App\Events\HandleApp;
 use App\Models\Host;
 use App\Models\UserApp;
 use App\Models\Gateway as Model;
@@ -104,6 +105,8 @@ class Gateway extends Computer {
         $application = UserApp::where('user_id', $this->ownerID)->where('application_id', $appID)->first();
         $application->installed = 0;
         $application->save();
+
+        event(new HandleApp($application->app->app_name, 'close'));
 
         activity('game')
             ->withProperties(['application_id' => $appID])

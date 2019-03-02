@@ -14,3 +14,7 @@
 Broadcast::channel('notifications*', function ($user) {
 	return Auth::check();
 });
+
+Broadcast::channel('handleapp*', function ($user) {
+    return Auth::check();
+});

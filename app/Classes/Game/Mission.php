@@ -12,6 +12,7 @@
 
 namespace App\Classes\Game;
 
+use App\Events\HandleApp;
 use App\Models\Mission as MissionModel;
 use App\Models\User as UserModel;
 use App\Models\MissionData;
@@ -95,6 +96,8 @@ class Mission
 
                 $corp->addTrust($this->user->userID, $this->model->reward_trust);
                 $this->user->economy->addMoney($this->model->reward_credits);
+
+                event(new HandleApp('MissionCenter', 'refresh'));
 
                 return true;
             }

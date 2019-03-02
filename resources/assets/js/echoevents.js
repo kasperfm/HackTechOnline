@@ -15,3 +15,17 @@ Echo.private('notifications' + window.userToken).listen('Notification', (e) => {
 
     updateCredits();
 });
+
+Echo.private('handleapp' + window.userToken).listen('HandleApp', (e) => {
+    if(e.method === 'refresh'){
+        if($("#wnd_" + e.moduleName.toLowerCase())){
+            $("#wnd_" + e.moduleName.toLowerCase()).html(e.methodData);
+        }
+    }
+
+    if(e.method === 'close'){
+        if($("#wnd_" + e.moduleName.toLowerCase())){
+            $("#wnd_" + e.moduleName.toLowerCase()).dialog('close');
+        }
+    }
+});
