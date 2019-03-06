@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DomainProvider extends Model
 {
+    protected $table = 'domain_providers';
     public $timestamps = false;
 
     public function host(){

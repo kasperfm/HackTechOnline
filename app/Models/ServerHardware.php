@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServerHardware extends Model
 {
+    protected $table = 'server_hardwares';
     public $timestamps = false;
 
     protected $fillable = [

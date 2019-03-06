@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApplicationData extends Model
 {
+    protected $table = 'application_datas';
     public $timestamps = false;
 
     protected $fillable = [
