@@ -58,6 +58,11 @@ class User
         $this->model = $user;
     }
 
+    /**
+     * Get the current trust point value from a corporation.
+     * @param $corpID
+     * @return int
+     */
     public function getCorpTrust($corpID)
     {
         $userTrust = UserTrust::where('corp_id', $corpID)->where('user_id', $this->userID)->first();
@@ -68,6 +73,10 @@ class User
         return 0;
     }
 
+    /**
+     * Reset the entire game account for this user.
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function resetAccount()
     {
         // Set money to default value.

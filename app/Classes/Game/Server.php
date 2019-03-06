@@ -46,7 +46,6 @@ class Server extends Computer {
                 $this->setHardwarePart(HardwareTypes::Server, $this->model->hdd->id);
                 $this->setHardwarePart(HardwareTypes::Server, $this->model->inet->id);
 
-
                 $this->ipAddress = $this->getIPAddress();
                 $this->online = (bool)$this->getOnlineState();
                 $this->hostname = ServerHandler::IPToHostname($this->ipAddress);

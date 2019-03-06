@@ -54,4 +54,12 @@ class User extends Authenticatable
     public function trustPoints(){
         return $this->hasMany(UserTrust::class);
     }
+
+    public function messagesFromUser(){
+        return $this->hasMany(Message::class, 'from_user_id', 'id');
+    }
+
+    public function messagesToUser(){
+        return $this->hasMany(Message::class, 'to_user_id', 'id');
+    }
 }
