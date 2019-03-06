@@ -78,6 +78,7 @@ class User
         $this->gateway->setHardwarePart(HardwareTypes::Gateway, 2);
         $this->gateway->setHardwarePart(HardwareTypes::Gateway, 3);
         $this->gateway->setHardwarePart(HardwareTypes::Gateway, 4);
+        $this->gateway->saveHardware();
 
         // Clean all messages sent to and from the user.
         Message::where('from_user_id', $this->userID)->delete();
