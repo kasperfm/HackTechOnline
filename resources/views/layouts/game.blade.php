@@ -48,7 +48,7 @@
 <body>
 @if(Auth::check() && Auth::user()->profile->music == 1)
 <script type="text/javascript" src="http://scmplayer.co/script.js"
-        data-config="{'skin':'skins/black/skin.css','volume':50,'autoplay':true,'shuffle':true,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Track 1','url':'https://www.youtube.com/watch?v=0r6C3z3TEKw'},{'title':'Track 2','url':'https://www.youtube.com/watch?v=z7a3gazr3KE'},{'title':'Track 3','url':'https://www.youtube.com/watch?v=szH_1J92JpE'}]}" >
+        data-config="{'skin':'skins/black/skin.css','volume':50,'autoplay':true,'shuffle':true,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Track 1','url':'https://www.youtube.com/watch?v=ajF2NOuYkjk'},{'title':'Track 2','url':'https://www.youtube.com/watch?v=xkmuZF0pr-8'},{'title':'Track 3','url':'https://www.youtube.com/watch?v=dFAcAj7bUsk'}]}" >
 </script>
 @endif
 
