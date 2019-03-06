@@ -8,7 +8,7 @@ use Backpack\Base\app\Models\Traits\InheritsRelationsFromParentModel;
 
 class BackpackUser extends User
 {
-    use HasParentModel;
+    use InheritsRelationsFromParentModel;
 
     protected $table = 'users';
 
