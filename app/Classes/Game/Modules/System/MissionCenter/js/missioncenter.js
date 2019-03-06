@@ -28,8 +28,7 @@ function acceptMission(mission) {
                 $(".mission_box").hide();
                 $(".abortmission_btn").show();
                 $(".currentmission_btn").show();
-
-    //            $(".wnd_missioncenter").height("auto");
+                $(".accept_mission_link").hide();
             }
         }
     });
@@ -50,7 +49,7 @@ function selectMission(mission) {
             if(response.current === true){
                 acceptHTMLContent = '';
             }else{
-                acceptHTMLContent = '<br /><center><strong style="cursor: pointer; color: aqua;" class="flash animated infinite" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>';
+                acceptHTMLContent = '<br /><center><strong style="cursor: pointer; color: aqua;" class="flash animated infinite accept_mission_link" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>';
             }
 
             if(response.title) {

@@ -18,7 +18,7 @@ class IpRenewer extends Module
 
         $this->size = array(
             "width" => 330,
-            "height" => 240
+            "height" => 350
         );
     }
 

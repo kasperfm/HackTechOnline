@@ -6,6 +6,7 @@ use App\Classes\Game\Handlers\ModuleHandler;
 use App\Classes\Game\Module;
 use App\Classes\Game\Shops\SoftwareShop;
 use App\Classes\Game\Handlers\UserHandler;
+use App\Events\HandleApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,6 +47,8 @@ class SoftwareMarket extends Module
     {
         $user = UserHandler::getUser(Auth::id());
         $buyResult = SoftwareShop::buySoftware($user, $request->appId, $request->appVersion);
+
+        event(new HandleApp('MySoftware', 'refresh'));
 
         $result = array(
             'answer' => true,
