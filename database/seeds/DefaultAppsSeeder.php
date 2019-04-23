@@ -188,5 +188,21 @@ class DefaultAppsSeeder extends Seeder
         DB::table('application_datas')->insert([
             'application_id' => 14
         ]);
+
+        // Tools > Log Reader
+        DB::table('applications')->insert([
+            'id' => 15,
+            'app_name' => 'LogReader',
+            'app_group' => 3,
+            'on_market' => 1
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 15,
+            'version' => 1,
+            'price' => 100,
+            'hdd_req' => 16,
+            'cpu_req' => 30,
+            'ram_req' => 28
+        ]);
     }
 }
