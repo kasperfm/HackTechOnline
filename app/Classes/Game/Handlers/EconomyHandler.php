@@ -58,9 +58,10 @@ class EconomyHandler
             $log->fill($newLogEntry);
             $log->save();
 
-            activity('game')
+            activity('economy')
                 ->performedOn($log)
                 ->withProperties([
+                    'amount' => $amount,
                     'from_account' => $fromUser->economy->getAccountNumber(),
                     'to_account' => $toUser->economy->getAccountNumber(),
                 ])

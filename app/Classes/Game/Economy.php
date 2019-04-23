@@ -73,9 +73,12 @@ class Economy
         $this->bankAccount->balance += $amount;
         $this->bankAccount->save();
 
-        activity('game')
+        activity('economy')
             ->performedOn($this->bankAccount)
             ->causedBy($this->user)
+            ->withProperties([
+                'amount' => $amount,
+            ])
             ->log('Added ' . $amount . ' credits');
 
         return $this->getBalance();
@@ -90,9 +93,12 @@ class Economy
         $this->bankAccount->balance -= $amount;
         $this->bankAccount->save();
 
-        activity('game')
+        activity('economy')
             ->performedOn($this->bankAccount)
             ->causedBy($this->user)
+            ->withProperties([
+                'amount' => $amount * -1,
+            ])
             ->log('Removed ' . $amount . ' credits');
 
         return $this->getBalance();
