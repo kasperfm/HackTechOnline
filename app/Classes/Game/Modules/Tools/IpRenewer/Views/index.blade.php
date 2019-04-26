@@ -1,4 +1,4 @@
-<script type="text/javascript" src="{{ $jsPath }}iprenewer.js?v={{ md5(time()) }}"></script>
+<script type="text/javascript" src="{{ $jsPath }}iprenewer.js?v={{ useJSCache() }}"></script>
 <form class="iprenewer-form form_small" id="iprenewer-form">
     <center>
         <p>Click the button to renew the IP address of your gateway.</p>

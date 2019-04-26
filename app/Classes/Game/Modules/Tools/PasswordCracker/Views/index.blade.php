@@ -1,5 +1,5 @@
 <script type="text/javascript" src="js/jquery.base64.js"></script>
-<script type="text/javascript" src="{{ $jsPath }}passwordcracker.js?v={{ md5(time()) }}"></script>
+<script type="text/javascript" src="{{ $jsPath }}passwordcracker.js?v={{ useJSCache() }}"></script>
 <form class="passwd_cracker_form" id="passwd_cracker_form" onsubmit="return false;">
     <table cellspacing="5px">
         <tr>

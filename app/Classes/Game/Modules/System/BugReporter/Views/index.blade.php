@@ -45,4 +45,4 @@
     </form>
 </div>
 
-<script type="text/javascript" src="{{ $jsPath }}bugreporter.js?v={{ md5(time()) }}"></script>
+<script type="text/javascript" src="{{ $jsPath }}bugreporter.js?v={{ useJSCache() }}"></script>

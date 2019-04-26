@@ -38,4 +38,4 @@
     <p class="email-view-dialog-msgcontent"></p>
 </div>
 
-<script type="text/javascript" src="{{ $jsPath }}mailbox.js?v={{ md5(time()) }}"></script>
+<script type="text/javascript" src="{{ $jsPath }}mailbox.js?v={{ useJSCache() }}"></script>

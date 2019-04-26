@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'nojscache' => true,
+
     'startingmoney' => 10000,
 
     'messenger' => [

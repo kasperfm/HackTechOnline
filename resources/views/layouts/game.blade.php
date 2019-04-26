@@ -31,6 +31,7 @@
     <link href="/css/misc.css" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/ui/jquery-ui.css" rel="stylesheet">
     <link href="/css/ui/jqueryui-theme.css" rel="stylesheet" type="text/css" />
     <link href="/css/ui/hto-theme.css" rel="stylesheet" type="text/css" />
 

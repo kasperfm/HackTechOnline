@@ -4,4 +4,4 @@
     @include('Modules.System.SoftwareMarket.Views.overview')
 </div>
 
-<script type="text/javascript" src="{{ $jsPath }}softwaremarket.js?v={{ md5(time()) }}"></script>
+<script type="text/javascript" src="{{ $jsPath }}softwaremarket.js?v={{ useJSCache() }}"></script>

@@ -33,6 +33,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
     // Jquery UI
     .combine(['resources/assets/js/jquery-ui.min.js', 'resources/assets/js/jquery.dialog.minimize.js'], 'public/js/jquery-ui-bundle.js')
+    .copy('resources/assets/css/ui/jquery-ui.min.css', 'public/css/ui/jquery-ui.css')
     .css('resources/assets/css/ui/jqueryui-theme.css', 'public/css/ui/jqueryui-theme.css')
     .sass('resources/assets/css/ui/hto-theme.scss', 'public/css/ui/hto-theme.css')
     .copy('resources/assets/css/ui/images', 'public/css/ui/images')

@@ -32,4 +32,4 @@
 </div>
 
 
-<script type="text/javascript" src="{{ $jsPath }}missioncenter.js?v={{ md5(time()) }}"></script>
+<script type="text/javascript" src="{{ $jsPath }}missioncenter.js?v={{ useJSCache() }}"></script>

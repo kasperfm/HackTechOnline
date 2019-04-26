@@ -13,7 +13,7 @@ class LogReader extends Module
         $this->name = "LogReader";
         $this->title = "Log Reader";
         $this->group = "tools";
-        $this->description = "View your personal log files.";
+        $this->description = "A tool for reading log files.";
 
         $this->size = array(
             "width" => 578,

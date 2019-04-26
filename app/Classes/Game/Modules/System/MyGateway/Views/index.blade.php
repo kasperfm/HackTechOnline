@@ -4,4 +4,4 @@
     @include('Modules.System.MyGateway.Views.overview')
 </div>
 
-<script type="text/javascript" src="{{ $jsPath }}mygateway.js?v={{ md5(time()) }}"></script>
+<script type="text/javascript" src="{{ $jsPath }}mygateway.js?v={{ useJSCache() }}"></script>
