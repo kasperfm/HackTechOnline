@@ -29,7 +29,7 @@ class GatewayShop {
             $gateway->setHardwarePart(HardwareTypes::Gateway, $partID);
             $gatewayModel = $gateway->saveHardware();
 
-            activity('game')
+            activity('gateway')
                 ->performedOn($gatewayModel)
                 ->withProperties([
                     'hardware_id' => $hardware->hardwareID,

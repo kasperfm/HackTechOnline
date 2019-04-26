@@ -7,6 +7,7 @@ use App\Models\Bank;
 use App\Models\BankAccount;
 use App\Models\BankTransaction;
 use App\Classes\Game\Handlers\UserHandler;
+use Illuminate\Support\Facades\Auth;
 
 class EconomyHandler
 {

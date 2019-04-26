@@ -77,7 +77,7 @@ class FileHandler
                 $newFile->host = $user->gateway->hostID;
                 $newFile->save();
 
-                activity('game')
+                activity('filetransfer')
                     ->performedOn($newFile)
                     ->withProperties([
                         'from_host' => $file->hostID,

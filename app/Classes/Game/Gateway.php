@@ -93,7 +93,7 @@ class Gateway extends Computer {
             $application->installed = 1;
             $application->save();
 
-            activity('game')
+            activity('gateway')
                 ->withProperties(['application_id' => $appID])
                 ->causedBy($this->ownerID)
                 ->performedOn($application)
@@ -108,7 +108,7 @@ class Gateway extends Computer {
 
         event(new HandleApp($application->app->app_name, 'close'));
 
-        activity('game')
+        activity('gateway')
             ->withProperties(['application_id' => $appID])
             ->causedBy($this->ownerID)
             ->performedOn($application)
@@ -136,7 +136,7 @@ class Gateway extends Computer {
             $host->ip_changed_at = Carbon::now();
             $host->save();
 
-            activity('game')
+            activity('gateway')
                 ->causedBy($this->ownerID)
                 ->performedOn($host)
                 ->log('Renewed gateway IP (' . $host->game_ip . ')');

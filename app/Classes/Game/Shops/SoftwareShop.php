@@ -67,7 +67,7 @@ class SoftwareShop
 
             $newApp->save();
 
-            activity('game')
+            activity('gateway')
                 ->performedOn($newApp)
                 ->withProperties([
                     'software_id' => $newApp->application_id,
