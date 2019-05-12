@@ -20,6 +20,7 @@
     "/modules/css/webbrowser.css": "/modules/css/webbrowser.css",
     "/modules/css/filetree.css": "/modules/css/filetree.css",
     "/modules/css/fileviewer.css": "/modules/css/fileviewer.css",
+    "/modules/css/logreader.css": "/modules/css/logreader.css",
     "/modules/js/bugreporter.js": "/modules/js/bugreporter.js",
     "/modules/js/mailbox.js": "/modules/js/mailbox.js",
     "/modules/js/messenger.js": "/modules/js/messenger.js",
