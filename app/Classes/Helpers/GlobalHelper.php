@@ -11,3 +11,10 @@ if (!function_exists('useJSCache')) {
         return md5(42);
     }
 }
+
+if (!function_exists('currentPlayer')) {
+    function currentPlayer()
+    {
+        return App\Classes\Game\Handlers\UserHandler::player();
+    }
+}

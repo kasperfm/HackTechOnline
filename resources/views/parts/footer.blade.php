@@ -5,6 +5,6 @@
 		<div class="light-item pulsate">CPU = <div class="flash2 animated res_cpu_bar res_meter"></div></div>
 		<div class="light-item pulsate">RAM = <div class="flash2 animated res_ram_bar res_meter"></div></div>
 		<div class="light-item pulsate">HDD = <div class="flash2 animated res_hdd_bar res_meter"></div></div>
-		<div class="copyright-item">COPYRIGHT HACKTECHONLINE.COM 2018</div>
+		<div class="copyright-item">COPYRIGHT HACKTECHONLINE.COM {{ date('Y', time()) }}</div>
 	</div>
 </div>

@@ -204,5 +204,16 @@ class DefaultAppsSeeder extends Seeder
             'cpu_req' => 30,
             'ram_req' => 28
         ]);
+
+        // System > Profile Settings
+        DB::table('applications')->insert([
+            'id' => 16,
+            'app_name' => 'ProfileSettings',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 16
+        ]);
     }
 }

@@ -624,3 +624,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 	text-indent: -9999px;
 	white-space: nowrap;
 }
+
+.highlight {
+	color: $link-color !important;
+}

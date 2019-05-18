@@ -7,6 +7,7 @@
                     <ul>
                         <li rel="news" class="menubar-item-inactive">NEWS</li>
                         <li rel="help" class="menubar-item-inactive">HELP</li>
+                        <li rel="profilesettings" class="exec">PROFILE SETTINGS</li>
                         <li><hr class="menu-hr"></li>
                         <li rel="accountreset" class="exec">RESET GAME ACCOUNT</li>
                         <li rel="bugreporter" class="exec">REPORT A BUG</li>
@@ -18,7 +19,6 @@
                 <div class="menubar-item">SYSTEM
                     <ul>
                         <li rel="ai_helper" class="menubar-item-inactive">AI</li>
-                        <li rel="player_profile" class="menubar-item-inactive">PLAYER PROFILE</li>
                         <li rel="messenger" class="exec">MESSENGER</li>
                         <li rel="mailbox" class="exec">MAILBOX</li>
                         <li rel="missioncenter" class="exec">MISSION CENTER</li>

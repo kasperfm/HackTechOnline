@@ -12,6 +12,7 @@
 
 namespace App\Classes\Game;
 
+use App\Classes\Game\Types\UserTypes;
 use App\Models\Message;
 use App\Models\User as Model;
 use App\Models\UserApp;
@@ -26,6 +27,17 @@ class User
     public $userID;
     public $username;
     public $model;
+
+    /**
+     * @var string User role
+     */
+    public $userRole;
+
+
+    /**
+     * @var int User level
+     */
+    public $userLevel;
 
     /**
      * @var Economy
@@ -55,6 +67,8 @@ class User
         $this->gateway = new Gateway($user->id);
         $this->mailbox = new Mailbox($user);
         $this->bugreporter = new BugReport($user);
+        $this->userLevel = $user->userlevel;
+        $this->userRole = UserTypes::$values[$user->userlevel];
         $this->model = $user;
     }
 
