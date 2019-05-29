@@ -36,7 +36,7 @@ class User extends Authenticatable
     }
 
     public function logins(){
-        return $this->hasOne('App\Models\UserLogin');
+        return $this->hasMany('App\Models\UserLogin');
     }
 
     public function gateway(){

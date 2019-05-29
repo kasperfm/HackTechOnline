@@ -12,11 +12,11 @@ class ProfileSettings extends Module
 {
     public function setup(){
         $this->name = "ProfileSettings";
-        $this->title = "Profile Settings";
+        $this->title = "Profile";
 
         $this->size = array(
             "width"     => 385,
-            "height"    => 450
+            "height"    => 350
         );
     }
 
