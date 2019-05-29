@@ -24,7 +24,7 @@
                         <li rel="missioncenter" class="exec">MISSION CENTER</li>
                         <li rel="server_admin" class="menubar-item-inactive">SERVER ADMINISTRATION</li>
                         <li rel="webbrowser" class="exec">WEB-BROWSER</li>
-                        <li rel="corp_status" class="menubar-item-inactive">CORP. STATUS</li>
+                        <li rel="corpstatus" class="exec">CORP. STATUS</li>
                         <li rel="softwaremarket" class="exec">SOFTWARE MARKET</li>
                         <li rel="mygateway" class="exec">MY GATEWAY</li>
                         <li rel="mysoftware" class="exec">MY SOFTWARE</li>

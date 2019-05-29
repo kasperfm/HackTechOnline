@@ -14,7 +14,7 @@ class NetworkHelper
         $randomIP = long2ip( mt_rand(0, 65537) * mt_rand(0, 65535) );
         $hostLookup = Host::where('game_ip', $randomIP)->first();
 
-        if(empty($hostLookup)){
+        if(empty($hostLookup) && !strpos($hostLookup, '0', 0)){
             return $randomIP;
         }else{
             self::generateIP();

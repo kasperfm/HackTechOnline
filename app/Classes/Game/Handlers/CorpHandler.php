@@ -16,6 +16,10 @@ class CorpHandler
      */
     public static function getCorporation($corpID)
     {
+        if(!$corpID){
+            return null;
+        }
+
         $corpModel = CorpModel::where('id', $corpID)->first();
 
         if(!$corpModel){

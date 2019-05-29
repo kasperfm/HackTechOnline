@@ -12,6 +12,7 @@
 
 namespace App\Classes\Game;
 
+use App\Classes\Game\Handlers\CorpHandler;
 use App\Classes\Game\Types\UserTypes;
 use App\Models\Message;
 use App\Models\User as Model;
@@ -38,6 +39,11 @@ class User
      * @var int User level
      */
     public $userLevel;
+
+    /**
+     * @var Corporation The corporation the user belongs to
+     */
+    public $corporation;
 
     /**
      * @var Economy
@@ -67,6 +73,7 @@ class User
         $this->gateway = new Gateway($user->id);
         $this->mailbox = new Mailbox($user);
         $this->bugreporter = new BugReport($user);
+        $this->corporation = CorpHandler::getCorporation($user->profile->corporation_id);
         $this->userLevel = $user->userlevel;
         $this->userRole = UserTypes::$values[$user->userlevel];
         $this->model = $user;

@@ -16,6 +16,10 @@
     </li>
 
     <li>
+        <strong>Gateway IP:</strong> <span class="highlight">{{ currentPlayer()->gateway->ipAddress }}</span>
+    </li>
+
+    <li>
         <strong>Bank name:</strong> <span class="highlight">{{ currentPlayer()->economy->getBank()->bank_name }}</span>
     </li>
 
