@@ -41,8 +41,8 @@ class GameController extends Controller
         $moduleHandler = new ModuleHandler();
         $installedApps = $moduleHandler->getInstalledApps(Auth::id());
 
-        if(!session()->exists('player') && Auth::check()) {
-            session()->put('player', UserHandler::getUser(Auth::id()));
+        if(/*!session()->exists('player') && */Auth::check()) {
+            session()->put('player', UserHandler::getUser(Auth::id(), true));
         }
 
         return view('index', ['installedApps' => $installedApps]);

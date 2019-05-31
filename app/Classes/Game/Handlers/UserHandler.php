@@ -9,11 +9,12 @@ class UserHandler
 {
     /**
      * @param $userID
+     * @param $forceRefresh
      * @return User|null
      */
-    public static function getUser($userID)
+    public static function getUser($userID, $forceRefresh = false)
     {
-        if(session()->exists('player') && session()->get('player')->userID == $userID){
+        if(session()->exists('player') && session()->get('player')->userID == $userID && $forceRefresh == false){
             return session()->get('player');
         }
 
