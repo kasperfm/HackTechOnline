@@ -18,6 +18,7 @@ use App\Models\Message;
 use App\Models\User as Model;
 use App\Models\UserApp;
 use App\Models\UserMission;
+use App\Models\UserProfile;
 use App\Models\UserTrust;
 use App\Classes\Game\Types\HardwareTypes;
 use App\Models\File;
@@ -77,6 +78,45 @@ class User
         $this->userLevel = $user->userlevel;
         $this->userRole = UserTypes::$values[$user->userlevel];
         $this->model = $user;
+    }
+
+    /**
+     * Join a new corporation.
+     * @param $inviteKey
+     * @return bool
+     */
+    public function joinCorporation($inviteKey)
+    {
+        $corpModel = \App\Models\Corporation::where('invite_key', $inviteKey)->first();
+
+        if(!$corpModel){
+            return false;
+        }
+
+        $profile = UserProfile::where('user_id', $this->userID)->first();
+        $profile->corporation_id = $corpModel->id;
+        $profile->save();
+
+        $this->corporation = CorpHandler::getCorporation($corpModel->id);
+        currentPlayer()->corporation = $this->corporation;
+
+        return true;
+    }
+
+    /**
+     * Leave the current corporation.
+     * @return bool
+     */
+    public function leaveCorporation()
+    {
+        $profile = UserProfile::where('user_id', $this->userID)->first();
+        $profile->corporation_id = null;
+        $profile->save();
+
+        $this->corporation = null;
+        currentPlayer()->corporation = null;
+
+        return true;
     }
 
     /**
