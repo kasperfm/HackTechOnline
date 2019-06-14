@@ -18,3 +18,10 @@ if (!function_exists('currentPlayer')) {
         return App\Classes\Game\Handlers\UserHandler::player();
     }
 }
+
+if (!function_exists('getUser')) {
+    function getUser($userID)
+    {
+        return App\Classes\Game\Handlers\UserHandler::getUser($userID);
+    }
+}

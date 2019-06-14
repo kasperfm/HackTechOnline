@@ -95,4 +95,9 @@ class Corporation
         return $inviteKey;
     }
 
+    public function getMembers()
+    {
+        return $this->model->members;
+    }
+
 }
