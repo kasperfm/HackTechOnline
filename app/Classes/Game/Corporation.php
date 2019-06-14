@@ -41,6 +41,18 @@ class Corporation
         $this->inviteKey = $corpModel->invite_key;
     }
 
+    public function setOwner($userID)
+    {
+        $this->model->owner_user_id = $userID;
+        $this->model->save();
+
+        $this->owner = getUser($userID)->model;
+
+        if(currentPlayer()->userID == $userID){
+            currentPlayer()->corporation = $this;
+        }
+    }
+
     /**
      * Add trust points to a player
      * @param $userID
@@ -95,8 +107,13 @@ class Corporation
         return $inviteKey;
     }
 
+    /**
+     * Get all corporation members.
+     * @return mixed
+     */
     public function getMembers()
     {
+        $this->model->refresh();
         return $this->model->members;
     }
 

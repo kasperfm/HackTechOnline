@@ -3,7 +3,9 @@
 namespace App\Classes\Game\Modules\System\CorpStatus;
 
 use App\Classes\Game\Handlers\CorpHandler;
+use App\Classes\Game\Handlers\UserHandler;
 use App\Classes\Game\Module;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -18,6 +20,77 @@ class CorpStatus extends Module
             "width"     => 480,
             "height"    => 300
         );
+    }
+
+    public function ajaxLoadMemberPage(Request $request)
+    {
+        $member = getUser($request->get('memberId'));
+        if($member->corporation->corpID != currentPlayer()->corporation->corpID){
+            return array(
+                'answer' => false
+            );
+        }
+
+        $renderedView = view('Modules::System.CorpStatus.Views.memberpage', [
+            'memberInfo' => $member,
+            'corp'       => currentPlayer()->corporation
+        ])->render();
+
+        return array(
+            'answer' => true,
+            'view' => $renderedView
+        );
+
+    }
+
+    public function ajaxKickMember(Request $request)
+    {
+        $member = getUser($request->get('memberId'));
+        if($member->corporation->corpID != currentPlayer()->corporation->corpID){
+            return array(
+                'answer' => false
+            );
+        }
+
+        $profile = UserProfile::where('user_id', $member->userID)->first();
+        $profile->corporation_id = null;
+        $profile->save();
+
+        return array(
+            'answer' => true
+        );
+    }
+
+    public function ajaxPromoteMember(Request $request)
+    {
+        $member = getUser($request->get('memberId'));
+        if($member->corporation->corpID != currentPlayer()->corporation->corpID){
+            return array(
+                'answer' => false
+            );
+        }
+
+        currentPlayer()->corporation->setOwner($member->userID);
+        $myUser = UserHandler::getUser(Auth::id(), true); // Force update the session.
+
+        return array(
+            'answer' => true
+        );
+    }
+
+    public function ajaxLoadMembers(Request $request)
+    {
+        $corpMembers = currentPlayer()->corporation->getMembers();
+        $renderedView = view('Modules::System.CorpStatus.Views.memberstab', [
+            'corpMembers' => $corpMembers
+        ])->render();
+
+        $result = array(
+            'answer' => true,
+            'view' => $renderedView
+        );
+
+        return $result;
     }
 
     public function ajaxJoin(Request $request)
