@@ -6,6 +6,34 @@ $(document).ready(function() {
         corpManagerLoadMembers();
     });
 
+    $(".edit_corp_btn").click(function () {
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            url: '/game/module/CorpStatus/ajax/edit',
+            data: {
+                _token: window.Laravel.csrfToken,
+                description: $("#corp_edit_description").val()
+            },
+            success: function (response) {
+                if(response.answer) {
+                    $.notification(
+                        {
+                            title: "Corporation",
+                            timeout: 4000,
+                            icon: 'c',
+                            color: '#fff',
+                            content: "Corporation settings has been saved!"
+                        }
+                    );
+                }
+            }
+        });
+
+        e.preventDefault();
+    });
+
     $("#new_corporation").click(function () {
         $('#new_corporation_window').dialog({
            // appendTo: "body",
@@ -44,7 +72,7 @@ $(document).ready(function() {
         $('#manage_corporation_window').dialog({
             // appendTo: "body",
             width: 562,
-            height: 400,
+            height: 450,
             hide: { effect: window.closeEffect, duration: window.closeDuration },
             close: function(event, ui){
                 $('#manage_corporation_window').remove();

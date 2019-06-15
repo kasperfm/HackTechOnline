@@ -5,6 +5,7 @@ namespace App\Classes\Game\Modules\System\CorpStatus;
 use App\Classes\Game\Handlers\CorpHandler;
 use App\Classes\Game\Handlers\UserHandler;
 use App\Classes\Game\Module;
+use App\Models\Corporation;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,6 +64,12 @@ class CorpStatus extends Module
 
     public function ajaxPromoteMember(Request $request)
     {
+        if(currentPlayer()->userID != currentPlayer()->corporation->owner->id){
+            return array(
+                'answer' => false
+            );
+        }
+
         $member = getUser($request->get('memberId'));
         if($member->corporation->corpID != currentPlayer()->corporation->corpID){
             return array(
@@ -80,6 +87,12 @@ class CorpStatus extends Module
 
     public function ajaxLoadMembers(Request $request)
     {
+        if(currentPlayer()->userID != currentPlayer()->corporation->owner->id){
+            return array(
+                'answer' => false
+            );
+        }
+
         $corpMembers = currentPlayer()->corporation->getMembers();
         $renderedView = view('Modules::System.CorpStatus.Views.memberstab', [
             'corpMembers' => $corpMembers
@@ -103,6 +116,29 @@ class CorpStatus extends Module
         currentPlayer()->leaveCorporation();
     }
 
+    public function ajaxEdit(Request $request)
+    {
+        $result = array(
+            'answer' => false
+        );
+
+        $validator = Validator::make($request->all(), [
+            'description' => 'string|max:2048',
+        ]);
+
+        $corpModel = Corporation::where('id', currentPlayer()->corporation->corpID)->where('owner_user_id', currentPlayer()->userID)->first();
+
+        if ($validator->fails() || !$corpModel) {
+            return $result;
+        }
+
+        $corpModel->description = $request->get('description');
+        $corpModel->save();
+
+        $result['answer'] = true;
+        return $result;
+    }
+
     public function ajaxCreate(Request $request)
     {
         $result = array(
@@ -110,8 +146,8 @@ class CorpStatus extends Module
         );
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:corporations|max:64',
-            'description' => 'required',
+            'name' => 'required|string|unique:corporations|max:64',
+            'description' => 'string|required|max:2048',
         ]);
 
         if ($validator->fails()) {

@@ -9,6 +9,16 @@
     </div>
 
     <div id="corp-settings-tab">
-        <p>Settings all over the place!</p>
+        <div class="pane" style="max-height: 245px; height: 235px;">
+            <ul>
+                <li><strong>Corporation name:</strong> <span class="highlight">{{ currentPlayer()->corporation->name }}</span></li>
+                <li><strong>Invite key:</strong> <span class="highlight">{{ currentPlayer()->corporation->inviteKey }}</span></li>
+            </ul>
+            <span>Description:</span>
+            <br>
+            <textarea name="corp_edit_description" id="corp_edit_description" style="width: 405px; height: 80px;">{{ currentPlayer()->corporation->description }}</textarea>
+            <br>
+            <button class="btn edit_corp_btn">Save</button>
+        </div>
     </div>
 </div>

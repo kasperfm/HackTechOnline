@@ -1,4 +1,4 @@
-<div class="pane" style="max-height: 155px; height: 155px;">
+<div class="pane" style="max-height: 235px; height: 235px;">
     <ul>
         @foreach($corpMembers as $member)
             @if($member->id == currentPlayer()->userID)
