@@ -28,6 +28,7 @@ class User
 {
     public $userID;
     public $username;
+    public $aiStatus;
     public $model;
 
     /**
@@ -77,6 +78,7 @@ class User
         $this->corporation = CorpHandler::getCorporation($user->profile->corporation_id);
         $this->userLevel = $user->userlevel;
         $this->userRole = UserTypes::$values[$user->userlevel];
+        $this->aiStatus = $user->profile->ai_status;
         $this->model = $user;
     }
 

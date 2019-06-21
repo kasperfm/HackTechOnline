@@ -18,7 +18,11 @@
 
                 <div class="menubar-item">SYSTEM
                     <ul>
-                        <li rel="ai_helper" class="menubar-item-inactive">AI</li>
+                        @if(currentPlayer()->aiStatus > 0)
+                        <li rel="ai" class="exec">AI</li>
+                        @else
+                        <li rel="ai" class="menubar-item-inactive">AI</li>
+                        @endif
                         <li rel="messenger" class="exec">MESSENGER</li>
                         <li rel="mailbox" class="exec">MAILBOX</li>
                         <li rel="missioncenter" class="exec">MISSION CENTER</li>

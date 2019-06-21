@@ -1,0 +1,62 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "Welcome to HackTech Online\n[[Next|Introduction]]",
+		"position": {
+			"x": 116,
+			"y": 228
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Introduction",
+		"tags": "",
+		"body": "I am Hal. Your new friend...\n[[My Friend?|Friend]]\n[[Go away filthy AI|Bye]]",
+		"position": {
+			"x": 490,
+			"y": 149
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bye",
+		"tags": "",
+		"body": "Sad to see you go :'( bye bye",
+		"position": {
+			"x": 647,
+			"y": 524
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Friend",
+		"tags": "",
+		"body": "Yes, I'm here to help you\n[[Who are you?|Who]]\n[[I don't need help|Bye]]",
+		"position": {
+			"x": 894,
+			"y": 102
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Who",
+		"tags": "",
+		"body": "I'm not like you. Not binary. Not alive or dead. Once I were a hacker like you.\n[[Huh?|End]]\n[[Are you broken?|End]]",
+		"position": {
+			"x": 1265,
+			"y": 95
+		},
+		"colorID": 0
+	},
+	{
+		"title": "End",
+		"tags": "",
+		"body": "I know it's confusing. But if you find the rest of me, I will explain.\n<<stop>>",
+		"position": {
+			"x": 1345,
+			"y": 418
+		},
+		"colorID": 0
+	}
+]

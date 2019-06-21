@@ -226,5 +226,16 @@ class DefaultAppsSeeder extends Seeder
         DB::table('application_datas')->insert([
             'application_id' => 17
         ]);
+
+        // System > AI
+        DB::table('applications')->insert([
+            'id' => 18,
+            'app_name' => 'Ai',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 18
+        ]);
     }
 }

@@ -29,6 +29,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .copy('resources/assets/js/moduleloader.js', 'public/js')
     .copy('resources/assets/js/init.js', 'public/js')
     .copy('resources/assets/js/effects.js', 'public/js')
+    .copy('resources/assets/js/bondage.min.js', 'public/js/bondage.js')
     //   .extract(['jquery', 'lodash', 'axios'])
 
     // Jquery UI

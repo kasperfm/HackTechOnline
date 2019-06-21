@@ -65,6 +65,7 @@
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="/js/moduleloader.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/effects.js"></script>
     <script src="{{ mix('/js/jquery.onenter.js') }}"></script>
     <script src="{{ mix('/js/notification-min.js') }}"></script>
     <script src="{{ mix('/js/echoevents.js') }}"></script>
