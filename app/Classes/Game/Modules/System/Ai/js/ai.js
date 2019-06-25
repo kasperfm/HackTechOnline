@@ -4,6 +4,14 @@ var dialogue;
 var dialogueIterator;
 var optNum = 0;
 
+function loadAI(jsonFilename) {
+    displayArea = document.getElementById('ai_speak');
+    if(!displayArea){
+        return false;
+    }
+    fetch("vfs/dialog/ai/"+jsonFilename+".json").then(response => response.json()).then(json => initDialog(json));
+}
+
 function initDialog(json) {
     displayArea.innerHTML = '';
 
@@ -13,11 +21,11 @@ function initDialog(json) {
        // var data = JSON.parse(json);
         dialogue.load(json);
         dialogueIterator = dialogue.run('Start');
-        step();
+        stepDialog();
     }
 }
 
-function step() {
+function stepDialog() {
     $("#ai_responses").empty();
     // Steps until an options result
     while(true) {
@@ -47,11 +55,10 @@ function showOptions(result) {
         var rel = $(this).attr('rel');
         result.select(rel);
         optNum++;
-        step();
+        stepDialog();
     });
 }
 
 $(document).ready(function() {
-    displayArea = document.getElementById('ai_speak');
-    fetch("vfs/dialog/ai/demo.json").then(response => response.json()).then(json => initDialog(json));
+    loadAI('demo');
 });
