@@ -82,7 +82,7 @@ class File
 
     public function delete(){
         if($this->hasOwner()) {
-            FileModel::where('id', $this->fileID)->where('owner', $this->owner)->delete();
+            FileModel::where('id', $this->fileID)->where('owner_id', $this->owner)->delete();
 
             return true;
         }

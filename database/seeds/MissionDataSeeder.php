@@ -140,7 +140,7 @@ max_age = 1Y',
                 ['file_id' => $insertedFile->id],
                 [
                     'file_id' => $insertedFile->id,
-                    'owner' => 0,
+                    'owner_id' => 0,
                     'encrypted' => $newFile['encrypted'],
                     'placement' => 'server',
                     'host' => $newFile['host']

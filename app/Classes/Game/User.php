@@ -159,7 +159,7 @@ class User
         // Clear user generated content.
         UserMission::where('user_id', $this->userID)->delete();
         UserApp::where('user_id', $this->userID)->delete();
-        File::where('owner', $this->userID)->delete();
+        File::where('owner_id', $this->userID)->delete();
         UserTrust::where('user_id', $this->userID)->delete();
 
         activity('system')

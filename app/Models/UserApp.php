@@ -4,6 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\UserApp
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $application_id
+ * @property int $installed
+ * @property int $application_datas_id
+ * @property-read \App\Models\Application $app
+ * @property-read \App\Models\ApplicationData $data
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp byVersion($version)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp currentVersionOf($appId)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp installed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp ownedBy($owner)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp whereApplicationDatasId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp whereApplicationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp whereInstalled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserApp whereUserId($value)
+ * @mixin \Eloquent
+ */
 class UserApp extends Model
 {
     protected $table = 'user_apps';

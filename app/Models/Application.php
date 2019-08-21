@@ -4,6 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Application
+ *
+ * @property int $id
+ * @property string $app_name
+ * @property int $app_group
+ * @property int $on_market
+ * @property-read \App\Models\ApplicationData $data
+ * @property-read \App\Models\ApplicationGroup $group
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application byVersion($applicationId, $version)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application greaterThanVersion($applicationId, $version)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application ofGroup($type)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application onMarket()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application whereAppGroup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application whereAppName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Application whereOnMarket($value)
+ * @mixin \Eloquent
+ */
 class Application extends Model
 {
     public $timestamps = false;

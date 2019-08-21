@@ -4,6 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Host
+ *
+ * @property int $id
+ * @property int $online_state
+ * @property string $game_ip
+ * @property int $host_type
+ * @property int $machine_id
+ * @property \Illuminate\Support\Carbon|null $ip_changed_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host gateway()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host isOffline()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host isOnline()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host server()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host whereGameIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host whereHostType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host whereIpChangedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host whereMachineId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Host whereOnlineState($value)
+ * @mixin \Eloquent
+ */
 class Host extends Model
 {
     public $timestamps = false;

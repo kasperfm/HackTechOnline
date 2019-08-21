@@ -71,7 +71,7 @@ class FileHandler
             if (self::fileExists($fileID, $user->gateway->hostID) == false) {
                 $newFile = new FileModel();
                 $newFile->file_id = $fileID;
-                $newFile->owner = $userID;
+                $newFile->owner_id = $userID;
                 $newFile->encrypted = intval($file->encrypted);
                 $newFile->placement = 'gw';
                 $newFile->host = $user->gateway->hostID;

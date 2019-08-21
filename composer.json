@@ -24,11 +24,13 @@
     "require-dev": {
         "backpack/generators": "^1.2",
         "barryvdh/laravel-debugbar": "^3.1",
+        "barryvdh/laravel-ide-helper": "^2.6",
+        "doctrine/dbal": "^2.9",
+        "filp/whoops": "^2.0",
         "fzaninotto/faker": "~1.4",
         "laracasts/generators": "dev-master",
         "mockery/mockery": "1.*",
-        "phpunit/phpunit": ">=7.5",
-        "filp/whoops": "^2.0"
+        "phpunit/phpunit": ">=7.5"
     },
     "autoload": {
         "classmap": [
