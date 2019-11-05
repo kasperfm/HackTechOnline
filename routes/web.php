@@ -21,7 +21,7 @@ Route::group(['middleware' => ['authed']], function () {
     Route::post('/game/ajax/economy/getcredits', 'EconomyController@getCredits');
 
     Route::post('/game/module/{module_name}/ajax/{ajax_call}', 'ModuleController@callAjax');
-    Route::post('/game/module/{module_name}/get/{get_call}', 'ModuleController@callGet');
+    Route::get('/game/module/{module_name}/get/{get_call}', 'ModuleController@callGet');
 
     Route::get('/game/missions/dynamicjs', 'MissionController@getDynamicJS');
     Route::post('/game/missions/checkevent', 'MissionController@checkMissionEvent');
