@@ -12,8 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/game/web/*',
-        '/game/module/FileViewer/get/list'
+        '/game/web/*'
     ];
 
     protected function tokensMatch($request)

@@ -71,8 +71,9 @@ class Module
     public function returnHTML(){
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
+        $moduleVersion = $this->version;
 
-        $view = view('Modules::' . ucfirst($this->group) . '.' . $this->name . '.Views.index', compact('cssPath', 'jsPath'));
+        $view = view('Modules::' . ucfirst($this->group) . '.' . $this->name . '.Views.index', compact('cssPath', 'jsPath', 'moduleVersion'));
         return $view->render();
     }
 }

@@ -53,6 +53,11 @@ jQuery(document).ready(function($) {
             },
             "data" : {
                 "url" : "/game/module/FileViewer/get/list",
+                "data" : {
+                    _token: window.Laravel.csrfToken,
+                    hostID: fileViewerHost,
+                    hostPassword: fileViewerHostPassword,
+                },
                 "dataType" : "json"
             }
         }

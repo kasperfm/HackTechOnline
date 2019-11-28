@@ -13,6 +13,7 @@
     "/js/bondage.js": "/js/bondage.js",
     "/js/jquery-ui-bundle.js": "/js/jquery-ui-bundle.js",
     "/css/ui/jquery-ui.css": "/css/ui/jquery-ui.css",
+    "/css/bootstrap-grid.css": "/css/bootstrap-grid.css",
     "/css/misc.css": "/css/misc.css",
     "/modules/css/ai.css": "/modules/css/ai.css",
     "/modules/css/corpstatus.css": "/modules/css/corpstatus.css",

@@ -41,6 +41,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
     // Misc.
     .css('resources/assets/css/animate.css', 'public/css/animate.css')
+    .copy('resources/assets/css/bootstrap-grid.min.css', 'public/css/bootstrap-grid.css')
     .js('resources/assets/js/jquery.onenter.js', 'public/js/jquery.onenter.js')
     .js('resources/assets/js/notification-min.js', 'public/js/notification-min.js')
     .combine(['resources/assets/css/notifications.css', 'resources/assets/css/maintenance.css'], 'public/css/misc.css')

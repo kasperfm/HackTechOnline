@@ -28,6 +28,7 @@
     <title>{{ config('app.name', 'HackTech Online') }}</title>
 
     <!-- Styles -->
+    <link href="/css/bootstrap-grid.css" rel="stylesheet">
     <link href="/css/misc.css" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">

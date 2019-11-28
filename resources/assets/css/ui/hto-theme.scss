@@ -632,3 +632,16 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .clickable{
 	cursor: pointer;
 }
+
+hr {
+	margin-top: unset;
+	margin-bottom: unset;
+}
+
+*, ::after, ::before {
+	box-sizing: unset;
+}
+
+.dialog_window {
+	overflow: hidden;
+}

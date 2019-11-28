@@ -32,7 +32,7 @@ class FileViewer extends Module
         }
 
         if ($this->version >= 1.1) {
-            $hostID = $request->get('hostID', $user->gateway->hostID);
+            $hostID = $request->get('hostID', 0) == 0 ? $user->gateway->hostID : $request->get('hostID');
         } else {
             $hostID = $user->gateway->hostID;
         }
