@@ -71,6 +71,12 @@ class MissionEventListener
                     //$jsonResponse['title'] = "Download completed!";
                     break;
 
+                case 'put':
+                    // Upload file
+                    $splitValue = explode(' ', $value);
+                    $missionParam = "upload " . $splitValue[0] . " to " . ServerHandler::hostnameToIP($splitValue[1]);
+                    break;
+
                 case 'renewip':
                     // Renew IP
                     //$missionCompleted = true;

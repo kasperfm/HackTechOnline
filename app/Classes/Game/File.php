@@ -125,4 +125,14 @@ class File
 
         return false;
     }
+
+    public function getFilenameOnly()
+    {
+        $pathTree = explode('/', $this->filename);
+        if(is_array($pathTree)) {
+            return last($pathTree);
+        }
+
+        return $this->filename;
+    }
 }

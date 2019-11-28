@@ -237,5 +237,15 @@ class DefaultAppsSeeder extends Seeder
         DB::table('application_datas')->insert([
             'application_id' => 18
         ]);
+
+        // Tools > File Viewer > Version 1.1
+        DB::table('application_datas')->insert([
+            'application_id' => 12,
+            'version' => 1.1,
+            'price' => 35,
+            'hdd_req' => 9,
+            'cpu_req' => 20,
+            'ram_req' => 28
+        ]);
     }
 }

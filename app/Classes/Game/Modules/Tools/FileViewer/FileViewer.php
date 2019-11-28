@@ -31,13 +31,19 @@ class FileViewer extends Module
             return null;
         }
 
-        $localfiles = FileHandler::listFiles($user->gateway->hostID);
+        if ($this->version >= 1.1) {
+            $hostID = $request->get('hostID', $user->gateway->hostID);
+        } else {
+            $hostID = $user->gateway->hostID;
+        }
+
+        $files = FileHandler::listFiles($hostID);
         $return = array();
 
-        if(!empty($localfiles)){
+        if(!empty($files)){
             $tree = $this->buildFileTree();
 
-            foreach($localfiles as $file){
+            foreach($files as $file){
                 $filepathStructure = explode('/', $file->filename);
 
                 $newDir = array_map( function ($k, $v) use($file, $filepathStructure){
