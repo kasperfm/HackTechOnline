@@ -48,7 +48,6 @@ class Module
             $userApp = UserApp::ownedBy(Auth::id())->where('application_id', $this->moduleID)->first();
             if($userApp){
                 $data = $userApp->data;
-
             }
         }
 

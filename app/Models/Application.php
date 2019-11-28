@@ -44,7 +44,7 @@ class Application extends Model
 
     public function getData($checkVersion = true){
         if($checkVersion){
-            return ApplicationData::where('application_id', $this->id)->where('version', $this->version)->first();
+            return ApplicationData::where('application_id', $this->id)->where('version', $this->data->version)->first();
         }
 
         return ApplicationData::where('application_id', $this->id)->first();
@@ -54,6 +54,11 @@ class Application extends Model
        return $this->with(['data' => function ($query) use ($version) {
             $query->where('version', $version);
         }])->where('id', $this->id)->get();
+    }
+
+    public static function findSpecificVersion($id, $version)
+    {
+        return self::where('applications.id', $id)->byVersion($id, $version);
     }
 
     public function scopeByVersion($query, $applicationId, $version){

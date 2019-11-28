@@ -57,6 +57,7 @@ function initSWShop(){
             success: function(response) {
                 if(response.purchase === true) {
                     updateCredits();
+                    updateApplicationMenu();
                     $.notification({
                         title: 'Software Market',
                         icon: 'c',

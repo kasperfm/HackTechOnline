@@ -21,7 +21,7 @@ class ModuleHandler
     public function getApplication($lookup, $userID, $force = false, $version = 0){
         $app = null;
 
-        if(is_numeric($lookup)){
+        if(is_numeric($lookup) || is_float($lookup)){
             if($version > 0){
                 $app = Application::byVersion($lookup, $version)->first();
             }else{
@@ -32,7 +32,8 @@ class ModuleHandler
 
             if($appLookup) {
                 if ($version > 0) {
-                    $app = Application::byVersion($appLookup->id, $version)->first();
+                    //$app = Application::byVersion($lookup, $version)->first(); // Old stuff
+                    $app = Application::findSpecificVersion($appLookup->id, $version)->first();
                 } else {
                     $app = Application::where('id', $appLookup->id)->first();
                 }
@@ -40,14 +41,16 @@ class ModuleHandler
         }
 
         if($app){
-            if($app->group->name != "system" && $app->group->name != "demo" && $force == false){
+            $appGroup = $app->group;
+
+            if($appGroup->name != "system" && $appGroup->name != "demo" && $force == false){
                 $owned = UserApp::where('application_id', $app->id)->ownedBy($userID)->installed()->get();
                 if(empty($owned)){
                     return null;
                 }
             }
 
-            $class = '\App\Classes\Game\Modules\\' . ucfirst($app->group->name) . '\\' . ucfirst($app->app_name) . '\\' . $app->app_name;
+            $class = '\App\Classes\Game\Modules\\' . ucfirst($appGroup->name) . '\\' . ucfirst($app->app_name) . '\\' . $app->app_name;
             if(class_exists($class)){
                 $module = new $class($app);
                 $module->setup();

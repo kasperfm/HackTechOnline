@@ -65,7 +65,7 @@ class UserApp extends Model
     }
 
     public function scopeCurrentVersionOf($query, $appId){
-        return $query->join('application_datas', 'application_datas.id', '=', 'user_apps.application_id')->select('user_apps.*', 'version')->where('user_apps.application_id', $appId)->orderBy('version', 'desc')->limit(1);
+        return $query->join('application_datas', 'application_datas.id', '=', 'user_apps.application_datas_id')->select('user_apps.*', 'version')->where('user_apps.application_id', $appId)->orderBy('version', 'desc')->limit(1);
     }
 
     public function scopeByVersion($query, $version){

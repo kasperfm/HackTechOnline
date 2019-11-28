@@ -26,6 +26,7 @@ class ModuleController extends Controller
             $appLookup = Application::where('app_name', $request->modname)->first();
             if($appLookup) {
                 $userApp = UserApp::ownedBy(Auth::id())->currentVersionOf($appLookup->id)->first();
+
                 if($userApp) {
                     $this->module = $moduleHandler->getApplication($request->modname, Auth::id(), false, $userApp->version);
                 }else{
