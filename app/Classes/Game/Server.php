@@ -59,7 +59,7 @@ class Server extends Computer {
 
     public function setRootPassword($newPassword){
         if($this->hostID != 0 && !empty($newPassword)){
-            $this->model->root_password = bcrypt($newPassword);
+            $this->model->root_password = sha1($newPassword);
             $this->model->save();
 
             return true;
@@ -70,8 +70,19 @@ class Server extends Computer {
 
     public function checkRootPassword($password){
         if($this->hostID != 0 && !empty($password)){
-            $validation = Model::where('host_id', $this->hostID)->where('root_password', bcrypt($password))->first();
-            if(!empty($validation)){
+            $validation = Model::where('host_id', $this->hostID)->where('root_password', sha1($password))->first();
+            if($validation){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function isPasswordProtected() {
+        if($this->hostID != 0){
+            $validation = Model::where('host_id', $this->hostID)->whereNotNull('root_password')->first();
+            if($validation){
                 return true;
             }
         }

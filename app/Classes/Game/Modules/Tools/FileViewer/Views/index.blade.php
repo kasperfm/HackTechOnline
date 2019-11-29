@@ -5,6 +5,7 @@
 <script>
     var fileViewerHost = 0;
     var fileViewerHostPassword = null;
+    var fileViewerModuleVersion = "{{ base64_encode($moduleVersion) }}";
 </script>
 
 <script type="text/javascript" src="{{ $jsPath }}fileviewer.js"></script>
@@ -17,7 +18,7 @@
         </div>
 
         <div class="col"><br>
-            <button class="btn_small">Connect</button> <button class="btn_small text-yellow">Use local</button>
+            <button id="fileViewer-connect" name="fileViewer-connect" class="btn_small">Connect</button> <button id="fileViewer-browse-local" name="fileViewer-browse-local" style="width: 140px" class="btn_small text-yellow">Browse local</button>
         </div>
     </div>
 </div>
@@ -26,7 +27,7 @@
 <div class="container" style="height: 88%;">
     <div class="row" style="height: 97%;">
         <div id="fileinspector_left" class="col-4">
-                <div id="fileinspector_filetree"></div>
+                <div class="fileinspector_filetree"></div>
         </div>
 
         <div id="fileinspector_right" class="col-8">

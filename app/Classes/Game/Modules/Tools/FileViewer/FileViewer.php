@@ -2,6 +2,7 @@
 
 namespace App\Classes\Game\Modules\Tools\FileViewer;
 
+use App\Classes\Game\Handlers\ServerHandler;
 use App\Classes\Game\Module;
 use App\Classes\Game\Handlers\UserHandler;
 use App\Classes\Game\Handlers\FileHandler;
@@ -136,6 +137,67 @@ class FileViewer extends Module
             }else{
                 $response['result'] = false;
             }
+        }
+
+        return $response;
+    }
+
+    public function ajaxConnectToRemoteServer(Request $request)
+    {
+        $response['result'] = false;
+        $response['message'] = 'Error connecting to the remote host!';
+        $response['host'] = 0;
+
+        if (Auth::check() && !empty($request->get('host'))) {
+            $remote = ServerHandler::getServer($request->get('host'));
+            if (!$remote) {
+                return $response;
+            }
+
+            $service = $remote->getService(21);
+            if (empty($service) || !$remote->getOnlineState()) {
+                return $response;
+            }
+
+            if ($remote->isPasswordProtected() && !$remote->checkRootPassword($request->get('password'))) {
+                $response['message'] = 'Access Denied: Invalid password!';
+            } else {
+                $response['message'] = '';
+                $response['host'] = $remote->hostID;
+                $response['result'] = true;
+            }
+        }
+
+        return $response;
+    }
+
+    public function ajaxDownloadFile(Request $request)
+    {
+        $response['result'] = false;
+
+        if (Auth::check() && !empty($request->get('fid'))) {
+            $file = FileHandler::getFile($request->get('fid'));
+            if (!$file) {
+                return $response;
+            }
+
+            $server = ServerHandler::getServerByID($file->hostID);
+            if (!$server) {
+                return $response;
+            }
+
+            $service = $server->getService(21);
+            if (empty($service) || !$server->getOnlineState()) {
+                return $response;
+            }
+
+            $handleInputArray = [
+                'fileId' => $file->fileID,
+                'action' => 'get',
+                'password' => $request->get('server_password')
+            ];
+
+            $response['result'] = $service->getHandler()->handle($handleInputArray);
         }
 
         return $response;

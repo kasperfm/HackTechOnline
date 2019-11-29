@@ -26,7 +26,7 @@ class ServiceSeeder extends Seeder
         ]);
 
         DB::table('services')->insert([
-            'name' => 'File Transfer',
+            'name' => 'FTP',
             'description' => 'Transfer files between systems.',
             'default_port' => 21
         ]);

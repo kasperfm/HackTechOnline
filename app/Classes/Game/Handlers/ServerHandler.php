@@ -34,7 +34,7 @@ class ServerHandler
             'ram_id'    => 3,
             'hdd_id'    => 4,
             'inet_id'   => 1,
-            'root_password' => !empty($rootPassword) ? bcrypt($rootPassword) : null
+            'root_password' => !empty($rootPassword) ? sha1($rootPassword) : null
         );
 
         $newServer->fill($serverData);
@@ -112,5 +112,22 @@ class ServerHandler
                 }
             }
         }
+    }
+
+    /**
+     * Find a server from the internal ID.
+     * @param $hostID
+     * @return \App\Classes\Game\Server|null
+     */
+    public static function getServerByID($hostID)
+    {
+        if(!empty($hostID)){
+            $host = Host::where('id', $hostID)->server()->first();
+            if(!empty($host)){
+                return new \App\Classes\Game\Server($host->id);
+            }
+        }
+
+        return null;
     }
 }
