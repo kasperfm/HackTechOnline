@@ -34,6 +34,17 @@ class FileViewer extends Module
 
         if ($this->version >= 1.1) {
             $hostID = $request->get('hostID', 0) == 0 ? $user->gateway->hostID : $request->get('hostID');
+
+            if ($hostID != $user->gateway->hostID || $hostID == 0) {
+                $server = ServerHandler::getServerByID($hostID);
+                if (!$server) {
+                    return response()->json(array());
+                }
+
+                if ($server->isPasswordProtected() && !$server->checkRootPassword($request->get('hostPassword'))) {
+                    return response()->json(array());
+                }
+            }
         } else {
             $hostID = $user->gateway->hostID;
         }
@@ -146,6 +157,7 @@ class FileViewer extends Module
     {
         $response['result'] = false;
         $response['message'] = 'Error connecting to the remote host!';
+        $response['password_protected'] = false;
         $response['host'] = 0;
 
         if (Auth::check() && !empty($request->get('host'))) {
@@ -159,8 +171,10 @@ class FileViewer extends Module
                 return $response;
             }
 
-            if ($remote->isPasswordProtected() && !$remote->checkRootPassword($request->get('password'))) {
-                $response['message'] = 'Access Denied: Invalid password!';
+            if ($remote->isPasswordProtected()){// && !$remote->checkRootPassword($request->get('password'))) {
+                $response['message'] = 'Access Denied: Password protected server!';
+                $response['password_protected'] = true;
+                $response['host'] = $remote->hostID;
             } else {
                 $response['message'] = '';
                 $response['host'] = $remote->hostID;

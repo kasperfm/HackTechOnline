@@ -36,3 +36,7 @@
         </div>
     </div>
 </div>
+
+<div id="server_prompt_password_window" class="dialog_window" title="Enter Password">
+    @include('Modules::Tools.FileViewer.Views.password')
+</div>
