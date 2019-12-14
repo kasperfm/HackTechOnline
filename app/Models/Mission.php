@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $objective
  * @property int $minimum_trust
  * @property int $hidden
+ * @property int $reward_item_id
  * @property int|null $chain_parent
  * @property-read \App\Models\Corporation $corporation
  * @property-read \App\Models\Mission $parent
@@ -43,7 +44,7 @@ class Mission extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'title', 'description', 'complete_message', 'reward_trust', 'reward_credits', 'corp_id',
+        'title', 'description', 'complete_message', 'reward_trust', 'reward_credits', 'reward_item_id','corp_id',
         'type', 'objective', 'minimum_trust', 'hidden', 'chain_parent'
     ];
 
@@ -55,5 +56,10 @@ class Mission extends Model
     public function parent()
     {
         return $this->hasOne(Mission::class, 'id', 'chain_parent');
+    }
+
+    public function rewardItem()
+    {
+        return $this->hasOne(RewardItem::class, 'id', 'reward_item_id');
     }
 }
