@@ -28,17 +28,22 @@ class Gateway extends Computer {
         }
     }
 
+    private function getModel()
+    {
+        return Model::where('user_id', $this->ownerID)->firstOrFail();
+    }
+
     private function getUserGateway(){
         if($this->ownerID != 0){
-            $this->model = Model::where('user_id', $this->ownerID)->first();
+            $model = $this->getModel();
 
-            if(!empty($this->model)){
-                $this->hostID = $this->model->host_id;
+            if(!empty($model)){
+                $this->hostID = $model->host_id;
 
-                $this->setHardwarePart(HardwareTypes::Gateway, $this->model->cpu->id);
-                $this->setHardwarePart(HardwareTypes::Gateway, $this->model->ram->id);
-                $this->setHardwarePart(HardwareTypes::Gateway, $this->model->hdd->id);
-                $this->setHardwarePart(HardwareTypes::Gateway, $this->model->inet->id);
+                $this->setHardwarePart(HardwareTypes::Gateway, $model->cpu->id);
+                $this->setHardwarePart(HardwareTypes::Gateway, $model->ram->id);
+                $this->setHardwarePart(HardwareTypes::Gateway, $model->hdd->id);
+                $this->setHardwarePart(HardwareTypes::Gateway, $model->inet->id);
 
                 $this->ipAddress = $this->getIPAddress();
                 $this->online = (bool)$this->getOnlineState();
@@ -78,12 +83,13 @@ class Gateway extends Computer {
     }
 
     public function saveHardware(){
-        $this->model->cpu_id = $this->hardware['cpu']->hardwareID;
-        $this->model->ram_id = $this->hardware['ram']->hardwareID;
-        $this->model->hdd_id = $this->hardware['hdd']->hardwareID;
-        $this->model->inet_id = $this->hardware['net']->hardwareID;
-        $this->model->save();
-        return $this->model;
+        $model = $this->getModel();
+        $model->cpu_id = $this->hardware['cpu']->hardwareID;
+        $model->ram_id = $this->hardware['ram']->hardwareID;
+        $model->hdd_id = $this->hardware['hdd']->hardwareID;
+        $model->inet_id = $this->hardware['net']->hardwareID;
+        $model->save();
+        return $model;
     }
 
     public function installApplication($appID){

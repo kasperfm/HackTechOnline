@@ -17,7 +17,6 @@ use App\Models\Host;
 use Illuminate\Support\Facades\Auth;
 
 class Computer {
-    protected $model = null;
     public $ipAddress = null;
     public $ownerID = 0;
     public $hostID = 0;
@@ -99,7 +98,8 @@ class Computer {
 
     public function getIPAddress(){
         if($this->hostID != 0){
-            return $this->model->host->game_ip;
+            $host = Host::where('id', $this->hostID)->firstOrFail();
+            return $host->game_ip;
         }
     }
     

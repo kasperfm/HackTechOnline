@@ -30,21 +30,26 @@ class Server extends Computer {
         }
     }
 
+    private function getModel()
+    {
+        return Model::where('host_id', $this->hostID)->firstOrFail();
+    }
+
     /**
      * Return the server object.
      * @return bool
      */
     private function getServer(){
         if($this->hostID != 0){
-            $this->model = Model::where('host_id', $this->hostID)->first();
+            $model = $this->getModel();
 
-            if(!empty($this->model)){
-                $this->hostID = $this->model->host_id;
+            if(!empty($model)){
+                $this->hostID = $model->host_id;
 
-                $this->setHardwarePart(HardwareTypes::Server, $this->model->cpu->id);
-                $this->setHardwarePart(HardwareTypes::Server, $this->model->ram->id);
-                $this->setHardwarePart(HardwareTypes::Server, $this->model->hdd->id);
-                $this->setHardwarePart(HardwareTypes::Server, $this->model->inet->id);
+                $this->setHardwarePart(HardwareTypes::Server, $model->cpu->id);
+                $this->setHardwarePart(HardwareTypes::Server, $model->ram->id);
+                $this->setHardwarePart(HardwareTypes::Server, $model->hdd->id);
+                $this->setHardwarePart(HardwareTypes::Server, $model->inet->id);
 
                 $this->ipAddress = $this->getIPAddress();
                 $this->online = (bool)$this->getOnlineState();
@@ -59,8 +64,9 @@ class Server extends Computer {
 
     public function setRootPassword($newPassword){
         if($this->hostID != 0 && !empty($newPassword)){
-            $this->model->root_password = sha1($newPassword);
-            $this->model->save();
+            $model = $this->getModel();
+            $model->root_password = sha1($newPassword);
+            $model->save();
 
             return true;
         }else{
@@ -91,10 +97,11 @@ class Server extends Computer {
     }
 
     public function saveHardware(){
-        $this->model->cpu_id = $this->hardware['cpu']->hardwareID;
-        $this->model->ram_id = $this->hardware['ram']->hardwareID;
-        $this->model->hdd_id = $this->hardware['hdd']->hardwareID;
-        $this->model->inet_id = $this->hardware['net']->hardwareID;
-        $this->model->save();
+        $model = $this->getModel();
+        $model->cpu_id = $this->hardware['cpu']->hardwareID;
+        $model->ram_id = $this->hardware['ram']->hardwareID;
+        $model->hdd_id = $this->hardware['hdd']->hardwareID;
+        $model->inet_id = $this->hardware['net']->hardwareID;
+        $model->save();
     }
 }
