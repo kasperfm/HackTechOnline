@@ -11,6 +11,15 @@ use App\Models\ApplicationData;
 class ModuleHandler
 {
     /**
+     * Static function to return a new self instance.
+     * @return ModuleHandler
+     */
+    public static function make()
+    {
+        return new ModuleHandler();
+    }
+
+    /**
      * Get an application module.
      * @param $lookup
      * @param $userID

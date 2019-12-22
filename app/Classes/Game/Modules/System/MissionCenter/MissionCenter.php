@@ -7,6 +7,7 @@ use App\Classes\Game\Handlers\CorpHandler;
 use App\Classes\Game\Handlers\UserHandler;
 use App\Classes\Game\Mission;
 use App\Classes\Game\Module;
+use App\Classes\Game\Reward;
 use App\Models\Corporation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -121,10 +122,21 @@ class MissionCenter extends Module
             $response['current'] = false;
         }
 
+        $rewardItem = null;
+
+        if($mission->rewardItem){
+            $rewardItem = new Reward($mission->rewardItem);
+        }
+
         $response['title'] = $mission->title;
         $response['description'] = $mission->description;
         $response['reward_trust'] = $mission->rewardTrust;
         $response['reward_credits'] = $mission->rewardCredits;
+        $response['reward_item'] =  $rewardItem ? [
+            'type' => $rewardItem->type,
+            'name' => $rewardItem->title,
+            'dropchance' => $rewardItem->dropChance
+        ] : null;
         $response['corp_name'] = $mission->corporation->name;
 
         return $response;

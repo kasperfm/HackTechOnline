@@ -52,15 +52,27 @@ function selectMission(mission) {
                 acceptHTMLContent = '<br /><center><strong style="cursor: pointer; color: aqua;" class="flash animated infinite accept_mission_link" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>';
             }
 
+            var itemRewardContent;
+            if(response.reward_item != null){
+                itemRewardContent = '<br /><strong>Item reward:</strong> <span style="color: #fcff34;">' + response.reward_item.name + ' (' + response.reward_item.type +')</span>';
+
+                if(response.reward_item.dropchance < 100){
+                    itemRewardContent += '<br /><strong>Chance for item:</strong> <span style="color: #fcff34;">' + response.reward_item.dropchance + '%</span>';
+                }
+            }else{
+                itemRewardContent = '';
+            }
+
             if(response.title) {
                 $.notification(
                     {
                         title: response.title,
                         icon: 'b',
                         color: '#fff',
-                        content: '<strong>Corporation:</strong> ' + response.corp_name +
-                            '<br /><strong>Trust points:</strong> ' + response.reward_trust +
-                            '<br /><strong>Credits reward:</strong> $' + response.reward_credits +
+                        content: '<strong>Corporation:</strong> <span style="color: #fcff34;">' + response.corp_name + '</span>' +
+                            '<br /><strong>Trust points:</strong> <span style="color: #fcff34;">' + response.reward_trust + '</span>' +
+                            '<br /><strong>Credits reward:</strong> <span style="color: #fcff34;">$' + response.reward_credits + '</span>' +
+                            itemRewardContent +
                             '<br /><strong>Mission:</strong> ' + response.description +
                             '<br />' +
                             acceptHTMLContent

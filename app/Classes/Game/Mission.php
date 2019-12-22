@@ -12,6 +12,7 @@
 
 namespace App\Classes\Game;
 
+use App\Classes\Game\Types\RewardItemTypes;
 use App\Events\HandleApp;
 use App\Models\Mission as MissionModel;
 use App\Models\User as UserModel;
@@ -29,6 +30,7 @@ class Mission
     public $completed = false;
     public $rewardTrust;
     public $rewardCredits;
+    public $rewardItem;
     public $corporation;
 
     public $model;
@@ -52,6 +54,7 @@ class Mission
         $this->completeMessage = $mission->complete_message;
         $this->rewardTrust = $mission->reward_trust;
         $this->rewardCredits = $mission->reward_credits;
+        $this->rewardItem = $mission->reward_item_id;
         $this->corporation = CorpHandler::getCorporation($mission->corporation->id);
     }
 
@@ -96,6 +99,17 @@ class Mission
 
                 $corp->addTrust($this->user->userID, $this->model->reward_trust);
                 $this->user->economy->addMoney($this->model->reward_credits);
+
+                if($this->rewardItem){
+                    $item = new Reward($this->rewardItem);
+                    if($item->isDropped()){
+                        $item->rewardPlayerWithItem($this->user->userID);
+
+                        if($item->typeID == RewardItemTypes::Application) {
+                            event(new HandleApp('MySoftware', 'refresh'));
+                        }
+                    }
+                }
 
                 event(new HandleApp('MissionCenter', 'refresh'));
 

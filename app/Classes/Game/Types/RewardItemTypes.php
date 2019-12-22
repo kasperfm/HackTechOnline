@@ -8,9 +8,9 @@ class RewardItemTypes {
     const Script        = 3;
 
     public static $types = array(
-        self::File        => "File",
-        self::Application => "Application",
-        self::Script      => "Script"
+        self::File        => self::File,
+        self::Application => self::Application,
+        self::Script      => self::Script
     );
 
     public static $values = array(
