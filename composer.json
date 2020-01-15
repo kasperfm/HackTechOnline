@@ -10,6 +10,7 @@
         "backpack/logmanager": "^2.3",
         "guzzlehttp/guzzle": ">=6.3",
         "guzzlehttp/psr7": "^1.5",
+        "highideas/laravel-users-online": "^3.0",
         "jrean/laravel-user-verification": "^7.0",
         "laracasts/utilities": "^3.0",
         "laravel/framework": "5.8.*",
