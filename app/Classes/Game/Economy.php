@@ -20,9 +20,9 @@ use App\Models\User;
 class Economy
 {
     /**
-     * @var User
+     * @var int
      */
-    public $user;
+    public $userID;
 
     /**
      * @var BankAccount
@@ -36,7 +36,7 @@ class Economy
      * @param User $user
      */
     public function __construct(User $user){
-        $this->user = $user;
+        $this->userID = $user->id;
         $this->bankAccount = $user->bankAccount;
     }
 
@@ -53,7 +53,7 @@ class Economy
      * @return Bank
      */
     public function getBank(){
-        return Bank::where('id', $this->user->profile->bank_id)->first();
+        return $this->bankAccount->bank;
     }
 
     /**
@@ -75,7 +75,7 @@ class Economy
 
         activity('economy')
             ->performedOn($this->bankAccount)
-            ->causedBy($this->user)
+            ->causedBy($this->userID)
             ->withProperties([
                 'amount' => $amount,
             ])
@@ -95,7 +95,7 @@ class Economy
 
         activity('economy')
             ->performedOn($this->bankAccount)
-            ->causedBy($this->user)
+            ->causedBy($this->userID)
             ->withProperties([
                 'amount' => $amount * -1,
             ])
