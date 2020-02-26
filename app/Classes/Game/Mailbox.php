@@ -17,15 +17,15 @@ use App\Models\User;
 
 class Mailbox
 {
-    public $user;
+    public $userID;
 
-    public function __construct(User $user){
-        $this->user = $user;
+    public function __construct($userID){
+        $this->userID = $userID;
     }
 
     public function sendNewMessage($to, $subject, $message){
         $newMessage = new Message();
-        $newMessage->from_user_id = $this->user->id;
+        $newMessage->from_user_id = $this->userID;
         $newMessage->to_user_id = $to;
         $newMessage->subject = strip_tags($subject);
         $newMessage->message = strip_tags(nl2br($message), '<br>');
@@ -34,7 +34,7 @@ class Mailbox
         activity('game')
             ->performedOn($newMessage)
             ->withProperties(['message_id' => $newMessage->id])
-            ->causedBy($this->user->model)
+            ->causedBy($this->userID)
             ->log('Ingame mail sent');
     }
 
@@ -42,14 +42,14 @@ class Mailbox
         activity('game')
             ->performedOn($message)
             ->withProperties(['message_id' => $message->id])
-            ->causedBy($this->user->model)
+            ->causedBy($this->userID)
             ->log('Ingame mail deleted');
         $message->delete();
     }
 
     public function checkSpamTimer(){
         $secondsBetweenMessages = 30;
-        $lastMessage = Message::where('from_user_id', $this->user->id)->orderBy('created_at', 'desc')->first();
+        $lastMessage = Message::where('from_user_id', $this->userID)->orderBy('created_at', 'desc')->first();
 
         if(!$lastMessage){
             return true;
@@ -63,7 +63,7 @@ class Mailbox
     }
 
     public function listMessages(){
-        $messages = Message::where('to_user_id', $this->user->id)->get();
+        $messages = Message::where('to_user_id', $this->userID)->get();
         return $messages;
     }
 

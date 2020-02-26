@@ -73,8 +73,8 @@ class User
         $this->username = $user->username;
         $this->economy = new Economy($user);
         $this->gateway = new Gateway($user->id);
-        $this->mailbox = new Mailbox($user);
-        $this->bugreporter = new BugReport($user);
+        $this->mailbox = new Mailbox($user->id);
+        $this->bugreporter = new BugReport($user->id);
         $this->corporation = CorpHandler::getCorporation($user->profile->corporation_id);
         $this->userLevel = $user->userlevel;
         $this->userRole = UserTypes::$values[$user->userlevel];
