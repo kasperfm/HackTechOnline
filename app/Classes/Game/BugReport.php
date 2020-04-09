@@ -18,15 +18,15 @@ use App\Models\User;
 
 class BugReport
 {
-    public $user;
+    public $userID;
 
     /**
      * BugReport constructor.
-     * @param User $user
+     * @param int $userID
      */
-    public function __construct(User $user)
+    public function __construct($userID)
     {
-        $this->user = $user;
+        $this->userID = $userID;
     }
 
     public function newReport($subject, $description, $category)
@@ -37,10 +37,10 @@ class BugReport
 
         $bug = new Bug();
 
-        $bug->subject = $subject;
-        $bug->description = $description;
-        $bug->category_id = $category;
-        $bug->user_id = $this->user->id;
+        $bug->subject = strip_tags($subject);
+        $bug->description = strip_tags(nl2br($description), '<br>');
+        $bug->category_id = (int)$category;
+        $bug->user_id = $this->userID;
         $bug->user_agent = $_SERVER['HTTP_USER_AGENT'];
 
         $bug->save();

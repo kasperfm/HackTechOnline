@@ -9,6 +9,7 @@ use App\Classes\Game\Module;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function GuzzleHttp\Psr7\str;
 
 class Mailbox extends Module
 {
@@ -29,7 +30,7 @@ class Mailbox extends Module
         $jsPath = '/modules/js/';
         $view = view('Modules::System.Mailbox.Views.index',
             [
-                'username' => $username,
+                'username' => strip_tags($username),
                 'cssPath' => $cssPath,
                 'jsPath' => $jsPath
             ]
@@ -82,9 +83,9 @@ class Mailbox extends Module
         if($message) {
             $user->mailbox->markAsRead($message->id);
 
-            $response['message'] = $message->message;
-            $response['subject'] = $message->subject;
-            $response['from_username'] = $message->fromUser->username;
+            $response['message'] = strip_tags($message->message);
+            $response['subject'] = strip_tags($message->subject);
+            $response['from_username'] = strip_tags($message->fromUser->username);
             $response['is_read'] = $message->status;
             $response['date'] = date("Y-m-d H:i:s", strtotime($message->created_at));
             $response['result'] = true;

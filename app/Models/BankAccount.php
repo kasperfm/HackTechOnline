@@ -39,6 +39,6 @@ class BankAccount extends Model
     ];
 
     public function bank(){
-        return $this->hasOne('App\Models\Bank');
+        return $this->hasOne('App\Models\Bank', 'id', 'bank_id');
     }
 }

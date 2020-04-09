@@ -50,6 +50,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 
     /**
      * The attributes that are mass assignable.

@@ -122,6 +122,7 @@ return [
         'files'           => false, // Show the included files
         'config'          => false, // Display config settings
         'cache'           => false, // Display cache events
+        'models'          => true,
     ],
 
     /*

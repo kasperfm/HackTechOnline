@@ -29,7 +29,7 @@ class Messenger extends Module
         $view = view('Modules::System.Messenger.Views.index',
             [
                 'chatBackendPort' => $chatBackendPort,
-                'username' => $username,
+                'username' => strip_tags($username),
                 'cssPath' => $cssPath,
                 'jsPath' => $jsPath
             ]

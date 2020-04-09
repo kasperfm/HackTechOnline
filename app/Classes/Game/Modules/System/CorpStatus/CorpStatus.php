@@ -18,7 +18,7 @@ class CorpStatus extends Module
         $this->title = "Corporation Status";
 
         $this->size = array(
-            "width"     => 480,
+            "width"     => 500,
             "height"    => 300
         );
     }
