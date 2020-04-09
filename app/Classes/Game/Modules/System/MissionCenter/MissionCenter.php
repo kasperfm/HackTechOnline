@@ -16,7 +16,7 @@ class MissionCenter extends Module
 {
     public function setup(){
         $this->name = "MissionCenter";
-        $this->title = "MissionCenter";
+        $this->title = "Contracts";
 
         $this->size = array(
             "width"     => 550,

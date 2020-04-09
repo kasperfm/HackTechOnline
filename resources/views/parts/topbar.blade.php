@@ -25,7 +25,7 @@
                         @endif
                         <li rel="messenger" class="exec">MESSENGER</li>
                         <li rel="mailbox" class="exec">MAILBOX</li>
-                        <li rel="missioncenter" class="exec">MISSION CENTER</li>
+                        <li rel="missioncenter" class="exec">CONTRACTS</li>
                         <li rel="server_admin" class="menubar-item-inactive">SERVER ADMINISTRATION</li>
                         <li rel="webbrowser" class="exec">WEB-BROWSER</li>
                         <li rel="corpstatus" class="exec">CORPORATION</li>
