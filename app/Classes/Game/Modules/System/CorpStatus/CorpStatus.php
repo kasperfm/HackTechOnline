@@ -87,6 +87,12 @@ class CorpStatus extends Module
 
     public function ajaxLoadMembers(Request $request)
     {
+        if(!currentPlayer()->corporation){
+            return array(
+                'answer' => false
+            );
+        }
+
         if(currentPlayer()->userID != currentPlayer()->corporation->owner->id){
             return array(
                 'answer' => false
