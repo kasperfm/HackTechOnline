@@ -19,9 +19,9 @@
                 <div class="menubar-item">SYSTEM
                     <ul>
                         @if(currentPlayer()->aiStatus > 0)
-                        <li rel="ai" class="exec">AI</li>
+                            <li rel="ai" class="exec">AI</li>
                         @else
-                        <li rel="ai" class="menubar-item-inactive">AI</li>
+                            <li rel="ai" class="menubar-item-inactive">AI</li>
                         @endif
                         <li rel="messenger" class="exec">MESSENGER</li>
                         <li rel="mailbox" class="exec">MAILBOX</li>
@@ -40,13 +40,13 @@
                         <ul class="appmenu" id="appmenu"></ul>
                     </div>
                 @else
-                <div class="applications-menu menubar-item" style="color: #ffffff" >APPLICATIONS
-                    <ul class="appmenu" id="appmenu">
-                        @foreach($installedApps as $app)
-                            <li rel="{{ strtolower($app->app->app_name) }}" class="exec">{{ StringHelper::camelCaseToWords($app->app->app_name) }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="applications-menu menubar-item" style="color: #ffffff" >APPLICATIONS
+                        <ul class="appmenu" id="appmenu">
+                            @foreach($installedApps as $app)
+                                <li rel="{{ strtolower($app->app->app_name) }}" class="exec">{{ StringHelper::camelCaseToWords($app->app->app_name) }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
 
                 <div class="menubar-item float-right logout-btn"><img width="10" height="10" alt="Logoff" src="img/icon-login.png" /> LOGOFF</div>
