@@ -51,4 +51,25 @@ class CorpHandler
 
         return $newCorp;
     }
+
+    /**
+     * Get a corporation object by corp name.
+     * @param $corpName
+     * @return Corporation|null
+     */
+    public static function getCorporationByName($corpName)
+    {
+        if(!$corpName){
+            return null;
+        }
+
+        $corpModel = CorpModel::where('name', $corpName)->first();
+
+        if(!$corpModel){
+            return null;
+        }
+
+        $corp = new Corporation($corpModel);
+        return $corp;
+    }
 }
