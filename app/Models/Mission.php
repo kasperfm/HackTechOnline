@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $chain_parent
  * @property-read \App\Models\Corporation $corporation
  * @property-read \App\Models\Mission $parent
+ * @property int is_advanced
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Mission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Mission newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Mission query()
@@ -45,7 +46,7 @@ class Mission extends Model
 
     protected $fillable = [
         'title', 'description', 'complete_message', 'reward_trust', 'reward_credits', 'reward_item_id','corp_id',
-        'type', 'objective', 'minimum_trust', 'hidden', 'chain_parent'
+        'type', 'objective', 'minimum_trust', 'hidden', 'chain_parent', 'is_advanced', 'advanced_class'
     ];
 
     public function corporation()
@@ -61,5 +62,18 @@ class Mission extends Model
     public function rewardItem()
     {
         return $this->hasOne(RewardItem::class, 'id', 'reward_item_id');
+    }
+
+    public function callAdvancedClass($function)
+    {
+        if ($this->is_advanced && !empty($this->advanced_class)) {
+            $class = '\App\Classes\Game\Missions\\' . ucfirst($this->advanced_class);
+            if(class_exists($class)){
+                $missionClass = new $class();
+                if(method_exists($missionClass, $function)) {
+                    $missionClass->{$function}();
+                }
+            }
+        }
     }
 }

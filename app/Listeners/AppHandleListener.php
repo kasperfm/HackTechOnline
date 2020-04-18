@@ -24,7 +24,7 @@ class AppHandleListener
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  HandleApp  $event
      * @return void
      */
     public function handle(HandleApp $event)

@@ -16,7 +16,7 @@ class EconomyController extends Controller
         if(Auth::check()) {
             $response['answer'] = true;
 
-            $balance = UserHandler::player()->economy->getBalance();
+            $balance = currentPlayer()->economy->getBalance();
             $response['credits'] = $balance;
         }
 
