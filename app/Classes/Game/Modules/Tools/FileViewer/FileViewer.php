@@ -166,7 +166,7 @@ class FileViewer extends Module
                 return $response;
             }
 
-            $service = $remote->getService(21);
+            $service = $remote->getService($request->get('port', 21));
             if (empty($service) || !$remote->getOnlineState()) {
                 return $response;
             }

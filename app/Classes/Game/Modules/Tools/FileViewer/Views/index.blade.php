@@ -4,6 +4,7 @@
 
 <script>
     var fileViewerHost = 0;
+    var fileViewerPort = 21;
     var fileViewerHostPassword = null;
     var fileViewerModuleVersion = "{{ base64_encode($moduleVersion) }}";
 </script>
