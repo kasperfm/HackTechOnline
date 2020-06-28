@@ -21,8 +21,8 @@ class Service {
     public $ipAddress = null;
     public $serviceName = null;
     public $serviceDescription = null;
+    public $serviceID = 0;
     private $handler = null;
-    private $serviceID = 0;
 
     public function __construct($id, $port = 0, $ip){
         $service = Model::where('id', $id)->first();

@@ -7,6 +7,7 @@ use App\Models\Host;
 use App\Models\Hostname;
 
 use App\Classes\Helpers\NetworkHelper;
+use App\Models\Service;
 
 class ServerHandler
 {
@@ -137,4 +138,5 @@ class ServerHandler
 
         return null;
     }
+
 }
