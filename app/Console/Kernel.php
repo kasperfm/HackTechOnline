@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\MakeInviteKeys::class,
         Commands\EncryptPassword::class,
+        Commands\ImportData::class
     ];
 
     /**

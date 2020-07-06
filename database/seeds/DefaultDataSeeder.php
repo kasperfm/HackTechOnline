@@ -3,6 +3,7 @@
 use App\Classes\Game\Handlers\DomainHandler;
 use App\Classes\Game\Handlers\ServerHandler;
 use App\Models\FileData;
+use App\Models\Mission;
 use Illuminate\Database\Seeder;
 
 class DefaultDataSeeder extends Seeder
@@ -14,7 +15,14 @@ class DefaultDataSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $this->command->line('Importing servers...');
+        $this->importServers();
+        $this->command->line('');
+        $this->command->line('Importing missions...');
+        $this->importMissions();
+        $this->command->line('');
+        $this->command->line('Importing files...');
+        $this->importFiles();
     }
 
     private function importServers()
@@ -33,6 +41,23 @@ class DefaultDataSeeder extends Seeder
                     }
                 }
             }
+
+            $this->command->line('Created server: ' . $result['ip'] . ( $newServer ? ' ('.$result['domain'].')' : '' ));
+        }
+    }
+
+    private function importMissions()
+    {
+        $files = \File::allFiles(storage_path('app/seederdata/missions'));
+        foreach ($files as $file) {
+            $result = include $file->getPathname();
+
+            DB::table('missions')->updateOrInsert(
+                ['corp_id' => $result['corp_id'], 'title' => $result['title']],
+                $result
+            );
+
+            $this->command->line('Created mission: "' . $result['title'] . '"');
         }
     }
 
@@ -62,6 +87,8 @@ class DefaultDataSeeder extends Seeder
                     'host' => $result['host']
                 ]
             );
+
+            $this->command->line('Created file: "' . $result['filename'] . '"');
         }
     }
 }
