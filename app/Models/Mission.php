@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\Mission
  *
+ * @property string $shortcode
  * @property int $id
  * @property string $title
  * @property string $description
@@ -45,7 +46,7 @@ class Mission extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'title', 'description', 'complete_message', 'reward_trust', 'reward_credits', 'reward_item_id','corp_id',
+        'shortcode', 'title', 'description', 'complete_message', 'reward_trust', 'reward_credits', 'reward_item_id','corp_id',
         'type', 'objective', 'minimum_trust', 'hidden', 'chain_parent', 'is_advanced', 'advanced_class'
     ];
 

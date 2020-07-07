@@ -23,6 +23,7 @@ use App\Classes\Game\Handlers\CorpHandler;
 
 class Mission
 {
+    public $id;
     public $missionID;
     public $title;
     public $description;
@@ -36,7 +37,7 @@ class Mission
     public $model;
     private $user;
 
-    public function __construct(MissionModel $mission, User $user)
+    public function __construct(MissionModel $mission, User $user = null)
     {
         $this->model = $mission;
         if($user){
@@ -48,6 +49,7 @@ class Mission
             }
         }
 
+        $this->id = $mission->id;
         $this->missionID = $mission->id;
         $this->title = $mission->title;
         $this->description = $mission->description;
