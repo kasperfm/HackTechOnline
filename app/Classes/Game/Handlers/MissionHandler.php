@@ -19,13 +19,32 @@ class MissionHandler
     public static function getMission($id, $userID = null)
     {
         $mission = MissionModel::where('id', $id)->first();
+
         if(empty($mission)){
             return null;
         }
+
         $user = UserHandler::getUser($userID);
         $missionObj = new Mission($mission, $user);
 
         return $missionObj;
+    }
+
+    /**
+     * Lookup a mission by it's shortcode.
+     * @param $shortcode
+     * @param null $userID
+     * @return Mission|null
+     */
+    public static function findMission($shortcode, $userID = null)
+    {
+        $mission = MissionModel::where('shortcode', $shortcode)->first();
+
+        if (!$mission) {
+            return null;
+        }
+
+        return self::getMission($mission->id, $userID);
     }
 
     /**

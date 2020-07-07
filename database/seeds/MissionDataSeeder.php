@@ -1,6 +1,7 @@
 <?php
 
 use App\Classes\Game\Handlers\CorpHandler;
+use App\Classes\Game\Handlers\DomainHandler;
 use App\Classes\Game\Handlers\ServerHandler;
 use App\Models\File;
 use App\Models\Mission;

@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceSeeder::class);
         $this->call(DomainProviderSeeder::class);
         $this->call(BugCategoriesSeeder::class);
-        $this->call(ServersSeeder::class);
-        $this->call(MissionDataSeeder::class);
+        //$this->call(ServersSeeder::class);
+        $this->call(DefaultDataSeeder::class);
+        //$this->call(MissionDataSeeder::class);
     }
 }
