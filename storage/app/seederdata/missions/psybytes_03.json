@@ -1,0 +1,18 @@
+{
+  "shortcode": "PSYBYTES-03-NEWIP",
+  "corporation": "PsychedelicBytes",
+  "title": "Cover your tracks",
+  "description": "As the very final task for now, you should change your gateway's IP address as soon as possible! We know it's not a very good way to try to be safe, but it's better than nothing. So get an IP Renewer tool, and change your IP... NOW!",
+  "complete_message": "Phew, that was close. Let us hope that this will slow their tracers down a bit.",
+  "rewards": {
+    "trust": 10,
+    "credits": 30,
+    "item": null
+  },
+  "type": "renewip",
+  "objective": "",
+  "required_trust": 10,
+  "hidden": false,
+  "chain_parent_shortcode": "PSYBYTES-02-PWDCRACK",
+  "advanced_class": null
+}

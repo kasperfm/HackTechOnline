@@ -46,18 +46,57 @@ class DefaultDataSeeder extends Seeder
         }
     }
 
+    private function importMissionJsonFile($jsonData)
+    {
+        $rawMission = json_decode($jsonData);
+
+        $corporation = App\Classes\Game\Handlers\CorpHandler::getCorporationByName($rawMission->corporation);
+
+        if(!$corporation){
+            return false;
+        }
+
+        if($rawMission->chain_parent_shortcode){
+            $chainParentMission = App\Classes\Game\Handlers\MissionHandler::findMission($rawMission->chain_parent_shortcode);
+        }
+
+        DB::table('missions')->updateOrInsert(
+            ['corp_id' => $corporation->corpID, 'shortcode' => $rawMission->shortcode],
+            [
+                'shortcode'         => $rawMission->shortcode,
+                'title'             => $rawMission->title,
+                'description'       => $rawMission->description,
+                'complete_message'  => $rawMission->complete_message,
+                'reward_trust'      => $rawMission->rewards->trust,
+                'reward_credits'    => $rawMission->rewards->credits,
+                'reward_item_id'    => $rawMission->rewards->item,
+                'corp_id'           => $corporation->corpID,
+                'type'              => $rawMission->type,
+                'objective'         => $rawMission->objective,
+                'minimum_trust'     => $rawMission->required_trust,
+                'hidden'            => intval($rawMission->hidden),
+                'chain_parent'      => $chainParentMission->missionID ?? null,
+                'is_advanced'       => $rawMission->advanced_class ? 1 : 0,
+                'advanced_class'    => $rawMission->advanced_class
+            ]
+        );
+
+        return $rawMission;
+    }
+
     private function importMissions()
     {
         $files = \File::allFiles(storage_path('app/seederdata/missions'));
         foreach ($files as $file) {
-            $result = include $file->getPathname();
+            if($file->getExtension() != "json") {
+                continue;
+            }
 
-            DB::table('missions')->updateOrInsert(
-                ['corp_id' => $result['corp_id'], 'title' => $result['title']],
-                $result
-            );
+            $result = file_get_contents($file->getPathname());
+            $newMission = $this->importMissionJsonFile($result);
 
-            $this->command->line('Created mission: "' . $result['title'] . '"');
+
+            $this->command->line('Created mission: "' . $newMission->title . '" ('.$newMission->shortcode.')');
         }
     }
 
