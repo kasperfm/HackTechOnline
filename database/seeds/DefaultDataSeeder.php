@@ -95,6 +95,9 @@ class DefaultDataSeeder extends Seeder
             $result = file_get_contents($file->getPathname());
             $newMission = $this->importMissionJsonFile($result);
 
+            if(!$newMission){
+                continue;
+            }
 
             $this->command->line('Created mission: "' . $newMission->title . '" ('.$newMission->shortcode.')');
         }
