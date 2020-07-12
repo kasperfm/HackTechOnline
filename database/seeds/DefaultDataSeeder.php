@@ -101,6 +101,44 @@ class DefaultDataSeeder extends Seeder
         return $rawMission;
     }
 
+    private function importFileJsonFile($jsonData)
+    {
+        $rawFile = json_decode($jsonData);
+
+        $host = ServerHandler::getServer($rawFile->host);
+
+        if(!$host){
+            return false;
+        }
+
+        DB::table('file_data')->updateOrInsert(
+            ['filename' => $rawFile->filename, 'filetype' => $rawFile->filetype],
+            [
+                'filename'  => $rawFile->filename,
+                'filetype'  => $rawFile->filetype,
+                'content'   => $rawFile->content,
+                'encrypted' => intval($rawFile->encrypted),
+                'password'  => $rawFile->password,
+                'filesize'  => $rawFile->filesize
+            ]
+        );
+
+        $insertedFile = FileData::where('filename', $rawFile->filename)->where('filetype', $rawFile->filetype)->firstOrFail();
+
+        DB::table('files')->updateOrInsert(
+            ['file_id' => $insertedFile->id],
+            [
+                'file_id' => $insertedFile->id,
+                'owner_id' => 0,
+                'encrypted' => intval($rawFile->encrypted),
+                'placement' => 'server',
+                'host' => $host->hostID
+            ]
+        );
+
+        return $rawFile;
+    }
+
     private function importMissions()
     {
         $files = \File::allFiles(storage_path('app/seederdata/missions'));
@@ -124,30 +162,18 @@ class DefaultDataSeeder extends Seeder
     {
         $files = \File::allFiles(storage_path('app/seederdata/files'));
         foreach ($files as $file) {
-            $result = include $file->getPathname();
+            if($file->getExtension() != "json") {
+                continue;
+            }
 
-            $createThisFile = $result;
-            unset($createThisFile['host']);
+            $result = file_get_contents($file->getPathname());
+            $newFile = $this->importFileJsonFile($result);
 
-            DB::table('file_data')->updateOrInsert(
-                ['filename' => $createThisFile['filename'], 'filetype' => $createThisFile['filetype']],
-                $createThisFile
-            );
+            if(!$newFile){
+                continue;
+            }
 
-            $insertedFile = FileData::where('filename', $createThisFile['filename'])->where('filetype', $createThisFile['filetype'])->first();
-
-            DB::table('files')->updateOrInsert(
-                ['file_id' => $insertedFile->id],
-                [
-                    'file_id' => $insertedFile->id,
-                    'owner_id' => 0,
-                    'encrypted' => $result['encrypted'],
-                    'placement' => 'server',
-                    'host' => $result['host']
-                ]
-            );
-
-            $this->command->line('Created file: "' . $result['filename'] . '"');
+            $this->command->line('Created file: "' . $newFile->filename . '"');
         }
     }
 }

@@ -1,0 +1,9 @@
+{
+  "host": "87.49.178.2",
+  "filename": "omnimail.conf",
+  "filetype": "txt",
+  "encrypted": false,
+  "password": null,
+  "filesize": 4,
+  "content": "[server]\nip = 87.49.178.2\nhostname = germail.com\nport = 80\ndescription = \"GerMail - E-Mail für alle\"\nadmin_hash = \"NTJuX3Y3P21ga2I\"\n\n[database]\ndb_host = 122.5.55.100\ndb_port = 5989\ndb_keyfile = secukey.cert\n\n[externals]\nload_config = {\n     cfg/omni.smtp.conf\n     cfg/omni.pop.conf\n     cfg/omni.imap.conf\n     cfg/omni.webmail.conf\n     cfg/coco.antispam.conf\n     cfg/coco.antivirus.conf\n     cfg/omni.quota.conf\n     cfg/omni.authmodules.conf\n     cfg/global.domains.conf\n     cfg/global.security.conf\n}\nload_module = {\n     modules/omni.*.omod\n     modules/coco.antispam.omod\n     modules/coco.antivirus.omod\n}\n\n[logs]\nlog_dir = /mnt/srv_logs/omnimail\nmax_size = 64M\nmax_age = 1Y"
+}
