@@ -1,5 +1,6 @@
 <?php
 
+use App\Classes\Game\Handlers\CorpHandler;
 use App\Classes\Game\Handlers\DomainHandler;
 use App\Classes\Game\Handlers\ServerHandler;
 use App\Models\FileData;
@@ -29,28 +30,44 @@ class DefaultDataSeeder extends Seeder
     {
         $serverFiles = \File::allFiles(storage_path('app/seederdata/servers'));
         foreach ($serverFiles as $server){
-            $result = include $server->getPathname();
-
-            $newServer = ServerHandler::newServer($result['owner'], $result['rootpass'], $result['ip']);
-            if($newServer) {
-                DomainHandler::newSystemDomain($newServer->host->id, $result['domain']);
-
-                if(isset($result['services'])) {
-                    foreach ($result['services'] as $service) {
-                        ServerHandler::getServer($result['ip'])->addService($service['type'], $service['port']);
-                    }
-                }
+            if($server->getExtension() != "json") {
+                continue;
             }
 
-            $this->command->line('Created server: ' . $result['ip'] . ( $newServer ? ' ('.$result['domain'].')' : '' ));
+            $result = file_get_contents($server->getPathname());
+            $newServer = $this->importServerJsonFile($result);
+
+            $this->command->line('Created server: ' . $newServer->ip . ( isset($newServer->domain) ? ' ('.$newServer->domain.')' : '' ));
         }
+    }
+
+    private function importServerJsonFile($jsonData)
+    {
+        $rawServer = json_decode($jsonData);
+
+        // This is always 0 in this case, since we only import system owned servers.
+        $serverOwner = 0;
+
+        $newServer = ServerHandler::newServer($serverOwner, $rawServer->rootpassword, $rawServer->ip);
+
+        if($newServer && $rawServer->domain) {
+            DomainHandler::newSystemDomain($newServer->host->id, $rawServer->domain);
+
+            if(isset($rawServer->services)) {
+                foreach ($rawServer->services as $service) {
+                    ServerHandler::getServer($rawServer->ip)->addService($service->type, $service->port);
+                }
+            }
+        }
+
+        return $rawServer;
     }
 
     private function importMissionJsonFile($jsonData)
     {
         $rawMission = json_decode($jsonData);
 
-        $corporation = App\Classes\Game\Handlers\CorpHandler::getCorporationByName($rawMission->corporation);
+        $corporation = CorpHandler::getCorporationByName($rawMission->corporation);
 
         if(!$corporation){
             return false;

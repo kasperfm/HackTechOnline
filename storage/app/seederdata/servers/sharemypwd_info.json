@@ -1,0 +1,12 @@
+{
+    "ip": "78.45.107.4",
+    "domain": "shareMyPwd.info",
+    "services": [
+        {
+            "type": 1,
+            "port": 80
+        }
+    ],
+    "rootpassword": null,
+    "owner": 0
+}

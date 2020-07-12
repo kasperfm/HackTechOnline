@@ -1,0 +1,12 @@
+{
+    "ip": "31.113.213.227",
+    "domain": "psybytes.org",
+    "services": [
+        {
+            "type": 1,
+            "port": 80
+        }
+    ],
+    "rootpassword": null,
+    "owner": 0
+}

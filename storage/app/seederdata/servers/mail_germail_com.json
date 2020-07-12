@@ -1,0 +1,12 @@
+{
+    "ip": "122.5.55.100",
+    "domain": "mail.germail.com",
+    "services": [
+        {
+            "type": 4,
+            "port": 5989
+        }
+    ],
+    "rootpassword": null,
+    "owner": 0
+}
