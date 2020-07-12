@@ -6,8 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=7.2.3",
-        "backpack/crud": "3.6.*",
-        "backpack/logmanager": "^2.3",
+        "backpack/crud": "4.1.*",
+        "backpack/logmanager": "^4.0.0",
         "guzzlehttp/guzzle": ">=6.3",
         "guzzlehttp/psr7": "^1.5",
         "highideas/laravel-users-online": "^3.0",
@@ -20,16 +20,17 @@
         "pusher/pusher-php-server": "^4.0",
         "sentry/sentry": "^2.0-beta1",
         "sentry/sentry-laravel": "^1.0.0",
-        "spatie/laravel-activitylog": "^3.1"
+        "spatie/laravel-activitylog": "^3.1",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
-        "backpack/generators": "^1.2",
+        "backpack/generators": "^3.0",
         "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-ide-helper": "^2.6",
         "doctrine/dbal": "^2.9",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "~1.4",
-        "laracasts/generators": "dev-master",
+        "laracasts/generators": "^1.0",
         "mockery/mockery": "1.*",
         "phpunit/phpunit": ">=7.5"
     },

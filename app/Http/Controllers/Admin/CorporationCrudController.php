@@ -7,7 +7,6 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 // VALIDATION: change the requests to match your own file names if you need form validation
 use App\Http\Requests\CorporationRequest as StoreRequest;
 use App\Http\Requests\CorporationRequest as UpdateRequest;
-use Backpack\CRUD\CrudPanel;
 
 /**
  * Class CorporationCrudController
@@ -16,6 +15,12 @@ use Backpack\CRUD\CrudPanel;
  */
 class CorporationCrudController extends CrudController
 {
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+
     public function setup()
     {
         /*
@@ -39,23 +44,5 @@ class CorporationCrudController extends CrudController
         // add asterisk for fields that are required in CorporationRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
-    }
-
-    public function store(StoreRequest $request)
-    {
-        // your additional operations before save here
-        $redirect_location = parent::storeCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
-    }
-
-    public function update(UpdateRequest $request)
-    {
-        // your additional operations before save here
-        $redirect_location = parent::updateCrud($request);
-        // your additional operations after save here
-        // use $this->data['entry'] or $this->crud->entry
-        return $redirect_location;
     }
 }

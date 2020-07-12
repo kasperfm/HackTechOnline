@@ -1,6 +1,8 @@
 <!-- This file is used to store sidebar items, starting with Backpack\Base 0.9.0 -->
-<li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
-<li><a href='{{ url(config('backpack.base.route_prefix', 'admin').'/log') }}'><i class='fa fa-terminal'></i> <span>System Logs</span></a></li>
-<li><a href='{{ backpack_url('corporation') }}'><i class='fa fa-users'></i> <span>Corporations</span></a></li>
-<li><a href='{{ backpack_url('bug') }}'><i class='fa fa-bug'></i> <span>Bugs</span></a></li>
-<li><a href='{{ backpack_url('invite') }}'><i class='fa fa-group'></i> <span>Invites</span></a></li>
+<li class='nav-item'><a class='nav-link' href="{{ backpack_url('dashboard') }}"><i class="nav-icon fa fa-dashboard"></i> {{ trans('backpack::base.dashboard') }}</a></li>
+
+
+<li class='nav-item'><a class='nav-link' href="{{ url(config('backpack.base.route_prefix', 'admin').'/log') }}"><i class="nav-icon fa fa-terminal"></i> System Logs</a></li>
+<li class='nav-item'><a class='nav-link' href="{{ backpack_url('corporation') }}"><i class="nav-icon fa fa-users"></i> Corporations</a></li>
+<li class='nav-item'><a class='nav-link' href="{{ backpack_url('bugs') }}"><i class="nav-icon fa fa-bug"></i> Bugs</a></li>
+<li class='nav-item'><a class='nav-link' href="{{ backpack_url('invite') }}"><i class="nav-icon fa fa-group"></i> Invites</a></li>
