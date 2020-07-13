@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Invite;
+use Illuminate\Support\Str;
 
 class MakeInviteKeys extends Command
 {
@@ -44,7 +45,7 @@ class MakeInviteKeys extends Command
 
         for ($i = 0; $i < $numberOfKeysToGenerate; $i++){
             $newInvite = new Invite();
-            $newInvite->key = str_random(8);
+            $newInvite->key = Str::random(8);
             $newInvite->user_id = 0;
             $this->info($newInvite->key);
             $newInvite->save();

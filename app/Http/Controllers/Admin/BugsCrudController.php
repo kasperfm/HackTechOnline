@@ -96,13 +96,32 @@ class BugsCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->setFromDb(); // columns
+    //    $this->crud->setFromDb(); // columns
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumn([
+            'name' => 'subject',
+            'type' => 'text'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'fixed',
+            'type' => 'boolean',
+            'label' => 'Fixed'
+        ]);
+
+        $this->crud->addColumn([
+            'name'  => 'user',
+            'label' => 'Username',
+            'type'  => 'select',
+            'entity' => 'user',
+            'attribute' => 'username'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'type' => 'datetime',
+            'label' => 'Timestamp'
+        ]);
     }
 
     /**
@@ -133,5 +152,54 @@ class BugsCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {
+        $this->crud->set('show.setFromDb', false);
+
+        $this->crud->addColumn([
+            'name' => 'subject',
+            'type' => 'text'
+        ]);
+
+        $this->crud->addColumn([
+            'name'  => 'category',
+            'label' => 'Category',
+            'type'  => 'select',
+            'entity' => 'category',
+            'attribute' => 'title'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'fixed',
+            'type' => 'boolean',
+            'label' => 'Fixed'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'created_at',
+            'type' => 'datetime',
+            'label' => 'Timestamp'
+        ]);
+
+        $this->crud->addColumn([
+            'name'  => 'user',
+            'label' => 'Username',
+            'type'  => 'select',
+            'entity' => 'user',
+            'attribute' => 'username'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'description',
+            'type' => 'text'
+        ]);
+
+        $this->crud->addColumn([
+            'name' => 'user_agent',
+            'type' => 'text',
+            'label' => 'User-Agent'
+        ]);
     }
 }

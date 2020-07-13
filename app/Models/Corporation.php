@@ -43,7 +43,7 @@ class Corporation extends Model
 
     public function owner()
     {
-        return $this->hasOne(User::class, 'id', 'owner_user_id');
+        return $this->belongsTo(User::class, 'owner_user_id', 'id');
     }
 
     public function members()
