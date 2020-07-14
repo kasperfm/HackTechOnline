@@ -8,9 +8,11 @@
         "php": ">=7.2.3",
         "backpack/crud": "4.1.*",
         "backpack/logmanager": "^4.0.0",
+        "consoletvs/charts": "6.*",
         "guzzlehttp/guzzle": ">=6.3",
         "guzzlehttp/psr7": "^1.5",
         "highideas/laravel-users-online": "^3.0",
+        "intervention/image": "^2.3",
         "jrean/laravel-user-verification": "^8.0",
         "laracasts/utilities": "^3.0",
         "laravel/framework": "^6.0",
@@ -20,8 +22,7 @@
         "pusher/pusher-php-server": "^4.0",
         "sentry/sentry": "^2.0-beta1",
         "sentry/sentry-laravel": "^1.0.0",
-        "spatie/laravel-activitylog": "^3.1",
-        "intervention/image": "^2.3"
+        "spatie/laravel-activitylog": "^3.1"
     },
     "require-dev": {
         "backpack/generators": "^3.0",
