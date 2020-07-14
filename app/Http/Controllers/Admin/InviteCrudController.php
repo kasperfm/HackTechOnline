@@ -12,7 +12,6 @@ class InviteCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -36,13 +35,48 @@ class InviteCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->setFromDb(); // columns
+        //$this->crud->setFromDb();
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']);
-         */
+        $this->crud->addFilter([
+            'type' => 'simple',
+            'name' => 'used',
+            'label'=> 'Used'
+        ],
+            false,
+            function() {
+                $this->crud->addClause('where', 'used', '1');
+            });
+
+        $this->crud->addFilter([
+            'type' => 'simple',
+            'name' => 'unused',
+            'label'=> 'Available'
+        ],
+            false,
+            function() {
+                $this->crud->addClause('where', 'used', '0');
+            });
+
+        $this->crud->addColumn([
+            'name'  => 'key',
+            'label' => 'Key',
+            'type'  => 'text'
+        ]);
+
+        $this->crud->addColumn([
+            'name'  => 'used',
+            'label' => 'Used',
+            'type'  => 'boolean',
+        ]);
+
+        $this->crud->addColumn([  // Select
+            'label' => 'User',
+            'type' => 'select',
+            'name' => 'user_id', // the db column for the foreign key
+            'entity' => 'user', // the method that defines the relationship in your Model
+            'attribute' => 'username', // foreign key attribute that is shown to user
+            'model' => "App\Models\User"
+        ]);
     }
 
     /**
@@ -55,23 +89,13 @@ class InviteCrudController extends CrudController
     {
         $this->crud->setValidation(InviteRequest::class);
 
-        $this->crud->setFromDb(); // fields
+        //$this->crud->setFromDb();
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number']));
-         */
+        $this->crud->addField([
+            'name' => 'key',
+            'label' => 'Invite key',
+            'type' => 'text'
+        ]);
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     *
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
-    protected function setupUpdateOperation()
-    {
-        $this->setupCreateOperation();
-    }
 }

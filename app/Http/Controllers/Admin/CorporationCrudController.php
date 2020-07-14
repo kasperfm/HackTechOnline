@@ -55,6 +55,26 @@ class CorporationCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        $this->crud->addFilter([
+            'type' => 'simple',
+            'name' => 'systemcorp',
+            'label'=> 'System'
+        ],
+            false,
+            function() {
+                $this->crud->addClause('where', 'status', '1');
+            });
+
+        $this->crud->addFilter([
+            'type' => 'simple',
+            'name' => 'playercorp',
+            'label'=> 'Player corps'
+        ],
+            false,
+            function() {
+                $this->crud->addClause('where', 'status', '2');
+            });
+
         $this->crud->addColumn([
             'name'  => 'id',
             'label' => 'ID',
@@ -113,6 +133,13 @@ class CorporationCrudController extends CrudController
             'allows_null' => false,
             'default' => '1'
         ]);
+
+
+        $this->crud->addField([
+            'name' => 'invite_key',
+            'label' => 'Invite key',
+            'type' => 'text'
+        ]);
     }
 
     /**
@@ -161,6 +188,15 @@ class CorporationCrudController extends CrudController
             'name' => 'owner_user_id', // the db column for the foreign key
             'entity' => 'owner', // the method that defines the relationship in your Model
             'attribute' => 'username', // foreign key attribute that is shown to user// force the related options to be a custom query, instead of all(); you can use this to filter the results show in the select
+        ]);
+
+        $this->crud->addColumn([
+            'name'      => 'members', // name of relationship method in the model
+            'type'      => 'relationship',
+            'label'     => 'Members', // Table column heading
+            'entity'    => 'members', // the method that defines the relationship in your Model
+            'attribute' => 'username', // foreign key attribute that is shown to user
+            'model'     => \App\Models\User::class, // foreign key model
         ]);
     }
 }

@@ -65,6 +65,11 @@ class User extends Authenticatable
         'created_at'
     ];
 
+    // Identifier for admin panel usage
+    public function identifiableAttribute() {
+        return 'username';
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
