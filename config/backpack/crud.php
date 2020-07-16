@@ -162,7 +162,7 @@ return [
     |-------------------
     */
 
-    'show_translatable_field_icon'     => true,
+    'show_translatable_field_icon'     => false,
     'translatable_field_icon_position' => 'right', // left or right
 
     'locales' => [
