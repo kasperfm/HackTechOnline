@@ -1,5 +1,6 @@
 @extends(backpack_view('blank'))
 
+@can('isAdmin')
 @php
     $widgets['before_content'][] = [
         'type'        => 'jumbotron',
@@ -20,6 +21,18 @@
         ]
     ];
 @endphp
+
+@elsecan('isCreator')
+        @php
+            $widgets['before_content'][] = [
+                'type'        => 'jumbotron',
+                'heading'     => 'Welcome dear content creator',
+                'content'     => 'Thank you for helping, by making great content for this game!',
+                'button_link' => backpack_url('logout'),
+                'button_text' => trans('backpack::base.logout'),
+            ];
+        @endphp
+    @endcan
 
 @section('content')
     
