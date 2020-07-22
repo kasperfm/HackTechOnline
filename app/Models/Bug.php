@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * App\Models\Bug
@@ -44,6 +45,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Bug extends Model
 {
     use CrudTrait;
+    use HasRoles;
     use SoftDeletes;
 
     protected $fillable = ['user_id', 'subject', 'fixed', 'description', 'category_id', 'user_agent'];

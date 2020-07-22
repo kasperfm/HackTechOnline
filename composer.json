@@ -8,6 +8,7 @@
         "php": ">=7.2.3",
         "backpack/crud": "4.1.*",
         "backpack/logmanager": "^4.0.0",
+        "backpack/permissionmanager": "^6.0",
         "consoletvs/charts": "6.*",
         "guzzlehttp/guzzle": ">=6.3",
         "guzzlehttp/psr7": "^1.5",

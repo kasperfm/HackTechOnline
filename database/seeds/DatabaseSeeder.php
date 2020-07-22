@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(ServersSeeder::class);
         $this->call(DefaultDataSeeder::class);
         //$this->call(MissionDataSeeder::class);
+        $this->call(DefaultPermissionSeeder::class);
     }
 }

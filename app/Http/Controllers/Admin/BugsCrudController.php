@@ -28,6 +28,10 @@ class BugsCrudController extends CrudController
      */
     public function setup()
     {
+        if(!backpack_auth()->user()->hasRole('admin')){
+            abort(403);
+        }
+
         $this->crud->setModel(\App\Models\Bug::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/bugs');
         $this->crud->setEntityNameStrings('bug', 'bugs');

@@ -8,7 +8,7 @@
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
-    'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
+    'middleware' => ['web', config('backpack.base.middleware_key', 'admin'), 'can:isAdmin'],
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     Route::crud('corporation', 'CorporationCrudController');

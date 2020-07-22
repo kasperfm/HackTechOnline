@@ -6,3 +6,16 @@
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('corporation') }}"><i class="nav-icon fa fa-users"></i> Corporations</a></li>
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('bugs') }}"><i class="nav-icon fa fa-bug"></i> Bugs</a></li>
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('invite') }}"><i class="nav-icon fa fa-group"></i> Invites</a></li>
+
+
+@role('admin')
+<!-- Users, Roles, Permissions -->
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-users"></i> Authentication</a>
+    <ul class="nav-dropdown-items">
+        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i> <span>Users</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('role') }}"><i class="nav-icon la la-id-badge"></i> <span>Roles</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ backpack_url('permission') }}"><i class="nav-icon la la-key"></i> <span>Permissions</span></a></li>
+    </ul>
+</li>
+@endrole
