@@ -28,7 +28,7 @@ class DefaultDataSeeder extends Seeder
 
     private function importServers()
     {
-        $serverFiles = \File::allFiles(storage_path('app/seederdata/servers'));
+        $serverFiles = \File::files(storage_path('app/seederdata/servers'));
         foreach ($serverFiles as $server){
             if($server->getExtension() != "json") {
                 continue;
