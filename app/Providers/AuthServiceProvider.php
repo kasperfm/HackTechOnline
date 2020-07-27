@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Invite;
@@ -48,6 +49,16 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $this->registerPolicies();
+
+        /* define a admin user role */
+        Gate::define('isAdmin', function(User $user) {
+            return $user->hasRole('admin');
+        });
+
+        /* define a manager user role */
+        Gate::define('isCreator', function($user) {
+            return $user->hasRole('creator');
+        });
     }
 
     private function validateInviteKey($inviteKey)
