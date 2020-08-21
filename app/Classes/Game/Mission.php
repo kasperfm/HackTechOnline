@@ -23,6 +23,7 @@ use App\Classes\Game\Handlers\CorpHandler;
 
 class Mission
 {
+    public $id;
     public $missionID;
     public $title;
     public $description;
@@ -36,7 +37,7 @@ class Mission
     public $model;
     private $user;
 
-    public function __construct(MissionModel $mission, User $user)
+    public function __construct(MissionModel $mission, User $user = null)
     {
         $this->model = $mission;
         if($user){
@@ -48,6 +49,7 @@ class Mission
             }
         }
 
+        $this->id = $mission->id;
         $this->missionID = $mission->id;
         $this->title = $mission->title;
         $this->description = $mission->description;
@@ -67,11 +69,13 @@ class Mission
                 'done' => 0
             ]);
 
+            $this->model->callAdvancedClass('accept');
+
             activity('game')
                 ->performedOn($mission)
                 ->withProperties(['mission_id' => $mission->mission_id])
                 ->causedBy($this->user->model)
-                ->log('Mission accepted');
+                ->log('Contract accepted');
 
             return true;
         }
@@ -95,7 +99,9 @@ class Mission
                     ->performedOn($userMission)
                     ->withProperties(['mission_id' => $userMission->mission_id])
                     ->causedBy($this->user->model)
-                    ->log('Mission completed');
+                    ->log('Contract completed');
+
+                $this->model->callAdvancedClass('complete');
 
                 $corp->addTrust($this->user->userID, $this->model->reward_trust);
                 $this->user->economy->addMoney($this->model->reward_credits);
@@ -124,7 +130,8 @@ class Mission
     {
         if($this->user){
             $mission = UserMission::where('user_id', $this->user->userID)->where('done', 0)->first();
-            activity('game')->performedOn($mission)->withProperties(['mission_id' => $mission->mission_id])->causedBy($this->user->model)->log('Mission aborted');
+            $this->model->callAdvancedClass('abort');
+            activity('game')->performedOn($mission)->withProperties(['mission_id' => $mission->mission_id])->causedBy($this->user->model)->log('Contract cancelled');
             $mission->delete();
 
             return true;

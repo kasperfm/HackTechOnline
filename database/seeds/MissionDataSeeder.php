@@ -1,5 +1,7 @@
 <?php
 
+use App\Classes\Game\Handlers\CorpHandler;
+use App\Classes\Game\Handlers\DomainHandler;
 use App\Classes\Game\Handlers\ServerHandler;
 use App\Models\File;
 use App\Models\Mission;
@@ -19,6 +21,8 @@ class MissionDataSeeder extends Seeder
     {
         DB::table('missions')->truncate();
 
+        $psyBytesID = CorpHandler::getCorporationByName('PsychedelicBytes')->corpID;
+
         //PsychedelicBytes - Show us your skills
         $psyBytes_01_Mission = new Mission();
         $psyBytes_01_Mission->fill([
@@ -27,7 +31,7 @@ class MissionDataSeeder extends Seeder
             'complete_message' => 'Nice, you did it! Come back for the next task if you want...',
             'reward_trust' => 5,
             'reward_credits' => 100,
-            'corp_id' => 4,
+            'corp_id' => $psyBytesID,
             'type' => 'get',
             'objective' => 'get omnimail.conf from 87.49.178.2',
             'minimum_trust' => 0,
@@ -44,7 +48,7 @@ class MissionDataSeeder extends Seeder
             'complete_message' => 'Thank you for the password! You better hide your tracks a bit now.',
             'reward_trust' => 5,
             'reward_credits' => 175,
-            'corp_id' => 4,
+            'corp_id' => $psyBytesID,
             'type' => 'submit',
             'objective' => 'submit 34hYp19kfmd to 78.45.107.4',
             'minimum_trust' => 5,
@@ -61,7 +65,7 @@ class MissionDataSeeder extends Seeder
             'complete_message' => 'Phew, that was close. Let us hope that this will slow their tracers down a bit.',
             'reward_trust' => 10,
             'reward_credits' => 30,
-            'corp_id' => 4,
+            'corp_id' => $psyBytesID,
             'type' => 'renewip',
             'objective' => '',
             'minimum_trust' => 10,

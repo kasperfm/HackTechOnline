@@ -14,7 +14,7 @@
 
 @section('extra-js')
 <script src="/js/init.js?v={{ useJSCache() }}"></script>
-    <script type="text/javascript">
-        $.getScript('/game/missions/dynamicjs');
-    </script>
+<script type="text/javascript">
+    $.getScript('/game/missions/dynamicjs');
+</script>
 @endsection

@@ -5,8 +5,8 @@ namespace App\Classes\Game\Handlers;
 use App\Models\Server;
 use App\Models\Host;
 use App\Models\Hostname;
-
 use App\Classes\Helpers\NetworkHelper;
+use App\Models\Service;
 
 class ServerHandler
 {
@@ -15,9 +15,10 @@ class ServerHandler
      * @param $ownerID
      * @param $rootPassword
      * @param null $ipAddress
-     * @return Server|null
+     * @param bool $returnModel
+     * @return Server|\App\Classes\Game\Server|null
      */
-    public static function newServer($ownerID, $rootPassword, $ipAddress = null)
+    public static function newServer($ownerID, $rootPassword, $ipAddress = null, $returnModel = true)
     {
         if($ipAddress) {
             $ipCheck = Host::where('game_ip', $ipAddress)->first();
@@ -46,11 +47,17 @@ class ServerHandler
         $newHost->host_type = 1;
         $newHost->machine_id = $newServer->id;
         $newHost->save();
+        $newHost->fresh();
 
         $newServer->host_id = $newHost->id;
         $newServer->save();
+        $newServer->fresh();
 
-        return $newServer;
+        if($returnModel){
+            return $newServer;
+        }
+
+        return self::getServerByID($newHost->id);
     }
 
     /**
@@ -123,11 +130,12 @@ class ServerHandler
     {
         if(!empty($hostID)){
             $host = Host::where('id', $hostID)->server()->first();
-            if(!empty($host)){
+            if($host){
                 return new \App\Classes\Game\Server($host->id);
             }
         }
 
         return null;
     }
+
 }

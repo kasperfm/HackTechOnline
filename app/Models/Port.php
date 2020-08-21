@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Port newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Port newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Port open($portNumber)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Port hasPort($portNumber)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Port query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Port whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Port whereHostId($value)
@@ -54,5 +55,9 @@ class Port extends Model
 
     public function scopeWithService($query, $serviceID){
         return $query->where('service_id', $serviceID);
+    }
+
+    public function scopeHasPort($query, $portNumber){
+        return $query->where('open_port', $portNumber);
     }
 }

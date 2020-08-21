@@ -42,6 +42,12 @@ class DefaultCorporationsSeeder extends Seeder
                 'description' => 'The Keyboard Cowboys (TKC) are one of the few good and well respected hacker groups out there. They use their skills to find security issues in important and critical systems. And if the software companies need their help, they do it for a small fee.',
                 'owner_user_id' => null,
                 'status' => 1
+            ],
+            [
+                'name' => 'LaidBackCoderz',
+                'description' => 'The LBC crew is known by being highly skilled in low level software development. Their code is super fast, and very effective. If you find a piece of their software, be sure to keep it - or sell it for a good price!',
+                'owner_user_id' => null,
+                'status' => 1
             ]);
 
         foreach($corporations as $corp){

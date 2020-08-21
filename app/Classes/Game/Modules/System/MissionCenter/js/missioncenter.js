@@ -16,11 +16,11 @@ function acceptMission(mission) {
         success: function(response){
             if(response.result === true) {
                 $.notification({
-                    title: 'Mission status',
+                    title: 'Contract status',
                     icon: 'b',
                     timeout: 4500,
                     color: '#fff',
-                    content: 'Mission \"'+response.title+'\" has been accepted !'
+                    content: 'Contract \"'+response.title+'\" has been accepted !'
                 });
 
                 //$.getScript('/game/missions/dynamicjs');
@@ -49,7 +49,7 @@ function selectMission(mission) {
             if(response.current === true){
                 acceptHTMLContent = '';
             }else{
-                acceptHTMLContent = '<br /><center><strong style="cursor: pointer; color: aqua;" class="flash animated infinite accept_mission_link" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE MISSION</strong></center>';
+                acceptHTMLContent = '<br /><center><strong style="cursor: pointer; color: aqua;" class="flash animated infinite accept_mission_link" onclick="acceptMission('+mission+')">CLICK HERE TO ACCEPT THE CONTRACT</strong></center>';
             }
 
             var itemRewardContent;
@@ -73,7 +73,7 @@ function selectMission(mission) {
                             '<br /><strong>Trust points:</strong> <span style="color: #fcff34;">' + response.reward_trust + '</span>' +
                             '<br /><strong>Credits reward:</strong> <span style="color: #fcff34;">$' + response.reward_credits + '</span>' +
                             itemRewardContent +
-                            '<br /><strong>Mission:</strong> ' + response.description +
+                            '<br /><strong>Task:</strong> ' + response.description +
                             '<br />' +
                             acceptHTMLContent
                     }
@@ -96,11 +96,11 @@ function abortMission() {
             if(response === true) {
                 $.notification(
                     {
-                        title: 'Mission aborted',
+                        title: 'Contract aborted',
                         icon: 'c',
                         timeout: 4500,
                         color: '#fff',
-                        content: 'Your current mission has been aborted!'
+                        content: 'Your current contract has been cancelled !'
                     }
                 );
 

@@ -59,6 +59,7 @@ function initFileTree() {
                         _token: window.Laravel.csrfToken,
                         hostID: fileViewerHost,
                         hostPassword: fileViewerHostPassword,
+                        hostPort: fileViewerPort
                     },
                     "dataType": "json"
                 }
@@ -130,6 +131,8 @@ jQuery(document).ready(function($) {
     });
 
     $('#fileViewer-connect').click(function () {
+        var hostAddressAndPort = $('#hostAddress').val().split(":", 2);
+
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -137,12 +140,14 @@ jQuery(document).ready(function($) {
             url: '/game/module/FileViewer/ajax/connectToRemoteServer',
             data: {
                 _token: window.Laravel.csrfToken,
-                host: $('#hostAddress').val()
+                host: hostAddressAndPort[0],
+                port: hostAddressAndPort[1]
                // password: fileViewerHostPassword
             },
             success: function (response) {
                 if (response.result === true) {
                     fileViewerHost = response.host;
+                    fileViewerPort = response.port;
                     $(".fileinspector_filetree").remove();
                     $("#fileinspector_left").append('<div class="fileinspector_filetree"></div>');
                     initFileTree();
