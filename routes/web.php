@@ -37,4 +37,7 @@ Route::get('/login', 'GameController@login')->name('login');
 
 Route::get('/offline', 'OfflineController@index')->name('offline');
 
+Route::get('/auth/facebook/redirect', 'SocialAuthController@redirect')->name('facebook-auth');
+Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
+
 Auth::routes();
