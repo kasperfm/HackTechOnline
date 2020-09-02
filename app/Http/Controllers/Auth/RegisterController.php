@@ -54,47 +54,6 @@ class RegisterController extends Controller
         $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
     }
 
-    private function useInviteKey($inviteKey, $userID){
-        $invite = Invite::where('key', $inviteKey)->available()->first();
-
-        if($invite) {
-            $invite->used = 1;
-            $invite->user_id = $userID;
-            $invite->save();
-        }
-    }
-
-    private function createNewBankAccount($userID){
-        $defaultBankID = 1;
-        $newAccountNumber = EconomyHandler::generateAccountNumber($defaultBankID);
-
-        $accountInfo = array(
-            'user_id'           => $userID,
-            'bank_id'           => $defaultBankID,
-            'account_number'    => $newAccountNumber,
-            'active'            => 1
-        );
-
-        $newAccount = new BankAccount();
-        $newAccount->fill($accountInfo);
-        $newAccount->balance = config('hacktech.startingmoney', 10000);
-        $newAccount->save();
-    }
-
-    private function fillUserProfile($userID){
-        $emptyProfile = array(
-            'user_id'           => $userID,
-            'name'              => null,
-            'corporation_id'    => null,
-            'bank_id'           => 1,
-            'profile_text'      => null
-        );
-
-        $userProfile = new UserProfile();
-        $userProfile->fill($emptyProfile);
-        $userProfile->save();
-    }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -134,32 +93,11 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'userlevel' => 3, // TODO: Define different types with permissions (3 == GameTester)
+            'userlevel' => config('hacktech.default_user_type')
         ]);
     }
 
-    private function createNewGateway($userID){
-        $newIP = NetworkHelper::generateIP();
 
-        $newGateway = new Gateway();
-        $newGateway->user_id = $userID;
-        $newGateway->inet_id = 1;
-        $newGateway->cpu_id = 2;
-        $newGateway->ram_id = 3;
-        $newGateway->hdd_id = 4;
-        $newGateway->host_id = 0;
-        $newGateway->save();
-
-        $newHost = new Host();
-        $newHost->online_state = 1;
-        $newHost->game_ip = $newIP;
-        $newHost->host_type = 2;
-        $newHost->machine_id = $newGateway->id;
-        $newHost->save();
-
-        $newGateway->host_id = $newHost->id;
-        $newGateway->save();
-    }
 
     /**
     * Handle a registration request for the application.
@@ -179,13 +117,13 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        $this->useInviteKey($request->invite, $user->id);
+        $user->useInviteKey($request->invite, $user->id);
         
-        $this->fillUserProfile($user->id);
+        $user->fillUserProfile($user->id);
         
-        $this->createNewGateway($user->id);
+        $user->createNewGateway($user->id);
 
-        $this->createNewBankAccount($user->id);
+        $user->createNewBankAccount($user->id);
 
         //$this->guard()->login($user);
 

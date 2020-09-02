@@ -41,6 +41,8 @@
                             <button type="submit" class="btn btn-primary" style="margin-top: 15px;">
                                 Login
                             </button>
+
+                            <a href="{{route('facebook-auth')}}"><i style="padding-left: 10px;" class="fab fa-1x text-pink fa-facebook-square"></i></a>
                         </div>
 
                         <div class="form-group">
@@ -53,6 +55,8 @@
 
                         <div class="form-group">
                             <a style="color: #FF0091 !important;" href="{{ route('register') }}">Register new game account</a>
+                            <br>
+                            <a style="color: #ff0091 !important;" href="{{ route('show-facebook-register') }}">Register using Facebook</a>
                         </div>
                     </td>
                 </tr>

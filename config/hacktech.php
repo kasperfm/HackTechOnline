@@ -2,7 +2,7 @@
 
 return [
     'nojscache' => true,
-
+    'default_user_type' => 3,
     'startingmoney' => 10000,
 
     'messenger' => [
