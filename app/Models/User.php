@@ -174,4 +174,14 @@ class User extends Authenticatable
         $newAccount->balance = config('hacktech.startingmoney', 10000);
         $newAccount->save();
     }
+
+    public function useInviteKey($inviteKey, $userID){
+        $invite = Invite::where('key', $inviteKey)->available()->first();
+
+        if($invite) {
+            $invite->used = 1;
+            $invite->user_id = $userID;
+            $invite->save();
+        }
+    }
 }

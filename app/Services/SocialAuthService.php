@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Invite;
 use App\Models\User;
 use App\Models\SocialLogin;
 use App\Models\UserLogin;
@@ -39,6 +40,14 @@ class SocialAuthService
             $user = User::whereEmail($providerUser->getEmail())->first();
 
             if (!$user) {
+                if(!\Session::has('invite_key')){
+                    abort(401, 'No registered user found !');
+                }
+
+                if(!$this->validateInviteKey(\Session::get('invite_key'))){
+                    abort(401, 'Invalid invite key !');
+                }
+
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'username' => $providerUser->getName(),
@@ -49,6 +58,7 @@ class SocialAuthService
                     'verification_token' => null
                 ]);
 
+                $user->useInviteKey(\Session::get('invite_key'), $user->id);
                 $user->fillUserProfile($user->id);
                 $user->createNewGateway($user->id);
                 $user->createNewBankAccount($user->id);
@@ -58,6 +68,15 @@ class SocialAuthService
             $account->save();
 
             return $user;
+        }
+    }
+
+    private function validateInviteKey($inviteKey)
+    {
+        if(Invite::where('key', $inviteKey)->available()->first()){
+            return true;
+        }else{
+            return false;
         }
     }
 }

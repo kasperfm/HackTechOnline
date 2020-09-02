@@ -54,16 +54,6 @@ class RegisterController extends Controller
         $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
     }
 
-    private function useInviteKey($inviteKey, $userID){
-        $invite = Invite::where('key', $inviteKey)->available()->first();
-
-        if($invite) {
-            $invite->used = 1;
-            $invite->user_id = $userID;
-            $invite->save();
-        }
-    }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -127,7 +117,7 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        $this->useInviteKey($request->invite, $user->id);
+        $user->useInviteKey($request->invite, $user->id);
         
         $user->fillUserProfile($user->id);
         

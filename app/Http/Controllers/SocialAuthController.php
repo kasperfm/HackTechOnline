@@ -16,8 +16,30 @@ class SocialAuthController extends Controller
     public function callback(SocialAuthService $service)
     {
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
+
+        if(!$user){
+            abort(404);
+        }
+
         auth()->login($user);
 
         return redirect()->to('/game');
+    }
+
+    public function showInviteRegisterForm()
+    {
+        return view('auth.socialauth');
+    }
+
+    public function register(Request $request)
+    {
+        if(!$request->has('invite')) {
+            abort(404, 'Invite key not found !');
+        }
+
+        \Session::put('invite_key', $request->get('invite'));
+
+
+        return $this->redirect();
     }
 }

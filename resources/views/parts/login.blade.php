@@ -55,6 +55,8 @@
 
                         <div class="form-group">
                             <a style="color: #FF0091 !important;" href="{{ route('register') }}">Register new game account</a>
+                            <br>
+                            <a style="color: #ff0091 !important;" href="{{ route('show-facebook-register') }}">Register using Facebook</a>
                         </div>
                     </td>
                 </tr>
