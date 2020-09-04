@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classes\Game\Handlers\UserHandler;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\UserStoreCrudRequest as StoreRequest;
 use App\Http\Requests\UserUpdateCrudRequest as UpdateRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Activitylog\Models\Activity;
 
 class UserCrudController extends CrudController
 {
@@ -13,12 +16,18 @@ class UserCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation { store as traitStore; }
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate; }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     public function setup()
     {
         $this->crud->setModel(config('backpack.permissionmanager.models.user'));
         $this->crud->setEntityNameStrings(trans('backpack::permissionmanager.user'), trans('backpack::permissionmanager.users'));
         $this->crud->setRoute(backpack_url('user'));
+    }
+
+    public function show($id)
+    {
+        return $this->showDetails($id);
     }
 
     public function setupListOperation()
@@ -93,6 +102,64 @@ class UserCrudController extends CrudController
     {
         $this->addUserFields();
         $this->crud->setValidation(UpdateRequest::class);
+    }
+
+    public function showDetails($id)
+    {
+        $user = UserHandler::getUser($id);
+
+        if(!$user){
+            abort(404);
+        }
+
+        return view(backpack_view('custom.user_info'), ['user' => $user]);
+    }
+
+    public function getActivityLogEntry(Request $request)
+    {
+        $entry = Activity::findOrFail($request->get('log_id'));
+
+        return response()->json([
+            'log_name' => $entry->log_name,
+            'properties' => $entry->properties
+        ]);
+    }
+
+    public function actions(Request $request)
+    {
+        $user = UserHandler::getUser($request->get('user_id'));
+
+        if(!$user){
+            abort(404);
+        }
+
+        $outputData = null;
+
+        switch ($request->get('admin_action')){
+            case 'renew-ip':
+                $outputData = $user->gateway->renewIPAddress(1);
+                break;
+
+            case 'reset-account':
+                $outputData = $user->resetAccount();
+                break;
+
+            case 'deactivate-account':
+                $user->model->verified = 0;
+                $user->model->save();
+                break;
+
+            case 'activate-account':
+                $user->model->verified = 1;
+                $user->model->verification_token = null;
+                $user->model->save();
+                break;
+
+            default:
+                break;
+        }
+
+        return response()->json(['result' => $outputData]);
     }
 
     /**

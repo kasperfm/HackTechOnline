@@ -128,8 +128,6 @@
         $(document).on('change', '.service-select', function(e) {
             var serviceItemID = e.target.getAttribute('rel');
 
-            console.log(serviceItemID);
-
             var ele = $('.port-item-' + serviceItemID).find('select').val();
 
             $.ajax({

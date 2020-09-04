@@ -14,6 +14,9 @@ Route::group([
     Route::get('content/new-server', 'Content\ServerCreatorController@index')->name('content.servercreator.index');
     Route::get('content/new-server/getport', 'Content\ServerCreatorController@ajaxGetDefaultServicePort')->name('content.servercreator.ajax.getport');
     Route::post('content/new-server', 'Content\ServerCreatorController@store')->name('content.servercreator.store');
+
+    Route::post('user/action', 'UserCrudController@actions')->name('user.actions');
+    Route::post('user/getlog', 'UserCrudController@getActivityLogEntry')->name('user.getlog');
 });
 
 Route::group([
