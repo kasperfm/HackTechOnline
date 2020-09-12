@@ -18,16 +18,22 @@ class AddShortcodeToMissionsTable extends Migration
         });
 
         $mission1 = \App\Models\Mission::find(1);
-        $mission1->shortcode = 'PSYBYTES-01-INTRO';
-        $mission1->save();
+        if($mission1) {
+            $mission1->shortcode = 'PSYBYTES-01-INTRO';
+            $mission1->save();
+        }
 
         $mission2 = \App\Models\Mission::find(2);
-        $mission2->shortcode = 'PSYBYTES-02-PWDCRACK';
-        $mission2->save();
+        if($mission2) {
+            $mission2->shortcode = 'PSYBYTES-02-PWDCRACK';
+            $mission2->save();
+        }
 
         $mission3 = \App\Models\Mission::find(3);
-        $mission3->shortcode = 'PSYBYTES-03-NEWIP';
-        $mission3->save();
+        if($mission3) {
+            $mission3->shortcode = 'PSYBYTES-03-NEWIP';
+            $mission3->save();
+        }
     }
 
     /**
