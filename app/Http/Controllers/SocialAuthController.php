@@ -10,11 +10,19 @@ class SocialAuthController extends Controller
 {
     public function redirect()
     {
+        if (!config('services.facebook.enabled', false)) {
+            return null;
+        }
+
         return Socialite::driver('facebook')->redirect();
     }
 
     public function callback(SocialAuthService $service)
     {
+        if (!config('services.facebook.enabled', false)) {
+            return null;
+        }
+
         $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
 
         if(!$user){
