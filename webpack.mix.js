@@ -1,15 +1,5 @@
 const mix = require('laravel-mix');
 
-let fs = require('fs');
-
-let getFiles = function (dir) {
-    // get all 'files' in this directory
-    // filter directories
-    return fs.readdirSync(dir).filter(file => {
-        return fs.statSync(`${dir}/${file}`).isFile();
-    });
-};
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -49,18 +39,10 @@ mix.js('resources/assets/js/app.js', 'public/js')
 
     // Modules
     .css('resources/assets/css/webpage.css', 'public/css/webpage.css')
-    .copy('app/Classes/Game/Modules/**/**/css/**.css', 'public/modules/css')
-    .copy('app/Classes/Game/Modules/**/**/js/**.js', 'public/modules/js')
+    .copy('app/Classes/Game/Modules/**/**/css/*.css', 'public/modules/css')
+    .copy('app/Classes/Game/Modules/**/**/js/*.js', 'public/modules/js')
 
     // VFS Web assets
-    .copy('storage/app/vfs/hosts/**/web/img/**.**', 'public/vfs/web/img')
-    .copy('storage/app/vfs/hosts/**/web/css/**.css', 'public/vfs/web/css')
-    .copy('storage/app/vfs/hosts/**/web/js/**.js', 'public/vfs/web/js');
-
-getFiles('public/modules/js').forEach(function (filepath) {
-    mix.combine(['public/modules/js/' + filepath], 'public/modules/js/' + filepath);
-});
-
-getFiles('public/vfs/web/js').forEach(function (filepath) {
-    mix.combine(['public/vfs/web/js/' + filepath], 'public/vfs/web/js/' + filepath);
-});
+    .copy('storage/app/vfs/hosts/**/web/img/**.*', 'public/vfs/web/img')
+    .copy('storage/app/vfs/hosts/**/web/css/*.css', 'public/vfs/web/css')
+    .copy('storage/app/vfs/hosts/**/web/js/*.js', 'public/vfs/web/js');
