@@ -26,7 +26,7 @@ Route::group(['middleware' => ['authed']], function () {
     Route::get('/game/missions/dynamicjs', 'MissionController@getDynamicJS');
     Route::post('/game/missions/checkevent', 'MissionController@checkMissionEvent');
 
-    Route::get('/logout', 'GameController@logout')->name('logout');
+    Route::get('/game-logout', 'GameController@logout')->name('game-logout');
 });
 
 Route::post('/game/web/{ip}/ajax/{call}', 'GameController@ingameWebAjax');

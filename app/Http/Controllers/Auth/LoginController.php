@@ -61,7 +61,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'game-logout']);
     }
 
     protected function sendFailedLoginResponse(Request $request)
