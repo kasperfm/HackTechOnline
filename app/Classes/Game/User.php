@@ -230,8 +230,6 @@ class User
         if(auth()->check() && auth()->id() == $this->userID) {
             session()->flush();
             auth()->logout();
-
-            return redirect('/login');
         }
 
         return true;

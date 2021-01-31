@@ -238,6 +238,17 @@ class DefaultAppsSeeder extends Seeder
             'application_id' => 18
         ]);
 
+        // System > Account Manager
+        DB::table('applications')->insert([
+            'id' => 19,
+            'app_name' => 'AccountManager',
+            'app_group' => 2,
+            'on_market' => 0
+        ]);
+        DB::table('application_datas')->insert([
+            'application_id' => 19
+        ]);
+
         // Tools > File Viewer > Version 1.1
         DB::table('application_datas')->insert([
             'application_id' => 12,
