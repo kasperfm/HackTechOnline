@@ -9,6 +9,7 @@
                         <li rel="help" class="menubar-item-inactive">HELP</li>
                         <li rel="profilesettings" class="exec">PROFILE</li>
                         <li><hr class="menu-hr"></li>
+                        <li rel="accountmanager" class="exec">MANAGE ACCOUNT</li>
                         <li rel="accountreset" class="exec">RESET GAME ACCOUNT</li>
                         <li rel="bugreporter" class="exec">REPORT A BUG</li>
                         <li><hr class="menu-hr"></li>

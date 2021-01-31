@@ -19,6 +19,12 @@ class RedirectIfNotVerified
              return redirect('/login');
          }
 
+         if(auth()->check() && $request->user()->verified == 0){
+             session()->flush();
+             auth()->logout();
+             return redirect('/login');
+         }
+
          if ($request->user()->verified) {
              return $next($request);
          }
