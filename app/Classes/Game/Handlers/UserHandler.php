@@ -31,6 +31,10 @@ class UserHandler
      */
     public static function player()
     {
+        if(!session()->exists('player')) {
+            return null;
+        }
+
         return session()->get('player');
     }
 }
