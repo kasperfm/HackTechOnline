@@ -186,6 +186,12 @@ class User
             $server->host->forceFill([
                'online_state' => 0
             ])->save();
+
+            if($server->host->hostname) {
+                $server->host->hostname->forceFill([
+                    'activated' => 0
+                ])->save();
+            }
         }
 
         // Clean all messages sent to and from the user.

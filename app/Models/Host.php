@@ -48,6 +48,10 @@ class Host extends Model
         }
     }
 
+    public function hostname(){
+        return $this->hasOne('App\Models\Hostname', 'host_id', 'id');
+    }
+
     public function scopeIsOnline($query){
         return $query->where('online_state', 1);
     }
