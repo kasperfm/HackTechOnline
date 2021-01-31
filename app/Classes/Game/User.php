@@ -17,6 +17,7 @@ use App\Classes\Game\Types\UserTypes;
 use App\Models\Message;
 use App\Models\User as Model;
 use App\Models\UserApp;
+use App\Models\UserLogin;
 use App\Models\UserMission;
 use App\Models\UserProfile;
 use App\Models\UserTrust;
@@ -167,5 +168,26 @@ class User
             ->log(Auth::user()->username . ' reset his account');
 
         return response()->json('OK');
+    }
+
+    public function deleteUserData()
+    {
+        $this->leaveCorporation();
+
+        // Clean all messages sent to and from the user.
+        Message::where('from_user_id', $this->userID)->delete();
+        Message::where('to_user_id', $this->userID)->delete();
+
+        // Clear user generated content.
+        UserMission::where('user_id', $this->userID)->delete();
+        UserApp::where('user_id', $this->userID)->delete();
+        File::where('owner_id', $this->userID)->delete();
+        UserTrust::where('user_id', $this->userID)->delete();
+
+        // Clear personal data
+        UserLogin::where('user_id', $this->userID)->delete();
+
+        $this->model->username = "Unknown-" . md5(time());
+
     }
 }
