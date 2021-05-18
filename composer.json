@@ -37,6 +37,7 @@
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "~1.4",
         "laracasts/generators": "^1.0",
+        "laravel/sail": "^1.6",
         "mockery/mockery": "1.*",
         "phpunit/phpunit": "^9.0"
     },
