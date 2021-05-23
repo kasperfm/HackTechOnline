@@ -72,6 +72,5 @@
     <script src="{{ mix('/js/echoevents.js') }}"></script>
 
     @yield('extra-js')
-
 </body>
 </html>

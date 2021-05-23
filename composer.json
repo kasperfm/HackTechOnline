@@ -24,14 +24,14 @@
         "nunomaduro/collision": "^5.0",
         "php-http/curl-client": "^1.7",
         "predis/predis": "^1.1",
-        "pusher/pusher-php-server": "^4.0",
+        "pusher/pusher-php-server": "^6.1",
         "sentry/sentry": "^2.5.1",
         "sentry/sentry-laravel": "^1.9.0",
         "spatie/laravel-activitylog": "^3.1"
     },
     "require-dev": {
         "backpack/generators": "^3.0",
-        "barryvdh/laravel-debugbar": "^3.2",
+        "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.6",
         "doctrine/dbal": "^2.9",
         "filp/whoops": "^2.0",

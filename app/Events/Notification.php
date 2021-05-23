@@ -33,6 +33,6 @@ class Notification implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('notifications' . md5(Auth::id()));
+        return new PrivateChannel('notifications.' . md5(Auth::id()));
     }
 }

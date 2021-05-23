@@ -54,6 +54,6 @@ class HandleApp implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('handleapp' . md5(Auth::id()));
+        return new PrivateChannel('handleapp.' . md5(Auth::id()));
     }
 }

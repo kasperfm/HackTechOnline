@@ -11,10 +11,12 @@
 |
 */
 
-Broadcast::channel('notifications*', function ($user) {
-	return Auth::check();
+Broadcast::channel('notifications.{id}', function ($user, $id) {
+    Auth::check();
+    return md5($user->id) === $id;
 });
 
-Broadcast::channel('handleapp*', function ($user) {
-    return Auth::check();
+Broadcast::channel('handleapp.{id}', function ($user, $id) {
+    Auth::check();
+    return md5($user->id) === $id;
 });
