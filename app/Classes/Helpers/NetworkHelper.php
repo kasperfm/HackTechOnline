@@ -44,7 +44,7 @@ class NetworkHelper
      */
     public static function isIPAvailable($ip) : bool
     {
-        if(!self::isValidIP($ip)) {
+        if(!self::isValidIP($ip) || $ip == '127.0.0.1' || ip == '255.255.255.255') {
             return false;
         }
 
