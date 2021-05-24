@@ -18,7 +18,8 @@ class TestUserSeeder extends Seeder
             'username' => 'test',
             'email' => 'test@hacktechonline.com',
             'password' => bcrypt('test123!'),
-            'userlevel' => config('hacktech.default_user_type')
+            'userlevel' => config('hacktech.default_user_type'),
+            'verified' => 1
         ]);
 
         $user->fillUserProfile($user->id);

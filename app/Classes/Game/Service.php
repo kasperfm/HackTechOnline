@@ -24,7 +24,7 @@ class Service {
     public $serviceID = 0;
     private $handler = null;
 
-    public function __construct($id, $port = 0, $ip){
+    public function __construct($id, $ip, $port = 0){
         $service = Model::where('id', $id)->first();
 
         if(empty($service)){
