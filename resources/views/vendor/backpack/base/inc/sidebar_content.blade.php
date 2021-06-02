@@ -14,6 +14,7 @@
         <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-gamepad"></i> Game content</a>
         <ul class="nav-dropdown-items">
             <li class="nav-item"><a class="nav-link" href="{{ route('content.servercreator.index') }}"><i class="nav-icon la la-database"></i> <span>Create new server</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('content.filecreator.index') }}"><i class="nav-icon la la-file"></i> <span>Create new file</span></a></li>
         </ul>
     </li>
 @endcan
