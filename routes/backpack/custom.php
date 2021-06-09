@@ -31,4 +31,5 @@ Route::group([
     Route::crud('bugs', 'BugsCrudController');
     Route::crud('invite', 'InviteCrudController');
     Route::get('charts/weekly-users', 'Charts\WeeklyUsersChartController@response')->name('charts.weekly-users.index');
+    Route::crud('gatewayhardware', 'GatewayHardwareCrudController');
 }); // this should be the absolute last line of this file
