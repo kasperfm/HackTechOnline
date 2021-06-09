@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
         Commands\MakeInviteKeys::class,
         Commands\EncryptPassword::class,
         Commands\ImportData::class,
-        Commands\PublishNewServers::class
+        Commands\PublishNewServers::class,
+        Commands\PublishNewFiles::class
     ];
 
     /**

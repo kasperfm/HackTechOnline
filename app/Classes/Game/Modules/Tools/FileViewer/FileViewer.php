@@ -138,12 +138,18 @@ class FileViewer extends Module
             if(!empty($file)){
                 $response['result'] = true;
 
-                if($file->isEncrypted()){
-                    $response['encrypted'] = true;
-                }else{
-                    $response['content'] = $file->content;
-                    $response['filetype'] = $file->filetype;
+                if($file->filetype == 'bin') {
+                    $response['content'] = 'ERROR: UNABLE TO PARSE BINARY FILE!';
+                    $response['filetype'] = 'bin';
                     $response['encrypted'] = false;
+                } else {
+                    if ($file->isEncrypted()) {
+                        $response['encrypted'] = true;
+                    } else {
+                        $response['content'] = $file->content;
+                        $response['filetype'] = $file->filetype;
+                        $response['encrypted'] = false;
+                    }
                 }
             }else{
                 $response['result'] = false;

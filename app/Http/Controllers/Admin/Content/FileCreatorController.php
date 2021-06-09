@@ -19,13 +19,23 @@ class FileCreatorController extends Controller
 
     public function index()
     {
-        return view(backpack_view('custom.content_file_new'), []);
+        return view(backpack_view('custom.content_file_new'));
     }
 
     public function store(Request $request)
     {
-        // TODO STUFF
-        return back()->with('success', 'Server submitted. Thank you!');
+        $resultArray = array();
+        $resultArray['host'] = $request->get('host');
+        $resultArray['filename'] = strtolower($request->get('filename'));
+        $resultArray['filetype'] = $request->get('type');
+        $resultArray['password'] = $request->get('password', null);
+        $resultArray['encrypted'] = !empty($request->get('password', null));
+        $resultArray['filesize'] = (int)$request->get('filesize', 1);
+        $resultArray['content'] = $request->get('content', '');
+
+        file_put_contents(storage_path('app/seederdata/files/new/') . backpack_user()->id . '-' . md5(time()) . '.json', json_encode($resultArray));
+
+        return back()->with('success', 'File submitted. Thank you!');
     }
 
     /**

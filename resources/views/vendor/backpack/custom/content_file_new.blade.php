@@ -53,26 +53,42 @@
 
                     <div class="card-body bold-labels">
                         <div class="row">
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-4 form-group">
                                 <label for="filename" class="required">Filename</label>
                                 <input required class="form-control" type="text" name="filename" id="filename" value="{{ old('filename') ? old('filename') : '' }}">
                             </div>
 
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-4 form-group">
+                                <label for="type" class="required">Type</label>
+                                <select required class="form-control" name="type" id="type">
+                                    <option value="txt">Text</option>
+                                    <option value="bin">Binary</option>
+                                    <option value="image">Image</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 form-group">
                                 <label for="host" class="required">Host IP</label>
                                 <input required class="form-control" type="text" name="host" id="host" value="{{ old('host') ? old('host') : '' }}">
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-4 form-group">
                                 <label for="password" class="required">Password (optional)</label>
                                 <input class="form-control" type="text" name="password" id="password" value="{{ old('password') ? old('password') : '' }}">
                             </div>
 
-                            <div class="col-md-6 form-group">
-                                <label for="size" class="required">File size</label>
+                            <div class="col-md-4 form-group">
+                                <label for="size" class="required">File size in MB</label>
                                 <input required class="form-control" type="number" name="size" id="size" value="{{ old('size') ? old('size') : '1' }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="content" class="required">Content editor</label>
+                                <textarea required rows="15" class="form-control" name="content" id="content">{{ old('content') ? old('content') : '' }}</textarea>
                             </div>
                         </div>
                     </div>
