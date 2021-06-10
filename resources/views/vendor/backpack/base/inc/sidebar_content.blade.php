@@ -7,6 +7,7 @@
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('bugs') }}"><i class="nav-icon la la-bug"></i> Bugs</a></li>
 <li class='nav-item'><a class='nav-link' href="{{ backpack_url('invite') }}"><i class="nav-icon la la-group"></i> Invites</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('gatewayhardware') }}'><i class='nav-icon la la-hdd-o'></i> Gateway Hardware</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('serverhardware') }}'><i class='nav-icon la la-hdd-o'></i> Server Hardware</a></li>
 @endcan
 
 @can('isCreator')
@@ -31,5 +32,6 @@
     </ul>
 </li>
 @endcan
+
 
 

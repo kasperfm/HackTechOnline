@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -29,7 +30,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ServerHardware extends Model
 {
+    use CrudTrait;
     protected $table = 'server_hardwares';
+
     public $timestamps = false;
 
     protected $fillable = [

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\GatewayHardwareRequest;
+use App\Http\Requests\ServerHardwareRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class GatewayHardwareCrudController
+ * Class ServerHardwareCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class GatewayHardwareCrudController extends CrudController
+class ServerHardwareCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class GatewayHardwareCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\GatewayHardware::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/gatewayhardware');
-        CRUD::setEntityNameStrings('Gateway Hardware', 'Gateway Hardware');
+        CRUD::setModel(\App\Models\ServerHardware::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/serverhardware');
+        CRUD::setEntityNameStrings('Server Hardware', 'Server Hardware');
     }
 
     /**
@@ -95,12 +95,6 @@ class GatewayHardwareCrudController extends CrudController
             'options' => [0 => 'NET', 1 => 'CPU', 2 => 'RAM', 3 => 'HDD']
         ]);
         CRUD::column('value')->type('number');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
     }
 
     /**
@@ -111,7 +105,7 @@ class GatewayHardwareCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(GatewayHardwareRequest::class);
+        CRUD::setValidation(ServerHardwareRequest::class);
 
         CRUD::field('part_name')->type('text');
         CRUD::field('price')->type('number');
@@ -122,12 +116,6 @@ class GatewayHardwareCrudController extends CrudController
             'options' => [0 => 'NET', 1 => 'CPU', 2 => 'RAM', 3 => 'HDD']
         ]);
         CRUD::field('value')->type('number');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
