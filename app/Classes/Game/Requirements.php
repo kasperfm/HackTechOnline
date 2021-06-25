@@ -34,9 +34,9 @@ class Requirements
     public function validateRequirements(Request $request) {
         $runningApps = $request->session()->get('runningApps', array());
         if (!in_array($this->appName, $runningApps)) {
-            $user = Auth::user();
-            $availableCpu = $user->gateway->cpu->value;
-            $availableRam = $user->gateway->ram->value;
+            $user = currentPlayer();
+            $availableCpu = $user->gateway->hardware['cpu']->hardwareData['value'];
+            $availableRam = $user->gateway->hardware['ram']->hardwareData['value'];
 
             $currentCpuUsage = $request->session()->get('cpuUsage');
             $currentRamUsage = $request->session()->get('ramUsage');
@@ -47,9 +47,9 @@ class Requirements
                 $request->session()->put('ramUsage', $currentRamUsage + $this->ram);
 
                 return true;
-            } else {
-                return false;
             }
         }
+
+        return false;
     }
 }

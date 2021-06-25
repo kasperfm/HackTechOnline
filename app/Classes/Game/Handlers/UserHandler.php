@@ -21,9 +21,9 @@ class UserHandler
         $model = Model::where('id', $userID)->first();
         if(!empty($model)){
             return new User($model);
-        }else{
-            return null;
         }
+
+        return null;
     }
 
     /**
