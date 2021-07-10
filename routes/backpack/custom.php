@@ -18,6 +18,9 @@ Route::group([
     Route::get('content/new-file', 'Content\FileCreatorController@index')->name('content.filecreator.index');
     Route::post('content/new-file', 'Content\FileCreatorController@store')->name('content.filecreator.store');
 
+    Route::get('content/new-mission', 'Content\MissionCreatorController@index')->name('content.missioncreator.index');
+    Route::post('content/new-mission', 'Content\MissionCreatorController@store')->name('content.missioncreator.store');
+
     Route::post('user/action', 'UserCrudController@actions')->name('user.actions');
     Route::post('user/getlog', 'UserCrudController@getActivityLogEntry')->name('user.getlog');
 });
