@@ -1,3 +1,4 @@
+
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
@@ -5,14 +6,14 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.3.0",
+        "php": ">=8.0.0",
         "backpack/crud": "4.1.*",
         "backpack/logmanager": "^4.0.0",
         "backpack/permissionmanager": "^6.0",
         "consoletvs/charts": "6.*",
         "facade/ignition": "^2.3.6",
         "guzzlehttp/guzzle": "^7.0.1",
-        "guzzlehttp/psr7": "^1.5",
+        "guzzlehttp/psr7": "^1.7",
         "highideas/laravel-users-online": "^3.0",
         "intervention/image": "^2.3",
         "jrean/laravel-user-verification": "^v9.0.0",
@@ -23,11 +24,11 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.2",
         "nunomaduro/collision": "^5.0",
-        "php-http/curl-client": "^1.7",
+        "php-http/curl-client": "^2.2",
         "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^6.1",
-        "sentry/sentry": "^2.5.1",
-        "sentry/sentry-laravel": "^1.9.0",
+        "sentry/sentry": "^3.3",
+        "sentry/sentry-laravel": "^2.7",
         "spatie/laravel-activitylog": "^3.1"
     },
     "require-dev": {
