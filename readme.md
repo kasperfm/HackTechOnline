@@ -17,9 +17,9 @@ I don't have the time for completing this project, or developing it any further.
 
 The project is made with PHP using the Laravel Framework. The ingame messenger chat system is made using NodeJS. There is also a lot of jQuery involved.
 
-So if you want to make your own fork, feel free to do so. But please don't report Issues, as the development is halted. If you decide to make your own game from this, please just include the original name of the project, the author (me), and a link to this Github repo. That would make me very happy :)
+So if you want to make your own fork, feel free to do so. But please don't report Issues, as the development is halted. If you decide to make your own game from this, please just include the original name of the project, the author (me), and a link to this Github repo. That would make me very happy 😄
 
-There is not much documentation for the development and the source code overall, but if you have any questions, feel free to reach out to me. Just remember: The game was made while I was learning Laravel. So the code may not be pretty, and all that fancy, but I still put a lot of hours into this project <3
+There is not much documentation for the development and the source code overall, but if you have any questions, feel free to reach out to me. Just remember: The game was made while I was learning Laravel. So the code may not be pretty, and all that fancy, but I still put a lot of hours into this project ❤️
 
 ## Working features
 
@@ -81,10 +81,10 @@ There is some things that aren't done yet (Surprise!). So here is my personal li
 - Start with setting up your server for a regular Laravel project.
 - Run ``composer install`` To install the required composer packages.
 - Run ``npm install`` To install the JS packages.
+- Make a copy of ``.env.example`` as ``.env`` and fill out the variables.
 - Run ``php artisan migrate`` To generate all the MySQL tables.
 - Run ``php artisan db:seed`` To seed the database with the default data.
 - Run ``php artisan game:makeinvite 1`` To make an invite key to use in the registration process.
-- Make a copy of ``.env.example`` as ``.env`` and fill out the variables.
 - Run ``npm run prod`` To build javascript files, and copy assets.
 - Go to the project URL you set up, and sign up using the invite key you just made.
 - You are good to go!
