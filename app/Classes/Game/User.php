@@ -17,6 +17,7 @@ use App\Classes\Game\Types\UserTypes;
 use App\Models\Message;
 use App\Models\User as Model;
 use App\Models\UserApp;
+use App\Models\UserLogin;
 use App\Models\UserMission;
 use App\Models\UserProfile;
 use App\Models\UserTrust;
@@ -116,7 +117,10 @@ class User
         $profile->save();
 
         $this->corporation = null;
-        currentPlayer()->corporation = null;
+
+        if(currentPlayer()) {
+            currentPlayer()->corporation = null;
+        }
 
         return true;
     }
@@ -167,5 +171,67 @@ class User
             ->log(Auth::user()->username . ' reset his account');
 
         return response()->json('OK');
+    }
+
+    public function deleteUserData($confirm = false)
+    {
+        if(!$confirm) {
+            return false;
+        }
+
+        $this->leaveCorporation();
+        $this->gateway->setOnlineState(false);
+
+        foreach($this->model->servers as $server){
+            $server->host->forceFill([
+               'online_state' => 0
+            ])->save();
+
+            if($server->host->hostname) {
+                $server->host->hostname->forceFill([
+                    'activated' => 0
+                ])->save();
+            }
+        }
+
+        // Clean all messages sent to and from the user.
+        Message::where('from_user_id', $this->userID)->delete();
+        Message::where('to_user_id', $this->userID)->delete();
+
+        // Clear user generated content.
+        UserMission::where('user_id', $this->userID)->delete();
+        UserApp::where('user_id', $this->userID)->delete();
+        File::where('owner_id', $this->userID)->delete();
+        UserTrust::where('user_id', $this->userID)->delete();
+
+        // Clear personal data.
+        UserLogin::where('user_id', $this->userID)->delete();
+
+        // Clear profile table.
+        $this->model->profile->name = null;
+        $this->model->profile->profile_text = null;
+
+        // Clear and anonymize login info.
+        $this->model->username = "Unknown-" . md5(time());
+        $this->model->email = "deleted-" . $this->userID . '@' . md5(time()) . '.hto';
+        $this->model->password = "DELETED-USER";
+        $this->model->remember_token = null;
+        $this->model->verification_token = null;
+        $this->model->email_verified_at = null;
+        $this->model->verified = 0;
+
+        $this->model->save();
+
+        activity('auth')
+            ->causedBy(null)
+            ->log('User ID ' . $this->userID . ' and associated data has been deleted!');
+
+        // If logged in as this user, then clear session and logout.
+        if(auth()->check() && auth()->id() == $this->userID) {
+            session()->flush();
+            auth()->logout();
+        }
+
+        return true;
     }
 }

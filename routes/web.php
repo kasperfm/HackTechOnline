@@ -26,7 +26,7 @@ Route::group(['middleware' => ['authed']], function () {
     Route::get('/game/missions/dynamicjs', 'MissionController@getDynamicJS');
     Route::post('/game/missions/checkevent', 'MissionController@checkMissionEvent');
 
-    Route::get('/logout', 'GameController@logout')->name('logout');
+    Route::get('/game-logout', 'GameController@logout')->name('game-logout');
 });
 
 Route::post('/game/web/{ip}/ajax/{call}', 'GameController@ingameWebAjax');
@@ -36,5 +36,10 @@ Route::get('/','GameController@index');
 Route::get('/login', 'GameController@login')->name('login');
 
 Route::get('/offline', 'OfflineController@index')->name('offline');
+
+Route::get('/auth/facebook/redirect', 'SocialAuthController@redirect')->name('facebook-auth');
+Route::post('/auth/facebook/signup', 'SocialAuthController@register')->name('facebook-register');
+Route::get('/auth/facebook/signup', 'SocialAuthController@showInviteRegisterForm')->name('show-facebook-register');
+Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
 
 Auth::routes();

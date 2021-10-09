@@ -9,4 +9,4 @@ You will soon be able to conquer the net!
 ## Who made this?
 
 The game is made by me, Kasper Færch Mikkelsen (https://kasperfm.com).
-HTO is my "little child" that I have been working on for a long time. In the beginning I used it to learn PHP and Javascript, but as time passed I rewrote it a couple of times. Now the game is made with Laravel 5.5, and this is propably the last version I make.
+HTO is my "little child" that I have been working on for a long time. In the beginning I used it to learn PHP and Javascript, but as time passed I rewrote it a couple of times. Now the game is made with Laravel 8.x (started as Laravel 5.5), and this is probably the last version of the game I will make.

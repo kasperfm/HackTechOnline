@@ -14,6 +14,12 @@ Route::group([
     Route::get('content/new-server', 'Content\ServerCreatorController@index')->name('content.servercreator.index');
     Route::get('content/new-server/getport', 'Content\ServerCreatorController@ajaxGetDefaultServicePort')->name('content.servercreator.ajax.getport');
     Route::post('content/new-server', 'Content\ServerCreatorController@store')->name('content.servercreator.store');
+
+    Route::get('content/new-file', 'Content\FileCreatorController@index')->name('content.filecreator.index');
+    Route::post('content/new-file', 'Content\FileCreatorController@store')->name('content.filecreator.store');
+
+    Route::post('user/action', 'UserCrudController@actions')->name('user.actions');
+    Route::post('user/getlog', 'UserCrudController@getActivityLogEntry')->name('user.getlog');
 });
 
 Route::group([
@@ -25,4 +31,6 @@ Route::group([
     Route::crud('bugs', 'BugsCrudController');
     Route::crud('invite', 'InviteCrudController');
     Route::get('charts/weekly-users', 'Charts\WeeklyUsersChartController@response')->name('charts.weekly-users.index');
+    Route::crud('gatewayhardware', 'GatewayHardwareCrudController');
+    Route::crud('serverhardware', 'ServerHardwareCrudController');
 }); // this should be the absolute last line of this file

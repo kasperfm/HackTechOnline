@@ -35,7 +35,7 @@ class Computer {
 
         $this->ports = array();
         foreach($allPorts as $port){
-            $this->ports[] = new Service($port->service_id, $port->open_port, $this->ipAddress);
+            $this->ports[] = new Service($port->service_id, $this->ipAddress, $port->open_port);
         }
     }
 
@@ -101,6 +101,8 @@ class Computer {
             $host = Host::where('id', $this->hostID)->firstOrFail();
             return $host->game_ip;
         }
+
+        return null;
     }
     
     public function getOnlineState(){
@@ -108,6 +110,8 @@ class Computer {
             $query = Host::where('id', $this->hostID)->first();
             return boolval($query->online_state);
         }
+
+        return false;
     }
 
     public function setOnlineState($newState){

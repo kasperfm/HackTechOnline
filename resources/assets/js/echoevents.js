@@ -1,4 +1,4 @@
-Echo.private('notifications' + window.userToken).listen('Notification', (e) => {
+window.Echo.private('notifications.' + window.userToken).listen('Notification', (e) => {
     var timeout = 5000;
 
     if(e.autohide === false){
@@ -16,7 +16,7 @@ Echo.private('notifications' + window.userToken).listen('Notification', (e) => {
     updateCredits();
 });
 
-Echo.private('handleapp' + window.userToken).listen('HandleApp', (e) => {
+window.Echo.private('handleapp.' + window.userToken).listen('HandleApp', (e) => {
     if(e.method === 'refresh'){
         if($("#wnd_" + e.moduleName.toLowerCase())){
             $("#wnd_" + e.moduleName.toLowerCase()).html(e.methodData);

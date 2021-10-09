@@ -57,9 +57,11 @@ window.axios.defaults.headers.common = {
 import Echo from "laravel-echo"
 window.Pusher = require('pusher-js');
 
+
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: '161a496851b9726b9ef8',
     cluster: 'eu',
-    encrypted: true
+    encrypted: true,
+    forceTLS: true
 });

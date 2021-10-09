@@ -21,9 +21,9 @@ class UserHandler
         $model = Model::where('id', $userID)->first();
         if(!empty($model)){
             return new User($model);
-        }else{
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -31,6 +31,10 @@ class UserHandler
      */
     public static function player()
     {
+        if(!session()->exists('player')) {
+            return null;
+        }
+
         return session()->get('player');
     }
 }

@@ -25,10 +25,11 @@ class SoftwareMarket extends Module
     public function returnHTML()
     {
         $softwareList = SoftwareShop::getMarketApps(Auth::id());
+
         $cssPath = '/modules/css/';
         $jsPath = '/modules/js/';
 
-        $view = view('Modules::System.SoftwareMarket.Views.index', compact('cssPath', 'jsPath', 'softwareList'));
+        $view = view('Modules::System.SoftwareMarket.Views.index', ['cssPath' => $cssPath, 'jsPath' => $jsPath, 'softwareList' => $softwareList]);
 
         return $view->render();
     }

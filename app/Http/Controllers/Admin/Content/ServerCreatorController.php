@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Content;
 
+use App\Classes\Helpers\NetworkHelper;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,6 +25,10 @@ class ServerCreatorController extends Controller
 
     public function store(Request $request)
     {
+        if(!NetworkHelper::isIPAvailable($request->get('ip'))) {
+            return back()->withInput()->withErrors(['ip' => 'IP address already in use!']);
+        }
+
         $requestArray = $request->all();
         array_shift($requestArray['services']);
         array_shift($requestArray['ports']);

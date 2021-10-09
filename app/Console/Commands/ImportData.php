@@ -40,5 +40,7 @@ class ImportData extends Command
     {
         Artisan::call('db:seed', ['--class' => 'DefaultDataSeeder']);
         $this->line(Artisan::output());
+
+        return 0;
     }
 }

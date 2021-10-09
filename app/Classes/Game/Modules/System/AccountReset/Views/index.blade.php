@@ -28,7 +28,7 @@
                     },
                     success: function(response){
                         sent = true;
-                        window.location.href = "{{ route('logout') }}";
+                        window.location.href = "{{ route('game-logout') }}";
                     }
                 });
                 return false;

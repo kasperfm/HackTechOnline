@@ -43,6 +43,8 @@ class EncryptPassword extends Command
         $encPassword = str_replace('=', '', $encPassword);
 
         $this->info('Encoded password: ' . $encPassword);
+
+        return 0;
     }
 
     private function charCodeAt($str, $index) {

@@ -41,6 +41,9 @@
                             <button type="submit" class="btn btn-primary" style="margin-top: 15px;">
                                 Login
                             </button>
+                            @if(config('services.facebook.enabled', false))
+                            <a href="{{route('facebook-auth')}}"><i style="padding-left: 10px;" class="fab fa-1x text-pink fa-facebook-square"></i></a>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -53,6 +56,11 @@
 
                         <div class="form-group">
                             <a style="color: #FF0091 !important;" href="{{ route('register') }}">Register new game account</a>
+
+                            @if(config('services.facebook.enabled', false))
+                            <br>
+                            <a style="color: #ff0091 !important;" href="{{ route('show-facebook-register') }}">Register using Facebook</a>
+                            @endif
                         </div>
                     </td>
                 </tr>

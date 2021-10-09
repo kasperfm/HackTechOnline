@@ -47,7 +47,7 @@
             </div>
 
             <div class="text-center">
-                <div class="g-recaptcha" data-theme="dark" data-sitekey="6LcuFN8SAAAAAJZ7Uv3BOhneF6IDCQoNGl0RIZdo"></div>
+                <div class="g-recaptcha" data-theme="dark" data-sitekey="{{ config('app.recaptcha_sitekey') }}"></div>
             </div>
             
             <div class="form-group">

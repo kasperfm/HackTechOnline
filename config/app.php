@@ -17,7 +17,9 @@ return [
     // Game version
     'version' => '0.1.0 Pre-Alpha',
 
-    'recaptcha_secret' => '',
+    // Google Reaptcha v2 keys
+    'recaptcha_secret' => env('RECAPTCHA_SECRET', ''),
+    'recaptcha_sitekey' => env('RECAPTCHA_SITEKEY', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +58,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://hto-ng.test'),
+    'url' => env('APP_URL', 'http://htong.test'),
 
     /*
     |--------------------------------------------------------------------------

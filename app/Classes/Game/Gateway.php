@@ -142,7 +142,9 @@ class Gateway extends Computer {
             $host->ip_changed_at = Carbon::now();
             $host->save();
 
-            currentPlayer()->gateway->ipAddress = $host->game_ip;
+            if(currentPlayer()) {
+                currentPlayer()->gateway->ipAddress = $host->game_ip;
+            }
 
             activity('gateway')
                 ->causedBy($this->ownerID)

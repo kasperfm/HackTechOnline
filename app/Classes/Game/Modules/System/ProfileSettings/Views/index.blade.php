@@ -12,7 +12,7 @@
     </li>
 
     <li>
-        <strong>Last login:</strong> <span class="highlight">{{ App\Models\UserLogin::where('user_id', currentPlayer()->userID)->orderBy('id', 'desc')->first()->last_date->toFormattedDateString() }}</span>
+        <strong>Last login:</strong> <span class="highlight">{{ App\Models\UserLogin::where('user_id', currentPlayer()->userID)->orderBy('id', 'desc')->first() ? App\Models\UserLogin::where('user_id', currentPlayer()->userID)->orderBy('id', 'desc')->first()->last_date->toFormattedDateString() : 'Unknown' }}</span>
     </li>
 
     <li>

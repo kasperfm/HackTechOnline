@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class GatewayHardware extends Model
 {
+    use CrudTrait;
     protected $table = 'gateway_hardwares';
 
     public $timestamps = false;

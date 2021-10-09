@@ -9,7 +9,7 @@
 
         gtag('config', 'UA-38993815-2');
     </script>
-
+    <script src="https://kit.fontawesome.com/5500fd4c95.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,6 +72,5 @@
     <script src="{{ mix('/js/echoevents.js') }}"></script>
 
     @yield('extra-js')
-
 </body>
 </html>

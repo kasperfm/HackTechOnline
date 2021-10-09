@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Classes\Game\Handlers\EconomyHandler;
+use App\Classes\Helpers\NetworkHelper;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -62,7 +64,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'userlevel'
+        'username', 'email', 'password', 'userlevel', 'verified', 'email_verified_at', 'verification_token'
     ];
 
     protected $dates = [
@@ -117,5 +119,69 @@ class User extends Authenticatable
 
     public function messagesToUser(){
         return $this->hasMany(Message::class, 'to_user_id', 'id');
+    }
+
+    public function createNewGateway($userID){
+        $newIP = NetworkHelper::generateIP();
+
+        $newGateway = new Gateway();
+        $newGateway->user_id = $userID;
+        $newGateway->inet_id = 1;
+        $newGateway->cpu_id = 2;
+        $newGateway->ram_id = 3;
+        $newGateway->hdd_id = 4;
+        $newGateway->host_id = 0;
+        $newGateway->save();
+
+        $newHost = new Host();
+        $newHost->online_state = 1;
+        $newHost->game_ip = $newIP;
+        $newHost->host_type = 2;
+        $newHost->machine_id = $newGateway->id;
+        $newHost->save();
+
+        $newGateway->host_id = $newHost->id;
+        $newGateway->save();
+    }
+
+    public function fillUserProfile($userID){
+        $emptyProfile = array(
+            'user_id'           => $userID,
+            'name'              => null,
+            'corporation_id'    => null,
+            'bank_id'           => 1,
+            'profile_text'      => null
+        );
+
+        $userProfile = new UserProfile();
+        $userProfile->fill($emptyProfile);
+        $userProfile->save();
+    }
+
+    public function createNewBankAccount($userID){
+        $defaultBankID = 1;
+        $newAccountNumber = EconomyHandler::generateAccountNumber($defaultBankID);
+
+        $accountInfo = array(
+            'user_id'           => $userID,
+            'bank_id'           => $defaultBankID,
+            'account_number'    => $newAccountNumber,
+            'active'            => 1
+        );
+
+        $newAccount = new BankAccount();
+        $newAccount->fill($accountInfo);
+        $newAccount->balance = config('hacktech.startingmoney', 10000);
+        $newAccount->save();
+    }
+
+    public function useInviteKey($inviteKey, $userID){
+        $invite = Invite::where('key', $inviteKey)->available()->first();
+
+        if($invite) {
+            $invite->used = 1;
+            $invite->user_id = $userID;
+            $invite->save();
+        }
     }
 }

@@ -50,5 +50,7 @@ class MakeInviteKeys extends Command
             $this->info($newInvite->key);
             $newInvite->save();
         }
+
+        return 0;
     }
 }

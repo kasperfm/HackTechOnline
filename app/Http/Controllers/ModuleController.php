@@ -54,12 +54,12 @@ class ModuleController extends Controller
 
         if(!$request->isEmpty){
             $moduleHandler = new ModuleHandler();
-            $this->module = $moduleHandler->getApplication($request->modname, Auth::id());
+            $this->module = $moduleHandler->getApplication($request->modname, $request->user()->id);
 
             $response['answer'] = true;
             $request->session()->pull('runningApps', $request->modname);
-            $request->session()->put('cpuUsage', $request->session()->get('cpuUsage') - $this->module->appModel->data->cpu_req);
-            $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->appModel->data->ram_req);
+            $request->session()->put('cpuUsage', $request->session()->get('cpuUsage') - $this->module->requirements->cpu);
+            $request->session()->put('ramUsage', $request->session()->get('ramUsage') - $this->module->requirements->ram);
         }
 
         return response()->json($response);
@@ -86,26 +86,25 @@ class ModuleController extends Controller
         $response['ram'] = 0;
         $response['hdd'] = 0;
 
-        if(Auth::check()){
-            $user = User::with(['gateway'])->where('id', Auth::id())->first();
-            $gatewayHardware = $user->gateway->hardware()->get();
+        $userObj = UserHandler::player();
 
-            $gwCpu = $gatewayHardware->where('type', HardwareTypes::CPU)->first();
-            $gwRam = $gatewayHardware->where('type', HardwareTypes::RAM)->first();
-            $gwHdd = $gatewayHardware->where('type', HardwareTypes::Harddrive)->first();
-
-            $userObj = UserHandler::player();
-
-            $currentCpuUsage = $request->session()->get('cpuUsage');
-            $currentRamUsage = $request->session()->get('ramUsage');
-            $currentHDDUsage = $userObj->gateway->usedDiskSpace();
-
-            $response['cpu'] = $this->percentage($currentCpuUsage, $gwCpu->value, 0);
-            $response['ram'] = $this->percentage($currentRamUsage, $gwRam->value, 0);
-            $response['hdd'] = $this->percentage($currentHDDUsage, $gwHdd->value, 0);
-
-            $response['answer'] = true;
+        if (!$userObj) {
+            abort(404);
         }
+
+        $gwCpu = $userObj->gateway->hardware['cpu']->hardwareData['value'];
+        $gwRam = $userObj->gateway->hardware['ram']->hardwareData['value'];
+        $gwHdd = $userObj->gateway->hardware['hdd']->hardwareData['value'];
+
+        $currentCpuUsage = $request->session()->get('cpuUsage');
+        $currentRamUsage = $request->session()->get('ramUsage');
+        $currentHDDUsage = $userObj->gateway->usedDiskSpace();
+
+        $response['cpu'] = $this->percentage($currentCpuUsage, $gwCpu, 0);
+        $response['ram'] = $this->percentage($currentRamUsage, $gwRam, 0);
+        $response['hdd'] = $this->percentage($currentHDDUsage, $gwHdd, 0);
+
+        $response['answer'] = true;
 
         return response()->json($response);
     }
